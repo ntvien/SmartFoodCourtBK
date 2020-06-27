@@ -3,6 +3,9 @@ package com.example.smartfoodcourt.ui.home;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -91,12 +94,7 @@ public class HomeFragment extends Fragment {
 
         List<PopularFood> popularFoodList = new ArrayList<>();
 
-        popularFoodList.add(new PopularFood("Float Cake Vietnam", "$7.05", R.drawable.banhbaotrungmuoi));
-        popularFoodList.add(new PopularFood("Chiken Drumstick", "$17.05", R.drawable.banhbaotrungmuoi));
-        popularFoodList.add(new PopularFood("Fish Tikka Stick", "$25.05", R.drawable.banhbaotrungmuoi));
-        popularFoodList.add(new PopularFood("Float Cake Vietnam", "$7.05", R.drawable.banhbaotrungmuoi));
-        popularFoodList.add(new PopularFood("Chiken Drumstick", "$17.05", R.drawable.banhbaotrungmuoi));
-        popularFoodList.add(new PopularFood("Fish Tikka Stick", "$25.05", R.drawable.banhbaotrungmuoi));
+
 
 
 //        List<AsiaFood> asiaFoodList = new ArrayList<>();
@@ -157,4 +155,5 @@ public class HomeFragment extends Fragment {
         adapter.notifyDataSetChanged();
         popularRecycler.setAdapter(adapter);
     }
+
 }

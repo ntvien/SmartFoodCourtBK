@@ -3,10 +3,16 @@ package com.example.smartfoodcourt.ui.food;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -27,7 +33,7 @@ import java.util.Locale;
 
 public class FoodFragment extends Fragment {
 
-    private FoodViewModel galleryViewModel;
+    private FoodViewModel foodViewModel;
 
     RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
@@ -38,10 +44,13 @@ public class FoodFragment extends Fragment {
     String categoryID="";
 
     FirebaseRecyclerAdapter<Food, FoodViewHolder> adapter;
+    FirebaseRecyclerAdapter<Food, FoodViewHolder> searchAdapter;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        galleryViewModel =
+        setHasOptionsMenu(true);
+        foodViewModel =
                 ViewModelProviders.of(this).get(FoodViewModel.class);
         View root = inflater.inflate(R.layout.fragment_food, container, false);
 
@@ -85,5 +94,55 @@ public class FoodFragment extends Fragment {
         };
         adapter.notifyDataSetChanged();
         recyclerView.setAdapter(adapter);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        getActivity().getMenuInflater().inflate(R.menu.food_search, menu);
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView)searchItem.getActionView();
+        searchView.setImeOptions(EditorInfo.IME_ACTION_DONE);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                if(s.isEmpty()) recyclerView.setAdapter(adapter);
+                else {
+                    searchAdapter = new FirebaseRecyclerAdapter<Food, FoodViewHolder>(Food.class, R.layout.food_item,
+                            FoodViewHolder.class, foodList.orderByChild("name").startAt(s).endAt(s + "\uf8ff")) {
+                        @Override
+                        protected void populateViewHolder(FoodViewHolder foodViewHolder, Food food, int i) {
+
+                            Locale locale = new Locale("vi", "VN");
+                            NumberFormat fmt = NumberFormat.getCurrencyInstance(locale);
+
+                            foodViewHolder.food_name.setText(food.getName());
+                            foodViewHolder.food_price.setText(fmt.format(Integer.parseInt(food.getPrice())));
+                            Picasso.with(getContext()).load(food.getImage()).into(foodViewHolder.food_image);
+
+                            final Food clickItem = food;
+                            foodViewHolder.setItemClickListener(new ItemClickListener() {
+                                @Override
+                                public void onClick(View view, int position, boolean isLongClick) {
+                                    Intent foodDetail = new Intent(getContext(), FoodDetail.class);
+                                    foodDetail.putExtra("foodID", searchAdapter.getRef(position).getKey());
+                                    startActivity(foodDetail);
+                                }
+                            });
+
+                        }
+                    };
+                    searchAdapter.notifyDataSetChanged();
+                    recyclerView.setAdapter(searchAdapter);
+                }
+                return false;
+            }
+        });
+        super.onCreateOptionsMenu(menu, inflater);
+
     }
 }
