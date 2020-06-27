@@ -1,0 +1,182 @@
+<html>
+<head>
+<title>activity_food_detail.xml</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #e8bf6a;}
+.s1 { color: #bababa;}
+.s2 { color: #6a8759;}
+.s3 { color: #a9b7c6;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+activity_food_detail.xml</font>
+</center></td></tr></table>
+<pre><span class="s0">&lt;?</span><span class="s1">xml version</span><span class="s2">=&quot;1.0&quot; </span><span class="s1">encoding</span><span class="s2">=&quot;utf-8&quot;</span><span class="s0">?&gt;</span>
+<span class="s0">&lt;androidx.coordinatorlayout.widget.CoordinatorLayout </span><span class="s1">xmlns:android</span><span class="s2">=&quot;http://schemas.android.com/apk/res/android&quot;</span>
+    <span class="s1">xmlns:app</span><span class="s2">=&quot;http://schemas.android.com/apk/res-auto&quot;</span>
+    <span class="s1">xmlns:tools</span><span class="s2">=&quot;http://schemas.android.com/tools&quot;</span>
+    <span class="s1">android:layout_width</span><span class="s2">=&quot;match_parent&quot;</span>
+    <span class="s1">android:layout_height</span><span class="s2">=&quot;match_parent&quot;</span>
+    <span class="s1">tools:context</span><span class="s2">=&quot;.FoodDetail&quot;</span><span class="s0">&gt;</span>
+    
+    <span class="s0">&lt;com.google.android.material.appbar.AppBarLayout</span>
+        <span class="s1">android:id</span><span class="s2">=&quot;@+id/app_bar_layout&quot;</span>
+        <span class="s1">android:layout_width</span><span class="s2">=&quot;match_parent&quot;</span>
+        <span class="s1">android:layout_height</span><span class="s2">=&quot;wrap_content&quot;</span>
+        <span class="s1">android:theme</span><span class="s2">=&quot;@style/ThemeOverlay.AppCompat.Dark.ActionBar&quot;</span>
+        <span class="s1">android:fitsSystemWindows</span><span class="s2">=&quot;true&quot;</span>
+        <span class="s0">&gt;</span>
+
+        <span class="s0">&lt;com.google.android.material.appbar.CollapsingToolbarLayout</span>
+            <span class="s1">android:id</span><span class="s2">=&quot;@+id/collapsing&quot;</span>
+            <span class="s1">android:layout_width</span><span class="s2">=&quot;match_parent&quot;</span>
+            <span class="s1">android:layout_height</span><span class="s2">=&quot;350dp&quot;</span>
+            <span class="s1">android:fitsSystemWindows</span><span class="s2">=&quot;true&quot;</span>
+            <span class="s1">app:layout_scrollFlags</span><span class="s2">=&quot;scroll|exitUntilCollapsed&quot;</span>
+            <span class="s1">app:contentScrim</span><span class="s2">=&quot;#0e0d0e&quot;</span>
+            <span class="s1">app:expandedTitleTextAppearance</span><span class="s2">=&quot;@android:color/transparent&quot;</span>
+            <span class="s0">&gt;</span>
+
+            <span class="s0">&lt;ImageView</span>
+                <span class="s1">android:id</span><span class="s2">=&quot;@+id/img_food&quot;</span>
+                <span class="s1">android:layout_width</span><span class="s2">=&quot;match_parent&quot;</span>
+                <span class="s1">android:layout_height</span><span class="s2">=&quot;match_parent&quot;</span>
+                <span class="s1">android:contentDescription</span><span class="s2">=&quot;@null&quot;</span>
+                <span class="s1">android:scaleType</span><span class="s2">=&quot;centerCrop&quot;</span>
+                <span class="s1">app:layout_collapseMode</span><span class="s2">=&quot;parallax&quot;</span>
+                <span class="s0">/&gt;</span>
+
+            <span class="s0">&lt;androidx.appcompat.widget.Toolbar</span>
+                <span class="s1">android:id</span><span class="s2">=&quot;@+id/toolbar&quot;</span>
+                <span class="s1">android:title</span><span class="s2">=&quot;@string/food_name&quot;</span>
+                <span class="s1">android:layout_width</span><span class="s2">=&quot;match_parent&quot;</span>
+                <span class="s1">android:layout_height</span><span class="s2">=&quot;?attr/actionBarSize&quot;</span>
+                <span class="s1">app:popupTheme</span><span class="s2">=&quot;@style/ThemeOverlay.AppCompat.Light&quot;</span>
+                <span class="s1">app:layout_collapseMode</span><span class="s2">=&quot;parallax&quot;</span>
+                <span class="s0">/&gt;</span>
+
+        <span class="s0">&lt;/com.google.android.material.appbar.CollapsingToolbarLayout&gt;</span>
+
+    <span class="s0">&lt;/com.google.android.material.appbar.AppBarLayout&gt;</span>
+    
+    <span class="s0">&lt;com.google.android.material.floatingactionbutton.FloatingActionButton</span>
+        <span class="s1">android:id</span><span class="s2">=&quot;@+id/btnCart&quot;</span>
+        <span class="s1">android:src</span><span class="s2">=&quot;@drawable/ic_baseline_shopping_cart_24&quot;</span>
+        <span class="s1">android:backgroundTint</span><span class="s2">=&quot;@android:color/white&quot;</span>
+        <span class="s1">android:layout_width</span><span class="s2">=&quot;wrap_content&quot;</span>
+        <span class="s1">android:layout_height</span><span class="s2">=&quot;wrap_content&quot;</span>
+        <span class="s1">app:elevation</span><span class="s2">=&quot;6dp&quot;</span>
+        <span class="s1">app:pressedTranslationZ</span><span class="s2">=&quot;12dp&quot;</span>
+        <span class="s1">app:layout_anchor</span><span class="s2">=&quot;@id/app_bar_layout&quot;</span>
+        <span class="s1">app:layout_anchorGravity</span><span class="s2">=&quot;bottom|right|end&quot;</span>
+        <span class="s1">app:useCompatPadding</span><span class="s2">=&quot;true&quot;</span>
+        <span class="s0">/&gt;</span>
+    
+    <span class="s0">&lt;androidx.core.widget.NestedScrollView</span>
+        <span class="s1">android:id</span><span class="s2">=&quot;@+id/nestedScrollView&quot;</span>
+        <span class="s1">android:clipToPadding</span><span class="s2">=&quot;false&quot;</span>
+        <span class="s1">android:layout_width</span><span class="s2">=&quot;match_parent&quot;</span>
+        <span class="s1">android:layout_height</span><span class="s2">=&quot;match_parent&quot;</span>
+        <span class="s1">app:layout_behavior</span><span class="s2">=&quot;@string/appbar_scrolling_view_behavior&quot;</span>
+        <span class="s0">&gt;</span>
+
+        <span class="s0">&lt;LinearLayout</span>
+            <span class="s1">android:orientation</span><span class="s2">=&quot;vertical&quot;</span>
+            <span class="s1">android:layout_width</span><span class="s2">=&quot;match_parent&quot;</span>
+            <span class="s1">android:layout_height</span><span class="s2">=&quot;wrap_content&quot;</span><span class="s0">&gt;</span>
+
+            <span class="s0">&lt;androidx.cardview.widget.CardView</span>
+                <span class="s1">android:layout_width</span><span class="s2">=&quot;match_parent&quot;</span>
+                <span class="s1">android:layout_height</span><span class="s2">=&quot;wrap_content&quot;</span>
+                <span class="s1">app:cardElevation</span><span class="s2">=&quot;5dp&quot;</span>
+                <span class="s1">app:cardUseCompatPadding</span><span class="s2">=&quot;true&quot;</span>
+                <span class="s0">&gt;</span>
+
+                <span class="s0">&lt;LinearLayout</span>
+                    <span class="s1">android:orientation</span><span class="s2">=&quot;vertical&quot;</span>
+                    <span class="s1">android:layout_width</span><span class="s2">=&quot;match_parent&quot;</span>
+                    <span class="s1">android:layout_height</span><span class="s2">=&quot;wrap_content&quot;</span><span class="s0">&gt;</span>
+
+                    <span class="s0">&lt;TextView</span>
+                        <span class="s1">android:id</span><span class="s2">=&quot;@+id/food_name&quot;</span>
+                        <span class="s1">android:layout_marginTop</span><span class="s2">=&quot;8dp&quot;</span>
+                        <span class="s1">android:padding</span><span class="s2">=&quot;12dp&quot;</span>
+                        <span class="s1">android:text</span><span class="s2">=&quot;@string/food_name&quot;</span>
+                        <span class="s1">android:textColor</span><span class="s2">=&quot;@color/colorPrimary&quot;</span>
+                        <span class="s1">android:textSize</span><span class="s2">=&quot;20sp&quot;</span>
+                        <span class="s1">android:textStyle</span><span class="s2">=&quot;bold&quot;</span>
+                        <span class="s1">android:layout_width</span><span class="s2">=&quot;wrap_content&quot;</span>
+                        <span class="s1">android:layout_height</span><span class="s2">=&quot;wrap_content&quot;</span><span class="s0">/&gt;</span>
+
+                    <span class="s0">&lt;LinearLayout</span>
+                        <span class="s1">android:id</span><span class="s2">=&quot;@+id/layout_price&quot;</span>
+                        <span class="s1">android:orientation</span><span class="s2">=&quot;horizontal&quot;</span>
+                        <span class="s1">android:layout_width</span><span class="s2">=&quot;match_parent&quot;</span>
+                        <span class="s1">android:layout_height</span><span class="s2">=&quot;wrap_content&quot;</span><span class="s0">&gt;</span>
+
+                        <span class="s0">&lt;ImageView</span>
+                            <span class="s1">android:src</span><span class="s2">=&quot;@drawable/ic_baseline_attach_money_24&quot;</span>
+                            <span class="s1">android:layout_weight</span><span class="s2">=&quot;1&quot;</span>
+                            <span class="s1">android:layout_width</span><span class="s2">=&quot;0dp&quot;</span>
+                            <span class="s1">android:layout_height</span><span class="s2">=&quot;wrap_content&quot;</span>
+                            <span class="s1">android:contentDescription</span><span class="s2">=&quot;@string/todo&quot; </span><span class="s0">/&gt;</span>
+
+                        <span class="s0">&lt;TextView</span>
+                            <span class="s1">android:id</span><span class="s2">=&quot;@+id/food_price&quot;</span>
+                            <span class="s1">android:text</span><span class="s2">=&quot;@string/_1_000&quot;</span>
+                            <span class="s1">android:textColor</span><span class="s2">=&quot;@color/colorPrimary&quot;</span>
+                            <span class="s1">android:textSize</span><span class="s2">=&quot;18sp&quot;</span>
+                            <span class="s1">android:textStyle</span><span class="s2">=&quot;bold&quot;</span>
+                            <span class="s1">android:layout_width</span><span class="s2">=&quot;0dp&quot;</span>
+                            <span class="s1">android:layout_weight</span><span class="s2">=&quot;9&quot;</span>
+                            <span class="s1">android:layout_height</span><span class="s2">=&quot;wrap_content&quot;</span><span class="s0">/&gt;</span>
+
+                    <span class="s0">&lt;/LinearLayout&gt;</span>
+
+                    <span class="s0">&lt;com.cepheuen.elegantnumberbutton.view.ElegantNumberButton</span>
+                        <span class="s1">android:id</span><span class="s2">=&quot;@+id/number_button&quot;</span>
+                        <span class="s1">android:layout_width</span><span class="s2">=&quot;100dp&quot;</span>
+                        <span class="s1">android:layout_height</span><span class="s2">=&quot;30dp&quot;</span>
+                        <span class="s1">android:layout_marginStart</span><span class="s2">=&quot;8dp&quot;</span>
+                        <span class="s1">android:layout_marginTop</span><span class="s2">=&quot;8dp&quot;</span>
+                        <span class="s1">android:layout_marginBottom</span><span class="s2">=&quot;18dp&quot;</span>
+                        <span class="s1">app:backGroundColor</span><span class="s2">=&quot;@color/colorAccent&quot;</span>
+                        <span class="s1">app:finalNumber</span><span class="s2">=&quot;20&quot;</span>
+                        <span class="s1">app:initialNumber</span><span class="s2">=&quot;1&quot;</span>
+                        <span class="s1">app:textSize</span><span class="s2">=&quot;8sp&quot;</span>
+                        <span class="s1">tools:ignore</span><span class="s2">=&quot;SmallSp&quot; </span><span class="s0">/&gt;</span>
+
+                <span class="s0">&lt;/LinearLayout&gt;</span>
+
+            <span class="s0">&lt;/androidx.cardview.widget.CardView&gt;</span>
+            
+            <span class="s0">&lt;androidx.cardview.widget.CardView</span>
+                <span class="s1">app:cardElevation</span><span class="s2">=&quot;5dp&quot;</span>
+                <span class="s1">app:cardUseCompatPadding</span><span class="s2">=&quot;true&quot;</span>
+                <span class="s1">android:layout_width</span><span class="s2">=&quot;match_parent&quot;</span>
+                <span class="s1">android:layout_height</span><span class="s2">=&quot;wrap_content&quot;</span><span class="s0">&gt;</span>
+
+                <span class="s0">&lt;TextView</span>
+                    <span class="s1">android:id</span><span class="s2">=&quot;@+id/food_description&quot;</span>
+                    <span class="s1">android:layout_marginTop</span><span class="s2">=&quot;12dp&quot;</span>
+                    <span class="s1">android:lineSpacingMultiplier</span><span class="s2">=&quot;1.5&quot;</span>
+                    <span class="s1">android:padding</span><span class="s2">=&quot;12dp&quot;</span>
+                    <span class="s1">android:text</span><span class="s2">=&quot;@string/description&quot;</span>
+                    <span class="s1">android:textColor</span><span class="s2">=&quot;@android:color/black&quot;</span>
+                    <span class="s1">android:textSize</span><span class="s2">=&quot;14sp&quot;</span>
+                    <span class="s1">android:layout_width</span><span class="s2">=&quot;wrap_content&quot;</span>
+                    <span class="s1">android:layout_height</span><span class="s2">=&quot;wrap_content&quot;</span><span class="s0">/&gt;</span>
+
+            <span class="s0">&lt;/androidx.cardview.widget.CardView&gt;</span>
+            
+        <span class="s0">&lt;/LinearLayout&gt;</span>
+
+    <span class="s0">&lt;/androidx.core.widget.NestedScrollView&gt;</span>
+
+<span class="s0">&lt;/androidx.coordinatorlayout.widget.CoordinatorLayout&gt;</span></pre>
+</body>
+</html>

@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="410dp"
+    android:layout_height="729dp"
+    tools:context=".FoodDetail">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="411dp"
+        android:layout_height="730dp"
+        android:background="#E5E5E5">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnStar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="204dp"
+            android:backgroundTint="@android:color/white"
+            android:src="@drawable/ic_star_black_24dp"
+            app:elevation="6dp"
+            app:layout_anchorGravity="bottom|right|end"
+            app:layout_constraintEnd_toEndOf="@+id/txtName"
+            app:layout_constraintHorizontal_bias="0.353"
+            app:layout_constraintStart_toStartOf="@+id/txtName"
+            app:layout_constraintTop_toTopOf="@+id/imgFood"
+            app:pressedTranslationZ="12dp"
+            app:useCompatPadding="true"
+            tools:ignore="MissingConstraints,NotSibling" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnComment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="204dp"
+            android:backgroundTint="@android:color/white"
+            android:src="@drawable/ic_baseline_add_comment_24"
+            app:elevation="6dp"
+            app:layout_anchorGravity="bottom|right|end"
+            app:layout_constraintEnd_toEndOf="@+id/imgDiscount"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/imgDiscount"
+            app:layout_constraintTop_toTopOf="@+id/imgFood"
+            app:pressedTranslationZ="12dp"
+            app:useCompatPadding="true"
+            tools:ignore="MissingConstraints,NotSibling" />
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView7"
+            app:layout_constraintEnd_toStartOf="@+id/imageView7"
+            app:layout_constraintTop_toTopOf="@+id/imageView7"
+            app:srcCompat="@drawable/ic_bx_share_alt_1" />
+
+        <ImageView
+            android:id="@+id/imageView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_rectangle_344" />
+
+        <ImageView
+            android:id="@+id/imgFood"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:layout_marginTop="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView6"
+            app:srcCompat="@drawable/background" />
+
+        <TextView
+            android:id="@+id/txtName"
+            android:layout_width="175dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="48dp"
+            android:fontFamily="@font/semibold"
+            android:text="Float Cake Vietnam"
+            android:textColor="#091020"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="@+id/txtDes"
+            app:layout_constraintTop_toBottomOf="@+id/imgFood"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/txtDes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/helveticanowtextextmedium"
+            android:lineSpacingExtra="2dp"
+            android:text="Banh troi are small white balls made of brown sugar, wrapped in glutinous rice flour. The name floating cakes came about from the way it is actually cooked."
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtName" />
+
+        <ImageView
+            android:id="@+id/imgDown"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="21dp"
+            android:layout_marginTop="30dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtDes"
+            app:srcCompat="@drawable/ic_group_400" />
+
+        <TextView
+            android:id="@+id/txtQuantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:fontFamily="@font/semibold"
+            android:text="0"
+            android:textColor="#272670"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@+id/imgDown"
+            app:layout_constraintStart_toEndOf="@+id/imgDown"
+            app:layout_constraintTop_toTopOf="@+id/imgDown" />
+
+        <ImageView
+            android:id="@+id/imgUp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="4dp"
+            app:layout_constraintBottom_toBottomOf="@+id/txtQuantity"
+            app:layout_constraintStart_toEndOf="@+id/txtQuantity"
+            app:layout_constraintTop_toTopOf="@+id/txtQuantity"
+            app:srcCompat="@drawable/ic_group_401" />
+
+        <TextView
+            android:id="@+id/txtPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="32dp"
+            android:fontFamily="@font/semibold"
+            android:text="20.000đ"
+            android:textColor="#272670"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@+id/imgUp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imgUp" />
+
+        <ImageView
+            android:id="@+id/imgAddCart"
+            android:layout_width="0dp"
+            android:layout_height="65dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="60dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgUp"
+            app:srcCompat="@drawable/ic_group_1675" />
+
+        <Button
+            android:id="@+id/btnBackDetail"
+            android:layout_width="30dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="13dp"
+            android:layout_marginEnd="277dp"
+            android:background="@drawable/ic_arrow_back_black_24dp"
+            app:layout_constraintEnd_toStartOf="@+id/imageView6"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imgDiscount"
+            android:layout_width="90dp"
+            android:layout_height="69dp"
+            android:layout_marginTop="-20dp"
+            android:layout_marginEnd="44dp"
+            app:layout_constraintBottom_toBottomOf="@+id/txtName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/txtName"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@drawable/discount" />
+
+        <TextView
+            android:id="@+id/txtDiscount"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:text="20%"
+            android:textColor="#F6E760"
+            android:textSize="19sp"
+            app:layout_constraintBottom_toBottomOf="@+id/imgDiscount"
+            app:layout_constraintEnd_toEndOf="@+id/imgDiscount"
+            app:layout_constraintHorizontal_bias="0.125"
+            app:layout_constraintStart_toStartOf="@+id/imgDiscount"
+            app:layout_constraintTop_toTopOf="@+id/imgDiscount"
+            app:layout_constraintVertical_bias="0.586"
+            tools:ignore="MissingConstraints" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

@@ -1,0 +1,91 @@
+<html>
+<head>
+<title>activity_main.xml</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #e8bf6a;}
+.s1 { color: #bababa;}
+.s2 { color: #6a8759;}
+.s3 { color: #a9b7c6;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+activity_main.xml</font>
+</center></td></tr></table>
+<pre><span class="s0">&lt;?</span><span class="s1">xml version</span><span class="s2">=&quot;1.0&quot; </span><span class="s1">encoding</span><span class="s2">=&quot;utf-8&quot;</span><span class="s0">?&gt;</span>
+<span class="s0">&lt;RelativeLayout </span><span class="s1">xmlns:android</span><span class="s2">=&quot;http://schemas.android.com/apk/res/android&quot;</span>
+    <span class="s1">xmlns:app</span><span class="s2">=&quot;http://schemas.android.com/apk/res-auto&quot;</span>
+    <span class="s1">xmlns:tools</span><span class="s2">=&quot;http://schemas.android.com/tools&quot;</span>
+    <span class="s1">android:layout_width</span><span class="s2">=&quot;match_parent&quot;</span>
+    <span class="s1">android:layout_height</span><span class="s2">=&quot;match_parent&quot;</span>
+    <span class="s1">android:background</span><span class="s2">=&quot;@drawable/my_bg&quot;</span>
+    <span class="s1">tools:context</span><span class="s2">=&quot;.MainActivity&quot; </span><span class="s0">&gt;</span>
+    
+    <span class="s0">&lt;LinearLayout</span>
+        <span class="s1">android:orientation</span><span class="s2">=&quot;vertical&quot;</span>
+        <span class="s1">android:layout_centerInParent</span><span class="s2">=&quot;true&quot;</span>
+        <span class="s1">android:layout_width</span><span class="s2">=&quot;wrap_content&quot;</span>
+        <span class="s1">android:layout_height</span><span class="s2">=&quot;wrap_content&quot;</span><span class="s0">&gt;</span>
+
+
+        <span class="s0">&lt;ImageView</span>
+            <span class="s1">android:src</span><span class="s2">=&quot;@drawable/logo_eat_it&quot;</span>
+            <span class="s1">android:layout_width</span><span class="s2">=&quot;200dp&quot;</span>
+            <span class="s1">android:layout_height</span><span class="s2">=&quot;200dp&quot;</span><span class="s0">/&gt;</span>
+        
+        <span class="s0">&lt;TextView</span>
+            <span class="s1">android:gravity</span><span class="s2">=&quot;center&quot;</span>
+            <span class="s1">android:id</span><span class="s2">=&quot;@+id/txtSlogan&quot;</span>
+            <span class="s1">android:text</span><span class="s2">=&quot;@string/slogan&quot;</span>
+            <span class="s1">android:textColor</span><span class="s2">=&quot;@android:color/white&quot;</span>
+            <span class="s1">android:layout_width</span><span class="s2">=&quot;200dp&quot;</span>
+            <span class="s1">android:layout_height</span><span class="s2">=&quot;wrap_content&quot;</span><span class="s0">/&gt;</span>
+
+    <span class="s0">&lt;/LinearLayout&gt;</span>
+    
+    <span class="s0">&lt;LinearLayout</span>
+        <span class="s1">android:orientation</span><span class="s2">=&quot;horizontal&quot;</span>
+        <span class="s1">android:layout_alignParentBottom</span><span class="s2">=&quot;true&quot;</span>
+        <span class="s1">android:weightSum</span><span class="s2">=&quot;2&quot;</span>
+        <span class="s1">android:layout_width</span><span class="s2">=&quot;match_parent&quot;</span>
+        <span class="s1">android:layout_height</span><span class="s2">=&quot;wrap_content&quot;</span><span class="s0">&gt;</span>
+
+
+        <span class="s0">&lt;info.hoang8f.widget.FButton</span>
+            <span class="s1">android:id</span><span class="s2">=&quot;@+id/btnSignUp&quot;</span>
+            <span class="s1">android:layout_width</span><span class="s2">=&quot;0dp&quot;</span>
+            <span class="s1">android:layout_height</span><span class="s2">=&quot;wrap_content&quot;</span>
+            <span class="s1">android:layout_margin</span><span class="s2">=&quot;8dp&quot;</span>
+            <span class="s1">android:layout_weight</span><span class="s2">=&quot;1&quot;</span>
+            <span class="s1">android:text</span><span class="s2">=&quot;Sign Up&quot;</span>
+            <span class="s1">android:textColor</span><span class="s2">=&quot;@android:color/white&quot;</span>
+            <span class="s1">app:cornerRadius</span><span class="s2">=&quot;4dp&quot;</span>
+            <span class="s1">app:fButtonColor</span><span class="s2">=&quot;@color/btnSignUp&quot;</span>
+            <span class="s1">app:shadowColor</span><span class="s2">=&quot;@android:color/black&quot;</span>
+            <span class="s1">app:shadowEnabled</span><span class="s2">=&quot;true&quot;</span>
+            <span class="s1">app:shadowHeight</span><span class="s2">=&quot;5dp&quot; </span><span class="s0">/&gt;</span>
+
+        <span class="s0">&lt;info.hoang8f.widget.FButton</span>
+            <span class="s1">android:id</span><span class="s2">=&quot;@+id/btnSignIn&quot;</span>
+            <span class="s1">android:layout_width</span><span class="s2">=&quot;0dp&quot;</span>
+            <span class="s1">android:layout_height</span><span class="s2">=&quot;wrap_content&quot;</span>
+            <span class="s1">android:layout_margin</span><span class="s2">=&quot;8dp&quot;</span>
+            <span class="s1">android:layout_weight</span><span class="s2">=&quot;1&quot;</span>
+            <span class="s1">android:enabled</span><span class="s2">=&quot;true&quot;</span>
+            <span class="s1">android:text</span><span class="s2">=&quot;Sign In&quot;</span>
+            <span class="s1">android:textColor</span><span class="s2">=&quot;@android:color/white&quot;</span>
+            <span class="s1">app:cornerRadius</span><span class="s2">=&quot;4dp&quot;</span>
+            <span class="s1">app:fButtonColor</span><span class="s2">=&quot;@color/btnSignIn&quot;</span>
+            <span class="s1">app:shadowColor</span><span class="s2">=&quot;@android:color/black&quot;</span>
+            <span class="s1">app:shadowEnabled</span><span class="s2">=&quot;true&quot;</span>
+            <span class="s1">app:shadowHeight</span><span class="s2">=&quot;5dp&quot; </span><span class="s0">/&gt;</span>
+
+        
+    <span class="s0">&lt;/LinearLayout&gt;</span>
+    
+<span class="s0">&lt;/RelativeLayout&gt;</span></pre>
+</body>
+</html>
