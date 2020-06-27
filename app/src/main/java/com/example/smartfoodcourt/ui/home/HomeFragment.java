@@ -81,7 +81,7 @@ public class HomeFragment extends Fragment {
         popularRecycler = (RecyclerView)root.findViewById(R.id.popular_recycler);
         popularRecycler.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(getContext());
-        layoutManager = new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false);
+        //layoutManager = new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false);
         popularRecycler.setLayoutManager(layoutManager);
 
         loadFoodList();
