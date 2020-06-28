@@ -38,14 +38,14 @@ public class CartAdapter extends RecyclerView.Adapter<CartItemViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull CartItemViewHolder holder, int position) {
-
+        CartItem cur = cartItemList.get(position);
         Locale locale = new Locale("vi", "VN");
         NumberFormat fmt = NumberFormat.getCurrencyInstance(locale);
 
-        float price = (Float.parseFloat(cartItemList.get(position).getPrice())*(1 - Float.parseFloat(cartItemList.get(position).getDiscount())/100))*(Integer.parseInt(cartItemList.get(position).getQuantity()));
+        Integer price = (int) (Float.parseFloat(cur.getPrice())*(1 - Float.parseFloat(cur.getDiscount())/100)*Float.parseFloat(cur.getQuantity()));
         holder.txtPrice.setText(fmt.format(price));
-        holder.txtQuantity.setText(cartItemList.get(position).getQuantity());
-        holder.txtName.setText(cartItemList.get(position).getFoodName());
+        holder.txtQuantity.setText(cur.getQuantity());
+        holder.txtName.setText(cur.getFoodName());
     }
 
     @Override

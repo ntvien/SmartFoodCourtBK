@@ -6,20 +6,27 @@ import java.util.List;
 public class Order {
     private String phone;
      private String total;
-    private String status;
-
+    private String status = "0";
     private String comment;
-
+    private String supplierID;
     private List<CartItem> foods;
 
     public Order() {
     }
 
-    public Order(String phone, String total, String status, List<CartItem> foods) {
+    public String getSupplierID() {
+        return supplierID;
+    }
+
+    public void setSupplierID(String supplierID) {
+        this.supplierID = supplierID;
+    }
+
+    public Order(String phone, CartStallItem t) {
         this.phone = phone;
-        this.total = total;
-        this.status = status;
-        this.foods = foods;
+        this.total = t.getTotal().toString();
+         this.supplierID = t.getSupplierID();
+        this.foods = t.getCartItemList();
     }
 
     public String getStatus() {

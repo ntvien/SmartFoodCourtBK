@@ -1,21 +1,12 @@
 package com.example.smartfoodcourt.Model;
 
 public class CartItem {
-    private String FoodID;
     private String FoodName;
     private String Price;
     private String Quantity;
     private String Discount;
 
     public CartItem() {
-    }
-
-    public String getFoodID() {
-        return FoodID;
-    }
-
-    public void setFoodID(String foodID) {
-        FoodID = foodID;
     }
 
     public String getFoodName() {
@@ -50,8 +41,7 @@ public class CartItem {
         Discount = discount;
     }
 
-    public CartItem(String foodID, String foodName, String price, String quantity, String discount) {
-        FoodID = foodID;
+    public CartItem(String foodName, String price, String quantity, String discount) {
         FoodName = foodName;
         Price = price;
         Quantity = quantity;

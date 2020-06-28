@@ -20,32 +20,35 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="9"
-            android:orientation="vertical">
+            android:weightSum="5">
 
             <TextView
                 android:id="@+id/cart_item_name"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
+                android:layout_marginLeft="3dp"
                 android:gravity="center_vertical|start"
                 android:text="Food 01"
+                android:layout_weight="3"
                 android:textAllCaps="true"
                 android:textStyle="bold" />
 
             <TextView
+                android:layout_weight="1"
                 android:id="@+id/cart_item_quantity"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
+                android:layout_marginLeft="3dp"
                 android:gravity="center_vertical|start"
-                android:text="Food 01"
+                android:text="number"
                 android:textAllCaps="true" />
 
             <TextView
+                android:layout_weight="1"
                 android:id="@+id/cart_item_price"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
+                android:layout_marginLeft="3dp"
                 android:gravity="center_vertical|start"
                 android:text="100,000"
                 android:textAllCaps="true"
