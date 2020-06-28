@@ -204,7 +204,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:fontFamily="@font/helveticanowtextextmedium"
-        android:text="version 1"
+        android:text="version 2"
         android:textColor="#F80606"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="@+id/btnLoginFacebook"
