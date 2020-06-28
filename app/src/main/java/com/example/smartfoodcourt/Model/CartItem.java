@@ -1,7 +1,7 @@
 package com.example.smartfoodcourt.Model;
 
 public class CartItem {
-    private String FoodName;
+    private String Name;
     private String Price;
     private String Quantity;
     private String Discount;
@@ -9,12 +9,12 @@ public class CartItem {
     public CartItem() {
     }
 
-    public String getFoodName() {
-        return FoodName;
+    public String getName() {
+        return Name;
     }
 
-    public void setFoodName(String foodName) {
-        FoodName = foodName;
+    public void setName(String Name) {
+        this.Name = Name;
     }
 
     public String getPrice() {
@@ -41,8 +41,8 @@ public class CartItem {
         Discount = discount;
     }
 
-    public CartItem(String foodName, String price, String quantity, String discount) {
-        FoodName = foodName;
+    public CartItem(String Name, String price, String quantity, String discount) {
+        this.Name = Name;
         Price = price;
         Quantity = quantity;
         Discount = discount;
