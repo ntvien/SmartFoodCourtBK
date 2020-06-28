@@ -3,16 +3,16 @@ package com.example.smartfoodcourt.Model;
 
 import java.util.List;
 
-public class Request {
+public class Order {
     private String phone;
      private String total;
     private String status;
     private List<CartItem> foods;
 
-    public Request() {
+    public Order() {
     }
 
-    public Request(String phone, String total, String status, List<CartItem> foods) {
+    public Order(String phone, String total, String status, List<CartItem> foods) {
         this.phone = phone;
         this.total = total;
         this.status = status;

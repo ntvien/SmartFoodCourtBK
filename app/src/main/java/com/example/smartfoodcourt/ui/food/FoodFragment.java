@@ -2,6 +2,7 @@ package com.example.smartfoodcourt.ui.food;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.style.BulletSpan;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -43,6 +44,7 @@ public class FoodFragment extends Fragment {
 
     String categoryID="";
 
+    String param;
     FirebaseRecyclerAdapter<Food, FoodViewHolder> adapter;
     FirebaseRecyclerAdapter<Food, FoodViewHolder> searchAdapter;
 
@@ -69,29 +71,62 @@ public class FoodFragment extends Fragment {
     }
 
     private void loadFoodList() {
-        adapter = new FirebaseRecyclerAdapter<Food, FoodViewHolder>(Food.class, R.layout.food_item, FoodViewHolder.class, foodList) {
-            @Override
-            protected void populateViewHolder(FoodViewHolder foodViewHolder, Food food, int i) {
+        Bundle bundle = this.getArguments();
+        if(bundle != null) {
+             param = bundle.getString("supplierID",null);
+        }
+        if(param == null){
+            adapter = new FirebaseRecyclerAdapter<Food, FoodViewHolder>(Food.class, R.layout.food_item, FoodViewHolder.class, foodList) {
+                @Override
+                protected void populateViewHolder(FoodViewHolder foodViewHolder, Food food, int i) {
 
-                Locale locale = new Locale("vi", "VN");
-                NumberFormat fmt = NumberFormat.getCurrencyInstance(locale);
+                    Locale locale = new Locale("vi", "VN");
+                    NumberFormat fmt = NumberFormat.getCurrencyInstance(locale);
 
-                foodViewHolder.food_name.setText(food.getName());
-                foodViewHolder.food_price.setText(fmt.format(Integer.parseInt(food.getPrice())));
-                Picasso.with(getContext()).load(food.getImage()).into(foodViewHolder.food_image);
+                    foodViewHolder.food_name.setText(food.getName());
+                    foodViewHolder.food_price.setText(fmt.format(Integer.parseInt(food.getPrice())));
+                    Picasso.with(getContext()).load(food.getImage()).into(foodViewHolder.food_image);
 
-                final Food clickItem = food;
-                foodViewHolder.setItemClickListener(new ItemClickListener() {
-                    @Override
-                    public void onClick(View view, int position, boolean isLongClick) {
-                        Intent foodDetail = new Intent(getContext(), FoodDetail.class);
-                        foodDetail.putExtra("foodID", adapter.getRef(position).getKey());
-                        startActivity(foodDetail);
-                    }
-                });
+                    final Food clickItem = food;
+                    foodViewHolder.setItemClickListener(new ItemClickListener() {
+                        @Override
+                        public void onClick(View view, int position, boolean isLongClick) {
+                            Intent foodDetail = new Intent(getContext(), FoodDetail.class);
+                            foodDetail.putExtra("foodID", adapter.getRef(position).getKey());
+                            startActivity(foodDetail);
+                        }
+                    });
 
-            }
-        };
+                }
+            };
+        }
+        else{
+            adapter = new FirebaseRecyclerAdapter<Food, FoodViewHolder>(Food.class, R.layout.food_item,
+                    FoodViewHolder.class, foodList.orderByChild("supplierID").equalTo(param)) {
+                @Override
+                protected void populateViewHolder(FoodViewHolder foodViewHolder, Food food, int i) {
+
+                    Locale locale = new Locale("vi", "VN");
+                    NumberFormat fmt = NumberFormat.getCurrencyInstance(locale);
+
+                    foodViewHolder.food_name.setText(food.getName());
+                    foodViewHolder.food_price.setText(fmt.format(Integer.parseInt(food.getPrice())));
+                    Picasso.with(getContext()).load(food.getImage()).into(foodViewHolder.food_image);
+
+                    final Food clickItem = food;
+                    foodViewHolder.setItemClickListener(new ItemClickListener() {
+                        @Override
+                        public void onClick(View view, int position, boolean isLongClick) {
+                            Intent foodDetail = new Intent(getContext(), FoodDetail.class);
+                            foodDetail.putExtra("foodID", adapter.getRef(position).getKey());
+                            startActivity(foodDetail);
+                        }
+                    });
+
+                }
+            };
+
+        }
         adapter.notifyDataSetChanged();
         recyclerView.setAdapter(adapter);
     }

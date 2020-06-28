@@ -62,9 +62,9 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/restaurant_recycler"
+            android:id="@+id/stall_recycler"
             android:layout_width="0dp"
-            android:layout_height="150dp"
+            android:layout_height="200dp"
             android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -82,12 +82,12 @@
             android:textColor="#FFFFFF"
             android:textSize="24sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/restaurant_recycler" />
+            app:layout_constraintTop_toBottomOf="@+id/stall_recycler" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/popular_recycler"
             android:layout_width="0dp"
-            android:layout_height="200dp"
+            android:layout_height="250dp"
             android:layout_marginTop="8dp"
             android:scrollbars="vertical"
             app:layout_constraintBottom_toBottomOf="parent"

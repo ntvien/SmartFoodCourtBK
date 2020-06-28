@@ -66,8 +66,6 @@ public class FoodDetail extends AppCompatActivity {
 
         btnBackDetail = (Button)findViewById(R.id.btnBackDetail);
 
-
-
         imgAddCart = (ImageView) findViewById(R.id.imgAddCart);
         btnDown = findViewById(R.id.imgDown);
         btnUp = findViewById(R.id.imgUp);
