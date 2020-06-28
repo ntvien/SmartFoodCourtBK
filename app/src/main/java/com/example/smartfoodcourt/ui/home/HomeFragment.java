@@ -23,8 +23,10 @@ import com.example.smartfoodcourt.FoodDetail;
 import com.example.smartfoodcourt.Interface.ItemClickListener;
 import com.example.smartfoodcourt.Model.Food;
 import com.example.smartfoodcourt.Model.PopularFood;
+import com.example.smartfoodcourt.Model.Stall;
 import com.example.smartfoodcourt.R;
 import com.example.smartfoodcourt.ViewHolder.FoodViewHolder;
+import com.example.smartfoodcourt.ViewHolder.StallViewHolder;
 import com.example.smartfoodcourt.ui.food.FoodFragment;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
@@ -39,29 +41,28 @@ import java.util.Locale;
 public class HomeFragment extends Fragment {
 
 
-    private HomeViewModel homeViewModel;
 
-    RecyclerView popularRecycler, asiaRecycler;
+    RecyclerView popularRecycler, stallRecycler;
     PopularFoodAdapter popularFoodAdapter;
     AsiaFoodAdapter asiaFoodAdapter;
     Button btnMenu;
     View root;
 
-    private HomeViewModel galleryViewModel;
+    private HomeViewModel homeViewModel;
 
     RecyclerView.LayoutManager layoutManager;
 
     FirebaseDatabase database;
-    DatabaseReference foodList;
+    DatabaseReference foodList, supplierList;
 
     String categoryID="";
 
-    FirebaseRecyclerAdapter<Food, FoodViewHolder> adapter;
-
+    FirebaseRecyclerAdapter<Food, FoodViewHolder> adapterPopularFood;
+    FirebaseRecyclerAdapter<Stall, StallViewHolder> adapterStall;
 
     public View onCreateView(@NonNull final LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        galleryViewModel =
+        homeViewModel =
                 ViewModelProviders.of(this).get(HomeViewModel.class);
        root = inflater.inflate(R.layout.fragment_home, container, false);
 
@@ -80,15 +81,25 @@ public class HomeFragment extends Fragment {
         //Firebase
         database = FirebaseDatabase.getInstance();
         foodList = database.getReference("Food");
+        supplierList = database.getReference("Supplier");
 
         popularRecycler = (RecyclerView)root.findViewById(R.id.popular_recycler);
+        stallRecycler = root.findViewById(R.id.stall_recycler);
+
         popularRecycler.setHasFixedSize(true);
+
+         layoutManager = new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false);
+
         layoutManager = new LinearLayoutManager(getContext());
         //layoutManager = new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false);
         popularRecycler.setLayoutManager(layoutManager);
 
-        loadFoodList();
 
+        popularRecycler.setLayoutManager(layoutManager);
+        stallRecycler.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false));
+
+        loadPopularFoodList();
+        loadMenuStall();
 
 
 
@@ -109,6 +120,37 @@ public class HomeFragment extends Fragment {
 
         return root;
     }
+
+    private void loadMenuStall() {
+        adapterStall = new FirebaseRecyclerAdapter<Stall, StallViewHolder>(
+                Stall.class,
+                R.layout.stall_item,
+                StallViewHolder.class,
+                supplierList) {
+            @Override
+            protected void populateViewHolder(StallViewHolder stallViewHolder, final Stall stall, int i) {
+                stallViewHolder.txtStall.setText(stall.getName());
+                Picasso.with(getContext()).load(stall.getImage()).into(stallViewHolder.imgStall);
+
+                stallViewHolder.setItemClickListener(new ItemClickListener() {
+                    @Override
+                    public void onClick(View view, int position, boolean isLongClick) {
+                        FoodFragment foodFragment = new FoodFragment();
+                        Bundle bundle = new Bundle();
+                        bundle.putString("supplierID",stall.getSupplierID());
+                        foodFragment.setArguments(bundle);
+                        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                        fragmentTransaction.replace(R.id.nav_host_fragment, foodFragment);
+                        fragmentTransaction.commit();
+                    }
+                });
+
+            }
+        };
+        adapterStall.notifyDataSetChanged();
+        stallRecycler.setAdapter(adapterStall);
+    }
+
 //    private void setAsiaRecycler(List<AsiaFood> asiaFoodList) {
 //        asiaRecycler = root.findViewById(R.id.popular_recycler);
 //        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false);
@@ -128,8 +170,8 @@ public class HomeFragment extends Fragment {
 
 
 
-    private void loadFoodList() {
-        adapter = new FirebaseRecyclerAdapter<Food, FoodViewHolder>(Food.class, R.layout.food_item, FoodViewHolder.class, foodList) {
+    private void loadPopularFoodList() {
+        adapterPopularFood = new FirebaseRecyclerAdapter<Food, FoodViewHolder>(Food.class, R.layout.food_item, FoodViewHolder.class, foodList) {
             @Override
             protected void populateViewHolder(FoodViewHolder foodViewHolder, Food food, int i) {
 
@@ -145,15 +187,15 @@ public class HomeFragment extends Fragment {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
                         Intent foodDetail = new Intent(getContext(), FoodDetail.class);
-                        foodDetail.putExtra("foodID", adapter.getRef(position).getKey());
+                        foodDetail.putExtra("foodID", adapterPopularFood.getRef(position).getKey());
                         startActivity(foodDetail);
                     }
                 });
 
             }
         };
-        adapter.notifyDataSetChanged();
-        popularRecycler.setAdapter(adapter);
+        adapterPopularFood.notifyDataSetChanged();
+        popularRecycler.setAdapter(adapterPopularFood);
     }
 
 }
