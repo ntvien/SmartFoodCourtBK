@@ -7,6 +7,9 @@ public class Order {
     private String phone;
      private String total;
     private String status;
+
+    private String comment;
+
     private List<CartItem> foods;
 
     public Order() {
@@ -41,6 +44,14 @@ public class Order {
 
     public void setTotal(String total) {
         this.total = total;
+    }
+
+
+    public String getComment(){
+        return comment;
+    }
+    public void setComment(String comment){
+        this.comment = comment;
     }
 
     public List<CartItem> getFoods() {

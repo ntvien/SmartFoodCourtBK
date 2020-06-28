@@ -15,32 +15,42 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatRatingBar;
 
 import com.example.smartfoodcourt.Common.Common;
 import com.example.smartfoodcourt.Database.Database;
 import com.example.smartfoodcourt.Model.CartItem;
 import com.example.smartfoodcourt.Model.Comment;
 import com.example.smartfoodcourt.Model.Food;
+import com.example.smartfoodcourt.Model.Rating;
 import com.example.smartfoodcourt.ui.food.FoodViewModel;
+import com.example.smartfoodcourt.ui.orders.OrdersFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ServerValue;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
+import com.stepstone.apprating.AppRatingDialog;
+import com.stepstone.apprating.listener.RatingDialogListener;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.text.NumberFormat;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
-public class FoodDetail extends AppCompatActivity {
+public class FoodDetail extends AppCompatActivity implements RatingDialogListener {
     TextView txtName, txtPrice, txtDes, txtDiscount;
     ImageView imgFood;
     String foodID;
     DatabaseReference foodList;
+    DatabaseReference ratingFood;
 
     Button btnBackDetail;
     ImageView imgAddCart;
@@ -48,9 +58,8 @@ public class FoodDetail extends AppCompatActivity {
     TextView txtQuantity;
     Food food;
 
-
+    RatingBar ratingBar;
     private FoodViewModel foodViewModel;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,10 +81,14 @@ public class FoodDetail extends AppCompatActivity {
         txtQuantity = findViewById(R.id.txtQuantity);
 
         foodList = FirebaseDatabase.getInstance().getReference("Food");
+        ratingFood = FirebaseDatabase.getInstance().getReference("Rating");
 
         if(getIntent() != null) {
             foodID = getIntent().getStringExtra("foodID");
-            if(!foodID.isEmpty()) loadFood();
+            if(!foodID.isEmpty()){
+                loadRatingFood(foodID);
+                loadFood();
+            }
         }
 
         btnBackDetail.setOnClickListener(new View.OnClickListener() {
@@ -105,7 +118,6 @@ public class FoodDetail extends AppCompatActivity {
         });
 
 
-
         FloatingActionButton btnStar = findViewById(R.id.btnStar);
         btnStar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,6 +135,9 @@ public class FoodDetail extends AppCompatActivity {
             }
         });
 
+        ratingBar = (RatingBar)findViewById(R.id.ratingBar);
+
+
         imgAddCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -139,44 +154,83 @@ public class FoodDetail extends AppCompatActivity {
         });
     }
 
+    private void loadRatingFood(String foodID) {
+
+        Query foodRating = ratingFood.orderByChild("FoodID").equalTo(foodID);
+        foodRating.addValueEventListener(new ValueEventListener() {
+            int count = 0, sum = 0;
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot postSnapshot : snapshot.getChildren()){
+                    Rating item = postSnapshot.getValue(Rating.class);
+                    sum += Integer.parseInt(item.getRateValue());
+                    count++;
+                }
+
+              if(count != 0){
+                  float averageStar = sum / count;
+                  ratingBar.setRating(averageStar);
+              }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
 
     private void showDialogRating() {
-        androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(getBaseContext());
+//        androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(getBaseContext());
+//
+//        builder.setTitle("Rating Food");
+//        builder.setMessage("Please fill information");
+//
+//        View itemView = LayoutInflater.from(getBaseContext()).inflate(R.layout.rating_layout, null);
+//
+//        final RatingBar ratingBar = (RatingBar)itemView.findViewById(R.id.ratingBar);
+//        final EditText edtComment = (EditText)itemView.findViewById(R.id.edtComment);
+//
+//        builder.setView(itemView);
+//        builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialogInterface, int i) {
+//                dialogInterface.dismiss();
+//            }
+//        });
+//        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialogInterface, int i) {
+//
+//                Comment comment = new Comment();
+//                comment.setName(Common.currentUser.getPhone());
+//                comment.getId(Common.currentUser.getEmail());
+//                comment.setComment(edtComment.getText().toString());
+//                comment.setRatingValue(ratingBar.getRating());
+//                Map<String, Object> serverTimeStamp = new HashMap<>();
+//                serverTimeStamp.put("timeStamp", ServerValue.TIMESTAMP);
+//                comment.setCommentTimeStamp(serverTimeStamp);
+//            }
+//        });
+//
+//        AlertDialog dialog = builder.create();
+//        dialog.show();
 
-        builder.setTitle("Rating Food");
-        builder.setMessage("Please fill information");
-
-        View itemView = LayoutInflater.from(getBaseContext()).inflate(R.layout.rating_layout, null);
-
-        final RatingBar ratingBar = (RatingBar)itemView.findViewById(R.id.ratingBar);
-        final EditText edtComment = (EditText)itemView.findViewById(R.id.edtComment);
-
-        builder.setView(itemView);
-        builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                dialogInterface.dismiss();
-            }
-        });
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-
-                Comment comment = new Comment();
-                comment.setName(Common.currentUser.getPhone());
-                comment.getId(Common.currentUser.getEmail());
-                comment.setComment(edtComment.getText().toString());
-                comment.setRatingValue(ratingBar.getRating());
-                Map<String, Object> serverTimeStamp = new HashMap<>();
-                serverTimeStamp.put("timeStamp", ServerValue.TIMESTAMP);
-                comment.setCommentTimeStamp(serverTimeStamp);
 
 
-            }
-        });
+        new AppRatingDialog.Builder().setPositiveButtonText("Submit").setNegativeButtonText("Cancel")
+                .setNoteDescriptions((Arrays.asList("Very Bad", "Not Good", "Quite OK", "Very Good", "Excellent")))
+                .setDefaultRating(1).setTitle("Rate this Food").setDescription("Please rating food and comment your feedback")
+                .setTitleTextColor(R.color.colorPrimary).setDescriptionTextColor(R.color.colorPrimary)
+                .setHint("Please write your comment here...").setHintTextColor(R.color.colorAccent)
+                .setCommentTextColor(android.R.color.white)
+                .setCommentBackgroundColor(R.color.colorPrimaryDark).setWindowAnimation(R.style.RatingDialogFadeAnim)
+                .create(FoodDetail.this).show();
 
-        AlertDialog dialog = builder.create();
-        dialog.show();
+
+
+
     }
 
 //    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
@@ -206,6 +260,35 @@ public class FoodDetail extends AppCompatActivity {
 
                 }
             }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    @Override
+    public void onNegativeButtonClicked() {
+
+    }
+
+    @Override
+    public void onPositiveButtonClicked(int valueRating, @NotNull String comments) {
+
+        final Rating rating = new Rating(Common.currentUser.getPhone(),foodID, String.valueOf(valueRating), comments);
+        ratingFood.child(Common.currentUser.getPhone()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.child(Common.currentUser.getPhone()).exists()){
+                    ratingFood.child(Common.currentUser.getPhone()).removeValue();
+                    ratingFood.child(Common.currentUser.getPhone()).setValue(rating);
+                }
+                else {
+                    ratingFood.child(Common.currentUser.getPhone()).setValue(rating);
+                }
+                Toast.makeText(FoodDetail.this,"Thank You for submit rating !!!", Toast.LENGTH_SHORT).show();
+            }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 

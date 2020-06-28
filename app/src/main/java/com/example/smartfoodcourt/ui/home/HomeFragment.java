@@ -87,7 +87,13 @@ public class HomeFragment extends Fragment {
         stallRecycler = root.findViewById(R.id.stall_recycler);
 
         popularRecycler.setHasFixedSize(true);
+
          layoutManager = new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false);
+
+        layoutManager = new LinearLayoutManager(getContext());
+        //layoutManager = new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false);
+        popularRecycler.setLayoutManager(layoutManager);
+
 
         popularRecycler.setLayoutManager(layoutManager);
         stallRecycler.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false));
