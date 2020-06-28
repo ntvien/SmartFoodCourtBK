@@ -19,9 +19,9 @@ import com.example.smartfoodcourt.Model.Food;
 import com.example.smartfoodcourt.Model.Rating;
 import com.example.smartfoodcourt.ViewHolder.FoodViewHolder;
 import com.example.smartfoodcourt.ViewHolder.ShowCommentViewHolder;
-import com.firebase.ui.database.FirebaseListOptions;
+//import com.firebase.ui.database.FirebaseListOptions;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.firebase.ui.database.FirebaseRecyclerOptions;
+//import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
@@ -72,36 +72,36 @@ public class ShowComment extends AppCompatActivity {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                if(getIntent() != null)
-                    foodID = getIntent().getStringExtra(Common.INTENT_FOOD_ID);
-                if(!foodID.isEmpty() && foodID != null)
-                {
-                    Query query = ratingFood.orderByChild("foodID").equalTo(foodID);
-                    FirebaseRecyclerOptions<Rating> options = new FirebaseRecyclerOptions.Builder<Rating>().setQuery(query, Rating.class).build();
-
-                    adapter = new FirebaseRecyclerAdapter<Rating, ShowCommentViewHolder>(Food.class,
-                            R.layout.food_item,
-                            FoodViewHolder.class,
-                            foodList.orderByChild("menuID").equalTo(categoryID)) {
-                        @Override
-                        protected void onBindViewHolder(@NonNull ShowCommentViewHolder showCommentViewHolder, int i, @NonNull Rating rating) {
-
-                            showCommentViewHolder.ratingBarDetail.setRating(Float.parseFloat(rating.getRateValue()));
-                            showCommentViewHolder.txtUserPhone.setText(rating.getPhone());
-                            showCommentViewHolder.txtComment.setText(rating.getComment());
-                        }
-
-                        @NonNull
-                        @Override
-                        public ShowCommentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.show_comment_layout, parent, false);
-                            return new ShowCommentViewHolder(view);
-                        }
-                    };
-
-                    loadComment(foodID);
-
-                }
+//                if(getIntent() != null)
+//                    foodID = getIntent().getStringExtra(Common.INTENT_FOOD_ID);
+//                if(!foodID.isEmpty() && foodID != null)
+//                {
+//                    Query query = ratingFood.orderByChild("foodID").equalTo(foodID);
+//                    FirebaseRecyclerOptions<Rating> options = new FirebaseRecyclerOptions.Builder<Rating>().setQuery(query, Rating.class).build();
+//
+//                    adapter = new FirebaseRecyclerAdapter<Rating, ShowCommentViewHolder>(Food.class,
+//                            R.layout.food_item,
+//                            FoodViewHolder.class,
+//                            foodList.orderByChild("menuID").equalTo(categoryID)) {
+//                        @Override
+//                        protected void onBindViewHolder(@NonNull ShowCommentViewHolder showCommentViewHolder, int i, @NonNull Rating rating) {
+//
+//                            showCommentViewHolder.ratingBarDetail.setRating(Float.parseFloat(rating.getRateValue()));
+//                            showCommentViewHolder.txtUserPhone.setText(rating.getPhone());
+//                            showCommentViewHolder.txtComment.setText(rating.getComment());
+//                        }
+//
+//                        @NonNull
+//                        @Override
+//                        public ShowCommentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+//                            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.show_comment_layout, parent, false);
+//                            return new ShowCommentViewHolder(view);
+//                        }
+//                    };
+//
+//                    loadComment(foodID);
+//
+//                }
             }
         });
 
@@ -110,40 +110,40 @@ public class ShowComment extends AppCompatActivity {
             public void run() {
                 swipeRefreshLayout.setRefreshing(true);
 
-                if(getIntent() != null)
-                    foodID = getIntent().getStringExtra(Common.INTENT_FOOD_ID);
-                if(!foodID.isEmpty() && foodID != null)
-                {
-                    Query query = ratingFood.orderByChild("foodID").equalTo(foodID);
-                    FirebaseRecyclerOptions<Rating> options = new FirebaseRecyclerOptions.Builder<Rating>().setQuery(query, Rating.class).build();
-
-                    adapter = new FirebaseRecyclerAdapter<Rating, ShowCommentViewHolder>(options) {
-                        @Override
-                        protected void onBindViewHolder(@NonNull ShowCommentViewHolder showCommentViewHolder, int i, @NonNull Rating rating) {
-
-                            showCommentViewHolder.ratingBarDetail.setRating(Float.parseFloat(rating.getRateValue()));
-                            showCommentViewHolder.txtUserPhone.setText(rating.getPhone());
-                            showCommentViewHolder.txtComment.setText(rating.getComment());
-                        }
-
-                        @NonNull
-                        @Override
-                        public ShowCommentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.show_comment_layout, parent, false);
-                            return new ShowCommentViewHolder(view);
-                        }
-                    };
-
-                    loadComment(foodID);
-
-                }
+//                if(getIntent() != null)
+//                    foodID = getIntent().getStringExtra(Common.INTENT_FOOD_ID);
+//                if(!foodID.isEmpty() && foodID != null)
+//                {
+//                    Query query = ratingFood.orderByChild("foodID").equalTo(foodID);
+//                    FirebaseRecyclerOptions<Rating> options = new FirebaseRecyclerOptions.Builder<Rating>().setQuery(query, Rating.class).build();
+//
+//                    adapter = new FirebaseRecyclerAdapter<Rating, ShowCommentViewHolder>(options) {
+//                        @Override
+//                        protected void onBindViewHolder(@NonNull ShowCommentViewHolder showCommentViewHolder, int i, @NonNull Rating rating) {
+//
+//                            showCommentViewHolder.ratingBarDetail.setRating(Float.parseFloat(rating.getRateValue()));
+//                            showCommentViewHolder.txtUserPhone.setText(rating.getPhone());
+//                            showCommentViewHolder.txtComment.setText(rating.getComment());
+//                        }
+//
+//                        @NonNull
+//                        @Override
+//                        public ShowCommentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+//                            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.show_comment_layout, parent, false);
+//                            return new ShowCommentViewHolder(view);
+//                        }
+//                    };
+//
+//                    loadComment(foodID);
+//
+//                }
             }
         });
     }
 
     private void loadComment(String foodID) {
 
-        adapter.startListening();
+        //adapter.startListening();
         recyclerView.setAdapter(adapter);
         swipeRefreshLayout.setRefreshing(false);
     }

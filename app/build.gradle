@@ -60,7 +60,7 @@ dependencies {
 
     implementation 'com.stepstone.apprating:app-rating:2.0.0'
     implementation 'uk.co.chrisjenx:calligraphy:2.2.0'
-    implementation 'com.firebaseui:firebase-ui-database:4.3.2'
+    //implementation 'com.firebaseui:firebase-ui-database:4.3.2'
 
 }
 apply plugin: 'com.google.gms.google-services'
