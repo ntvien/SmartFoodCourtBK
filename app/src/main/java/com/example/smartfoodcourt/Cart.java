@@ -10,9 +10,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.smartfoodcourt.Adapter.CartAdapter;
+import com.example.smartfoodcourt.Adapter.CartStallAdapter;
 import com.example.smartfoodcourt.Common.Common;
 import com.example.smartfoodcourt.Database.Database;
 import com.example.smartfoodcourt.Model.CartItem;
+import com.example.smartfoodcourt.Model.CartStallItem;
 import com.example.smartfoodcourt.Model.Order;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -35,9 +37,9 @@ public class Cart extends AppCompatActivity {
     TextView txtTotalPrice;
     FButton btnPay;
 
-    List<CartItem> cartItemList = new ArrayList<>();
+    List<CartStallItem> cartStallItemList = new ArrayList<>();
 
-    CartAdapter adapter;
+    CartStallAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,27 +60,29 @@ public class Cart extends AppCompatActivity {
         btnPay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Order order =  new Order(Common.currentUser.getPhone(), txtTotalPrice.getText().toString(), "0", cartItemList);
-                requestList.child(String.valueOf(System.currentTimeMillis())).setValue(order);
+                for(CartStallItem t: cartStallItemList){
+                    Order order =  new Order(Common.currentUser.getPhone(), t);
+                    requestList.child(String.valueOf(System.currentTimeMillis())).setValue(order);
+                }
                 new Database(getBaseContext()).cleanCart();
                 Toast.makeText(Cart.this, "Order confirmed", Toast.LENGTH_SHORT).show();
                 finish();
-            }
-        });
+    }
+});
 
         loadCart();
     }
 
 
     private void loadCart() {
-        cartItemList = new Database(this).getCart();
-        adapter = new CartAdapter(cartItemList, this);
+        cartStallItemList = new Database(this).getCart();
+        adapter = new CartStallAdapter(cartStallItemList, this);
         recyclerView.setAdapter(adapter);
 
         //Calculate Total
         float total = 0;
-        for (CartItem cartItem :cartItemList) {
-             total += (Integer.parseInt(cartItem.getPrice())) * (1 - (Float.parseFloat(cartItem.getDiscount()))/100) * (Integer.parseInt(cartItem.getQuantity()));
+        for (CartStallItem cartStallItem :cartStallItemList) {
+             total += cartStallItem.getTotal();
         }
         Locale locale = new Locale("vi", "VN");
         NumberFormat fmt = NumberFormat.getCurrencyInstance(locale);

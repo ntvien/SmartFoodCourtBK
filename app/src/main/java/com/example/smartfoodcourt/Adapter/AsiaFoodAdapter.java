@@ -61,7 +61,6 @@ public class AsiaFoodAdapter extends RecyclerView.Adapter<AsiaFoodAdapter.AsiaFo
             foodImage = itemView.findViewById(R.id.food_image);
             price = itemView.findViewById(R.id.price);
             name = itemView.findViewById(R.id.name);
-            rating = itemView.findViewById(R.id.rating);
 
         }
     }

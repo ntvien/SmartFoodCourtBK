@@ -141,14 +141,9 @@ public class FoodDetail extends AppCompatActivity implements RatingDialogListene
         imgAddCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new Database(getBaseContext()).addToCart(new CartItem(
-                        foodID,
-                        food.getName(),
-                        food.getPrice(),
-                        txtQuantity.getText().toString(),
-                        food.getDiscount()
-                ));
-
+                new Database(getBaseContext()).addToCart(new CartItem(food.getName(),
+                        food.getPrice(), txtQuantity.getText().toString(),
+                        food.getDiscount()), food.getSupplierID());
                 Toast.makeText(FoodDetail.this, "Added to my cart", Toast.LENGTH_SHORT).show();
             }
         });

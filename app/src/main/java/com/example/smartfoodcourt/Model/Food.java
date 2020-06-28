@@ -1,7 +1,7 @@
 package com.example.smartfoodcourt.Model;
 
 public class Food {
-    private String Name, Image, Description, Price, Discount, MenuID;
+    private String Name, Image, Description, Price, Discount, SupplierID;
 
     public Food() {
     }
@@ -12,7 +12,7 @@ public class Food {
         Description = description;
         Price = price;
         Discount = discount;
-        MenuID = menuID;
+        SupplierID = menuID;
     }
 
     public String getName() {
@@ -55,11 +55,11 @@ public class Food {
         Discount = discount;
     }
 
-    public String getMenuID() {
-        return MenuID;
+    public String getSupplierID() {
+        return SupplierID;
     }
 
-    public void setMenuID(String menuID) {
-        MenuID = menuID;
+    public void setSupplierID(String supplierID) {
+        SupplierID = supplierID;
     }
 }
