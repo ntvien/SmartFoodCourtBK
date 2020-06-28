@@ -25,6 +25,8 @@ import com.example.smartfoodcourt.Model.Food;
 import com.example.smartfoodcourt.Model.Rating;
 import com.example.smartfoodcourt.ui.food.FoodViewModel;
 import com.example.smartfoodcourt.ui.orders.OrdersFragment;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -48,7 +50,7 @@ import java.util.Map;
 public class FoodDetail extends AppCompatActivity implements RatingDialogListener {
     TextView txtName, txtPrice, txtDes, txtDiscount;
     ImageView imgFood;
-    String foodID;
+    String foodID = "";
     DatabaseReference foodList;
     DatabaseReference ratingFood;
 
@@ -130,8 +132,9 @@ public class FoodDetail extends AppCompatActivity implements RatingDialogListene
         btnComment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent cartIntent = new Intent(FoodDetail.this, Cart.class);
-                startActivity(cartIntent);
+                Intent commentIntent = new Intent(FoodDetail.this, ShowComment.class);
+                commentIntent.putExtra(Common.INTENT_FOOD_ID, foodID);
+                startActivity(commentIntent);
             }
         });
 
@@ -182,42 +185,6 @@ public class FoodDetail extends AppCompatActivity implements RatingDialogListene
 
 
     private void showDialogRating() {
-//        androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(getBaseContext());
-//
-//        builder.setTitle("Rating Food");
-//        builder.setMessage("Please fill information");
-//
-//        View itemView = LayoutInflater.from(getBaseContext()).inflate(R.layout.rating_layout, null);
-//
-//        final RatingBar ratingBar = (RatingBar)itemView.findViewById(R.id.ratingBar);
-//        final EditText edtComment = (EditText)itemView.findViewById(R.id.edtComment);
-//
-//        builder.setView(itemView);
-//        builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialogInterface, int i) {
-//                dialogInterface.dismiss();
-//            }
-//        });
-//        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialogInterface, int i) {
-//
-//                Comment comment = new Comment();
-//                comment.setName(Common.currentUser.getPhone());
-//                comment.getId(Common.currentUser.getEmail());
-//                comment.setComment(edtComment.getText().toString());
-//                comment.setRatingValue(ratingBar.getRating());
-//                Map<String, Object> serverTimeStamp = new HashMap<>();
-//                serverTimeStamp.put("timeStamp", ServerValue.TIMESTAMP);
-//                comment.setCommentTimeStamp(serverTimeStamp);
-//            }
-//        });
-//
-//        AlertDialog dialog = builder.create();
-//        dialog.show();
-
-
 
         new AppRatingDialog.Builder().setPositiveButtonText("Submit").setNegativeButtonText("Cancel")
                 .setNoteDescriptions((Arrays.asList("Very Bad", "Not Good", "Quite OK", "Very Good", "Excellent")))
@@ -227,20 +194,7 @@ public class FoodDetail extends AppCompatActivity implements RatingDialogListene
                 .setCommentTextColor(android.R.color.white)
                 .setCommentBackgroundColor(R.color.colorPrimaryDark).setWindowAnimation(R.style.RatingDialogFadeAnim)
                 .create(FoodDetail.this).show();
-
-
-
-
     }
-
-//    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-//        foodViewModel = ViewModelProviders.of(this).get(FoodViewModel.class);
-//        View root = inflater.inflate(R.layout.fragment_food, container,false);
-//        unbider = ButterKnife.bind(this, root);
-//        foodViewModel.getMutableLiveDataComment().observe(this, food);
-//        displayInfo(food);
-//        )};
-//    }
 
     private void loadFood() {
         foodList.child(foodID).addValueEventListener(new ValueEventListener() {
@@ -276,23 +230,41 @@ public class FoodDetail extends AppCompatActivity implements RatingDialogListene
     public void onPositiveButtonClicked(int valueRating, @NotNull String comments) {
 
         final Rating rating = new Rating(Common.currentUser.getPhone(),foodID, String.valueOf(valueRating), comments);
-        ratingFood.child(Common.currentUser.getPhone()).addValueEventListener(new ValueEventListener() {
+
+
+
+        ratingFood.push().setValue(rating).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.child(Common.currentUser.getPhone()).exists()){
-                    ratingFood.child(Common.currentUser.getPhone()).removeValue();
-                    ratingFood.child(Common.currentUser.getPhone()).setValue(rating);
-                }
-                else {
-                    ratingFood.child(Common.currentUser.getPhone()).setValue(rating);
-                }
+            public void onComplete(@NonNull Task<Void> task) {
                 Toast.makeText(FoodDetail.this,"Thank You for submit rating !!!", Toast.LENGTH_SHORT).show();
             }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
         });
+
+
+
+
+
+
+
+
+
+//        ratingFood.child(Common.currentUser.getPhone()).addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                if(snapshot.child(Common.currentUser.getPhone()).exists()){
+//                    ratingFood.child(Common.currentUser.getPhone()).removeValue();
+//                    ratingFood.child(Common.currentUser.getPhone()).setValue(rating);
+//                }
+//                else {
+//                    ratingFood.child(Common.currentUser.getPhone()).setValue(rating);
+//                }
+//                Toast.makeText(FoodDetail.this,"Thank You for submit rating !!!", Toast.LENGTH_SHORT).show();
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
     }
 }
