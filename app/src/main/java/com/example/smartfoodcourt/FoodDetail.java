@@ -120,7 +120,6 @@ public class FoodDetail extends AppCompatActivity implements RatingDialogListene
         });
 
 
-
         FloatingActionButton btnStar = findViewById(R.id.btnStar);
         btnStar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -133,13 +132,12 @@ public class FoodDetail extends AppCompatActivity implements RatingDialogListene
         btnComment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent cartIntent = new Intent(FoodDetail.this, OrdersFragment.class);
+                Intent cartIntent = new Intent(FoodDetail.this, Cart.class);
                 startActivity(cartIntent);
             }
         });
 
         ratingBar = (RatingBar)findViewById(R.id.ratingBar);
-
 
 
         imgAddCart.setOnClickListener(new View.OnClickListener() {
@@ -225,7 +223,7 @@ public class FoodDetail extends AppCompatActivity implements RatingDialogListene
 
         new AppRatingDialog.Builder().setPositiveButtonText("Submit").setNegativeButtonText("Cancel")
                 .setNoteDescriptions((Arrays.asList("Very Bad", "Not Good", "Quite OK", "Very Good", "Excellent")))
-                .setDefaultRating(1).setTitle("Rate this Food").setDescription("Please select some stars and comment your feedback")
+                .setDefaultRating(1).setTitle("Rate this Food").setDescription("Please rating food and comment your feedback")
                 .setTitleTextColor(R.color.colorPrimary).setDescriptionTextColor(R.color.colorPrimary)
                 .setHint("Please write your comment here...").setHintTextColor(R.color.colorAccent)
                 .setCommentTextColor(android.R.color.white)

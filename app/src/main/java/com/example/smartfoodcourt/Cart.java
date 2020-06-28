@@ -13,7 +13,7 @@ import com.example.smartfoodcourt.Adapter.CartAdapter;
 import com.example.smartfoodcourt.Common.Common;
 import com.example.smartfoodcourt.Database.Database;
 import com.example.smartfoodcourt.Model.CartItem;
-import com.example.smartfoodcourt.Model.Request;
+import com.example.smartfoodcourt.Model.Order;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -58,8 +58,8 @@ public class Cart extends AppCompatActivity {
         btnPay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Request request =  new Request(Common.currentUser.getPhone(), txtTotalPrice.getText().toString(), "0", cartItemList);
-                requestList.child(String.valueOf(System.currentTimeMillis())).setValue(request);
+                Order order =  new Order(Common.currentUser.getPhone(), txtTotalPrice.getText().toString(), "0", cartItemList);
+                requestList.child(String.valueOf(System.currentTimeMillis())).setValue(order);
                 new Database(getBaseContext()).cleanCart();
                 Toast.makeText(Cart.this, "Order confirmed", Toast.LENGTH_SHORT).show();
                 finish();

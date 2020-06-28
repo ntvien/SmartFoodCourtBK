@@ -2,9 +2,6 @@ package com.example.smartfoodcourt.ui.orders;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -15,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.smartfoodcourt.Common.Common;
-import com.example.smartfoodcourt.Model.Request;
+import com.example.smartfoodcourt.Model.Order;
 import com.example.smartfoodcourt.R;
 import com.example.smartfoodcourt.ViewHolder.OrderViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -30,7 +27,7 @@ public class OrdersFragment extends Fragment {
     public RecyclerView recyclerView;
     public RecyclerView.LayoutManager layoutManager;
 
-    FirebaseRecyclerAdapter<Request, OrderViewHolder> adapter;
+    FirebaseRecyclerAdapter<Order, OrderViewHolder> adapter;
 
     FirebaseDatabase database;
     DatabaseReference requests;
@@ -64,14 +61,14 @@ public class OrdersFragment extends Fragment {
     }
 
     private void loadOrders(String phone) {
-        adapter = new FirebaseRecyclerAdapter<Request, OrderViewHolder>(
-                Request.class,
+        adapter = new FirebaseRecyclerAdapter<Order, OrderViewHolder>(
+                Order.class,
                 R.layout.order_layout,
                 OrderViewHolder.class,
                 requests.orderByChild("phone").equalTo(phone)
         ) {
             @Override
-            protected void populateViewHolder(OrderViewHolder orderViewHolder, Request model, int position) {
+            protected void populateViewHolder(OrderViewHolder orderViewHolder, Order model, int position) {
                 orderViewHolder.txtOrderId.setText(adapter.getRef(position).getKey());
                 orderViewHolder.txtOrderStatus.setText(convertCodeToStatus(model.getStatus()));
                 orderViewHolder.txtOrderPhone.setText(model.getPhone());
