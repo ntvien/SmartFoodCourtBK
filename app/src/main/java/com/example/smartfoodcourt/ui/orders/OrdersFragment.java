@@ -1,5 +1,6 @@
 package com.example.smartfoodcourt.ui.orders;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,7 +31,7 @@ public class OrdersFragment extends Fragment {
     FirebaseRecyclerAdapter<Order, OrderViewHolder> adapter;
 
     FirebaseDatabase database;
-    DatabaseReference requests;
+    DatabaseReference orders;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -47,7 +48,7 @@ public class OrdersFragment extends Fragment {
 
 
         database = FirebaseDatabase.getInstance();
-        requests = database.getReference("Requests");
+        orders = database.getReference("Order");
 
         recyclerView = (RecyclerView)root.findViewById(R.id.listOrders);
         recyclerView.setHasFixedSize(true);
@@ -65,21 +66,59 @@ public class OrdersFragment extends Fragment {
                 Order.class,
                 R.layout.order_layout,
                 OrderViewHolder.class,
-                requests.orderByChild("phone").equalTo(phone)
+                orders.orderByChild("phone").equalTo(phone)
         ) {
             @Override
-            protected void populateViewHolder(OrderViewHolder orderViewHolder, Order model, int position) {
+            protected void populateViewHolder(OrderViewHolder orderViewHolder, Order model, final int position) {
                 orderViewHolder.txtOrderId.setText(adapter.getRef(position).getKey());
                 orderViewHolder.txtOrderStatus.setText(convertCodeToStatus(model.getStatus()));
                 orderViewHolder.txtOrderPhone.setText(model.getPhone());
+
+                orderViewHolder.btnEdit.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        //showUpdateDialog(adapter.getRef(position).getKey(), adapter.getItem(position));
+                    }
+                });
+
+                orderViewHolder.btnDetail.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                    }
+                });
+
+                orderViewHolder.btnRemove.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        deleteOrder(adapter.getRef(position).getKey());
+                    }
+                });
             }
         };
+        adapter.notifyDataSetChanged();
         recyclerView.setAdapter(adapter);
     }
 
+    private void deleteOrder(String key) {
+        orders.child(key).removeValue();
+        adapter.notifyDataSetChanged();
+    }
+
+//    private void showUpdateDialog(String key, Order item) {
+//        final AlertDialog.Builder alertDialog = new AlertDialog.Builder(OrdersFragment.class);
+//        alertDialog.setTitle("Update Order");
+//        alertDialog.setMessage("Please choose status");
+//
+//        LayoutInflater inflater = this.getLayoutInflater();
+//        final View view = inflater.inflate(R.layout., null);
+//    }
+
     private String convertCodeToStatus(String status) {
-        if (status == "0") return "In Queue";
-        else if (status == "1") return "Processing...";
-        else return "Complete";
+        //0: preparing, 1: ready, 2: received, 3: cancel
+        if (status.equals("0")) return "Preparing";
+        else if(status.equals("1")) return "Ready";
+        else if(status.equals("2")) return "Received";
+        else return "Cancel";
     }
 }
