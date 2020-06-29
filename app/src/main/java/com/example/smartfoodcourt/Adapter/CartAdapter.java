@@ -45,7 +45,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartItemViewHolder> {
         Integer price = (int) (Float.parseFloat(cur.getPrice())*(1 - Float.parseFloat(cur.getDiscount())/100)*Float.parseFloat(cur.getQuantity()));
         holder.txtPrice.setText(fmt.format(price));
         holder.txtQuantity.setText(cur.getQuantity());
-        holder.txtName.setText(cur.getFoodName());
+        holder.txtName.setText(cur.getName());
     }
 
     @Override

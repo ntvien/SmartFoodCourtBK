@@ -69,7 +69,7 @@ public class Database extends SQLiteAssetHelper {
         SQLiteDatabase db = getReadableDatabase();
         String query = String.format("INSERT INTO CartItem(SupplierID, Name, Price, Quantity, Discount) VALUES('%s', '%s', '%s', '%s', '%s');",
                 supplierID,
-                cartItem.getFoodName(),
+                cartItem.getName(),
                 cartItem.getPrice(),
                 cartItem.getQuantity(),
                 cartItem.getDiscount());
