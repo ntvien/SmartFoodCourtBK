@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartfoodcourt.Common.Common;
@@ -28,8 +29,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.rey.material.widget.CheckBox;
 
 import org.json.JSONObject;
+
+import io.paperdb.Paper;
 
 //public class SignIn extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener, View.OnClickListener {
 public class SignIn extends AppCompatActivity {
@@ -37,6 +41,7 @@ public class SignIn extends AppCompatActivity {
     TextView textSignUp, textForgotPassword;
     Button btnSignIn;
     EditText editPassword, editUserName;
+    CheckBox checkBoxRemember;
 
     // Facebook
     private static final String TAG = SignIn.class.getSimpleName();
@@ -44,32 +49,10 @@ public class SignIn extends AppCompatActivity {
     LoginButton fbLoginButton;
     // Facebook
 
-//    //Google
-//    private GoogleApiClient mGoogleApiClient;
-//    private TextView mStatusTextView;
-//    private ProgressDialog mProgressDialog;
-//
-//    private static final String TAGGoogle = "MainActivity";
-//    private static final int RC_SIGN_IN = 9001;
-//    //Google
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
-
-//        //Login Google
-//
-//        // Button listeners
-//        findViewById(R.id.btnSignInGoogle).setOnClickListener(this);
-//
-//        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
-//        mGoogleApiClient = new GoogleApiClient.Builder(this).enableAutoManage(this /* FragmentActivity */, this /* OnConnectionFailedListener */).addApi(Auth.GOOGLE_SIGN_IN_API, gso).build();
-//
-//        SignInButton signInButton = (SignInButton) findViewById(R.id.btnSignInGoogle);
-//        signInButton.setSize(SignInButton.SIZE_STANDARD);
-//        signInButton.setScopes(gso.getScopeArray());
-
 
         // Login Facebook
         FacebookSdk.sdkInitialize(this.getApplicationContext());
@@ -126,12 +109,28 @@ public class SignIn extends AppCompatActivity {
         editUserName = (EditText)findViewById(R.id.editTextUserName);
         btnSignIn = (Button)findViewById(R.id.btnSignIn);
 
+        checkBoxRemember = (CheckBox)findViewById(R.id.checkBoxRemember);
+        Paper.init(this);
+
+        String user = Paper.book().read(Common.USER_KEY);
+        String password = Paper.book().read(Common.PASSWORD_KEY);
+
+        if(user != null && password != null){
+            if(!user.isEmpty() && !password.isEmpty())
+                login(user, password);
+        }
+
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference table_user = database.getReference("User");
 
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                if(checkBoxRemember.isChecked()){
+                    Paper.book().write(Common.USER_KEY, editUserName.getText().toString());
+                    Paper.book().write(Common.PASSWORD_KEY, editPassword.getText().toString());
+                }
 
                 final ProgressDialog mDialog = new ProgressDialog(SignIn.this);
                 mDialog.setMessage("Please waiting...");
@@ -167,6 +166,41 @@ public class SignIn extends AppCompatActivity {
         });
     }
 
+    private void login(final String username, final String password) {
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        final DatabaseReference table_user = database.getReference("User");
+
+        final ProgressDialog mDialog = new ProgressDialog(SignIn.this);
+        mDialog.setMessage("Please waiting...");
+        mDialog.show();
+
+        table_user.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+
+                mDialog.dismiss();
+                if (snapshot.child(username).exists()) {
+                    User user = snapshot.child(username).getValue(User.class);
+                    if (user.getPassword().equals(password)) {
+                        Intent homePageIntent = new Intent(getApplicationContext(), Home.class);
+                        Common.currentUser = user;
+                        startActivity(homePageIntent);
+                        finish();
+                    } else
+                        Toast.makeText(SignIn.this, "Wrong Password !!!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(SignIn.this, "User not exist in DataBase", Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
     // Facebook
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -196,94 +230,5 @@ public class SignIn extends AppCompatActivity {
             request.executeAsync();
         }
     }
-
-    //Google
-//    @Override
-//    protected void onStart() {
-//        super.onStart();
-//        OptionalPendingResult<GoogleSignInResult> opr = Auth.GoogleSignInApi.silentSignIn(mGoogleApiClient);
-//        if (opr.isDone()) {
-//            // Nếu dữ liệu của người dùng trong bộ d dệm hợp lệ, OptionalPendingResult sẽ ở trạng thái "done"
-//            // và GoogleSignInResult sẽ có ngay mà không cần thực hiện đăng nhập lại.
-//            Log.d(TAGGoogle, "Got cached sign-in");
-//            GoogleSignInResult result = opr.get();
-//            handleSignInResult(result);
-//        } else {
-//            // Nếu người dùng chưa từng đăng nhập trước đó, hoặc phiên làm việc đã hết hạn,
-//            // thao tác bất đồng bộ này sẽ ngầm đăng nhập người dùng, và thực hiện thao tác cross sign-on.
-//            showProgressDialog();
-//            opr.setResultCallback(new ResultCallback<GoogleSignInResult>() {
-//                @Override
-//                public void onResult(GoogleSignInResult googleSignInResult) {
-//                    hideProgressDialog();
-//                    handleSignInResult(googleSignInResult);
-//                }
-//            });
-//        }
-//    }
-//
-//    @Override
-//    public void onClick(View view) {
-//        switch (view.getId()) {
-//            case R.id.btnSignInGoogle:
-//                signIn();
-//                break;
-//        }
-//    }
-//
-//    @Override
-//    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-//        Log.e(TAGGoogle, "onConnectionFailed:" + connectionResult);
-//    }
-//
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        if (requestCode == RC_SIGN_IN) {
-//            GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
-//            handleSignInResult(result);
-//        }
-//    }
-//
-//    private void handleSignInResult(GoogleSignInResult result) {
-//        Log.d(TAGGoogle, "handleSignInResult:" + result.isSuccess());
-//        if (result.isSuccess()) {
-//            // Đã đăng nhập thành công, hiển thị trạng thái đăng nhập.
-//            GoogleSignInAccount acct = result.getSignInAccount();
-//            mStatusTextView.setText(acct.getDisplayName());
-//        }
-//    }
-//
-//    private void signIn() {
-//        Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
-//        startActivityForResult(signInIntent, RC_SIGN_IN);
-//    }
-//
-////    private void signOut() {
-////        Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
-////                new ResultCallback<Status>() {
-////                    @Override
-////                    public void onResult(Status status) {
-////                        mStatusTextView.setText("Signed out");
-////                        Toast.makeText(SignIn.this, "Signed out", Toast.LENGTH_SHORT).show();
-////                    }
-////                });
-////    }
-//
-//    private void showProgressDialog() {
-//        if (mProgressDialog == null) {
-//            mProgressDialog = new ProgressDialog(this);
-//            mProgressDialog.setMessage("Loading");
-//            mProgressDialog.setIndeterminate(true);
-//        }
-//
-//        mProgressDialog.show();
-//    }
-//
-//    private void hideProgressDialog() {
-//        if (mProgressDialog != null && mProgressDialog.isShowing()) {
-//            mProgressDialog.hide();
-//        }
-//    }
 }
 
