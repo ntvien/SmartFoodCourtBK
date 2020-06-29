@@ -5,8 +5,8 @@ import java.util.List;
 
 public class Order {
     private String phone;
-     private String total;
-    private String status = "0";
+    private String total;
+    private String status;
     private String comment;
     private String supplierID;
     private List<CartItem> foods;
@@ -27,6 +27,7 @@ public class Order {
         this.total = t.getTotal().toString();
          this.supplierID = t.getSupplierID();
         this.foods = t.getCartItemList();
+        this.status = "0"; // 0: preparing, 1: ready, 2: received, 3: cancel
     }
 
     public String getStatus() {
