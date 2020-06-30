@@ -2,6 +2,7 @@
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/swipe_layout"
     android:layout_width="match_parent"
     android:layout_height="80dp"
     android:layout_margin="8dp"
@@ -15,10 +16,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
+
 
             <TextView
                 android:id="@+id/txtUserPhone"
@@ -53,5 +57,14 @@
         </LinearLayout>
 
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/btn_delete_comment"
+        android:src="@drawable/ic_baseline_delete_24"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="350dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
 
 </androidx.cardview.widget.CardView>
