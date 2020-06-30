@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d8b462f6-9470-4308-aadb-1be70b4d32fe" name="Default Changelist" comment="" />
+    <list default="true" id="d8b462f6-9470-4308-aadb-1be70b4d32fe" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/smartfoodcourt/FoodList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/smartfoodcourt/FoodList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/smartfoodcourt/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/smartfoodcourt/Home.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/smartfoodcourt/HomePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/smartfoodcourt/HomePage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/smartfoodcourt/ui/food/FoodFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/smartfoodcourt/ui/food/FoodFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/smartfoodcourt/ui/home/HomeFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/smartfoodcourt/ui/home/HomeFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/smartfoodcourt/ui/orders/OrdersFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/smartfoodcourt/ui/orders/OrdersFragment.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -48,10 +57,10 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="223" y="87" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.864@0.0.1536.864" timestamp="1593250926970" />
-    <state x="549" y="187" key="FileChooserDialogImpl" timestamp="1593250963187">
+    <state x="549" y="187" key="FileChooserDialogImpl" timestamp="1593435209107">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="549" y="187" key="FileChooserDialogImpl/0.0.1536.864@0.0.1536.864" timestamp="1593250963187" />
+    <state x="549" y="187" key="FileChooserDialogImpl/0.0.1536.864@0.0.1536.864" timestamp="1593435209107" />
     <state x="465" y="256" key="com.intellij.ide.util.TipDialog" timestamp="1593250866646">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
