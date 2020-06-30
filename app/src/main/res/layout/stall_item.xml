@@ -7,18 +7,20 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:src="@drawable/search"
             android:id="@+id/imgStall" />
+
         <TextView
             android:id="@+id/txtStall"
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:textSize="20dp"
+            android:gravity="center"
             android:text="Stall"
-            android:gravity="center"/>
+            android:textSize="20dp" />
 
 
     </LinearLayout>
