@@ -2,9 +2,12 @@ package com.example.smartfoodcourt;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,10 +16,13 @@ import com.example.smartfoodcourt.Adapter.AsiaFoodAdapter;
 import com.example.smartfoodcourt.Adapter.PopularFoodAdapter;
 import com.example.smartfoodcourt.Interface.ItemClickListener;
 import com.example.smartfoodcourt.Model.AsiaFood;
+import com.example.smartfoodcourt.Model.Category;
 import com.example.smartfoodcourt.Model.Food;
 import com.example.smartfoodcourt.Model.PopularFood;
 import com.example.smartfoodcourt.ViewHolder.FoodViewHolder;
+import com.example.smartfoodcourt.ViewHolder.MenuViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
@@ -72,16 +78,16 @@ public class HomePage extends AppCompatActivity {
     }
 
     private void loadListFood(String categoryID) {
-        adapter = new FirebaseRecyclerAdapter<Food, FoodViewHolder>(Food.class,
-                R.layout.food_item,
-                FoodViewHolder.class,
-                foodList.orderByChild("menuID").equalTo(categoryID)) {
-            @Override
-            protected void populateViewHolder(FoodViewHolder foodViewHolder, Food model, int i) {
-                foodViewHolder.food_name.setText(model.getName());
-                Picasso.with(getBaseContext()).load(model.getImage()).into(foodViewHolder.food_image);
 
-                final Food local = model;
+        FirebaseRecyclerOptions<Food> options = new FirebaseRecyclerOptions.Builder<Food>()
+                .setQuery(foodList.orderByChild("menuID").equalTo(categoryID), Food.class).build();
+        adapter = new FirebaseRecyclerAdapter<Food, FoodViewHolder>(options) {
+            @Override
+            protected void onBindViewHolder(@NonNull FoodViewHolder foodViewHolder, int i, @NonNull Food food) {
+                foodViewHolder.food_name.setText(food.getName());
+                Picasso.with(getBaseContext()).load(food.getImage()).into(foodViewHolder.food_image);
+
+                final Food local = food;
                 foodViewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
@@ -92,10 +98,45 @@ public class HomePage extends AppCompatActivity {
                     }
                 });
             }
+
+            @NonNull
+            @Override
+            public FoodViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.food_item, parent, false);
+                return new FoodViewHolder(itemView);
+            }
         };
+
+//        adapter = new FirebaseRecyclerAdapter<Food, FoodViewHolder>(Food.class,
+//                R.layout.food_item,
+//                FoodViewHolder.class,
+//                foodList.orderByChild("menuID").equalTo(categoryID)) {
+//            @Override
+//            protected void populateViewHolder(FoodViewHolder foodViewHolder, Food model, int i) {
+//                foodViewHolder.food_name.setText(model.getName());
+//                Picasso.with(getBaseContext()).load(model.getImage()).into(foodViewHolder.food_image);
+//
+//                final Food local = model;
+//                foodViewHolder.setItemClickListener(new ItemClickListener() {
+//                    @Override
+//                    public void onClick(View view, int position, boolean isLongClick) {
+//                        //Start new activity
+//                        Intent foodDetail = new Intent(HomePage.this, FoodDetail.class);
+//                        foodDetail.putExtra("FoodID", adapter.getRef(position).getKey());
+//                        startActivity(foodDetail);
+//                    }
+//                });
+//            }
+//        };
+        adapter.startListening();
         popularRecycler.setAdapter(adapter);
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+       // adapter.stopListening();
+    }
 
     private void setAsiaRecycler(List<AsiaFood> asiaFoodList) {
         asiaRecycler = findViewById(R.id.asia_recycler);
