@@ -2,6 +2,7 @@ package com.example.smartfoodcourt.ViewHolder;
 
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -17,6 +18,8 @@ public class OrderViewHolder extends RecyclerView.ViewHolder implements View.OnC
 
     private ItemClickListener itemClickListener;
 
+    public ImageView btn_delete;
+
     public OrderViewHolder(@NonNull View itemView) {
         super(itemView);
 
@@ -24,9 +27,10 @@ public class OrderViewHolder extends RecyclerView.ViewHolder implements View.OnC
         txtOrderStatus = (TextView)itemView.findViewById(R.id.order_status);
         txtOrderPhone = (TextView)itemView.findViewById(R.id.order_phone);
 
-        btnEdit = (Button)itemView.findViewById(R.id.btnEdit);
-        btnDetail = (Button)itemView.findViewById(R.id.btnDetail);
-        btnRemove = (Button)itemView.findViewById(R.id.btnRemove);
+        btn_delete = (ImageView)itemView.findViewById(R.id.btn_delete);
+//        btnEdit = (Button)itemView.findViewById(R.id.btnEdit);
+//        btnDetail = (Button)itemView.findViewById(R.id.btnDetail);
+//        btnRemove = (Button)itemView.findViewById(R.id.btnRemove);
 
         itemView.setOnClickListener(this);
     }
