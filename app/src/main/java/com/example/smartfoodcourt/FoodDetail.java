@@ -61,6 +61,7 @@ public class FoodDetail extends AppCompatActivity implements RatingDialogListene
     Food food;
 
     RatingBar ratingBar;
+
     private FoodViewModel foodViewModel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,10 +88,10 @@ public class FoodDetail extends AppCompatActivity implements RatingDialogListene
 
         if(getIntent() != null) {
             foodID = getIntent().getStringExtra("foodID");
-            if(!foodID.isEmpty()){
-                loadRatingFood(foodID);
-                loadFood();
-            }
+        }
+        if(!foodID.isEmpty()){
+            loadFood();
+            loadRatingFood(foodID);
         }
 
         btnBackDetail.setOnClickListener(new View.OnClickListener() {
@@ -120,7 +121,7 @@ public class FoodDetail extends AppCompatActivity implements RatingDialogListene
         });
 
 
-        FloatingActionButton btnStar = findViewById(R.id.btnStar);
+        FloatingActionButton btnStar = (FloatingActionButton)findViewById(R.id.btnStar);
         btnStar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -181,7 +182,7 @@ public class FoodDetail extends AppCompatActivity implements RatingDialogListene
 
     private void showDialogRating() {
 
-        new AppRatingDialog.Builder().setPositiveButtonText("Submit").setNegativeButtonText("Cancel")
+        new AppRatingDialog.Builder().setPositiveButtonText("Comment").setNegativeButtonText("Cancel")
                 .setNoteDescriptions((Arrays.asList("Very Bad", "Not Good", "Quite OK", "Very Good", "Excellent")))
                 .setDefaultRating(1).setTitle("Rate this Food").setDescription("Please rating food and comment your feedback")
                 .setTitleTextColor(R.color.colorPrimary).setDescriptionTextColor(R.color.colorPrimary)
@@ -227,39 +228,31 @@ public class FoodDetail extends AppCompatActivity implements RatingDialogListene
         final Rating rating = new Rating(Common.currentUser.getPhone(),foodID, String.valueOf(valueRating), comments);
 
 
-
-        ratingFood.push().setValue(rating).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                Toast.makeText(FoodDetail.this,"Thank You for submit rating !!!", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-
-
-
-
-
-
-
-
-//        ratingFood.child(Common.currentUser.getPhone()).addValueEventListener(new ValueEventListener() {
+//        ratingFood.push().setValue(rating).addOnCompleteListener(new OnCompleteListener<Void>() {
 //            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                if(snapshot.child(Common.currentUser.getPhone()).exists()){
-//                    ratingFood.child(Common.currentUser.getPhone()).removeValue();
-//                    ratingFood.child(Common.currentUser.getPhone()).setValue(rating);
-//                }
-//                else {
-//                    ratingFood.child(Common.currentUser.getPhone()).setValue(rating);
-//                }
+//            public void onComplete(@NonNull Task<Void> task) {
 //                Toast.makeText(FoodDetail.this,"Thank You for submit rating !!!", Toast.LENGTH_SHORT).show();
 //            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
 //        });
+
+
+        ratingFood.child(Common.currentUser.getPhone()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.child(Common.currentUser.getPhone()).exists()){
+                    ratingFood.child(Common.currentUser.getPhone()).removeValue();
+                    ratingFood.child(Common.currentUser.getPhone()).setValue(rating);
+                }
+                else {
+                    ratingFood.child(Common.currentUser.getPhone()).setValue(rating);
+                }
+                Toast.makeText(FoodDetail.this,"Thank You for submit rating !!!", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 }
