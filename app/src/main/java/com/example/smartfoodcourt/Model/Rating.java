@@ -3,16 +3,14 @@ package com.example.smartfoodcourt.Model;
 public class Rating {
 
     private String phone;
-    private String foodID;
     private String rateValue;
     private String comment;
 
     public Rating() {
     }
 
-    public Rating(String phone, String foodID, String rateValue, String comment) {
+    public Rating(String phone, String rateValue, String comment) {
         this.phone = phone;
-        this.foodID = foodID;
         this.rateValue = rateValue;
         this.comment = comment;
     }
@@ -25,13 +23,6 @@ public class Rating {
         this.phone = phone;
     }
 
-    public String getFoodID() {
-        return foodID;
-    }
-
-    public void setFoodID(String foodID) {
-        this.foodID = foodID;
-    }
 
     public String getRateValue() {
         return rateValue;
