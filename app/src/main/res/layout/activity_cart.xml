@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/my_bg"
+    android:background="@drawable/background1"
     android:padding="16dp"
     tools:context=".Cart">
 
@@ -52,15 +52,18 @@
                 android:id="@+id/btnPayment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginLeft="8dp"
                 android:layout_alignParentBottom="true"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/button_shape"
                 android:enabled="true"
                 android:text="Payment"
-                android:textColor="@android:color/white"
-                app:cornerRadius="4dp"
-                />
+                android:textColor="@android:color/primary_text_light_nodisable"
+                app:cornerRadius="4dp" />
 
         </RelativeLayout>
 

@@ -10,6 +10,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:gravity="center_vertical|center_horizontal"
+        android:fontFamily="@font/helveticanowtextextregular"
         android:text="See you later"
         android:textColor="@color/btnSignActive"
         android:textSize="100dp" />
