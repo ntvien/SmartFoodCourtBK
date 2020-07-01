@@ -12,6 +12,8 @@ import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -30,6 +32,7 @@ import com.example.smartfoodcourt.ViewHolder.FoodViewHolder;
 import com.example.smartfoodcourt.ViewHolder.MenuViewHolder;
 import com.example.smartfoodcourt.ViewHolder.StallViewHolder;
 import com.example.smartfoodcourt.ui.food.FoodFragment;
+import com.example.smartfoodcourt.ui.orders.OrdersFragment;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
@@ -67,16 +70,15 @@ public class HomeFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         homeViewModel =
                 ViewModelProviders.of(this).get(HomeViewModel.class);
-       root = inflater.inflate(R.layout.fragment_home, container, false);
+        root = inflater.inflate(R.layout.fragment_home, container, false);
 
         btnMenu = (Button)root.findViewById(R.id.btnMenu);
         btnMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FoodFragment foodFragment = new FoodFragment();
-                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.nav_host_fragment, foodFragment);
-                fragmentTransaction.commit();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, new FoodFragment()).commit();
             }
         });
 
@@ -132,7 +134,7 @@ public class HomeFragment extends Fragment {
             @Override
             protected void onBindViewHolder(@NonNull StallViewHolder stallViewHolder, int i, final Stall stall) {
                 stallViewHolder.txtStall.setText(stall.getName());
-                Picasso.with(getContext()).load(stall.getImage()).into(stallViewHolder.imgStall);
+                if(!stall.getImage().isEmpty())Picasso.with(getContext()).load(stall.getImage()).into(stallViewHolder.imgStall);
 
                 stallViewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
