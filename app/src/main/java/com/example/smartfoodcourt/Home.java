@@ -77,13 +77,6 @@ public class Home extends AppCompatActivity  {
         txtFullName = (TextView)headerView.findViewById(R.id.txtFullName);
         txtFullName.setText(Common.currentUser.getPhone());
 
-        //Load menu
-       // recycler_menu = (RecyclerView)findViewById(R.id.recycler_menu);
-       // recycler_menu.setHasFixedSize(true);
-      //  layoutManager = new LinearLayoutManager(this);
-      //  recycler_menu.setLayoutManager(layoutManager);
-
-        //loadMenu();
 
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -91,7 +84,7 @@ public class Home extends AppCompatActivity  {
               R.id.nav_home, R.id.nav_food, R.id.nav_orders, R.id.nav_sign_out)
                .setDrawerLayout(drawer)
                .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        final NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
         navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
@@ -108,6 +101,8 @@ public class Home extends AppCompatActivity  {
 
                 }
                 else if (id == R.id.nav_food){
+
+                    Toast.makeText(getApplicationContext(), "Food", Toast.LENGTH_SHORT).show();
 
                 }else if (id == R.id.nav_orders){
                     Toast.makeText(getApplicationContext(), "Orders", Toast.LENGTH_SHORT).show();
