@@ -1,7 +1,2 @@
-include ':Fbutton'
-include ':Fbutton1'
-include ':demo'
-include ':library'
-include ':Fbutton'
 include ':app'
 rootProject.name = "SmartFoodCourt"

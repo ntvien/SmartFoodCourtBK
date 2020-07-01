@@ -1,65 +1,65 @@
 package com.example.smartfoodcourt.Model;
 
 public class Food {
-    private String Name, Image, Description, Price, Discount, SupplierID;
+    private String name, image, description, price, discount, supplierID;
 
     public Food() {
     }
 
     public Food(String name, String image, String description, String price, String discount, String menuID) {
-        Name = name;
-        Image = image;
-        Description = description;
-        Price = price;
-        Discount = discount;
-        SupplierID = menuID;
+        this.name = name;
+        this.image = image;
+        this.description = description;
+        this.price = price;
+        this.discount = discount;
+        supplierID = menuID;
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(String name) {
-        Name = name;
+        this.name = name;
     }
 
     public String getImage() {
-        return Image;
+        return image;
     }
 
     public void setImage(String image) {
-        Image = image;
+        this.image = image;
     }
 
     public String getDescription() {
-        return Description;
+        return description;
     }
 
     public void setDescription(String description) {
-        Description = description;
+        this.description = description;
     }
 
     public String getPrice() {
-        return Price;
+        return price;
     }
 
     public void setPrice(String price) {
-        Price = price;
+        this.price = price;
     }
 
     public String getDiscount() {
-        return Discount;
+        return discount;
     }
 
     public void setDiscount(String discount) {
-        Discount = discount;
+        this.discount = discount;
     }
 
     public String getSupplierID() {
-        return SupplierID;
+        return supplierID;
     }
 
     public void setSupplierID(String supplierID) {
-        SupplierID = supplierID;
+        this.supplierID = supplierID;
     }
 }

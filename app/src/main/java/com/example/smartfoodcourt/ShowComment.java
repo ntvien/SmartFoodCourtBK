@@ -4,43 +4,29 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
-import android.content.Context;
 import android.os.Bundle;
-import android.telecom.CallRedirectionService;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.Toast;
-
 import com.example.smartfoodcourt.Common.Common;
-import com.example.smartfoodcourt.Model.Food;
-import com.example.smartfoodcourt.Model.Order;
 import com.example.smartfoodcourt.Model.Rating;
-import com.example.smartfoodcourt.ViewHolder.FoodViewHolder;
 import com.example.smartfoodcourt.ViewHolder.ShowCommentViewHolder;
-//import com.firebase.ui.database.FirebaseListOptions;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
-//import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 
 
 public class ShowComment extends AppCompatActivity {
 
     RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
-
     FirebaseDatabase database;
     DatabaseReference ratingFood;
     FirebaseRecyclerAdapter<Rating, ShowCommentViewHolder> adapter;
-
     String foodID="";
 
     @Override

@@ -6,10 +6,11 @@ public class User {
     private String phone;
 
     public User(){}
-    public User(String _email, String _password, String _phone){
-        email = _email;
-        password = _password;
-        phone = _phone;
+
+    public User(String email, String password, String phone) {
+        this.email = email;
+        this.password = password;
+        this.phone = phone;
     }
 
     public String getEmail(){
