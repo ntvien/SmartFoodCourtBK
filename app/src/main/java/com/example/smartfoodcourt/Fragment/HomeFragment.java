@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.app.SharedElementCallback;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -35,7 +37,6 @@ public class HomeFragment extends Fragment {
 
 
     RecyclerView popularRecycler, stallRecycler;
-    Button btnMenu;
     View root;
 
 
@@ -44,7 +45,6 @@ public class HomeFragment extends Fragment {
     FirebaseDatabase database;
     DatabaseReference foodList, supplierList;
 
-    String categoryID="";
 
     FirebaseRecyclerAdapter<Food, FoodViewHolder> adapterPopularFood;
     FirebaseRecyclerAdapter<Stall, StallViewHolder> adapterStall;
@@ -53,15 +53,7 @@ public class HomeFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
           root = inflater.inflate(R.layout.fragment_home, container, false);
 
-        btnMenu = (Button)root.findViewById(R.id.btnMenu);
-        btnMenu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, new FoodFragment()).commit();
-            }
-        });
+
 
 
         //Firebase
@@ -105,11 +97,13 @@ public class HomeFragment extends Fragment {
                     public void onClick(View view, int position, boolean isLongClick) {
                         FoodFragment foodFragment = new FoodFragment();
                         Bundle bundle = new Bundle();
-                        bundle.putString("supplierID",stall.getSupplierID());
+                        bundle.putString("supplierID", stall.getSupplierID());
                         foodFragment.setArguments(bundle);
-                        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                        FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
                         fragmentTransaction.replace(R.id.nav_host_fragment, foodFragment);
+                        fragmentTransaction.addToBackStack(null);
                         fragmentTransaction.commit();
+
                     }
                 });
             }
@@ -169,4 +163,5 @@ public class HomeFragment extends Fragment {
     public void onStop() {
         super.onStop();
     }
+
 }
