@@ -1,6 +1,5 @@
-package com.example.smartfoodcourt.ui.orders;
+package com.example.smartfoodcourt.Fragment;
 
-import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,15 +8,12 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.smartfoodcourt.Common.Common;
-import com.example.smartfoodcourt.Model.Food;
 import com.example.smartfoodcourt.Model.Order;
 import com.example.smartfoodcourt.R;
-import com.example.smartfoodcourt.ViewHolder.FoodViewHolder;
 import com.example.smartfoodcourt.ViewHolder.OrderViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -28,7 +24,6 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class OrdersFragment extends Fragment {
 
-    private OrdersViewModel slideshowViewModel;
 
 
     public RecyclerView recyclerView;
@@ -41,16 +36,7 @@ public class OrdersFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        slideshowViewModel =
-                ViewModelProviders.of(this).get(OrdersViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_orders, container, false);
-//        final TextView textView = root.findViewById(R.id.);
-//        slideshowViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-//            @Override
-//            public void onChanged(@Nullable String s) {
-//                textView.setText(s);
-//            }
-//        });
+          View root = inflater.inflate(R.layout.fragment_orders, container, false);
 
 
         database = FirebaseDatabase.getInstance();
@@ -88,26 +74,6 @@ public class OrdersFragment extends Fragment {
                     }
                 });
 
-//                orderViewHolder.btnEdit.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-//                        //showUpdateDialog(adapter.getRef(position).getKey(), adapter.getItem(position));
-//                    }
-//                });
-//
-//                orderViewHolder.btnDetail.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-//
-//                    }
-//                });
-//
-//                orderViewHolder.btnRemove.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-//                        deleteOrder(adapter.getRef(position).getKey());
-//                    }
-//                });
             }
 
             @NonNull
@@ -117,42 +83,6 @@ public class OrdersFragment extends Fragment {
                 return new OrderViewHolder(itemView);
             }
         };
-
-
-//        adapter = new FirebaseRecyclerAdapter<Order, OrderViewHolder>(
-//                Order.class,
-//                R.layout.order_layout,
-//                OrderViewHolder.class,
-//                orders.orderByChild("phone").equalTo(phone)
-//        ) {
-//            @Override
-//            protected void populateViewHolder(OrderViewHolder orderViewHolder, Order model, final int position) {
-//                orderViewHolder.txtOrderId.setText(adapter.getRef(position).getKey());
-//                orderViewHolder.txtOrderStatus.setText(convertCodeToStatus(model.getStatus()));
-//                orderViewHolder.txtOrderPhone.setText(model.getPhone());
-//
-//                orderViewHolder.btnEdit.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-//                        //showUpdateDialog(adapter.getRef(position).getKey(), adapter.getItem(position));
-//                    }
-//                });
-//
-//                orderViewHolder.btnDetail.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-//
-//                    }
-//                });
-//
-//                orderViewHolder.btnRemove.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-//                        deleteOrder(adapter.getRef(position).getKey());
-//                    }
-//                });
-//            }
-//        };
 
         adapter.notifyDataSetChanged();
         adapter.startListening();
@@ -182,18 +112,8 @@ public class OrdersFragment extends Fragment {
     @Override
     public void onStop() {
         super.onStop();
-       // adapter.stopListening();
+
     }
-
-    //    private void showUpdateDialog(String key, Order item) {
-//        final AlertDialog.Builder alertDialog = new AlertDialog.Builder(OrdersFragment.class);
-//        alertDialog.setTitle("Update Order");
-//        alertDialog.setMessage("Please choose status");
-//
-//        LayoutInflater inflater = this.getLayoutInflater();
-//        final View view = inflater.inflate(R.layout., null);
-//    }
-
     private String convertCodeToStatus(String status) {
         //0: preparing, 1: ready, 2: received, 3: cancel
         if (status.equals("0")) return "Preparing";

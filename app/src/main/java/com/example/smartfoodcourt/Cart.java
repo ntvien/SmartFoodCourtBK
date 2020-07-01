@@ -2,6 +2,7 @@ package com.example.smartfoodcourt;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,7 +36,7 @@ public class Cart extends AppCompatActivity {
     DatabaseReference requestList;
 
     TextView txtTotalPrice;
-    FButton btnPay;
+    Button btnPay;
 
     List<CartStallItem> cartStallItemList = new ArrayList<>();
 
@@ -55,7 +56,7 @@ public class Cart extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
 
         txtTotalPrice = (TextView)findViewById(R.id.total);
-        btnPay = (FButton)findViewById(R.id.btnPayment);
+        btnPay = (Button)findViewById(R.id.btnPayment);
 
         btnPay.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -12,10 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ShowComment"></activity>
-        <activity android:name=".HomePage" />
         <activity android:name=".Cart" />
         <activity android:name=".FoodDetail" />
-        <activity android:name=".FoodList" />
         <activity
             android:name=".Home"
             android:label="@string/title_activity_home"

@@ -1,39 +1,28 @@
 package com.example.smartfoodcourt;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatRatingBar;
 
 import com.example.smartfoodcourt.Common.Common;
 import com.example.smartfoodcourt.Database.Database;
 import com.example.smartfoodcourt.Model.CartItem;
-import com.example.smartfoodcourt.Model.Comment;
 import com.example.smartfoodcourt.Model.Food;
 import com.example.smartfoodcourt.Model.Rating;
-import com.example.smartfoodcourt.ui.food.FoodViewModel;
-import com.example.smartfoodcourt.ui.orders.OrdersFragment;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
-import com.google.firebase.database.ServerValue;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 import com.stepstone.apprating.AppRatingDialog;
@@ -43,9 +32,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.text.NumberFormat;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Locale;
-import java.util.Map;
 
 public class FoodDetail extends AppCompatActivity implements RatingDialogListener {
     TextView txtName, txtPrice, txtDes, txtDiscount;
@@ -62,7 +49,6 @@ public class FoodDetail extends AppCompatActivity implements RatingDialogListene
 
     RatingBar ratingBar;
 
-    private FoodViewModel foodViewModel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

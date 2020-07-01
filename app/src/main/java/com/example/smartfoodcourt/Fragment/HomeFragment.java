@@ -1,38 +1,26 @@
-package com.example.smartfoodcourt.ui.home;
+package com.example.smartfoodcourt.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.smartfoodcourt.Adapter.AsiaFoodAdapter;
-import com.example.smartfoodcourt.Adapter.PopularFoodAdapter;
 import com.example.smartfoodcourt.FoodDetail;
 import com.example.smartfoodcourt.Interface.ItemClickListener;
-import com.example.smartfoodcourt.Model.Category;
 import com.example.smartfoodcourt.Model.Food;
-import com.example.smartfoodcourt.Model.PopularFood;
 import com.example.smartfoodcourt.Model.Stall;
 import com.example.smartfoodcourt.R;
 import com.example.smartfoodcourt.ViewHolder.FoodViewHolder;
-import com.example.smartfoodcourt.ViewHolder.MenuViewHolder;
 import com.example.smartfoodcourt.ViewHolder.StallViewHolder;
-import com.example.smartfoodcourt.ui.food.FoodFragment;
-import com.example.smartfoodcourt.ui.orders.OrdersFragment;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
@@ -40,8 +28,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 import java.text.NumberFormat;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 
 public class HomeFragment extends Fragment {
@@ -49,12 +35,9 @@ public class HomeFragment extends Fragment {
 
 
     RecyclerView popularRecycler, stallRecycler;
-    PopularFoodAdapter popularFoodAdapter;
-    AsiaFoodAdapter asiaFoodAdapter;
     Button btnMenu;
     View root;
 
-    private HomeViewModel homeViewModel;
 
     RecyclerView.LayoutManager layoutManager;
 
@@ -68,9 +51,7 @@ public class HomeFragment extends Fragment {
 
     public View onCreateView(@NonNull final LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel =
-                ViewModelProviders.of(this).get(HomeViewModel.class);
-        root = inflater.inflate(R.layout.fragment_home, container, false);
+          root = inflater.inflate(R.layout.fragment_home, container, false);
 
         btnMenu = (Button)root.findViewById(R.id.btnMenu);
         btnMenu.setOnClickListener(new View.OnClickListener() {
@@ -105,23 +86,6 @@ public class HomeFragment extends Fragment {
 
         loadPopularFoodList();
         loadMenuStall();
-
-
-
-        List<PopularFood> popularFoodList = new ArrayList<>();
-
-
-
-
-//        List<AsiaFood> asiaFoodList = new ArrayList<>();
-//        asiaFoodList.add(new AsiaFood("Chicago Pizza", "$20", R.drawable.banhbaotrungmuoi, "4.5", "Briand Restaurant"));
-//        asiaFoodList.add(new AsiaFood("Straberry Cake", "$25", R.drawable.banhbaotrungmuoi, "4.2", "Friends Restaurant"));
-//        asiaFoodList.add(new AsiaFood("Chicago Pizza", "$20", R.drawable.banhbaotrungmuoi, "4.5", "Briand Restaurant"));
-//        asiaFoodList.add(new AsiaFood("Straberry Cake", "$25", R.drawable.banhbaotrungmuoi, "4.2", "Friends Restaurant"));
-//        asiaFoodList.add(new AsiaFood("Chicago Pizza", "$20", R.drawable.banhbaotrungmuoi, "4.5", "Briand Restaurant"));
-//        asiaFoodList.add(new AsiaFood("Straberry Cake", "$25", R.drawable.banhbaotrungmuoi, "4.2", "Friends Restaurant"));
-//
-//       setAsiaRecycler(asiaFoodList);
 
         return root;
     }
@@ -158,54 +122,10 @@ public class HomeFragment extends Fragment {
             }
         };
 
-//        adapterStall = new FirebaseRecyclerAdapter<Stall, StallViewHolder>(
-//                Stall.class,
-//                R.layout.stall_item,
-//                StallViewHolder.class,
-//                supplierList) {
-//            @Override
-//            protected void populateViewHolder(StallViewHolder stallViewHolder, final Stall stall, int i) {
-//                stallViewHolder.txtStall.setText(stall.getName());
-//                Picasso.with(getContext()).load(stall.getImage()).into(stallViewHolder.imgStall);
-//
-//                stallViewHolder.setItemClickListener(new ItemClickListener() {
-//                    @Override
-//                    public void onClick(View view, int position, boolean isLongClick) {
-//                        FoodFragment foodFragment = new FoodFragment();
-//                        Bundle bundle = new Bundle();
-//                        bundle.putString("supplierID",stall.getSupplierID());
-//                        foodFragment.setArguments(bundle);
-//                        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-//                        fragmentTransaction.replace(R.id.nav_host_fragment, foodFragment);
-//                        fragmentTransaction.commit();
-//                    }
-//                });
-//
-//            }
-//        };
         adapterStall.notifyDataSetChanged();
         adapterStall.startListening();
         stallRecycler.setAdapter(adapterStall);
     }
-
-//    private void setAsiaRecycler(List<AsiaFood> asiaFoodList) {
-//        asiaRecycler = root.findViewById(R.id.popular_recycler);
-//        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false);
-//        asiaRecycler.setLayoutManager(layoutManager);
-//        asiaFoodAdapter = new AsiaFoodAdapter(getContext(), asiaFoodList);
-//        asiaRecycler.setAdapter(asiaFoodAdapter);
-//
-//    }
-
-    private void setPopularRecycler(List<PopularFood> popularFoodList) {
-        popularRecycler = root.findViewById(R.id.popular_recycler);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false);
-        popularRecycler.setLayoutManager(layoutManager);
-        popularFoodAdapter = new PopularFoodAdapter(getContext(), popularFoodList);
-        popularRecycler.setAdapter(popularFoodAdapter);
-    }
-
-
 
     private void loadPopularFoodList() {
 
@@ -240,32 +160,6 @@ public class HomeFragment extends Fragment {
             }
         };
 
-
-//        adapterPopularFood = new FirebaseRecyclerAdapter<Food, FoodViewHolder>(Food.class, R.layout.food_item, FoodViewHolder.class, foodList) {
-//            @Override
-//            protected void populateViewHolder(FoodViewHolder foodViewHolder, Food food, int i) {
-//
-//                Locale locale = new Locale("vi", "VN");
-//                NumberFormat fmt = NumberFormat.getCurrencyInstance(locale);
-//
-//                foodViewHolder.food_name.setText(food.getName());
-//                foodViewHolder.food_price.setText(fmt.format(Integer.parseInt(food.getPrice())));
-//                Picasso.with(getContext()).load(food.getImage()).into(foodViewHolder.food_image);
-//
-//                final Food clickItem = food;
-//                foodViewHolder.setItemClickListener(new ItemClickListener() {
-//                    @Override
-//                    public void onClick(View view, int position, boolean isLongClick) {
-//                        Intent foodDetail = new Intent(getContext(), FoodDetail.class);
-//                        foodDetail.putExtra("foodID", adapterPopularFood.getRef(position).getKey());
-//                        startActivity(foodDetail);
-//                    }
-//                });
-//
-//            }
-//        };
-
-
         adapterPopularFood.notifyDataSetChanged();
         adapterPopularFood.startListening();
         popularRecycler.setAdapter(adapterPopularFood);
@@ -274,7 +168,5 @@ public class HomeFragment extends Fragment {
     @Override
     public void onStop() {
         super.onStop();
-       //adapterStall.stopListening();
-        //adapterPopularFood.stopListening();
     }
 }
