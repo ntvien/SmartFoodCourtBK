@@ -7,24 +7,24 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.example.smartfoodcourt.ui.home.HomeFragment"
+        android:name="com.example.smartfoodcourt.Fragment.HomeFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/nav_food"
-        android:name="com.example.smartfoodcourt.ui.food.FoodFragment"
+        android:name="com.example.smartfoodcourt.Fragment.FoodFragment"
         android:label="@string/food"
         tools:layout="@layout/fragment_food" />
 
     <fragment
         android:id="@+id/nav_orders"
-        android:name="com.example.smartfoodcourt.ui.orders.OrdersFragment"
+        android:name="com.example.smartfoodcourt.Fragment.OrdersFragment"
         android:label="Orders"
         tools:layout="@layout/fragment_orders" />
     <fragment
         android:id="@+id/nav_sign_out"
-        android:name="com.example.smartfoodcourt.ui.orders.OrdersFragment"
+        android:name="com.example.smartfoodcourt.Fragment.SignOut"
         android:label="Sign out"
         tools:layout="@layout/fragment_orders" />
 </navigation>
