@@ -142,7 +142,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:fontFamily="@font/semibold"
-            android:text="0"
+            android:text="1"
             android:textColor="#272670"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="@+id/imgDown"
