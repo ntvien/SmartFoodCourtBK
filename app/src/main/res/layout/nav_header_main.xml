@@ -12,13 +12,23 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="233dp"
+        android:layout_height="104dp"
+        android:layout_gravity="center"
+        android:contentDescription="@string/nav_header_desc"
+        android:paddingTop="@dimen/nav_header_vertical_spacing"
+        app:srcCompat="@drawable/logo" />
 
     <TextView
         android:id="@+id/txtFullName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="16dp"
-        android:text="Welcome"
+        android:gravity="center"
+        android:textSize="25dp"
+        android:paddingTop="@dimen/nav_header_vertical_spacing"
+        android:text="0367190549"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
 

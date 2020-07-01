@@ -38,6 +38,7 @@
             android:layout_height="30dp"
             android:gravity="center"
             android:text="Stall"
+            android:textColor="#FFFFFF"
             android:textSize="20dp" />
 
 

@@ -40,7 +40,7 @@ public class SignUp extends AppCompatActivity {
         editUserName = (EditText)findViewById(R.id.editTextUserName);
         editEmail = (EditText)findViewById(R.id.editTextEmail);
         editPassword = (EditText)findViewById(R.id.editTextPassword);
-        //editPhone = findViewById(R.id.ediPhone);
+        editPhone = findViewById(R.id.editTextPhone);
         btnSignUp = findViewById(R.id.btnSignUp1);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -70,7 +70,6 @@ public class SignUp extends AppCompatActivity {
 
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
-
                     }
                 });
             }

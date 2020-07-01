@@ -7,45 +7,15 @@
     android:layout_height="match_parent"
     tools:context=".Fragment.HomeFragment">
 
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="0dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="8dp"
-        android:background="@drawable/search_bg"
-        android:drawableLeft="@drawable/ic_search_black_24dp"
-        android:drawablePadding="8dp"
-        android:ems="10"
-        android:hint="@android:string/search_go"
-        android:inputType="textPersonName"
-        android:paddingStart="16dp"
-        app:layout_constraintEnd_toStartOf="@+id/imageView3"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintBottom_toBottomOf="@+id/editText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/editText"
-        app:srcCompat="@drawable/ic_short" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:background="@drawable/layout_bg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText">
+        app:layout_constraintTop_toTopOf="parent">
 
 
         <TextView
@@ -65,7 +35,7 @@
             android:id="@+id/stall_recycler"
             android:layout_width="0dp"
             android:layout_height="200dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -75,48 +45,28 @@
             android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="15dp"
             android:fontFamily="@font/semibold"
             android:text="Food"
             android:textColor="#FFFFFF"
             android:textSize="24sp"
+            app:layout_constraintBottom_toTopOf="@+id/popular_recycler"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/stall_recycler" />
+            app:layout_constraintTop_toBottomOf="@+id/stall_recycler"
+            tools:ignore="MissingConstraints" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/popular_recycler"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:layout_marginTop="8dp"
+            android:layout_height="370dp"
+            android:layout_marginTop="3dp"
             android:scrollbars="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView4"
-             />
-
-        <!--        <androidx.coordinatorlayout.widget.CoordinatorLayout-->
-        <!--            android:id="@+id/coordinatorLayout"-->
-        <!--            android:layout_width="0dp"-->
-        <!--            android:layout_height="100dp"-->
-        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--            app:layout_constraintEnd_toEndOf="parent"-->
-        <!--            app:layout_constraintStart_toStartOf="parent">-->
+            app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
 
-        <!--            <com.google.android.material.bottomappbar.BottomAppBar-->
-        <!--                android:id="@+id/bottomAppBar2"-->
-        <!--                style="@style/Widget.MaterialComponents.BottomAppBar.Colored"-->
-        <!--                android:layout_width="match_parent"-->
-        <!--                android:layout_height="wrap_content"-->
-        <!--                android:layout_gravity="bottom"-->
-        <!--                app:menu="@menu/bottom_menu"-->
-        <!--                app:navigationIcon="@drawable/ic_menu_black_24dp" />-->
-
-
-
-        <!--        </androidx.coordinatorlayout.widget.CoordinatorLayout>-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
