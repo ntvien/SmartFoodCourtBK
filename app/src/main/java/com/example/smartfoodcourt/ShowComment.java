@@ -170,22 +170,22 @@ public class ShowComment extends AppCompatActivity {
     }
 
     private void loadComment(String foodID) {
-//        Query query = ratingFood.orderByChild("foodID").equalTo(foodID);
-//        FirebaseRecyclerOptions<Rating> options = new FirebaseRecyclerOptions.Builder<Rating>().setQuery(query, Rating.class).build();
-//
-//        adapter = new FirebaseRecyclerAdapter<Rating, ShowCommentViewHolder>(options) {
-//            @Override
-//            protected void onBindViewHolder(@NonNull ShowCommentViewHolder showCommentViewHolder, int i, @NonNull Rating rating) {
-//
-//            }
-//
-//            @NonNull
-//            @Override
-//            public ShowCommentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-//                return null;
-//            }
-//        };
-//
+        Query query = ratingFood.orderByChild("foodID").equalTo(foodID);
+        FirebaseRecyclerOptions<Rating> options = new FirebaseRecyclerOptions.Builder<Rating>().setQuery(query, Rating.class).build();
+
+        adapter = new FirebaseRecyclerAdapter<Rating, ShowCommentViewHolder>(options) {
+            @Override
+            protected void onBindViewHolder(@NonNull ShowCommentViewHolder showCommentViewHolder, int i, @NonNull Rating rating) {
+
+            }
+
+            @NonNull
+            @Override
+            public ShowCommentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                return null;
+            }
+        };
+
 
         adapter.startListening();
         recyclerView.setAdapter(adapter);

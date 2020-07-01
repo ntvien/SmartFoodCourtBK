@@ -76,8 +76,8 @@ public class FoodDetail extends AppCompatActivity implements RatingDialogListene
             foodID = getIntent().getStringExtra("foodID");
         }
         if(!foodID.isEmpty()){
-            loadFood();
             loadRatingFood(foodID);
+            loadFood();
         }
 
         btnBackDetail.setOnClickListener(new View.OnClickListener() {
