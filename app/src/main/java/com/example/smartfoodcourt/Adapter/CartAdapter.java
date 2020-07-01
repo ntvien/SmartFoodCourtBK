@@ -20,7 +20,7 @@ import java.util.Locale;
 
 public class CartAdapter extends RecyclerView.Adapter<CartItemViewHolder> {
 
-    private List<CartItem> cartItemList = new ArrayList<>();
+    private List<CartItem> cartItemList;
     private Context context;
 
     public CartAdapter(List<CartItem> cartItemList, Context context) {
@@ -38,14 +38,13 @@ public class CartAdapter extends RecyclerView.Adapter<CartItemViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull CartItemViewHolder holder, int position) {
-        CartItem cur = cartItemList.get(position);
+        CartItem cartItem = cartItemList.get(position);
         Locale locale = new Locale("vi", "VN");
         NumberFormat fmt = NumberFormat.getCurrencyInstance(locale);
-
-        Integer price = (int) (Float.parseFloat(cur.getPrice())*(1 - Float.parseFloat(cur.getDiscount())/100)*Float.parseFloat(cur.getQuantity()));
+        Integer price = (int) (Float.parseFloat(cartItem.getPrice())*(1 - Float.parseFloat(cartItem.getDiscount())/100)*Float.parseFloat(cartItem.getQuantity()));
         holder.txtPrice.setText(fmt.format(price));
-        holder.txtQuantity.setText(cur.getQuantity());
-        holder.txtName.setText(cur.getName());
+        holder.txtQuantity.setText(cartItem.getQuantity());
+        holder.txtName.setText(cartItem.getName());
     }
 
     @Override

@@ -35,19 +35,17 @@ import java.util.Arrays;
 import java.util.Locale;
 
 public class FoodDetail extends AppCompatActivity implements RatingDialogListener {
-    TextView txtName, txtPrice, txtDes, txtDiscount;
+    TextView txtName, txtPrice, txtDes, txtDiscount, txtQuantity;
     ImageView imgFood;
     String foodID = "";
     DatabaseReference foodList;
     DatabaseReference ratingFood;
-
     Button btnBackDetail;
     ImageView imgAddCart;
     ImageView btnUp, btnDown, imgDiscount;
-    TextView txtQuantity;
     Food food;
-
     RatingBar ratingBar;
+    FloatingActionButton btnStar, btnComment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,28 +56,26 @@ public class FoodDetail extends AppCompatActivity implements RatingDialogListene
         txtPrice = findViewById(R.id.txtPrice);
         txtDes = findViewById(R.id.txtDes);
         txtDiscount = findViewById(R.id.txtDiscount);
+        txtQuantity = findViewById(R.id.txtQuantity);
         imgFood = findViewById(R.id.imgFood);
-
         imgDiscount = findViewById(R.id.imgDiscount);
-
-        btnBackDetail = (Button)findViewById(R.id.btnBackDetail);
-
+        btnBackDetail = (Button)findViewById(R.id.btnBack);
         imgAddCart = (ImageView) findViewById(R.id.imgAddCart);
         btnDown = findViewById(R.id.imgDown);
         btnUp = findViewById(R.id.imgUp);
-        txtQuantity = findViewById(R.id.txtQuantity);
+        btnStar = (FloatingActionButton)findViewById(R.id.btnStar);
+        btnComment = findViewById(R.id.btnComment);
+        ratingBar = (RatingBar)findViewById(R.id.ratingBar);
 
         if(getIntent() != null) {
             foodID = getIntent().getStringExtra("foodID");
         }
-        foodList = FirebaseDatabase.getInstance().getReference("Food");
-        ratingFood = FirebaseDatabase.getInstance().getReference("Rating/" + foodID);
         if(!foodID.isEmpty()){
+            foodList = FirebaseDatabase.getInstance().getReference("Food");
+            ratingFood = FirebaseDatabase.getInstance().getReference("Rating/" + foodID);
             loadFood();
             loadRatingFood(foodID);
         }
-
-
 
         btnBackDetail.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,8 +103,6 @@ public class FoodDetail extends AppCompatActivity implements RatingDialogListene
             }
         });
 
-
-        FloatingActionButton btnStar = (FloatingActionButton)findViewById(R.id.btnStar);
         btnStar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -116,7 +110,6 @@ public class FoodDetail extends AppCompatActivity implements RatingDialogListene
             }
         });
 
-        FloatingActionButton btnComment = findViewById(R.id.btnComment);
         btnComment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -126,16 +119,13 @@ public class FoodDetail extends AppCompatActivity implements RatingDialogListene
             }
         });
 
-        ratingBar = (RatingBar)findViewById(R.id.ratingBar);
-
-
         imgAddCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 new Database(getBaseContext()).addToCart(new CartItem(food.getName(),
                         food.getPrice(), txtQuantity.getText().toString(),
                         food.getDiscount()), food.getSupplierID());
-                Toast.makeText(FoodDetail.this, "Added to my cart", Toast.LENGTH_SHORT).show();
+                Toast.makeText(FoodDetail.this, "Food is added to your cart", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -150,7 +140,6 @@ public class FoodDetail extends AppCompatActivity implements RatingDialogListene
                     sum += Integer.parseInt(item.getRateValue());
                     count++;
                 }
-
               if(count != 0){
                   float averageStar = sum / count;
                   ratingBar.setRating(averageStar);
@@ -166,7 +155,6 @@ public class FoodDetail extends AppCompatActivity implements RatingDialogListene
 
 
     private void showDialogRating() {
-
         new AppRatingDialog.Builder().setPositiveButtonText("Comment").setNegativeButtonText("Cancel")
                 .setNoteDescriptions((Arrays.asList("Very Bad", "Not Good", "Quite OK", "Very Good", "Excellent")))
                 .setDefaultRating(1).setTitle("Rate this Food").setDescription("Please rating food and comment your feedback")

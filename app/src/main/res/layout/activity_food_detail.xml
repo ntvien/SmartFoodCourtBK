@@ -189,7 +189,7 @@
             app:srcCompat="@drawable/ic_group_1675" />
 
         <Button
-            android:id="@+id/btnBackDetail"
+            android:id="@+id/btnBack"
             android:layout_width="30dp"
             android:layout_height="28dp"
             android:layout_marginStart="16dp"
