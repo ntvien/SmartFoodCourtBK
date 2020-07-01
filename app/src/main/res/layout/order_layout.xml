@@ -2,6 +2,7 @@
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
@@ -17,44 +18,103 @@
         android:layout_height="wrap_content">
 
         <LinearLayout
-            android:orientation="vertical"
-            android:layout_weight="9"
             android:layout_width="0dp"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_weight="9"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/order_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:gravity="center_vertical|start"
-                android:textAllCaps="true"
-                android:textStyle="bold"
                 android:text="#111111"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:textAllCaps="true"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/order_status"
-                android:layout_marginLeft="10dp"
-                android:gravity="center_vertical|start"
-                android:textAllCaps="true"
-                android:textStyle="italic"
-                android:text="Status"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="@font/helveticanowtextextmedium"
+                android:gravity="center_vertical|start"
+                android:text="Status"
+                android:textAllCaps="true"
+                android:textStyle="italic" />
 
             <TextView
                 android:id="@+id/order_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:gravity="center_vertical|start"
-                android:textAllCaps="true"
-                android:textStyle="italic"
                 android:text="0912345622"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:textAllCaps="true"
+                android:textStyle="italic" />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:orientation="horizontal">
+
+<!--                <Button-->
+<!--                    android:id="@+id/btnEdit"-->
+<!--                    android:layout_width="2dp"-->
+<!--                    android:layout_height="30dp"-->
+<!--                    android:layout_marginLeft="10dp"-->
+<!--                    android:layout_marginRight="10dp"-->
+<!--                    android:layout_weight="0.8"-->
+<!--                    android:background="@drawable/button_shape"-->
+<!--                    android:fontFamily="@font/helveticanowtextextmedium"-->
+<!--                    android:shadowColor="@android:color/white"-->
+<!--                    android:text="EDIT"-->
+<!--                    android:textColor="#FFFFFF"-->
+<!--                    android:textSize="14sp"-->
+<!--                    tools:ignore="Suspicious0dp" />-->
+
+<!--                <Button-->
+<!--                    android:id="@+id/btnDetail"-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="30dp"-->
+<!--                    android:layout_marginLeft="10dp"-->
+<!--                    android:layout_marginRight="10dp"-->
+<!--                    android:layout_weight="0.8"-->
+<!--                    android:background="@drawable/button_shape"-->
+<!--                    android:fontFamily="@font/helveticanowtextextmedium"-->
+<!--                    android:shadowColor="@android:color/white"-->
+<!--                    android:text="DETAIL"-->
+<!--                    android:textColor="#FFFFFF"-->
+<!--                    tools:ignore="Suspicious0dp" />-->
+
+<!--                <Button-->
+<!--                    android:id="@+id/btnRemove"-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="30dp"-->
+<!--                    android:layout_marginLeft="10dp"-->
+<!--                    android:layout_marginRight="10dp"-->
+<!--                    android:layout_weight="0.8"-->
+<!--                    android:background="@drawable/button_shape"-->
+<!--                    android:fontFamily="@font/helveticanowtextextmedium"-->
+<!--                    android:shadowColor="@android:color/white"-->
+<!--                    android:text="REMOVE"-->
+<!--                    android:textColor="#FFFFFF"-->
+<!--                    tools:ignore="Suspicious0dp" />-->
+            </LinearLayout>
         </LinearLayout>
 
 
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/btn_delete"
+        android:src="@drawable/ic_baseline_delete_24"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="350dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
 </androidx.cardview.widget.CardView>

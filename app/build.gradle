@@ -59,6 +59,14 @@ dependencies {
     implementation 'com.google.android.gms:play-services-auth:9.8.0'
 
     implementation 'com.stepstone.apprating:app-rating:2.0.0'
+    implementation 'uk.co.chrisjenx:calligraphy:2.2.0'
+    implementation 'com.firebaseui:firebase-ui-database:4.3.2'
+
+    implementation 'com.github.andremion:counterfab:1.0.1'
+
+    //remember password
+    implementation 'io.paperdb:paperdb:2.1'
+    implementation 'com.github.rey5137:material:1.2.4'
 
 }
 apply plugin: 'com.google.gms.google-services'

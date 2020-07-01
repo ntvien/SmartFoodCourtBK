@@ -21,10 +21,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.smartfoodcourt.FoodDetail;
 import com.example.smartfoodcourt.Interface.ItemClickListener;
+import com.example.smartfoodcourt.Model.Category;
 import com.example.smartfoodcourt.Model.Food;
 import com.example.smartfoodcourt.R;
 import com.example.smartfoodcourt.ViewHolder.FoodViewHolder;
+import com.example.smartfoodcourt.ViewHolder.MenuViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
@@ -76,10 +79,12 @@ public class FoodFragment extends Fragment {
              param = bundle.getString("supplierID",null);
         }
         if(param == null){
-            adapter = new FirebaseRecyclerAdapter<Food, FoodViewHolder>(Food.class, R.layout.food_item, FoodViewHolder.class, foodList) {
-                @Override
-                protected void populateViewHolder(FoodViewHolder foodViewHolder, Food food, int i) {
 
+            FirebaseRecyclerOptions<Food> options = new FirebaseRecyclerOptions.Builder<Food>()
+                    .setQuery(foodList, Food.class).build();
+            adapter = new FirebaseRecyclerAdapter<Food, FoodViewHolder>(options) {
+                @Override
+                protected void onBindViewHolder(@NonNull FoodViewHolder foodViewHolder, int i, @NonNull Food food) {
                     Locale locale = new Locale("vi", "VN");
                     NumberFormat fmt = NumberFormat.getCurrencyInstance(locale);
 
@@ -96,16 +101,46 @@ public class FoodFragment extends Fragment {
                             startActivity(foodDetail);
                         }
                     });
+                }
 
+                @NonNull
+                @Override
+                public FoodViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                    View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.food_item, parent, false);
+                    return new FoodViewHolder(itemView);
                 }
             };
+
+//            adapter = new FirebaseRecyclerAdapter<Food, FoodViewHolder>(Food.class, R.layout.food_item, FoodViewHolder.class, foodList) {
+//                @Override
+//                protected void populateViewHolder(FoodViewHolder foodViewHolder, Food food, int i) {
+//
+//                    Locale locale = new Locale("vi", "VN");
+//                    NumberFormat fmt = NumberFormat.getCurrencyInstance(locale);
+//
+//                    foodViewHolder.food_name.setText(food.getName());
+//                    foodViewHolder.food_price.setText(fmt.format(Integer.parseInt(food.getPrice())));
+//                    Picasso.with(getContext()).load(food.getImage()).into(foodViewHolder.food_image);
+//
+//                    final Food clickItem = food;
+//                    foodViewHolder.setItemClickListener(new ItemClickListener() {
+//                        @Override
+//                        public void onClick(View view, int position, boolean isLongClick) {
+//                            Intent foodDetail = new Intent(getContext(), FoodDetail.class);
+//                            foodDetail.putExtra("foodID", adapter.getRef(position).getKey());
+//                            startActivity(foodDetail);
+//                        }
+//                    });
+//
+//                }
+//            };
         }
         else{
-            adapter = new FirebaseRecyclerAdapter<Food, FoodViewHolder>(Food.class, R.layout.food_item,
-                    FoodViewHolder.class, foodList.orderByChild("supplierID").equalTo(param)) {
+            FirebaseRecyclerOptions<Food> options = new FirebaseRecyclerOptions.Builder<Food>()
+                    .setQuery(foodList.orderByChild("supplierID").equalTo(param), Food.class).build();
+            adapter = new FirebaseRecyclerAdapter<Food, FoodViewHolder>(options) {
                 @Override
-                protected void populateViewHolder(FoodViewHolder foodViewHolder, Food food, int i) {
-
+                protected void onBindViewHolder(@NonNull FoodViewHolder foodViewHolder, int i, @NonNull Food food) {
                     Locale locale = new Locale("vi", "VN");
                     NumberFormat fmt = NumberFormat.getCurrencyInstance(locale);
 
@@ -122,14 +157,50 @@ public class FoodFragment extends Fragment {
                             startActivity(foodDetail);
                         }
                     });
+                }
 
+                @NonNull
+                @Override
+                public FoodViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                    View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.food_item, parent, false);
+                    return new FoodViewHolder(itemView);
                 }
             };
 
+
+//            adapter = new FirebaseRecyclerAdapter<Food, FoodViewHolder>(Food.class, R.layout.food_item,
+//                    FoodViewHolder.class, foodList.orderByChild("supplierID").equalTo(param)) {
+//                @Override
+//                protected void populateViewHolder(FoodViewHolder foodViewHolder, Food food, int i) {
+//
+//                    Locale locale = new Locale("vi", "VN");
+//                    NumberFormat fmt = NumberFormat.getCurrencyInstance(locale);
+//
+//                    foodViewHolder.food_name.setText(food.getName());
+//                    foodViewHolder.food_price.setText(fmt.format(Integer.parseInt(food.getPrice())));
+//                    Picasso.with(getContext()).load(food.getImage()).into(foodViewHolder.food_image);
+//
+//                    final Food clickItem = food;
+//                    foodViewHolder.setItemClickListener(new ItemClickListener() {
+//                        @Override
+//                        public void onClick(View view, int position, boolean isLongClick) {
+//                            Intent foodDetail = new Intent(getContext(), FoodDetail.class);
+//                            foodDetail.putExtra("foodID", adapter.getRef(position).getKey());
+//                            startActivity(foodDetail);
+//                        }
+//                    });
+//
+//                }
+//            };
+
         }
+
         adapter.notifyDataSetChanged();
+        adapter.startListening();
         recyclerView.setAdapter(adapter);
     }
+
+
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
@@ -147,11 +218,11 @@ public class FoodFragment extends Fragment {
             public boolean onQueryTextChange(String s) {
                 if(s.isEmpty()) recyclerView.setAdapter(adapter);
                 else {
-                    searchAdapter = new FirebaseRecyclerAdapter<Food, FoodViewHolder>(Food.class, R.layout.food_item,
-                            FoodViewHolder.class, foodList.orderByChild("name").startAt(s).endAt(s + "\uf8ff")) {
+                    FirebaseRecyclerOptions<Food> options = new FirebaseRecyclerOptions.Builder<Food>()
+                            .setQuery(foodList.orderByChild("name").startAt(s).endAt(s + "\uf8ff"), Food.class).build();
+                    searchAdapter = new FirebaseRecyclerAdapter<Food, FoodViewHolder>(options) {
                         @Override
-                        protected void populateViewHolder(FoodViewHolder foodViewHolder, Food food, int i) {
-
+                        protected void onBindViewHolder(@NonNull FoodViewHolder foodViewHolder, int i, @NonNull Food food) {
                             Locale locale = new Locale("vi", "VN");
                             NumberFormat fmt = NumberFormat.getCurrencyInstance(locale);
 
@@ -168,16 +239,57 @@ public class FoodFragment extends Fragment {
                                     startActivity(foodDetail);
                                 }
                             });
+                        }
 
+                        @NonNull
+                        @Override
+                        public FoodViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                            View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.food_item, parent, false);
+                            return new FoodViewHolder(itemView);
                         }
                     };
+
+//                    searchAdapter = new FirebaseRecyclerAdapter<Food, FoodViewHolder>(Food.class, R.layout.food_item,
+//                            FoodViewHolder.class, foodList.orderByChild("name").startAt(s).endAt(s + "\uf8ff")) {
+//                        @Override
+//                        protected void populateViewHolder(FoodViewHolder foodViewHolder, Food food, int i) {
+//
+//                            Locale locale = new Locale("vi", "VN");
+//                            NumberFormat fmt = NumberFormat.getCurrencyInstance(locale);
+//
+//                            foodViewHolder.food_name.setText(food.getName());
+//                            foodViewHolder.food_price.setText(fmt.format(Integer.parseInt(food.getPrice())));
+//                            Picasso.with(getContext()).load(food.getImage()).into(foodViewHolder.food_image);
+//
+//                            final Food clickItem = food;
+//                            foodViewHolder.setItemClickListener(new ItemClickListener() {
+//                                @Override
+//                                public void onClick(View view, int position, boolean isLongClick) {
+//                                    Intent foodDetail = new Intent(getContext(), FoodDetail.class);
+//                                    foodDetail.putExtra("foodID", searchAdapter.getRef(position).getKey());
+//                                    startActivity(foodDetail);
+//                                }
+//                            });
+//
+//                        }
+//                    };
+
                     searchAdapter.notifyDataSetChanged();
+                    //searchAdapter.startListening();
                     recyclerView.setAdapter(searchAdapter);
                 }
                 return false;
             }
         });
         super.onCreateOptionsMenu(menu, inflater);
-
     }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+       // adapter.stopListening();
+        //searchAdapter.stopListening();
+    }
+
 }

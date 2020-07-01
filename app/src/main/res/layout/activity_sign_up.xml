@@ -223,14 +223,14 @@
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginBottom="30dp"
         android:fontFamily="@font/helveticanowtextextmedium"
-        android:text="version 1"
+        android:text="version 2"
         android:textColor="#EF0606"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnSignInGoogle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/btnLoginFacebook"
+        app:layout_constraintStart_toStartOf="@+id/btnLoginFacebook"
         tools:ignore="MissingConstraints" />
 
     <com.facebook.login.widget.LoginButton
@@ -238,29 +238,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="@+id/view2"
-        app:layout_constraintTop_toBottomOf="@+id/textView7"
-        tools:ignore="MissingClass,MissingConstraints" />
-
-    <com.google.android.gms.common.SignInButton
-        android:id="@+id/btnSignInGoogle"
-        android:layout_width="120dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="25dp"
-        app:layout_constraintEnd_toStartOf="@+id/btnLoginFacebook"
-        app:layout_constraintHorizontal_bias="0.162"
         app:layout_constraintStart_toStartOf="@+id/view"
         app:layout_constraintTop_toBottomOf="@+id/textView7"
-        tools:ignore="MissingConstraints" />
-
-    <EditText
-        android:id="@+id/editPhone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="169dp"
-        tools:layout_editor_absoluteY="423dp"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingClass,MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
