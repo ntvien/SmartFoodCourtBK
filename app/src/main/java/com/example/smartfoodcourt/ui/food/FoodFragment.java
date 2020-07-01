@@ -284,12 +284,6 @@ public class FoodFragment extends Fragment {
         super.onCreateOptionsMenu(menu, inflater);
     }
 
-    @Override
-    public void onStop() {
-        super.onStop();
 
-       // adapter.stopListening();
-        //searchAdapter.stopListening();
-    }
 
 }

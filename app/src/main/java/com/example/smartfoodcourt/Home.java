@@ -59,7 +59,7 @@ public class Home extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        final Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Menu");
         setSupportActionBar(toolbar);
 
@@ -81,7 +81,7 @@ public class Home extends AppCompatActivity  {
         btnCart.setCount(new Database(this).getCountCart());
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        final NavigationView navigationView = findViewById(R.id.nav_view);
 
         //Set name for user
         View headerView = navigationView.getHeaderView(0);
@@ -114,7 +114,8 @@ public class Home extends AppCompatActivity  {
 
                 }
                 else if (id == R.id.nav_food){
-
+                    toolbar.setTitle("Food");
+                    navigationView.setCheckedItem(R.id.nav_food);
 
                 }else if (id == R.id.nav_orders){
                     Toast.makeText(getApplicationContext(), "Orders", Toast.LENGTH_SHORT).show();

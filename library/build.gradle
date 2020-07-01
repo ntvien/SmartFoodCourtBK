@@ -6,7 +6,7 @@ def isReleaseBuild() {
 
 android {
     compileSdkVersion 30
-    buildToolsVersion "19.1.0"
+    buildToolsVersion "29.0.2"
 
     defaultConfig {
         minSdkVersion 9
