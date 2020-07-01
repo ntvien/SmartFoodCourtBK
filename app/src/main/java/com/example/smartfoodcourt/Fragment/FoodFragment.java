@@ -159,39 +159,7 @@ public class FoodFragment extends Fragment {
             public boolean onQueryTextChange(String s) {
                 if(s.isEmpty()) recyclerView.setAdapter(adapter);
                 else {
-                    FirebaseRecyclerOptions<Food> options = new FirebaseRecyclerOptions.Builder<Food>()
-                            .setQuery(foodList.orderByChild("name").startAt(s).endAt(s + "\uf8ff"), Food.class).build();
-                    searchAdapter = new FirebaseRecyclerAdapter<Food, FoodViewHolder>(options) {
-                        @Override
-                        protected void onBindViewHolder(@NonNull FoodViewHolder foodViewHolder, int i, @NonNull Food food) {
-                            Locale locale = new Locale("vi", "VN");
-                            NumberFormat fmt = NumberFormat.getCurrencyInstance(locale);
-
-                            foodViewHolder.food_name.setText(food.getName());
-                            foodViewHolder.food_price.setText(fmt.format(Integer.parseInt(food.getPrice())));
-                            Picasso.with(getContext()).load(food.getImage()).into(foodViewHolder.food_image);
-
-                            final Food clickItem = food;
-                            foodViewHolder.setItemClickListener(new ItemClickListener() {
-                                @Override
-                                public void onClick(View view, int position, boolean isLongClick) {
-                                    Intent foodDetail = new Intent(getContext(), FoodDetail.class);
-                                    foodDetail.putExtra("foodID", searchAdapter.getRef(position).getKey());
-                                    startActivity(foodDetail);
-                                }
-                            });
-                        }
-
-                        @NonNull
-                        @Override
-                        public FoodViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                            View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.food_item, parent, false);
-                            return new FoodViewHolder(itemView);
-                        }
-                    };
-
-                    searchAdapter.notifyDataSetChanged();
-                    recyclerView.setAdapter(searchAdapter);
+                    showSearchFoodList(s);
                 }
                 return false;
             }
@@ -199,6 +167,41 @@ public class FoodFragment extends Fragment {
         super.onCreateOptionsMenu(menu, inflater);
     }
 
+    private void showSearchFoodList(String s) {
+        FirebaseRecyclerOptions<Food> options = new FirebaseRecyclerOptions.Builder<Food>()
+                .setQuery(foodList.orderByChild("name").startAt(s).endAt(s + "\uf8ff"), Food.class).build();
+        searchAdapter = new FirebaseRecyclerAdapter<Food, FoodViewHolder>(options) {
+            @Override
+            protected void onBindViewHolder(@NonNull FoodViewHolder foodViewHolder, int i, @NonNull Food food) {
+                Locale locale = new Locale("vi", "VN");
+                NumberFormat fmt = NumberFormat.getCurrencyInstance(locale);
+
+                foodViewHolder.food_name.setText(food.getName());
+                foodViewHolder.food_price.setText(fmt.format(Integer.parseInt(food.getPrice())));
+                Picasso.with(getContext()).load(food.getImage()).into(foodViewHolder.food_image);
+
+                final Food clickItem = food;
+                foodViewHolder.setItemClickListener(new ItemClickListener() {
+                    @Override
+                    public void onClick(View view, int position, boolean isLongClick) {
+                        Intent foodDetail = new Intent(getContext(), FoodDetail.class);
+                        foodDetail.putExtra("foodID", searchAdapter.getRef(position).getKey());
+                        startActivity(foodDetail);
+                    }
+                });
+            }
+
+            @NonNull
+            @Override
+            public FoodViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.food_item, parent, false);
+                return new FoodViewHolder(itemView);
+            }
+        };
+
+        searchAdapter.notifyDataSetChanged();
+        recyclerView.setAdapter(searchAdapter);
+    }
 
 
 }

@@ -41,20 +41,17 @@ public class ShowComment extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_comment);
 
-
         database = FirebaseDatabase.getInstance();
-
         recyclerView = (RecyclerView)findViewById(R.id.recyclerComment);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
         if(getIntent() != null)
             foodID = getIntent().getStringExtra(Common.INTENT_FOOD_ID);
-        if(!foodID.isEmpty() && foodID != null)
+        if(foodID != null && !foodID.isEmpty())
         {
             ratingFood = database.getReference("Rating/" + foodID);
             FirebaseRecyclerOptions<Rating> options = new FirebaseRecyclerOptions.Builder<Rating>().setQuery(ratingFood, Rating.class).build();
-
             adapter = new FirebaseRecyclerAdapter<Rating, ShowCommentViewHolder>(options) {
                 @Override
                 protected void onBindViewHolder(@NonNull ShowCommentViewHolder showCommentViewHolder, final int position, @NonNull Rating rating) {
@@ -76,7 +73,6 @@ public class ShowComment extends AppCompatActivity {
                     return new ShowCommentViewHolder(view);
                 }
             };
-
             loadComment(foodID);
         }
     }
