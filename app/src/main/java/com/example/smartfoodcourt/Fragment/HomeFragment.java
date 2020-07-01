@@ -36,47 +36,34 @@ public class HomeFragment extends Fragment {
 
 
 
-    RecyclerView popularRecycler, stallRecycler;
+    RecyclerView newFoodRecycler, stallRecycler;
     View root;
 
 
-    RecyclerView.LayoutManager layoutManager;
 
     FirebaseDatabase database;
     DatabaseReference foodList, supplierList;
 
 
-    FirebaseRecyclerAdapter<Food, FoodViewHolder> adapterPopularFood;
+    FirebaseRecyclerAdapter<Food, FoodViewHolder> adapterNewFood;
     FirebaseRecyclerAdapter<Stall, StallViewHolder> adapterStall;
 
     public View onCreateView(@NonNull final LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
           root = inflater.inflate(R.layout.fragment_home, container, false);
-
-
-
-
         //Firebase
         database = FirebaseDatabase.getInstance();
         foodList = database.getReference("Food");
         supplierList = database.getReference("Supplier");
 
-        popularRecycler = (RecyclerView)root.findViewById(R.id.popular_recycler);
+        newFoodRecycler = (RecyclerView)root.findViewById(R.id.popular_recycler);
         stallRecycler = root.findViewById(R.id.stall_recycler);
 
-        popularRecycler.setHasFixedSize(true);
-
-         layoutManager = new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false);
-
-        layoutManager = new LinearLayoutManager(getContext());
-        //layoutManager = new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false);
-        popularRecycler.setLayoutManager(layoutManager);
-
-
-        popularRecycler.setLayoutManager(layoutManager);
+        newFoodRecycler.setHasFixedSize(true);
+        newFoodRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
         stallRecycler.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false));
 
-        loadPopularFoodList();
+        loadNewFoodList();
         loadMenuStall();
 
         return root;
@@ -121,11 +108,11 @@ public class HomeFragment extends Fragment {
         stallRecycler.setAdapter(adapterStall);
     }
 
-    private void loadPopularFoodList() {
+    private void loadNewFoodList() {
 
         FirebaseRecyclerOptions<Food> options = new FirebaseRecyclerOptions.Builder<Food>()
                 .setQuery(foodList, Food.class).build();
-        adapterPopularFood = new FirebaseRecyclerAdapter<Food, FoodViewHolder>(options) {
+        adapterNewFood = new FirebaseRecyclerAdapter<Food, FoodViewHolder>(options) {
             @Override
             protected void onBindViewHolder(@NonNull FoodViewHolder foodViewHolder, int i, @NonNull Food food) {
                 Locale locale = new Locale("vi", "VN");
@@ -140,7 +127,7 @@ public class HomeFragment extends Fragment {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
                         Intent foodDetail = new Intent(getContext(), FoodDetail.class);
-                        foodDetail.putExtra("foodID", adapterPopularFood.getRef(position).getKey());
+                        foodDetail.putExtra("foodID", adapterNewFood.getRef(position).getKey());
                         startActivity(foodDetail);
                     }
                 });
@@ -154,9 +141,9 @@ public class HomeFragment extends Fragment {
             }
         };
 
-        adapterPopularFood.notifyDataSetChanged();
-        adapterPopularFood.startListening();
-        popularRecycler.setAdapter(adapterPopularFood);
+        adapterNewFood.notifyDataSetChanged();
+        adapterNewFood.startListening();
+        newFoodRecycler.setAdapter(adapterNewFood);
     }
 
     @Override

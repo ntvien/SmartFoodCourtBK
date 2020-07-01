@@ -31,8 +31,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
-import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class ShowComment extends AppCompatActivity {
 
@@ -41,118 +39,60 @@ public class ShowComment extends AppCompatActivity {
 
     FirebaseDatabase database;
     DatabaseReference ratingFood;
-
-    SwipeRefreshLayout swipeRefreshLayout;
     FirebaseRecyclerAdapter<Rating, ShowCommentViewHolder> adapter;
 
     String foodID="";
 
     @Override
-    protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
-    }
-
-    @Override
     protected void onStop() {
         super.onStop();
         if(adapter != null)
-        adapter.stopListening();
+            adapter.stopListening();
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
-                .setDefaultFontPath("fonts/cf.otf").setFontAttrId(R.attr.fontPath).build());
         setContentView(R.layout.activity_show_comment);
 
 
         database = FirebaseDatabase.getInstance();
-        ratingFood = database.getReference("Rating");
 
         recyclerView = (RecyclerView)findViewById(R.id.recyclerComment);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        swipeRefreshLayout = (SwipeRefreshLayout)findViewById(R.id.swipe_layout);
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                if(getIntent() != null)
-                    foodID = getIntent().getStringExtra(Common.INTENT_FOOD_ID);
-                if(!foodID.isEmpty() && foodID != null)
-                {
-                    Query query = ratingFood.orderByChild("foodID").equalTo(foodID);
-                    FirebaseRecyclerOptions<Rating> options = new FirebaseRecyclerOptions.Builder<Rating>().setQuery(query, Rating.class).build();
+        if(getIntent() != null)
+            foodID = getIntent().getStringExtra(Common.INTENT_FOOD_ID);
+        if(!foodID.isEmpty() && foodID != null)
+        {
+            ratingFood = database.getReference("Rating/" + foodID);
+            FirebaseRecyclerOptions<Rating> options = new FirebaseRecyclerOptions.Builder<Rating>().setQuery(ratingFood, Rating.class).build();
 
-                    adapter = new FirebaseRecyclerAdapter<Rating, ShowCommentViewHolder>(options) {
+            adapter = new FirebaseRecyclerAdapter<Rating, ShowCommentViewHolder>(options) {
+                @Override
+                protected void onBindViewHolder(@NonNull ShowCommentViewHolder showCommentViewHolder, final int position, @NonNull Rating rating) {
+                    showCommentViewHolder.ratingBarDetail.setRating(Float.parseFloat(rating.getRateValue()));
+                    showCommentViewHolder.txtUserPhone.setText(rating.getPhone());
+                    showCommentViewHolder.txtComment.setText(rating.getComment());
+                    showCommentViewHolder.btn_delete_comment.setOnClickListener(new View.OnClickListener() {
                         @Override
-                        protected void onBindViewHolder(@NonNull ShowCommentViewHolder showCommentViewHolder, final int position, @NonNull Rating rating) {
-                            showCommentViewHolder.ratingBarDetail.setRating(Float.parseFloat(rating.getRateValue()));
-                            showCommentViewHolder.txtUserPhone.setText(rating.getPhone());
-                            showCommentViewHolder.txtComment.setText(rating.getComment());
-                            showCommentViewHolder.btn_delete_comment.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                    deleteComment(adapter.getRef(position).getKey());
-                                }
-                            });
+                        public void onClick(View view) {
+                            deleteComment(adapter.getRef(position).getKey());
                         }
-
-                        @NonNull
-                        @Override
-                        public ShowCommentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.show_comment_layout, parent, false);
-                            return new ShowCommentViewHolder(view);
-                        }
-                    };
-
-                    loadComment(foodID);
+                    });
                 }
-            }
-        });
 
-        swipeRefreshLayout.post(new Runnable() {
-            @Override
-            public void run() {
-                swipeRefreshLayout.setRefreshing(true);
-
-                if(getIntent() != null)
-                    foodID = getIntent().getStringExtra(Common.INTENT_FOOD_ID);
-                if(!foodID.isEmpty() && foodID != null)
-                {
-                    Query query = ratingFood.orderByChild("foodID").equalTo(foodID);
-                    FirebaseRecyclerOptions<Rating> options = new FirebaseRecyclerOptions.Builder<Rating>().setQuery(query, Rating.class).build();
-
-                    adapter = new FirebaseRecyclerAdapter<Rating, ShowCommentViewHolder>(options) {
-                        @Override
-                        protected void onBindViewHolder(@NonNull ShowCommentViewHolder showCommentViewHolder, final int position, @NonNull Rating rating) {
-
-                            showCommentViewHolder.ratingBarDetail.setRating(Float.parseFloat(rating.getRateValue()));
-                            showCommentViewHolder.txtUserPhone.setText(rating.getPhone());
-                            showCommentViewHolder.txtComment.setText(rating.getComment());
-                            showCommentViewHolder.btn_delete_comment.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                    deleteComment(adapter.getRef(position).getKey());
-                                }
-                            });
-                        }
-
-                        @NonNull
-                        @Override
-                        public ShowCommentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.show_comment_layout, parent, false);
-                            return new ShowCommentViewHolder(view);
-                        }
-                    };
-
-                    loadComment(foodID);
-
+                @NonNull
+                @Override
+                public ShowCommentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                    View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.show_comment_layout, parent, false);
+                    return new ShowCommentViewHolder(view);
                 }
-            }
-        });
+            };
+
+            loadComment(foodID);
+        }
     }
 
     private void deleteComment(final String key) {
@@ -170,25 +110,7 @@ public class ShowComment extends AppCompatActivity {
     }
 
     private void loadComment(String foodID) {
-//        Query query = ratingFood.orderByChild("foodID").equalTo(foodID);
-//        FirebaseRecyclerOptions<Rating> options = new FirebaseRecyclerOptions.Builder<Rating>().setQuery(query, Rating.class).build();
-//
-//        adapter = new FirebaseRecyclerAdapter<Rating, ShowCommentViewHolder>(options) {
-//            @Override
-//            protected void onBindViewHolder(@NonNull ShowCommentViewHolder showCommentViewHolder, int i, @NonNull Rating rating) {
-//
-//            }
-//
-//            @NonNull
-//            @Override
-//            public ShowCommentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-//                return null;
-//            }
-//        };
-//
-
         adapter.startListening();
         recyclerView.setAdapter(adapter);
-        swipeRefreshLayout.setRefreshing(false);
     }
 }
