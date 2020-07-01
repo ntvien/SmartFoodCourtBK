@@ -1,0 +1,36 @@
+info.hoang8f.fbutton
+attr buttonColor
+attr cornerRadius
+attr shadowColor
+attr shadowEnabled
+attr shadowHeight
+color fbutton_color_alizarin
+color fbutton_color_amethyst
+color fbutton_color_asbestos
+color fbutton_color_belize_hole
+color fbutton_color_carrot
+color fbutton_color_clouds
+color fbutton_color_concrete
+color fbutton_color_emerald
+color fbutton_color_green_sea
+color fbutton_color_midnight_blue
+color fbutton_color_nephritis
+color fbutton_color_orange
+color fbutton_color_peter_river
+color fbutton_color_pomegranate
+color fbutton_color_pumpkin
+color fbutton_color_silver
+color fbutton_color_sun_flower
+color fbutton_color_transparent
+color fbutton_color_turquoise
+color fbutton_color_wet_asphalt
+color fbutton_color_wisteria
+color fbutton_default_color
+color fbutton_default_shadow_color
+dimen fbutton_default_conner_radius
+dimen fbutton_default_padding_bottom
+dimen fbutton_default_padding_left
+dimen fbutton_default_padding_right
+dimen fbutton_default_padding_top
+dimen fbutton_default_shadow_height
+styleable FButton buttonColor cornerRadius shadowColor shadowEnabled shadowHeight
