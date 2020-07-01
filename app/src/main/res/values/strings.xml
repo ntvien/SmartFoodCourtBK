@@ -2,26 +2,13 @@
     <string name="app_name">SmartFoodCourt</string>
     <string name="facebook_app_id">954378134987056</string>
     <string name="title_activity_home">Home</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
     <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
     <string name="home">Home</string>
     <string name="food">Food</string>
-    <string name="cart">Cart</string>
     <string name="orders">Orders</string>
     <string name="sign_out">Sign out</string>
-    <string name="peter">Peter</string>
-    <string name="food_name">Food Name</string>
-    <string name="description">Description</string>
-    <string name="_1_000">1,000</string>
-    <string name="todo">TODO</string>
-    <string name="percent_sign">\%%</string>
 
 </resources>

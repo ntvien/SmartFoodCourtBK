@@ -1,0 +1,93 @@
+{
+  "project_info": {
+    "project_number": "863461716147",
+    "firebase_url": "https://smartfoodcourt-bk192.firebaseio.com",
+    "project_id": "smartfoodcourt-bk192",
+    "storage_bucket": "smartfoodcourt-bk192.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:863461716147:android:dbc3c9fe27b6ad779d40c6",
+        "android_client_info": {
+          "package_name": "com.example.managerapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "863461716147-bmkcug84uetbedgffl309mr6qjnfik6d.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.managerapp",
+            "certificate_hash": "73d58bdda2bcd7012b266b3fe6d1301bec5ab775"
+          }
+        },
+        {
+          "client_id": "863461716147-bc7r15j7hocql1l736ga9403btt5t1mp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCqdXTbZF6vNDbu30quG6FfNdIJnJQS4Eo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "863461716147-bc7r15j7hocql1l736ga9403btt5t1mp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:863461716147:android:f743d88fa2cf5fb79d40c6",
+        "android_client_info": {
+          "package_name": "com.example.smartfoodcourt"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "863461716147-pd3p3tqkcf2g7ddhq37lt7m70p64v5fb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.smartfoodcourt",
+            "certificate_hash": "73d58bdda2bcd7012b266b3fe6d1301bec5ab775"
+          }
+        },
+        {
+          "client_id": "863461716147-v2id9c7ksg5hl30gog9ine30gmi5sg7g.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.smartfoodcourt",
+            "certificate_hash": "a05adee3ab394ba57d2d7c6eb96a00043caf30d9"
+          }
+        },
+        {
+          "client_id": "863461716147-bc7r15j7hocql1l736ga9403btt5t1mp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCqdXTbZF6vNDbu30quG6FfNdIJnJQS4Eo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "863461716147-bc7r15j7hocql1l736ga9403btt5t1mp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

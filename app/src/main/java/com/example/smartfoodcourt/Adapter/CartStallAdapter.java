@@ -22,7 +22,7 @@ import java.util.Locale;
 
 public class CartStallAdapter extends RecyclerView.Adapter<CartStallItemViewHolder> {
 
-    private List<CartStallItem> cartStallItemList = new ArrayList<>();
+    private List<CartStallItem> cartStallItemList;
     private Context context;
 
     public CartStallAdapter(List<CartStallItem> cartStallItemList, Context context) {
@@ -46,11 +46,9 @@ public class CartStallAdapter extends RecyclerView.Adapter<CartStallItemViewHold
         Integer total = cartStallItemList.get(position).getTotal();
         holder.txtTotal.setText("Total: " + fmt.format(total));
         holder.txtName.setText("Stall: " + cartStallItemList.get(position).getSupplierID());
-
-        List<CartItem> t = cartStallItemList.get(position).getCartItemList();
-
+        List<CartItem> cartItemList = cartStallItemList.get(position).getCartItemList();
         holder.foodList.setLayoutManager(new LinearLayoutManager(context));
-        holder.foodList.setAdapter(new CartAdapter(t, this.context));
+        holder.foodList.setAdapter(new CartAdapter(cartItemList, this.context));
     }
 
     @Override

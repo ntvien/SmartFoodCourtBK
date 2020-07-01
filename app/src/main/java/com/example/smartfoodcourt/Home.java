@@ -31,15 +31,6 @@ import io.paperdb.Paper;
 public class Home extends AppCompatActivity  {
 
     private AppBarConfiguration mAppBarConfiguration;
-
-    FirebaseDatabase database;
-    DatabaseReference category;
-
-    TextView txtFullName;
-    RecyclerView recycler_menu;
-    RecyclerView.LayoutManager layoutManager;
-
-
     CounterFab btnCart;
 
 
@@ -52,9 +43,6 @@ public class Home extends AppCompatActivity  {
         toolbar.setTitle("Menu");
         setSupportActionBar(toolbar);
 
-        //Init Firebase
-        database = FirebaseDatabase.getInstance();
-        category = database.getReference("Category");
 
         Paper.init(this);
 
@@ -74,8 +62,6 @@ public class Home extends AppCompatActivity  {
 
         //Set name for user
         View headerView = navigationView.getHeaderView(0);
-        txtFullName = (TextView)headerView.findViewById(R.id.txtFullName);
-        txtFullName.setText(Common.currentUser.getPhone());
 
 
         // Passing each menu ID as a set of Ids because each

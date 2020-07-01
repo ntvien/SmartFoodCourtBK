@@ -1,50 +1,50 @@
 package com.example.smartfoodcourt.Model;
 
 public class CartItem {
-    private String Name;
-    private String Price;
-    private String Quantity;
-    private String Discount;
+    private String name;
+    private String price;
+    private String quantity;
+    private String discount;
 
     public CartItem() {
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
-    public void setName(String Name) {
-        this.Name = Name;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getPrice() {
-        return Price;
+        return price;
     }
 
     public void setPrice(String price) {
-        Price = price;
+        this.price = price;
     }
 
     public String getQuantity() {
-        return Quantity;
+        return quantity;
     }
 
     public void setQuantity(String quantity) {
-        Quantity = quantity;
+        this.quantity = quantity;
     }
 
     public String getDiscount() {
-        return Discount;
+        return discount;
     }
 
     public void setDiscount(String discount) {
-        Discount = discount;
+        this.discount = discount;
     }
 
-    public CartItem(String Name, String price, String quantity, String discount) {
-        this.Name = Name;
-        Price = price;
-        Quantity = quantity;
-        Discount = discount;
+    public CartItem(String name, String price, String quantity, String discount) {
+        this.name = name;
+        this.price = price;
+        this.quantity = quantity;
+        this.discount = discount;
     }
 }
