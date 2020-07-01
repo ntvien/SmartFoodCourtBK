@@ -2,10 +2,8 @@ package com.example.smartfoodcourt;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,17 +22,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.andremion.counterfab.CounterFab;
 import com.example.smartfoodcourt.Common.Common;
 import com.example.smartfoodcourt.Database.Database;
-import com.example.smartfoodcourt.Interface.ItemClickListener;
-import com.example.smartfoodcourt.Model.Category;
-import com.example.smartfoodcourt.ViewHolder.MenuViewHolder;
-import com.example.smartfoodcourt.ui.orders.OrdersFragment;
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.squareup.picasso.Picasso;
 
 import io.paperdb.Paper;
 
@@ -49,7 +39,6 @@ public class Home extends AppCompatActivity  {
     RecyclerView recycler_menu;
     RecyclerView.LayoutManager layoutManager;
 
-    FirebaseRecyclerAdapter<Category, MenuViewHolder> adapter;
 
     CounterFab btnCart;
 
@@ -109,25 +98,20 @@ public class Home extends AppCompatActivity  {
             @Override
             public void onDestinationChanged(@NonNull NavController controller, @NonNull NavDestination destination, @Nullable Bundle arguments) {
                 int id = destination.getId();
-
+                if (id == R.id.nav_sign_out){
+                    Intent signIn = new Intent(Home.this, SignIn.class);
+                    signIn.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(signIn);
+                    Paper.book().destroy();
+                }
                 if(id == R.id.nav_home){
 
                 }
                 else if (id == R.id.nav_food){
-                    toolbar.setTitle("Food");
-                    navigationView.setCheckedItem(R.id.nav_food);
 
                 }else if (id == R.id.nav_orders){
                     Toast.makeText(getApplicationContext(), "Orders", Toast.LENGTH_SHORT).show();
 
-                }else if (id == R.id.nav_sign_out){
-
-                    Paper.book().destroy();
-
-                    Toast.makeText(getApplicationContext(), "Sign out", Toast.LENGTH_SHORT).show();
-                    Intent signIn = new Intent(Home.this, SignIn.class);
-                    signIn.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(signIn);
                 }
             }
         });
@@ -139,62 +123,6 @@ public class Home extends AppCompatActivity  {
     protected void onResume() {
         super.onResume();
         btnCart.setCount(new Database(this).getCountCart());
-
-        if(adapter != null)
-            adapter.startListening();
-    }
-
-    private void loadMenu() {
-
-        FirebaseRecyclerOptions<Category> options = new FirebaseRecyclerOptions.Builder<Category>()
-                .setQuery(category, Category.class).build();
-        adapter = new FirebaseRecyclerAdapter<Category, MenuViewHolder>(options) {
-            @Override
-            protected void onBindViewHolder(@NonNull MenuViewHolder menuViewHolder, int i, @NonNull Category category) {
-                menuViewHolder.txtMenuName.setText(category.getName());
-                Picasso.with(getBaseContext()).load(category.getImage()).into(menuViewHolder.imageView);
-                final Category clickItem = category;
-                menuViewHolder.setItemClickListener(new ItemClickListener() {
-                    @Override
-                    public void onClick(View view, int position, boolean isLongClick) {
-                        //Get CategoryID and send to new activity
-                        Intent foodList = new Intent(Home.this, FoodList.class);
-
-                        foodList.putExtra("CategoryID", adapter.getRef(position).getKey());
-                        startActivity(foodList);
-                    }
-                });
-            }
-
-            @NonNull
-            @Override
-            public MenuViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.menu_item, parent, false);
-                return new MenuViewHolder(itemView);
-            }
-        };
-
-
-//        adapter = new FirebaseRecyclerAdapter<Category, MenuViewHolder>(Category.class, R.layout.menu_item, MenuViewHolder.class, category) {
-//            @Override
-//            protected void populateViewHolder(MenuViewHolder menuViewHolder, Category model, int i) {
-//                menuViewHolder.txtMenuName.setText(model.getName());
-//                Picasso.with(getBaseContext()).load(model.getImage()).into(menuViewHolder.imageView);
-//                final Category clickItem = model;
-//                menuViewHolder.setItemClickListener(new ItemClickListener() {
-//                    @Override
-//                    public void onClick(View view, int position, boolean isLongClick) {
-//                        //Get CategoryID and send to new activity
-//                        Intent foodList = new Intent(Home.this, FoodList.class);
-//
-//                        foodList.putExtra("CategoryID", adapter.getRef(position).getKey());
-//                        startActivity(foodList);
-//                    }
-//                });
-//            }
-//        };
-        adapter.startListening();
-        recycler_menu.setAdapter(adapter);
     }
 
 

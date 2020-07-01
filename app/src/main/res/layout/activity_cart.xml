@@ -48,7 +48,7 @@
 
             </LinearLayout>
 
-            <info.hoang8f.widget.FButton
+            <Button
                 android:id="@+id/btnPayment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -60,10 +60,7 @@
                 android:text="Payment"
                 android:textColor="@android:color/white"
                 app:cornerRadius="4dp"
-                app:fButtonColor="@color/btnSignIn"
-                app:shadowColor="@android:color/black"
-                app:shadowEnabled="true"
-                app:shadowHeight="5dp" />
+                />
 
         </RelativeLayout>
 
