@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.smartfoodcourt.Interface.ItemClickListener;
 import com.example.smartfoodcourt.R;
 
-public class OrderViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+public class OrderViewHolder extends RecyclerView.ViewHolder{
 
     public TextView txtOrderId, txtOrderStatus, txtOrderPhone;
 
@@ -31,16 +31,10 @@ public class OrderViewHolder extends RecyclerView.ViewHolder implements View.OnC
         btnConfirm = (ImageView)itemView.findViewById(R.id.btn_confirm);
 
 
-
-        itemView.setOnClickListener(this);
     }
 
     public void setItemClickListener(ItemClickListener itemClickListener) {
         this.itemClickListener = itemClickListener;
     }
 
-    @Override
-    public void onClick(View view) {
-        itemClickListener.onClick(view, getAdapterPosition(), false);
-    }
 }

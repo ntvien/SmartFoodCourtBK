@@ -66,5 +66,8 @@ dependencies {
     implementation 'io.paperdb:paperdb:2.1'
     implementation 'com.github.rey5137:material:1.2.4'
 
+    //paypal
+    implementation 'com.paypal.sdk:paypal-android-sdk:2.15.3'
+
 }
 apply plugin: 'com.google.gms.google-services'

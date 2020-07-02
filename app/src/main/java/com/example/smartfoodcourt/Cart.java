@@ -1,5 +1,6 @@
 package com.example.smartfoodcourt;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -57,6 +58,7 @@ public class Cart extends AppCompatActivity {
         btnPay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 confirmOrders();
             }
         });
@@ -64,6 +66,10 @@ public class Cart extends AppCompatActivity {
     }
 
     private void confirmOrders() {
+
+        Intent btnContinue = new Intent(Cart.this, Payment.class);
+        startActivity(btnContinue);
+
         for(CartStallItem t: cartStallItemList){
             Order order =  new Order(Common.currentUser.getPhone(), t);
             requestList.child(String.valueOf(System.currentTimeMillis())).setValue(order);
@@ -83,6 +89,7 @@ public class Cart extends AppCompatActivity {
         for (CartStallItem cartStallItem :cartStallItemList) {
             total += cartStallItem.getTotal();
         }
+
         Locale locale = new Locale("vi", "VN");
         NumberFormat fmt = NumberFormat.getCurrencyInstance(locale);
         txtTotalPrice.setText(fmt.format(total));

@@ -11,7 +11,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ShowComment"></activity>
+        <activity android:name=".PaymentDetail"></activity>
+        <activity android:name=".Payment" />
+        <activity android:name=".Payment" />
+        <activity android:name=".ShowComment" />
         <activity android:name=".Cart" />
         <activity android:name=".FoodDetail" />
         <activity
@@ -22,7 +25,8 @@
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
-        <activity android:name=".ForgotPassword"/>
+
+        <activity android:name=".ForgotPassword" />
         <activity android:name=".SignUp" />
         <activity android:name=".SignIn" />
         <activity android:name=".MainActivity">
