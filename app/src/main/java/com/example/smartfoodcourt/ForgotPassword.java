@@ -1,6 +1,5 @@
 package com.example.smartfoodcourt;
 
-import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -26,10 +25,12 @@ public class ForgotPassword extends AppCompatActivity {
     ProgressBar progressBar;
     EditText editTextEmail;
     Button btnSendEmail;
+
     FirebaseDatabase database;
     DatabaseReference table_user;
     FirebaseAuth firebaseAuth;
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,10 +38,11 @@ public class ForgotPassword extends AppCompatActivity {
 
         //final DatabaseReference table_user = database.getReference("User");
 
-        toolbar = findViewById(R.id.toolbarForgotPassword);
-        progressBar = findViewById(R.id.progressBar);
-        editTextEmail = findViewById(R.id.editTextEmail);
-        btnSendEmail = findViewById(R.id.btnSendEmail);
+        toolbar = (Toolbar)findViewById(R.id.toolbarForgotPassword);
+        progressBar = (ProgressBar)findViewById(R.id.progressBar);
+        editTextEmail = (EditText)findViewById(R.id.editTextEmail);
+        btnSendEmail = (Button)findViewById(R.id.btnSendEmail);
+
         toolbar.setTitle("Forgot password");
         database = FirebaseDatabase.getInstance();
         table_user = database.getReference("User");
