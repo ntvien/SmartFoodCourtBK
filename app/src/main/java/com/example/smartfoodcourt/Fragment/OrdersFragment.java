@@ -104,10 +104,6 @@ public class OrdersFragment extends Fragment {
 
     }
 
-    private void deleteOrder(String key) {
-        orders.child(key).removeValue();
-        adapter.notifyDataSetChanged();
-    }
 
     @Override
     public void onStop() {
@@ -118,7 +114,6 @@ public class OrdersFragment extends Fragment {
         //0: preparing, 1: ready, 2: received, 3: cancel
         if (status.equals("0")) return "Preparing";
         else if(status.equals("1")) return "Ready";
-        else if(status.equals("2")) return "Received";
-        else return "Cancel";
+        else return "Received";
     }
 }
