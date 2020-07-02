@@ -23,9 +23,7 @@ public class OrderViewHolder extends RecyclerView.ViewHolder{
         txtOrderId = (TextView)itemView.findViewById(R.id.order_id);
         txtOrderStatus = (TextView)itemView.findViewById(R.id.order_status);
         txtOrderPhone = (TextView)itemView.findViewById(R.id.order_phone);
-
         btnConfirm = (ImageView)itemView.findViewById(R.id.btn_confirm);
-
     }
 
 
