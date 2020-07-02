@@ -9,6 +9,13 @@ public class CartItem {
     public CartItem() {
     }
 
+    public CartItem(String name, String price, String quantity, String discount) {
+        this.name = name;
+        this.price = price;
+        this.quantity = quantity;
+        this.discount = discount;
+    }
+
     public String getName() {
         return name;
     }
@@ -41,10 +48,4 @@ public class CartItem {
         this.discount = discount;
     }
 
-    public CartItem(String name, String price, String quantity, String discount) {
-        this.name = name;
-        this.price = price;
-        this.quantity = quantity;
-        this.discount = discount;
-    }
 }

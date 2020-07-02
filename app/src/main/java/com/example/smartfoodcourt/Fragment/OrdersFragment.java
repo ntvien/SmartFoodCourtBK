@@ -25,8 +25,6 @@ import com.google.firebase.database.Query;
 
 public class OrdersFragment extends Fragment {
 
-
-
     public RecyclerView recyclerView;
     public RecyclerView.LayoutManager layoutManager;
 
@@ -35,10 +33,8 @@ public class OrdersFragment extends Fragment {
     FirebaseDatabase database;
     DatabaseReference orders;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-          View root = inflater.inflate(R.layout.fragment_orders, container, false);
-
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View root = inflater.inflate(R.layout.fragment_orders, container, false);
 
         database = FirebaseDatabase.getInstance();
         orders = database.getReference("Order");
@@ -49,14 +45,12 @@ public class OrdersFragment extends Fragment {
 
         loadOrders(Common.currentUser.getPhone());
 
-
         return root;
     }
 
     private void loadOrders(String phone) {
 
-        FirebaseRecyclerOptions<Order> options = new FirebaseRecyclerOptions.Builder<Order>()
-                .setQuery(orders.orderByChild("phone").equalTo(phone), Order.class).build();
+        FirebaseRecyclerOptions<Order> options = new FirebaseRecyclerOptions.Builder<Order>().setQuery(orders.orderByChild("phone").equalTo(phone), Order.class).build();
         adapter = new FirebaseRecyclerAdapter<Order, OrderViewHolder>(options) {
             @Override
             protected void onBindViewHolder(@NonNull OrderViewHolder orderViewHolder, final int position, @NonNull final Order order) {
@@ -68,6 +62,7 @@ public class OrdersFragment extends Fragment {
                     public void onClick(View view) {
                         if (adapter.getItem(position).getStatus().equals("1"))
                             confirmOrder(adapter.getRef(position).getKey(), order);
+
                     }
                 });
 
@@ -102,14 +97,14 @@ public class OrdersFragment extends Fragment {
 
     }
 
-
     @Override
     public void onStop() {
         super.onStop();
 
     }
+
     private String convertCodeToStatus(String status) {
-        //0: preparing, 1: ready, 2: received, 3: cancel
+        //0: preparing, 1: ready, 2: received
         if (status.equals("0")) return "Preparing";
         else if(status.equals("1")) return "Ready";
         else return "Received";

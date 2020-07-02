@@ -33,7 +33,6 @@ public class Home extends AppCompatActivity  {
     private AppBarConfiguration mAppBarConfiguration;
     CounterFab btnCart;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,13 +60,10 @@ public class Home extends AppCompatActivity  {
         //Set name for user
         View headerView = navigationView.getHeaderView(0);
 
-
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
-        mAppBarConfiguration = new AppBarConfiguration.Builder(
-              R.id.nav_home, R.id.nav_food, R.id.nav_orders, R.id.nav_sign_out)
-               .setDrawerLayout(drawer)
-               .build();
+        mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_home, R.id.nav_food, R.id.nav_orders, R.id.nav_sign_out)
+               .setDrawerLayout(drawer).build();
         final NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
@@ -94,18 +90,14 @@ public class Home extends AppCompatActivity  {
                 }
             }
         });
-
     }
-
 
     @Override
     protected void onResume() {
         super.onResume();
         btnCart.setCount(new Database(this).getCountCart());
     }
-
-
-
+    
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -116,13 +108,11 @@ public class Home extends AppCompatActivity  {
     @Override
     public boolean onSupportNavigateUp() {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
-                || super.onSupportNavigateUp();
+        return NavigationUI.navigateUp(navController, mAppBarConfiguration) || super.onSupportNavigateUp();
     }
+
     @Override
     protected void onStop() {
         super.onStop();
-
     }
-
 }

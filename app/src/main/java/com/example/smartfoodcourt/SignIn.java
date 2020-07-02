@@ -54,7 +54,133 @@ public class SignIn extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
 
-        // Login Facebook
+        //LoginFacebook
+        loginFacebook();
+
+        //Remember Password
+        rememberPassword();
+
+        textSignUp = (TextView)findViewById(R.id.text_sign_up);
+        textSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), SignUp.class);
+                startActivity(intent);
+            }
+        });
+
+        textForgotPassword = (TextView)findViewById(R.id.textForgotPassword);
+        textForgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), ForgotPassword.class);
+                startActivity(intent);
+            }
+        });
+
+        editPassword = (EditText)findViewById(R.id.editTextPassword);
+        editUserName = (EditText)findViewById(R.id.editTextUserName);
+        btnSignIn = (Button)findViewById(R.id.btnSignIn);
+
+        btnSignIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(checkBoxRemember.isChecked()){
+                    Paper.book().write(Common.USER_KEY, editUserName.getText().toString());
+                    Paper.book().write(Common.PASSWORD_KEY, editPassword.getText().toString());
+                }
+                login();
+            }
+        });
+    }
+
+    //Login
+    private void login() {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        final DatabaseReference table_user = database.getReference("User");
+
+        final ProgressDialog mDialog = new ProgressDialog(SignIn.this);
+        mDialog.setMessage("Please waiting...");
+        mDialog.show();
+
+        table_user.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+
+                mDialog.dismiss();
+                if (snapshot.child(editUserName.getText().toString()).exists()) {
+                    User user = snapshot.child(editUserName.getText().toString()).getValue(User.class);
+                    if(user.getPassword().equals(editPassword.getText().toString())){
+                        Intent homePageIntent = new Intent(getApplicationContext(), Home.class);
+                        Common.currentUser = user;
+                        startActivity(homePageIntent);
+                        finish();
+                    }
+                    else Toast.makeText(SignIn.this,"Wrong Password !!!", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Toast.makeText(SignIn.this,"User not exist in DataBase", Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+
+            }
+        });
+    }
+
+    //Remember Password
+    private void checkRememberPassword(final String username, final String password) {
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        final DatabaseReference table_user = database.getReference("User");
+
+        final ProgressDialog mDialog = new ProgressDialog(SignIn.this);
+        mDialog.setMessage("Please waiting...");
+        mDialog.show();
+
+        table_user.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                mDialog.dismiss();
+                if (snapshot.child(username).exists()) {
+                    User user = snapshot.child(username).getValue(User.class);
+                    if (user.getPassword().equals(password)) {
+                        Intent homePageIntent = new Intent(getApplicationContext(), Home.class);
+                        Common.currentUser = user;
+                        startActivity(homePageIntent);
+                        finish();
+                    } else
+                        Toast.makeText(SignIn.this, "Wrong Password !!!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(SignIn.this, "User not exist in DataBase", Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    private void rememberPassword() {
+        checkBoxRemember = (CheckBox)findViewById(R.id.checkBoxRemember);
+        Paper.init(this);
+
+        String user = Paper.book().read(Common.USER_KEY);
+        String password = Paper.book().read(Common.PASSWORD_KEY);
+
+        if(user != null && password != null){
+            if(!user.isEmpty() && !password.isEmpty())
+                checkRememberPassword(user, password);
+        }
+    }
+
+    // Login Facebook
+    private void loginFacebook() {
         FacebookSdk.sdkInitialize(this.getApplicationContext());
         callbackManager = CallbackManager.Factory.create();
 
@@ -83,125 +209,8 @@ public class SignIn extends AppCompatActivity {
                 Toast.makeText(SignIn.this, "Login Facebook error.", Toast.LENGTH_SHORT).show();
             }
         });
-
-
-        // Text SignUp
-        textSignUp = (TextView)findViewById(R.id.text_sign_up);
-        textSignUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), SignUp.class);
-                startActivity(intent);
-            }
-        });
-
-        // Sign In
-        textForgotPassword = (TextView)findViewById(R.id.textForgotPassword);
-        textForgotPassword.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), ForgotPassword.class);
-                startActivity(intent);
-            }
-        });
-
-        editPassword = (EditText)findViewById(R.id.editTextPassword);
-        editUserName = (EditText)findViewById(R.id.editTextUserName);
-        btnSignIn = (Button)findViewById(R.id.btnSignIn);
-
-        checkBoxRemember = (CheckBox)findViewById(R.id.checkBoxRemember);
-        Paper.init(this);
-
-        String user = Paper.book().read(Common.USER_KEY);
-        String password = Paper.book().read(Common.PASSWORD_KEY);
-
-        if(user != null && password != null){
-            if(!user.isEmpty() && !password.isEmpty())
-                login(user, password);
-        }
-
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        final DatabaseReference table_user = database.getReference("User");
-
-        btnSignIn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if(checkBoxRemember.isChecked()){
-                    Paper.book().write(Common.USER_KEY, editUserName.getText().toString());
-                    Paper.book().write(Common.PASSWORD_KEY, editPassword.getText().toString());
-                }
-
-                final ProgressDialog mDialog = new ProgressDialog(SignIn.this);
-                mDialog.setMessage("Please waiting...");
-                mDialog.show();
-
-                table_user.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot snapshot) {
-
-                        mDialog.dismiss();
-                        if (snapshot.child(editUserName.getText().toString()).exists()) {
-                            User user = snapshot.child(editUserName.getText().toString()).getValue(User.class);
-                            if(user.getPassword().equals(editPassword.getText().toString())){
-                                Intent homePageIntent = new Intent(getApplicationContext(), Home.class);
-                                ///Toast.makeText( SignIn.this, "OK OK OK", Toast.LENGTH_SHORT).show();
-                                Common.currentUser = user;
-                                startActivity(homePageIntent);
-                                finish();
-                            }
-                            else Toast.makeText(SignIn.this,"Wrong Password !!!", Toast.LENGTH_SHORT).show();
-                        }
-                        else {
-                            Toast.makeText(SignIn.this,"User not exist in DataBase", Toast.LENGTH_LONG).show();
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError error) {
-
-                    }
-                });
-            }
-        });
     }
 
-    private void login(final String username, final String password) {
-
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        final DatabaseReference table_user = database.getReference("User");
-
-        final ProgressDialog mDialog = new ProgressDialog(SignIn.this);
-        mDialog.setMessage("Please waiting...");
-        mDialog.show();
-
-        table_user.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot snapshot) {
-
-                mDialog.dismiss();
-                if (snapshot.child(username).exists()) {
-                    User user = snapshot.child(username).getValue(User.class);
-                    if (user.getPassword().equals(password)) {
-                        Intent homePageIntent = new Intent(getApplicationContext(), Home.class);
-                        Common.currentUser = user;
-                        startActivity(homePageIntent);
-                        finish();
-                    } else
-                        Toast.makeText(SignIn.this, "Wrong Password !!!", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(SignIn.this, "User not exist in DataBase", Toast.LENGTH_LONG).show();
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-    }
-
-    // Facebook
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -210,20 +219,17 @@ public class SignIn extends AppCompatActivity {
 
     private void getFbInfo() {
         if (AccessToken.getCurrentAccessToken() != null) {
-            GraphRequest request = GraphRequest.newMeRequest(AccessToken.getCurrentAccessToken(),
-                    new GraphRequest.GraphJSONObjectCallback() {
-                        @Override
-                        public void onCompleted(final JSONObject me, GraphResponse response) {
-                            if (me != null) {
-                                Log.i("Login: ", me.optString("name"));
-                                Log.i("ID: ", me.optString("id"));
-
-                                Toast.makeText(SignIn.this, "Name: " + me.optString("name"), Toast.LENGTH_SHORT).show();
-                                Toast.makeText(SignIn.this, "ID: " + me.optString("id"), Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
-
+            GraphRequest request = GraphRequest.newMeRequest(AccessToken.getCurrentAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
+                @Override
+                public void onCompleted(final JSONObject me, GraphResponse response) {
+                    if (me != null) {
+                        Log.i("Login: ", me.optString("name"));
+                        Log.i("ID: ", me.optString("id"));
+                        Toast.makeText(SignIn.this, "Name: " + me.optString("name"), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SignIn.this, "ID: " + me.optString("id"), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
             Bundle parameters = new Bundle();
             parameters.putString("fields", "id,name,link");
             request.setParameters(parameters);

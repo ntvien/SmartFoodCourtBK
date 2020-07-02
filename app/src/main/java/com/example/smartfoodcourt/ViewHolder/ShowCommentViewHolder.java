@@ -13,7 +13,6 @@ import com.example.smartfoodcourt.R;
 public class ShowCommentViewHolder extends RecyclerView.ViewHolder {
     public TextView txtUserPhone, txtComment;
     public RatingBar ratingBarDetail;
-
     public ImageView btn_delete_comment;
 
     public ShowCommentViewHolder(@NonNull View itemView) {
