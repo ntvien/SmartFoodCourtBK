@@ -37,7 +37,7 @@ import java.util.Locale;
 public class FoodDetail extends AppCompatActivity implements RatingDialogListener {
 
     TextView txtName, txtPrice, txtDes, txtDiscount, txtQuantity;
-    ImageView imgFood, imgAddCart, btnUp, btnDown, imgDiscount;
+    ImageView imgFood, imgAddCart, btnUp, btnDown, imgDiscount, imgCart;
     Button btnBackDetail;
 
     String foodID = "";
@@ -63,6 +63,7 @@ public class FoodDetail extends AppCompatActivity implements RatingDialogListene
         imgDiscount = (ImageView)findViewById(R.id.imgDiscount);
         btnBackDetail = (Button)findViewById(R.id.btnBack);
         imgAddCart = (ImageView) findViewById(R.id.imgAddCart);
+        imgCart = (ImageView)findViewById(R.id.imgCart);
         btnDown = (ImageView)findViewById(R.id.imgDown);
         btnUp = (ImageView)findViewById(R.id.imgUp);
         btnStar = (FloatingActionButton)findViewById(R.id.btnStar);
@@ -83,6 +84,14 @@ public class FoodDetail extends AppCompatActivity implements RatingDialogListene
             @Override
             public void onClick(View view) {
                 finish();
+            }
+        });
+
+        imgCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent cartIntent = new Intent(FoodDetail.this, Cart.class);
+                startActivity(cartIntent);
             }
         });
 

@@ -12,9 +12,8 @@ import com.example.smartfoodcourt.R;
 
 public class FoodViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-    public TextView food_name;
+    public TextView food_name, food_price;
     public ImageView food_image;
-    public TextView food_price;
 
     private ItemClickListener itemClickListener;
 

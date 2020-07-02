@@ -23,7 +23,6 @@ public class Rating {
         this.phone = phone;
     }
 
-
     public String getRateValue() {
         return rateValue;
     }

@@ -19,7 +19,6 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-
 public class ShowComment extends AppCompatActivity {
 
     RecyclerView recyclerView;
@@ -27,7 +26,7 @@ public class ShowComment extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference ratingFood;
     FirebaseRecyclerAdapter<Rating, ShowCommentViewHolder> adapter;
-    String foodID="";
+    String foodID = "";
 
     @Override
     protected void onStop() {

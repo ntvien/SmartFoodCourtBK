@@ -36,8 +36,6 @@ public class ForgotPassword extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_password);
 
-        //final DatabaseReference table_user = database.getReference("User");
-
         toolbar = (Toolbar)findViewById(R.id.toolbarForgotPassword);
         progressBar = (ProgressBar)findViewById(R.id.progressBar);
         editTextEmail = (EditText)findViewById(R.id.editTextEmail);

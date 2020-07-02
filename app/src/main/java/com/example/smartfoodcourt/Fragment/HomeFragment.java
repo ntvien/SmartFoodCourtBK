@@ -34,24 +34,19 @@ import java.util.Locale;
 
 public class HomeFragment extends Fragment {
 
-
-
     RecyclerView newFoodRecycler, stallRecycler;
     View root;
-
-
 
     FirebaseDatabase database;
     DatabaseReference foodList, supplierList;
 
-
     FirebaseRecyclerAdapter<Food, FoodViewHolder> adapterNewFood;
     FirebaseRecyclerAdapter<Stall, StallViewHolder> adapterStall;
 
-    public View onCreateView(@NonNull final LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-          root = inflater.inflate(R.layout.fragment_home, container, false);
-        //Firebase
+    public View onCreateView(@NonNull final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        root = inflater.inflate(R.layout.fragment_home, container, false);
+
         database = FirebaseDatabase.getInstance();
         foodList = database.getReference("Food");
         supplierList = database.getReference("Supplier");
@@ -71,8 +66,7 @@ public class HomeFragment extends Fragment {
 
     private void loadStallList() {
 
-        FirebaseRecyclerOptions<Stall> options = new FirebaseRecyclerOptions.Builder<Stall>()
-                .setQuery(supplierList, Stall.class).build();
+        FirebaseRecyclerOptions<Stall> options = new FirebaseRecyclerOptions.Builder<Stall>().setQuery(supplierList, Stall.class).build();
         adapterStall = new FirebaseRecyclerAdapter<Stall, StallViewHolder>(options) {
             @Override
             protected void onBindViewHolder(@NonNull StallViewHolder stallViewHolder, int i, final Stall stall) {
@@ -90,7 +84,6 @@ public class HomeFragment extends Fragment {
                         fragmentTransaction.replace(R.id.nav_host_fragment, foodFragment);
                         fragmentTransaction.addToBackStack(null);
                         fragmentTransaction.commit();
-
                     }
                 });
             }
@@ -110,8 +103,7 @@ public class HomeFragment extends Fragment {
 
     private void loadNewFoodList() {
 
-        FirebaseRecyclerOptions<Food> options = new FirebaseRecyclerOptions.Builder<Food>()
-                .setQuery(foodList, Food.class).build();
+        FirebaseRecyclerOptions<Food> options = new FirebaseRecyclerOptions.Builder<Food>().setQuery(foodList, Food.class).build();
         adapterNewFood = new FirebaseRecyclerAdapter<Food, FoodViewHolder>(options) {
             @Override
             protected void onBindViewHolder(@NonNull FoodViewHolder foodViewHolder, int i, @NonNull Food food) {

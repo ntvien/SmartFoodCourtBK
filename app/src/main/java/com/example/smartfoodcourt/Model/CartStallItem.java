@@ -33,7 +33,6 @@ public class CartStallItem {
     public CartStallItem() {
     }
 
-
     public Integer getTotal() {
         return total;
     }

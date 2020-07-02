@@ -16,7 +16,7 @@ public class CartItemViewHolder extends RecyclerView.ViewHolder implements View.
         super(itemView);
         txtName= (TextView)itemView.findViewById(R.id.cart_item_name);
         txtPrice = (TextView)itemView.findViewById(R.id.cart_item_price);
-        txtQuantity = itemView.findViewById(R.id.cart_item_quantity);
+        txtQuantity = (TextView)itemView.findViewById(R.id.cart_item_quantity);
     }
 
     @Override
