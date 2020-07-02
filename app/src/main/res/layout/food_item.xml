@@ -9,13 +9,11 @@
     android:layout_marginTop="16dp"
     android:layout_marginStart="8dp"
     android:layout_marginEnd="8dp"
-    android:layout_height="wrap_content">
+    android:layout_height="120dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="115dp">
-
-
         <ImageView
             android:id="@+id/food_image"
             android:layout_width="100dp"
@@ -23,11 +21,9 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:adjustViewBounds="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.444"
             app:srcCompat="@drawable/banhbaotrungmuoi" />
 
         <TextView
