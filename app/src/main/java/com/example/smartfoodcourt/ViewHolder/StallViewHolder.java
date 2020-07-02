@@ -11,9 +11,9 @@ import com.example.smartfoodcourt.Interface.ItemClickListener;
 import com.example.smartfoodcourt.R;
 
 public class StallViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+
     public TextView txtStall;
     public ImageView imgStall;
-
 
     private ItemClickListener itemClickListener;
 

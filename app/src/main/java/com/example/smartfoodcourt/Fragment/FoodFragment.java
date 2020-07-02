@@ -38,17 +38,13 @@ public class FoodFragment extends Fragment {
 
     FirebaseDatabase database;
     DatabaseReference foodList;
-
-
     String param;
     FirebaseRecyclerAdapter<Food, FoodViewHolder> adapter;
     FirebaseRecyclerAdapter<Food, FoodViewHolder> searchAdapter;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         setHasOptionsMenu(true);
         View root = inflater.inflate(R.layout.fragment_food, container, false);
-
 
         //Firebase
         database = FirebaseDatabase.getInstance();
@@ -59,7 +55,7 @@ public class FoodFragment extends Fragment {
         layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
 
-       loadFoodList();
+        loadFoodList();
         return root;
     }
 
@@ -70,13 +66,10 @@ public class FoodFragment extends Fragment {
              param = bundle.getString("supplierID",null);
         }
         if(param == null){
-            options = new FirebaseRecyclerOptions.Builder<Food>()
-                    .setQuery(foodList, Food.class).build();
-
+            options = new FirebaseRecyclerOptions.Builder<Food>().setQuery(foodList, Food.class).build();
         }
         else{
-             options = new FirebaseRecyclerOptions.Builder<Food>()
-                    .setQuery(foodList.orderByChild("supplierID").equalTo(param), Food.class).build();
+             options = new FirebaseRecyclerOptions.Builder<Food>().setQuery(foodList.orderByChild("supplierID").equalTo(param), Food.class).build();
         }
         adapter = new FirebaseRecyclerAdapter<Food, FoodViewHolder>(options) {
             @Override
@@ -111,8 +104,6 @@ public class FoodFragment extends Fragment {
         adapter.startListening();
         recyclerView.setAdapter(adapter);
     }
-
-
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
@@ -172,6 +163,4 @@ public class FoodFragment extends Fragment {
         searchAdapter.notifyDataSetChanged();
         recyclerView.setAdapter(searchAdapter);
     }
-
-
 }

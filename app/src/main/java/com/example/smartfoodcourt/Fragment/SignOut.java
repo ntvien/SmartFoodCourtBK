@@ -16,7 +16,6 @@ import com.example.smartfoodcourt.R;
 
 public class SignOut extends Fragment {
 
-   
     public static SignOut newInstance() {
         return new SignOut();
     }
@@ -32,5 +31,4 @@ public class SignOut extends Fragment {
         super.onActivityCreated(savedInstanceState);
       
     }
-
 }

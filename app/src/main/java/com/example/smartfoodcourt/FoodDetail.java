@@ -35,15 +35,17 @@ import java.util.Arrays;
 import java.util.Locale;
 
 public class FoodDetail extends AppCompatActivity implements RatingDialogListener {
+
     TextView txtName, txtPrice, txtDes, txtDiscount, txtQuantity;
-    ImageView imgFood;
+    ImageView imgFood, imgAddCart, btnUp, btnDown, imgDiscount, imgCart;
+    Button btnBackDetail;
+
     String foodID = "";
+    Food food;
+
     DatabaseReference foodList;
     DatabaseReference ratingFood;
-    Button btnBackDetail;
-    ImageView imgAddCart;
-    ImageView btnUp, btnDown, imgDiscount;
-    Food food;
+
     RatingBar ratingBar;
     FloatingActionButton btnStar, btnComment;
 
@@ -52,19 +54,20 @@ public class FoodDetail extends AppCompatActivity implements RatingDialogListene
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food_detail);
 
-        txtName = findViewById(R.id.txtName);
-        txtPrice = findViewById(R.id.txtPrice);
-        txtDes = findViewById(R.id.txtDes);
-        txtDiscount = findViewById(R.id.txtDiscount);
-        txtQuantity = findViewById(R.id.txtQuantity);
-        imgFood = findViewById(R.id.imgFood);
-        imgDiscount = findViewById(R.id.imgDiscount);
+        txtName = (TextView)findViewById(R.id.txtName);
+        txtPrice = (TextView)findViewById(R.id.txtPrice);
+        txtDes = (TextView)findViewById(R.id.txtDes);
+        txtDiscount = (TextView)findViewById(R.id.txtDiscount);
+        txtQuantity = (TextView)findViewById(R.id.txtQuantity);
+        imgFood = (ImageView)findViewById(R.id.imgFood);
+        imgDiscount = (ImageView)findViewById(R.id.imgDiscount);
         btnBackDetail = (Button)findViewById(R.id.btnBack);
         imgAddCart = (ImageView) findViewById(R.id.imgAddCart);
-        btnDown = findViewById(R.id.imgDown);
-        btnUp = findViewById(R.id.imgUp);
+        imgCart = (ImageView)findViewById(R.id.imgCart);
+        btnDown = (ImageView)findViewById(R.id.imgDown);
+        btnUp = (ImageView)findViewById(R.id.imgUp);
         btnStar = (FloatingActionButton)findViewById(R.id.btnStar);
-        btnComment = findViewById(R.id.btnComment);
+        btnComment = (FloatingActionButton)findViewById(R.id.btnComment);
         ratingBar = (RatingBar)findViewById(R.id.ratingBar);
 
         if(getIntent() != null) {
@@ -84,6 +87,14 @@ public class FoodDetail extends AppCompatActivity implements RatingDialogListene
             }
         });
 
+        imgCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent cartIntent = new Intent(FoodDetail.this, Cart.class);
+                startActivity(cartIntent);
+            }
+        });
+
         btnUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -98,7 +109,7 @@ public class FoodDetail extends AppCompatActivity implements RatingDialogListene
 
                 Integer a = (Integer.parseInt(txtQuantity.getText().toString()) - 1);
                 if(a > 0){
-                txtQuantity.setText(a.toString());
+                    txtQuantity.setText(a.toString());
                 }
             }
         });
@@ -145,14 +156,12 @@ public class FoodDetail extends AppCompatActivity implements RatingDialogListene
                   ratingBar.setRating(averageStar);
               }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
     }
-
 
     private void showDialogRating() {
         new AppRatingDialog.Builder().setPositiveButtonText("Comment").setNegativeButtonText("Cancel")

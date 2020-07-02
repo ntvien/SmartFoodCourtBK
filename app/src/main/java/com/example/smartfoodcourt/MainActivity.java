@@ -19,12 +19,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btnContinue = (Button)findViewById(R.id.btnContinue);
-
         txtSlogan = (TextView)findViewById(R.id.txtSlogan);
+
         Typeface face = Typeface.createFromAsset(getAssets(),"fonts/NABILA.TTF");
         txtSlogan.setTypeface(face);
 
+        btnContinue = (Button)findViewById(R.id.btnContinue);
         btnContinue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -32,6 +32,5 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(btnContinue);
             }
         });
-
     }
 }

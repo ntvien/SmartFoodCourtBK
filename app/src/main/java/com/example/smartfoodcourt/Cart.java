@@ -23,7 +23,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-
 public class Cart extends AppCompatActivity {
 
     RecyclerView recyclerView;
@@ -73,7 +72,6 @@ public class Cart extends AppCompatActivity {
         Toast.makeText(Cart.this, "Order confirmed", Toast.LENGTH_SHORT).show();
         finish();
     }
-
 
     private void loadCart() {
         cartStallItemList = new Database(this).getCart();

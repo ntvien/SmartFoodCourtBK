@@ -16,7 +16,7 @@
         android:layout_marginTop="32dp"
         android:fontFamily="@font/helveticanowtextextmedium"
         android:text="Welcome!"
-        android:textColor="#ffffff"
+        android:textColor="#BFFF0F"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -29,7 +29,7 @@
         android:layout_marginTop="16dp"
         android:fontFamily="@font/helveticanowtextextmedium"
         android:text="Create a New Account"
-        android:textColor="#6E85A7"
+        android:textColor="#78A76E"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -43,6 +43,7 @@
         android:fontFamily="@font/helveticanowtextextregular"
         android:text="Email"
         android:textColor="#FFFFFF"
+        android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/editTextEmail"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextPhone" />
@@ -55,7 +56,7 @@
         android:fontFamily="@font/helveticanowtextextmedium"
         android:text="Sign in"
         android:textColor="#0891DD"
-        android:textSize="15sp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/textView4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView4" />
@@ -92,6 +93,7 @@
         android:fontFamily="@font/helveticanowtextextregular"
         android:text="Password"
         android:textColor="#FFFFFF"
+        android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/editTextPassword"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextEmail" />
@@ -104,6 +106,7 @@
         android:fontFamily="@font/helveticanowtextextregular"
         android:text="Phone"
         android:textColor="#FFFFFF"
+        android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/editTextPhone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextUserName" />
@@ -187,6 +190,7 @@
         android:layout_marginTop="20dp"
         android:text="Username"
         android:textColor="#FFFFFF"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
         tools:ignore="MissingConstraints" />
@@ -210,15 +214,15 @@
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
         android:fontFamily="@font/helveticanowtextextmedium"
-        android:text="version 2"
-        android:textColor="#EF0606"
+        android:text="version 1.0.2"
+        android:textColor="#4EFD03"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/btnSignUp1"
         app:layout_constraintStart_toStartOf="@+id/btnSignUp1"
         app:layout_constraintTop_toBottomOf="@+id/btnSignUp1"
+        app:layout_constraintVertical_bias="0.805"
         tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

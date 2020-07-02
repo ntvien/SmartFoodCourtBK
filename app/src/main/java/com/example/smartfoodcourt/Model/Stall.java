@@ -4,7 +4,14 @@ public class Stall {
     String image;
     String name;
     String supplierID;
+
     public Stall() {
+    }
+
+    public Stall(String image, String name, String supplierID) {
+        this.image = image;
+        this.name = name;
+        this.supplierID = supplierID;
     }
 
     public String getSupplierID() {
@@ -12,12 +19,6 @@ public class Stall {
     }
 
     public void setSupplierID(String supplierID) {
-        this.supplierID = supplierID;
-    }
-
-    public Stall(String image, String name, String supplierID) {
-        this.image = image;
-        this.name = name;
         this.supplierID = supplierID;
     }
 
