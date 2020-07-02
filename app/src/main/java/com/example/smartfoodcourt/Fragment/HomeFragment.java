@@ -64,12 +64,12 @@ public class HomeFragment extends Fragment {
         stallRecycler.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false));
 
         loadNewFoodList();
-        loadMenuStall();
+        loadStallList();
 
         return root;
     }
 
-    private void loadMenuStall() {
+    private void loadStallList() {
 
         FirebaseRecyclerOptions<Stall> options = new FirebaseRecyclerOptions.Builder<Stall>()
                 .setQuery(supplierList, Stall.class).build();
