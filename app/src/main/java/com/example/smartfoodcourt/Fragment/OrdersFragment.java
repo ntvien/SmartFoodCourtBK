@@ -21,6 +21,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
 public class OrdersFragment extends Fragment {
 
@@ -37,7 +38,6 @@ public class OrdersFragment extends Fragment {
 
         database = FirebaseDatabase.getInstance();
         orders = database.getReference("Order");
-
         recyclerView = (RecyclerView)root.findViewById(R.id.listOrders);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(getContext());
@@ -53,17 +53,16 @@ public class OrdersFragment extends Fragment {
         FirebaseRecyclerOptions<Order> options = new FirebaseRecyclerOptions.Builder<Order>().setQuery(orders.orderByChild("phone").equalTo(phone), Order.class).build();
         adapter = new FirebaseRecyclerAdapter<Order, OrderViewHolder>(options) {
             @Override
-            protected void onBindViewHolder(@NonNull OrderViewHolder orderViewHolder, final int position, @NonNull Order order) {
+            protected void onBindViewHolder(@NonNull OrderViewHolder orderViewHolder, final int position, @NonNull final Order order) {
                 orderViewHolder.txtOrderId.setText(adapter.getRef(position).getKey());
                 orderViewHolder.txtOrderStatus.setText(convertCodeToStatus(order.getStatus()));
                 orderViewHolder.txtOrderPhone.setText(order.getPhone());
-                orderViewHolder.btn_delete.setOnClickListener(new View.OnClickListener() {
+                orderViewHolder.btnConfirm.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        if(adapter.getItem(position).getStatus().equals("0"))
-                            deleteOrders(adapter.getRef(position).getKey());
-                        else
-                            Toast.makeText(getContext(), "You cannot delete this Order!!!",Toast.LENGTH_SHORT).show();
+                        if (adapter.getItem(position).getStatus().equals("1"))
+                            confirmOrder(adapter.getRef(position).getKey(), order);
+
                     }
                 });
 
@@ -82,16 +81,17 @@ public class OrdersFragment extends Fragment {
         recyclerView.setAdapter(adapter);
     }
 
-    private void deleteOrders(final String key) {
+    private void confirmOrder(final String key, Order order) {
+        database.getReference("ConfirmedOrder/" + order.getSupplierID()).push().setValue(order.getFoods());
         orders.child(key).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
-                Toast.makeText(getContext(),new StringBuilder("Order").append(key).append("has been deleted").toString(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(),new StringBuilder("Order").append(key).append("has been confirmed").toString(),Toast.LENGTH_SHORT).show();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(getContext(),e.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 

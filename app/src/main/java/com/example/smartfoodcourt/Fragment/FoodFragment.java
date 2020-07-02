@@ -77,7 +77,8 @@ public class FoodFragment extends Fragment {
             protected void onBindViewHolder(@NonNull FoodViewHolder foodViewHolder, int i, @NonNull Food food) {
                 Locale locale = new Locale("vi", "VN");
                 NumberFormat fmt = NumberFormat.getCurrencyInstance(locale);
-
+                if(Integer.parseInt(food.getDiscount()) > 10) foodViewHolder.discount_image.setImageResource(R.drawable.bigdiscount);
+                else if(Integer.parseInt(food.getDiscount()) > 0) foodViewHolder.discount_image.setImageResource(R.drawable.smalldiscount);
                 foodViewHolder.food_name.setText(food.getName());
                 foodViewHolder.food_price.setText(fmt.format(Integer.parseInt(food.getPrice())));
                 Picasso.with(getContext()).load(food.getImage()).into(foodViewHolder.food_image);

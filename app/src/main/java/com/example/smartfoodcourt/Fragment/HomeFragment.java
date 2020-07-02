@@ -56,11 +56,9 @@ public class HomeFragment extends Fragment {
 
         newFoodRecycler.setHasFixedSize(true);
         newFoodRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
-        stallRecycler.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false));
-
-        loadNewFoodList();
+        stallRecycler.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL,true));
         loadStallList();
-
+        loadNewFoodList();
         return root;
     }
 
@@ -103,13 +101,16 @@ public class HomeFragment extends Fragment {
 
     private void loadNewFoodList() {
 
-        FirebaseRecyclerOptions<Food> options = new FirebaseRecyclerOptions.Builder<Food>().setQuery(foodList, Food.class).build();
+        FirebaseRecyclerOptions<Food> options = new FirebaseRecyclerOptions.Builder<Food>()
+                .setQuery(foodList.orderByKey().limitToLast(5), Food.class).build();
+
         adapterNewFood = new FirebaseRecyclerAdapter<Food, FoodViewHolder>(options) {
             @Override
             protected void onBindViewHolder(@NonNull FoodViewHolder foodViewHolder, int i, @NonNull Food food) {
                 Locale locale = new Locale("vi", "VN");
                 NumberFormat fmt = NumberFormat.getCurrencyInstance(locale);
-
+                if(Integer.parseInt(food.getDiscount()) > 10) foodViewHolder.discount_image.setImageResource(R.drawable.bigdiscount);
+                else if(Integer.parseInt(food.getDiscount()) > 0) foodViewHolder.discount_image.setImageResource(R.drawable.smalldiscount);
                 foodViewHolder.food_name.setText(food.getName());
                 foodViewHolder.food_price.setText(fmt.format(Integer.parseInt(food.getPrice())));
                 Picasso.with(getContext()).load(food.getImage()).into(foodViewHolder.food_image);
