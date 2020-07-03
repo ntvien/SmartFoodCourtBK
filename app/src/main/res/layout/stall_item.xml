@@ -8,29 +8,25 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/view2"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:layout_gravity="center"
-            android:elevation="12dp"
-            android:innerRadius="0dp"
-            android:shape="ring"
-            android:thicknessRatio="1.9"
-            app:cardCornerRadius="150dp">
+            app:cardCornerRadius="200dp">
 
             <ImageView
                 android:id="@+id/imgStall"
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
+                android:layout_height="match_parent"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
                 android:scaleType="centerCrop"
-                android:src="@drawable/background" />
+                android:src="@drawable/icon" />
         </androidx.cardview.widget.CardView>
 
         <TextView
             android:id="@+id/txtStall"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_height="match_parent"
             android:gravity="center"
             android:text="Stall"
             android:textColor="#FFFFFF"

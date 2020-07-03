@@ -15,26 +15,16 @@ public class OrderViewHolder extends RecyclerView.ViewHolder{
 
     public TextView txtOrderId, txtOrderStatus, txtOrderPhone;
 
-
-    private ItemClickListener itemClickListener;
-
     public ImageView btnConfirm;
 
 
     public OrderViewHolder(@NonNull View itemView) {
         super(itemView);
-
         txtOrderId = (TextView)itemView.findViewById(R.id.order_id);
         txtOrderStatus = (TextView)itemView.findViewById(R.id.order_status);
         txtOrderPhone = (TextView)itemView.findViewById(R.id.order_phone);
-
         btnConfirm = (ImageView)itemView.findViewById(R.id.btn_confirm);
-
-
     }
 
-    public void setItemClickListener(ItemClickListener itemClickListener) {
-        this.itemClickListener = itemClickListener;
-    }
 
 }

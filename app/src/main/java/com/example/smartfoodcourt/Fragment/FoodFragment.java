@@ -38,7 +38,6 @@ public class FoodFragment extends Fragment {
 
     FirebaseDatabase database;
     DatabaseReference foodList;
-    
     String param;
     FirebaseRecyclerAdapter<Food, FoodViewHolder> adapter;
     FirebaseRecyclerAdapter<Food, FoodViewHolder> searchAdapter;
@@ -143,7 +142,6 @@ public class FoodFragment extends Fragment {
                 foodViewHolder.food_price.setText(fmt.format(Integer.parseInt(food.getPrice())));
                 Picasso.with(getContext()).load(food.getImage()).into(foodViewHolder.food_image);
 
-                final Food clickItem = food;
                 foodViewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
@@ -161,7 +159,7 @@ public class FoodFragment extends Fragment {
                 return new FoodViewHolder(itemView);
             }
         };
-
+        searchAdapter.startListening();
         searchAdapter.notifyDataSetChanged();
         recyclerView.setAdapter(searchAdapter);
     }
