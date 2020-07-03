@@ -67,15 +67,15 @@ public class Cart extends AppCompatActivity {
 
     private void confirmOrders() {
 
-        Intent btnContinue = new Intent(Cart.this, Payment.class);
-        startActivity(btnContinue);
+        Intent paymentIntent = new Intent(Cart.this, Payment.class);
+        startActivity(paymentIntent);
 
         for(CartStallItem t: cartStallItemList){
             Order order =  new Order(Common.currentUser.getPhone(), t);
             requestList.child(String.valueOf(System.currentTimeMillis())).setValue(order);
         }
         new Database(getBaseContext()).cleanCart();
-        Toast.makeText(Cart.this, "Order confirmed", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(Cart.this, "Order confirmed", Toast.LENGTH_SHORT).show();
         finish();
     }
 
