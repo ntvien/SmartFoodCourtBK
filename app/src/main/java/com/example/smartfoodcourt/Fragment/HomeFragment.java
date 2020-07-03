@@ -13,6 +13,7 @@ import androidx.core.app.SharedElementCallback;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -56,9 +57,9 @@ public class HomeFragment extends Fragment {
 
         newFoodRecycler.setHasFixedSize(true);
         newFoodRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
-        stallRecycler.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL,true));
-        loadStallList();
+        stallRecycler.setLayoutManager(new LinearLayoutManager(getContext(),RecyclerView.HORIZONTAL,true));
         loadNewFoodList();
+        loadStallList();
         return root;
     }
 
