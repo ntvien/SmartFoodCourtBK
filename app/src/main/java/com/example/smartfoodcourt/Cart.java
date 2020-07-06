@@ -45,7 +45,7 @@ public class Cart extends AppCompatActivity {
         setContentView(R.layout.activity_cart);
 
         database = FirebaseDatabase.getInstance();
-        requestList = database.getReference("Order");
+        requestList = database.getReference("Order/CurrentOrder/List");
 
         recyclerView = (RecyclerView)findViewById(R.id.listCart);
         recyclerView.setHasFixedSize(true);
@@ -59,19 +59,19 @@ public class Cart extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                confirmOrders();
+                confirmOrder();
             }
         });
         loadCart();
     }
 
-    private void confirmOrders() {
+    private void confirmOrder() {
 
         Intent paymentIntent = new Intent(Cart.this, Payment.class);
         startActivity(paymentIntent);
 
         for(CartStallItem t: cartStallItemList){
-            Order order =  new Order(Common.currentUser.getPhone(), t);
+            Order order =  new Order(Common.user.getPhone(), t);
             requestList.child(String.valueOf(System.currentTimeMillis())).setValue(order);
         }
         new Database(getBaseContext()).cleanCart();
@@ -90,8 +90,6 @@ public class Cart extends AppCompatActivity {
             total += cartStallItem.getTotal();
         }
 
-        Locale locale = new Locale("vi", "VN");
-        NumberFormat fmt = NumberFormat.getCurrencyInstance(locale);
-        txtTotalPrice.setText(fmt.format(total));
+        txtTotalPrice.setText(Common.convertPricetoVND(total));
     }
 }

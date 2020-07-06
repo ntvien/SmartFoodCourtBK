@@ -5,15 +5,25 @@ public class CartItem {
     private String price;
     private String quantity;
     private String discount;
+    private String foodID;
 
     public CartItem() {
     }
 
-    public CartItem(String name, String price, String quantity, String discount) {
+    public String getFoodID() {
+        return foodID;
+    }
+
+    public void setFoodID(String foodID) {
+        this.foodID = foodID;
+    }
+
+    public CartItem(String name, String price, String quantity, String discount, String foodID) {
         this.name = name;
         this.price = price;
         this.quantity = quantity;
         this.discount = discount;
+        this.foodID = foodID;
     }
 
     public String getName() {

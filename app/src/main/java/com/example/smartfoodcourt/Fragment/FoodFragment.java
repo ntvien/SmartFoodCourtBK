@@ -8,7 +8,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AnimationUtils;
 import android.view.inputmethod.EditorInfo;
 
 import androidx.annotation.NonNull;
@@ -17,6 +16,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.smartfoodcourt.Common.Common;
 import com.example.smartfoodcourt.FoodDetail;
 import com.example.smartfoodcourt.Interface.ItemClickListener;
 import com.example.smartfoodcourt.Model.Food;
@@ -34,14 +34,12 @@ import java.util.Locale;
 public class FoodFragment extends Fragment {
 
 
-    RecyclerView recyclerView;
-    RecyclerView.LayoutManager layoutManager;
+    RecyclerView recyclerFood;
 
     FirebaseDatabase database;
     DatabaseReference foodList;
-    String param;
-    FirebaseRecyclerAdapter<Food, FoodViewHolder> adapter;
-    FirebaseRecyclerAdapter<Food, FoodViewHolder> searchAdapter;
+    FirebaseRecyclerAdapter<Food, FoodViewHolder> foodAdapter;
+    FirebaseRecyclerAdapter<Food, FoodViewHolder> searchFoodAdapter;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         setHasOptionsMenu(true);
@@ -49,18 +47,18 @@ public class FoodFragment extends Fragment {
 
         //Firebase
         database = FirebaseDatabase.getInstance();
-        foodList = database.getReference("Food");
+        foodList = database.getReference("Food/List");
 
-        recyclerView = (RecyclerView)root.findViewById(R.id.recycler_food);
-        recyclerView.setHasFixedSize(true);
-        layoutManager = new LinearLayoutManager(getContext());
-        recyclerView.setLayoutManager(layoutManager);
+        recyclerFood = (RecyclerView)root.findViewById(R.id.recycler_food);
+        recyclerFood.setHasFixedSize(true);
+        recyclerFood.setLayoutManager(new LinearLayoutManager(getContext()));
 
         loadFoodList();
         return root;
     }
 
     private void loadFoodList() {
+        String param = null;
         FirebaseRecyclerOptions<Food> options;
         Bundle bundle = this.getArguments();
         if(bundle != null) {
@@ -72,15 +70,12 @@ public class FoodFragment extends Fragment {
         else{
              options = new FirebaseRecyclerOptions.Builder<Food>().setQuery(foodList.orderByChild("supplierID").equalTo(param), Food.class).build();
         }
-        adapter = new FirebaseRecyclerAdapter<Food, FoodViewHolder>(options) {
+        foodAdapter = new FirebaseRecyclerAdapter<Food, FoodViewHolder>(options) {
             @Override
-            protected void onBindViewHolder(@NonNull FoodViewHolder foodViewHolder, int i, @NonNull Food food) {
-                Locale locale = new Locale("vi", "VN");
-                NumberFormat fmt = NumberFormat.getCurrencyInstance(locale);
-                if(Integer.parseInt(food.getDiscount()) > 10) foodViewHolder.discount_image.setImageResource(R.drawable.bigdiscount);
-                else if(Integer.parseInt(food.getDiscount()) > 0) foodViewHolder.discount_image.setImageResource(R.drawable.smalldiscount);
+            protected void onBindViewHolder(@NonNull FoodViewHolder foodViewHolder, int i, @NonNull final Food food) {
+                foodViewHolder.discount_image.setImageResource(Common.convertDiscountToImage(food.getDiscount()));
                 foodViewHolder.food_name.setText(food.getName());
-                foodViewHolder.food_price.setText(fmt.format(Integer.parseInt(food.getPrice())));
+                foodViewHolder.food_price.setText(Common.convertPricetoVND(food.getPrice()));
                 Picasso.with(getContext()).load(food.getImage()).into(foodViewHolder.food_image);
 
                 final Food clickItem = food;
@@ -88,7 +83,7 @@ public class FoodFragment extends Fragment {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
                         Intent foodDetail = new Intent(getContext(), FoodDetail.class);
-                        foodDetail.putExtra("foodID", adapter.getRef(position).getKey());
+                        foodDetail.putExtra("foodRef", foodAdapter.getRef(position).getKey());
                         startActivity(foodDetail);
                     }
                 });
@@ -101,9 +96,9 @@ public class FoodFragment extends Fragment {
                 return new FoodViewHolder(itemView);
             }
         };
-        adapter.notifyDataSetChanged();
-        adapter.startListening();
-        recyclerView.setAdapter(adapter);
+        foodAdapter.notifyDataSetChanged();
+        foodAdapter.startListening();
+        recyclerFood.setAdapter(foodAdapter);
     }
 
     @Override
@@ -120,7 +115,7 @@ public class FoodFragment extends Fragment {
 
             @Override
             public boolean onQueryTextChange(String s) {
-                if(s.isEmpty()) recyclerView.setAdapter(adapter);
+                if(s.isEmpty()) recyclerFood.setAdapter(foodAdapter);
                 else {
                     showSearchFoodList(s);
                 }
@@ -133,21 +128,19 @@ public class FoodFragment extends Fragment {
     private void showSearchFoodList(String s) {
         FirebaseRecyclerOptions<Food> options = new FirebaseRecyclerOptions.Builder<Food>()
                 .setQuery(foodList.orderByChild("name").startAt(s).endAt(s + "\uf8ff"), Food.class).build();
-        searchAdapter = new FirebaseRecyclerAdapter<Food, FoodViewHolder>(options) {
+        searchFoodAdapter = new FirebaseRecyclerAdapter<Food, FoodViewHolder>(options) {
             @Override
-            protected void onBindViewHolder(@NonNull FoodViewHolder foodViewHolder, int i, @NonNull Food food) {
-                Locale locale = new Locale("vi", "VN");
-                NumberFormat fmt = NumberFormat.getCurrencyInstance(locale);
-
+            protected void onBindViewHolder(@NonNull FoodViewHolder foodViewHolder, int i, @NonNull final Food food) {
+                foodViewHolder.discount_image.setImageResource(Common.convertDiscountToImage(food.getDiscount()));
                 foodViewHolder.food_name.setText(food.getName());
-                foodViewHolder.food_price.setText(fmt.format(Integer.parseInt(food.getPrice())));
+                foodViewHolder.food_price.setText(Common.convertPricetoVND(food.getPrice()));
                 Picasso.with(getContext()).load(food.getImage()).into(foodViewHolder.food_image);
 
                 foodViewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
                         Intent foodDetail = new Intent(getContext(), FoodDetail.class);
-                        foodDetail.putExtra("foodID", searchAdapter.getRef(position).getKey());
+                        foodDetail.putExtra("foodRef", searchFoodAdapter.getRef(position).getKey());
                         startActivity(foodDetail);
                     }
                 });
@@ -160,8 +153,8 @@ public class FoodFragment extends Fragment {
                 return new FoodViewHolder(itemView);
             }
         };
-        searchAdapter.startListening();
-        searchAdapter.notifyDataSetChanged();
-        recyclerView.setAdapter(searchAdapter);
+        searchFoodAdapter.startListening();
+        searchFoodAdapter.notifyDataSetChanged();
+        recyclerFood.setAdapter(searchFoodAdapter);
     }
 }

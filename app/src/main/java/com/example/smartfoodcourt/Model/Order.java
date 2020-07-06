@@ -26,7 +26,7 @@ public class Order {
         this.total = t.getTotal().toString();
         this.supplierID = t.getSupplierID();
         this.foods = t.getCartItemList();
-        this.status = "0"; // 0: preparing, 1: ready, 2: received
+        this.status = "0"; // 0: preparing, 1: completed, 2: received
     }
 
     public String getStatus() {

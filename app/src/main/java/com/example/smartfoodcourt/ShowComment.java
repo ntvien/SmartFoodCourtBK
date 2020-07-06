@@ -50,19 +50,14 @@ public class ShowComment extends AppCompatActivity {
         if(foodID != null && !foodID.isEmpty())
         {
             ratingFood = database.getReference("Rating/" + foodID);
-            FirebaseRecyclerOptions<Rating> options = new FirebaseRecyclerOptions.Builder<Rating>().setQuery(ratingFood, Rating.class).build();
+            FirebaseRecyclerOptions<Rating> options = new FirebaseRecyclerOptions.Builder<Rating>().setQuery(ratingFood.child("List"), Rating.class).build();
             adapter = new FirebaseRecyclerAdapter<Rating, ShowCommentViewHolder>(options) {
                 @Override
                 protected void onBindViewHolder(@NonNull ShowCommentViewHolder showCommentViewHolder, final int position, @NonNull Rating rating) {
                     showCommentViewHolder.ratingBarDetail.setRating(Float.parseFloat(rating.getRateValue()));
-                    showCommentViewHolder.txtUserPhone.setText(rating.getPhone());
+                    showCommentViewHolder.txtUserName.setText(adapter.getRef(position).getKey());
                     showCommentViewHolder.txtComment.setText(rating.getComment());
-                    showCommentViewHolder.btn_delete_comment.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            deleteComment(adapter.getRef(position).getKey());
-                        }
-                    });
+
                 }
 
                 @NonNull
@@ -76,19 +71,7 @@ public class ShowComment extends AppCompatActivity {
         }
     }
 
-    private void deleteComment(final String key) {
-        ratingFood.child(key).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void aVoid) {
-                Toast.makeText(getBaseContext(),new StringBuilder("Comment").append(key).append("has been deleted").toString(),Toast.LENGTH_SHORT).show();
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(getBaseContext(),e.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
+
 
     private void loadComment(String foodID) {
         adapter.startListening();

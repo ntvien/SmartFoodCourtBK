@@ -3,7 +3,6 @@ package com.example.smartfoodcourt;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,23 +14,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartfoodcourt.Common.Common;
 import com.example.smartfoodcourt.Model.User;
-import com.facebook.AccessToken;
-import com.facebook.CallbackManager;
-import com.facebook.FacebookCallback;
-import com.facebook.FacebookException;
-import com.facebook.FacebookSdk;
-import com.facebook.GraphRequest;
-import com.facebook.GraphResponse;
-import com.facebook.login.LoginResult;
-import com.facebook.login.widget.LoginButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.rey.material.widget.CheckBox;
-
-import org.json.JSONObject;
 
 import io.paperdb.Paper;
 
@@ -89,7 +77,7 @@ public class SignIn extends AppCompatActivity {
     //Login
     private void login() {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        final DatabaseReference table_user = database.getReference("User");
+        final DatabaseReference table_user = database.getReference("User/List");
 
         final ProgressDialog mDialog = new ProgressDialog(SignIn.this);
         mDialog.setMessage("Please waiting...");
@@ -104,7 +92,8 @@ public class SignIn extends AppCompatActivity {
                     User user = snapshot.child(editUserName.getText().toString()).getValue(User.class);
                     if(user.getPassword().equals(editPassword.getText().toString())){
                         Intent homePageIntent = new Intent(getApplicationContext(), Home.class);
-                        Common.currentUser = user;
+                        Common.user = user;
+                        Common.userName = editUserName.getText().toString();
                         startActivity(homePageIntent);
                         finish();
                     }
@@ -126,7 +115,7 @@ public class SignIn extends AppCompatActivity {
     private void checkRememberPassword(final String username, final String password) {
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        final DatabaseReference table_user = database.getReference("User");
+        final DatabaseReference table_user = database.getReference("User/List");
 
         final ProgressDialog mDialog = new ProgressDialog(SignIn.this);
         mDialog.setMessage("Please waiting...");
@@ -140,7 +129,8 @@ public class SignIn extends AppCompatActivity {
                     User user = snapshot.child(username).getValue(User.class);
                     if (user.getPassword().equals(password)) {
                         Intent homePageIntent = new Intent(getApplicationContext(), Home.class);
-                        Common.currentUser = user;
+                        Common.user = user;
+                        Common.userName = editUserName.getText().toString();
                         startActivity(homePageIntent);
                         finish();
                     } else

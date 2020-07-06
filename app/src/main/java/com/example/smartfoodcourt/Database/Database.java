@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.ListIterator;
 
 public class Database extends SQLiteAssetHelper {
-    static final String DB_NAME = "FoodCourt.db";
+    static final String DB_NAME = "User.db";
     static final int DB_VER = 1;
     public Database(Context context) {
         super(context, DB_NAME,null, DB_VER);
@@ -26,7 +26,7 @@ public class Database extends SQLiteAssetHelper {
         SQLiteDatabase db = getReadableDatabase();
         SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
 
-        String[] sqlSelect = {"SupplierID", "Name", "Price", "Quantity", "Discount"};
+        String[] sqlSelect = {"SupplierID", "Name", "Price", "Quantity", "Discount","FoodID"};
         String sqlTable = "CartItem";
 
         qb.setTables(sqlTable);
@@ -45,7 +45,9 @@ public class Database extends SQLiteAssetHelper {
                         temp.addItem(new CartItem(c.getString(c.getColumnIndex("Name")),
                                 c.getString(c.getColumnIndex("Price")),
                                 c.getString(c.getColumnIndex("Quantity")),
-                                c.getString(c.getColumnIndex("Discount"))));
+                                c.getString(c.getColumnIndex("Discount")),
+                                c.getString(c.getColumnIndex("FoodID"))));
+
                         it.set(temp);
                         flag = 1;
                         break;
@@ -56,7 +58,9 @@ public class Database extends SQLiteAssetHelper {
                     t.add(new CartItem(c.getString(c.getColumnIndex("Name")),
                                     c.getString(c.getColumnIndex("Price")),
                                     c.getString(c.getColumnIndex("Quantity")),
-                                    c.getString(c.getColumnIndex("Discount"))));
+                                    c.getString(c.getColumnIndex("Discount")),
+                                    c.getString(c.getColumnIndex("FoodID"))));
+
                     result.add(new CartStallItem(c.getString(c.getColumnIndex("SupplierID")),t));
                 }
 
@@ -67,12 +71,13 @@ public class Database extends SQLiteAssetHelper {
 
     public void addToCart (CartItem cartItem, String supplierID) {
         SQLiteDatabase db = getReadableDatabase();
-        String query = String.format("INSERT INTO CartItem(SupplierID, Name, Price, Quantity, Discount) VALUES('%s', '%s', '%s', '%s', '%s');",
+        String query = String.format("INSERT INTO CartItem(SupplierID, Name, Price, Quantity, Discount, FoodID) VALUES('%s', '%s', '%s', '%s', '%s', '%s');",
                 supplierID,
                 cartItem.getName(),
                 cartItem.getPrice(),
                 cartItem.getQuantity(),
-                cartItem.getDiscount());
+                cartItem.getDiscount(),
+                cartItem.getFoodID());
         db.execSQL(query);
     }
 

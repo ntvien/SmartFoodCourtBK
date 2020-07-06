@@ -43,7 +43,7 @@ public class ForgotPassword extends AppCompatActivity {
 
         toolbar.setTitle("Forgot password");
         database = FirebaseDatabase.getInstance();
-        table_user = database.getReference("User");
+        table_user = database.getReference("User/List");
         firebaseAuth = FirebaseAuth.getInstance();
 
         btnSendEmail.setOnClickListener(new View.OnClickListener() {

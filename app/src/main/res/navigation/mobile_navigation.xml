@@ -18,13 +18,13 @@
         tools:layout="@layout/fragment_food" />
 
     <fragment
-        android:id="@+id/nav_orders"
-        android:name="com.example.smartfoodcourt.Fragment.OrdersFragment"
-        android:label="Orders"
-        tools:layout="@layout/fragment_orders" />
+        android:id="@+id/nav_order"
+        android:name="com.example.smartfoodcourt.Fragment.OrderFragment"
+        android:label="Order"
+        tools:layout="@layout/fragment_order" />
     <fragment
         android:id="@+id/nav_sign_out"
         android:name="com.example.smartfoodcourt.Fragment.SignOut"
         android:label="Sign out"
-        tools:layout="@layout/fragment_orders" />
+        tools:layout="@layout/fragment_order" />
 </navigation>

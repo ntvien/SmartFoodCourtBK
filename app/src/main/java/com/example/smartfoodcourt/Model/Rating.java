@@ -2,25 +2,15 @@ package com.example.smartfoodcourt.Model;
 
 public class Rating {
 
-    private String phone;
     private String rateValue;
     private String comment;
 
     public Rating() {
     }
 
-    public Rating(String phone, String rateValue, String comment) {
-        this.phone = phone;
+    public Rating(String rateValue, String comment) {
         this.rateValue = rateValue;
         this.comment = comment;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
     }
 
     public String getRateValue() {

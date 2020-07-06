@@ -62,7 +62,7 @@ public class Home extends AppCompatActivity  {
 
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
-        mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_home, R.id.nav_food, R.id.nav_orders, R.id.nav_sign_out)
+        mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_home, R.id.nav_food, R.id.nav_order, R.id.nav_sign_out)
                .setDrawerLayout(drawer).build();
         final NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
@@ -72,20 +72,23 @@ public class Home extends AppCompatActivity  {
             public void onDestinationChanged(@NonNull NavController controller, @NonNull NavDestination destination, @Nullable Bundle arguments) {
                 int id = destination.getId();
                 if (id == R.id.nav_sign_out){
+                    btnCart.hide();
                     Intent signIn = new Intent(Home.this, SignIn.class);
                     signIn.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(signIn);
                     Paper.book().destroy();
                 }
                 if(id == R.id.nav_home){
-
+                    btnCart.show();
+                    Toast.makeText(getApplicationContext(), "Home", Toast.LENGTH_SHORT).show();
                 }
                 else if (id == R.id.nav_food){
-
+                    btnCart.show();
                     Toast.makeText(getApplicationContext(), "Food", Toast.LENGTH_SHORT).show();
 
-                }else if (id == R.id.nav_orders){
-                    Toast.makeText(getApplicationContext(), "Orders", Toast.LENGTH_SHORT).show();
+                }else if (id == R.id.nav_order){
+                    btnCart.hide();
+                    Toast.makeText(getApplicationContext(), "Order", Toast.LENGTH_SHORT).show();
 
                 }
             }
