@@ -14,7 +14,6 @@ import com.example.smartfoodcourt.R;
 public class OrderViewHolder extends RecyclerView.ViewHolder{
 
     public TextView txtOrderId, txtOrderStatus, txtOrderPhone;
-
     public ImageView btnConfirm;
 
 

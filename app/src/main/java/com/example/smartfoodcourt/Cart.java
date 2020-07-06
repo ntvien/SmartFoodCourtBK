@@ -3,6 +3,7 @@ package com.example.smartfoodcourt;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -83,7 +84,7 @@ public class Cart extends AppCompatActivity {
         cartStallItemList = new Database(this).getCart();
         adapter = new CartStallAdapter(cartStallItemList, this);
         recyclerView.setAdapter(adapter);
-
+        recyclerView.setLayoutAnimation(AnimationUtils.loadLayoutAnimation(getBaseContext(),R.anim.layout_item_from_left));
         //Calculate Total
         float total = 0;
         for (CartStallItem cartStallItem :cartStallItemList) {
