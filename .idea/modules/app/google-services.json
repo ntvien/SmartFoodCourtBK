@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "863461716147-q6smq2c0lodimn82fkuc1d6fcs1silpg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.managerapp",
+            "certificate_hash": "a05adee3ab394ba57d2d7c6eb96a00043caf30d9"
+          }
+        },
+        {
           "client_id": "863461716147-bmkcug84uetbedgffl309mr6qjnfik6d.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -51,6 +59,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "863461716147-e4lgkangonhiitjorl8c5v7bgennst3j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.smartfoodcourt",
+            "certificate_hash": "f648b29b0ce0cb3ae7720ba44a1e06649c0a1383"
+          }
+        },
         {
           "client_id": "863461716147-pd3p3tqkcf2g7ddhq37lt7m70p64v5fb.apps.googleusercontent.com",
           "client_type": 1,
