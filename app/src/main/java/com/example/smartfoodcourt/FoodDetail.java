@@ -22,7 +22,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 import com.stepstone.apprating.AppRatingDialog;
@@ -40,11 +39,10 @@ public class FoodDetail extends AppCompatActivity implements RatingDialogListene
     ImageView imgFood, imgAddCart, btnUp, btnDown, imgDiscount, imgCart;
     Button btnBackDetail;
 
-    String foodID = "";
+    String foodRef = "";
     Food food;
 
-    DatabaseReference foodList;
-    DatabaseReference ratingFood;
+    DatabaseReference foodList, ratingFood;
 
     RatingBar ratingBar;
     FloatingActionButton btnStar, btnComment;
@@ -71,13 +69,11 @@ public class FoodDetail extends AppCompatActivity implements RatingDialogListene
         ratingBar = (RatingBar)findViewById(R.id.ratingBar);
 
         if(getIntent() != null) {
-            foodID = getIntent().getStringExtra("foodID");
-        }
-        if(!foodID.isEmpty()){
-            foodList = FirebaseDatabase.getInstance().getReference("Food");
-            ratingFood = FirebaseDatabase.getInstance().getReference("Rating/" + foodID);
-            loadFood();
-            loadRatingFood(foodID);
+            foodRef = getIntent().getStringExtra("foodRef");
+            if (!foodRef.isEmpty()) {
+                foodList = FirebaseDatabase.getInstance().getReference("Food/List");
+                loadFood();
+            }
         }
 
         btnBackDetail.setOnClickListener(new View.OnClickListener() {
@@ -125,7 +121,7 @@ public class FoodDetail extends AppCompatActivity implements RatingDialogListene
             @Override
             public void onClick(View view) {
                 Intent commentIntent = new Intent(FoodDetail.this, ShowComment.class);
-                commentIntent.putExtra(Common.INTENT_FOOD_ID, foodID);
+                commentIntent.putExtra(Common.INTENT_FOOD_ID, food.getFoodID());
                 startActivity(commentIntent);
             }
         });
@@ -135,33 +131,12 @@ public class FoodDetail extends AppCompatActivity implements RatingDialogListene
             public void onClick(View view) {
                 new Database(getBaseContext()).addToCart(new CartItem(food.getName(),
                         food.getPrice(), txtQuantity.getText().toString(),
-                        food.getDiscount()), food.getSupplierID());
+                        food.getDiscount(), food.getFoodID()), food.getSupplierID());
                 Toast.makeText(FoodDetail.this, "Food is added to your cart", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    private void loadRatingFood(String foodID) {
-        ratingFood.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Integer count = 0, sum = 0;
-                for(DataSnapshot postSnapshot : snapshot.getChildren()){
-                    Rating item = postSnapshot.getValue(Rating.class);
-                    sum += Integer.parseInt(item.getRateValue());
-                    count++;
-                }
-              if(count != 0){
-                  float averageStar = sum / count;
-                  ratingBar.setRating(averageStar);
-              }
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-    }
 
     private void showDialogRating() {
         new AppRatingDialog.Builder().setPositiveButtonText("Comment").setNegativeButtonText("Cancel")
@@ -175,21 +150,20 @@ public class FoodDetail extends AppCompatActivity implements RatingDialogListene
     }
 
     private void loadFood() {
-        foodList.child(foodID).addValueEventListener(new ValueEventListener() {
+        foodList.child(foodRef).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
-                   food = snapshot.getValue(Food.class);
-
-                   Locale locale = new Locale("vi", "VN");
-                   NumberFormat fmt = NumberFormat.getCurrencyInstance(locale);
-
-                   Picasso.with(getBaseContext()).load(food.getImage()).into(imgFood);
-                   txtPrice.setText(fmt.format(Integer.parseInt(food.getPrice())));
-                   txtName.setText(food.getName());
-                   txtDes.setText(food.getDescription());
-                   txtDiscount.setText(food.getDiscount() + "%");
-
+                    food = snapshot.getValue(Food.class);
+                    if(food != null){
+                       Picasso.with(getBaseContext()).load(food.getImage()).into(imgFood);
+                       txtPrice.setText(Common.convertPricetoVND(food.getPrice()));
+                       txtName.setText(food.getName());
+                       txtDes.setText(food.getDescription());
+                       txtDiscount.setText(food.getDiscount() + "%");
+                       ratingBar.setRating(Float.parseFloat(food.getStar()));
+                       ratingFood = FirebaseDatabase.getInstance().getReference("Rating/" + food.getFoodID() + "/List");
+                    }
                 }
             }
             @Override
@@ -207,7 +181,7 @@ public class FoodDetail extends AppCompatActivity implements RatingDialogListene
     @Override
     public void onPositiveButtonClicked(int valueRating, @NotNull String comments) {
 
-        final Rating rating = new Rating(Common.currentUser.getPhone(), String.valueOf(valueRating), comments);
-        ratingFood.child(Common.currentUser.getPhone()).setValue(rating);
+        final Rating rating = new Rating(String.valueOf(valueRating), comments);
+        ratingFood.child(Common.userName).setValue(rating);
     }
 }

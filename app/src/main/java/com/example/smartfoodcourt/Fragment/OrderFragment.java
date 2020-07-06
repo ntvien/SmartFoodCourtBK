@@ -21,48 +21,45 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 
-public class OrdersFragment extends Fragment {
+public class OrderFragment extends Fragment {
 
     public RecyclerView recyclerView;
     public RecyclerView.LayoutManager layoutManager;
 
-    FirebaseRecyclerAdapter<Order, OrderViewHolder> adapter;
-
+    FirebaseRecyclerAdapter<Order, OrderViewHolder> adapterOrder;
     FirebaseDatabase database;
     DatabaseReference orders;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_orders, container, false);
+        View root = inflater.inflate(R.layout.fragment_order, container, false);
 
         database = FirebaseDatabase.getInstance();
-        orders = database.getReference("Order");
+        orders = database.getReference("Order/CurrentOrder/List");
         recyclerView = (RecyclerView)root.findViewById(R.id.listOrders);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
 
-        loadOrders(Common.currentUser.getPhone());
+        loadOrder(Common.user.getPhone());
 
         return root;
     }
 
-    private void loadOrders(String phone) {
+    private void loadOrder(String phone) {
 
         FirebaseRecyclerOptions<Order> options = new FirebaseRecyclerOptions.Builder<Order>().setQuery(orders.orderByChild("phone").equalTo(phone), Order.class).build();
-        adapter = new FirebaseRecyclerAdapter<Order, OrderViewHolder>(options) {
+        adapterOrder = new FirebaseRecyclerAdapter<Order, OrderViewHolder>(options) {
             @Override
             protected void onBindViewHolder(@NonNull OrderViewHolder orderViewHolder, final int position, @NonNull final Order order) {
-                orderViewHolder.txtOrderId.setText(adapter.getRef(position).getKey());
-                orderViewHolder.txtOrderStatus.setText(convertCodeToStatus(order.getStatus()));
+                orderViewHolder.txtOrderId.setText(adapterOrder.getRef(position).getKey());
+                orderViewHolder.txtOrderStatus.setText(Common.convertCodeToStatus(order.getStatus()));
                 orderViewHolder.txtOrderPhone.setText(order.getPhone());
-                orderViewHolder.btnConfirm.setOnClickListener(new View.OnClickListener() {
+                orderViewHolder.btnReceive.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        if (adapter.getItem(position).getStatus().equals("1"))
-                            confirmOrder(adapter.getRef(position).getKey(), order);
-
+                        if (adapterOrder.getItem(position).getStatus().equals("1"))
+                            receiveOrder(adapterOrder.getRef(position).getKey(), order);
                     }
                 });
 
@@ -76,17 +73,16 @@ public class OrdersFragment extends Fragment {
             }
         };
 
-        adapter.notifyDataSetChanged();
-        adapter.startListening();
-        recyclerView.setAdapter(adapter);
+        adapterOrder.notifyDataSetChanged();
+        adapterOrder.startListening();
+        recyclerView.setAdapter(adapterOrder);
     }
 
-    private void confirmOrder(final String key, Order order) {
-        database.getReference("ConfirmedOrder/" + order.getSupplierID()).push().setValue(order.getFoods());
+    private void receiveOrder(final String key, Order order) {
         orders.child(key).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
-                Toast.makeText(getContext(),new StringBuilder("Order").append(key).append("has been confirmed").toString(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(),new StringBuilder("Order").append(key).append("has been received").toString(),Toast.LENGTH_SHORT).show();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -94,19 +90,12 @@ public class OrdersFragment extends Fragment {
                 Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 
     @Override
     public void onStop() {
         super.onStop();
-
     }
 
-    private String convertCodeToStatus(String status) {
-        //0: preparing, 1: ready, 2: received
-        if (status.equals("0")) return "Preparing";
-        else if(status.equals("1")) return "Ready";
-        else return "Received";
-    }
+
 }

@@ -11,15 +11,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.smartfoodcourt.R;
 
 public class ShowCommentViewHolder extends RecyclerView.ViewHolder {
-    public TextView txtUserPhone, txtComment;
+    public TextView txtUserName, txtComment;
     public RatingBar ratingBarDetail;
-    public ImageView btn_delete_comment;
 
     public ShowCommentViewHolder(@NonNull View itemView) {
         super(itemView);
-        txtUserPhone = (TextView)itemView.findViewById(R.id.txtUserPhone);
+        txtUserName = (TextView)itemView.findViewById(R.id.txtUserName);
         txtComment = (TextView)itemView.findViewById(R.id.txtComment);
         ratingBarDetail = (RatingBar)itemView.findViewById(R.id.ratingBarDetail);
-        btn_delete_comment = (ImageView)itemView.findViewById(R.id.btn_delete_comment);
     }
 }

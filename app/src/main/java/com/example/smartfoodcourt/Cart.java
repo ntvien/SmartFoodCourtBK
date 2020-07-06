@@ -3,6 +3,7 @@ package com.example.smartfoodcourt;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -44,7 +45,7 @@ public class Cart extends AppCompatActivity {
         setContentView(R.layout.activity_cart);
 
         database = FirebaseDatabase.getInstance();
-        requestList = database.getReference("Order");
+        requestList = database.getReference("Order/CurrentOrder/List");
 
         recyclerView = (RecyclerView)findViewById(R.id.listCart);
         recyclerView.setHasFixedSize(true);
@@ -58,19 +59,19 @@ public class Cart extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                confirmOrders();
+                confirmOrder();
             }
         });
         loadCart();
     }
 
-    private void confirmOrders() {
+    private void confirmOrder() {
 
         Intent paymentIntent = new Intent(Cart.this, Payment.class);
         startActivity(paymentIntent);
 
         for(CartStallItem t: cartStallItemList){
-            Order order =  new Order(Common.currentUser.getPhone(), t);
+            Order order =  new Order(Common.user.getPhone(), t);
             requestList.child(String.valueOf(System.currentTimeMillis())).setValue(order);
         }
         new Database(getBaseContext()).cleanCart();
@@ -82,15 +83,13 @@ public class Cart extends AppCompatActivity {
         cartStallItemList = new Database(this).getCart();
         adapter = new CartStallAdapter(cartStallItemList, this);
         recyclerView.setAdapter(adapter);
-
+        recyclerView.setLayoutAnimation(AnimationUtils.loadLayoutAnimation(getBaseContext(),R.anim.layout_item_from_left));
         //Calculate Total
         float total = 0;
         for (CartStallItem cartStallItem :cartStallItemList) {
             total += cartStallItem.getTotal();
         }
 
-        Locale locale = new Locale("vi", "VN");
-        NumberFormat fmt = NumberFormat.getCurrencyInstance(locale);
-        txtTotalPrice.setText(fmt.format(total));
+        txtTotalPrice.setText(Common.convertPricetoVND(total));
     }
 }

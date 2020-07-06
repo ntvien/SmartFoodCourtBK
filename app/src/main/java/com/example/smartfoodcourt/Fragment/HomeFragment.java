@@ -1,6 +1,7 @@
 package com.example.smartfoodcourt.Fragment;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.smartfoodcourt.Common.Common;
 import com.example.smartfoodcourt.FoodDetail;
 import com.example.smartfoodcourt.Interface.ItemClickListener;
 import com.example.smartfoodcourt.Model.Food;
@@ -36,7 +38,6 @@ import java.util.Locale;
 public class HomeFragment extends Fragment {
 
     RecyclerView newFoodRecycler, stallRecycler;
-    View root;
 
     FirebaseDatabase database;
     DatabaseReference foodList, supplierList;
@@ -46,19 +47,19 @@ public class HomeFragment extends Fragment {
 
     public View onCreateView(@NonNull final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        root = inflater.inflate(R.layout.fragment_home, container, false);
+        View root = inflater.inflate(R.layout.fragment_home, container, false);
 
         database = FirebaseDatabase.getInstance();
-        foodList = database.getReference("Food");
-        supplierList = database.getReference("Supplier");
+        foodList = database.getReference("Food/List");
+        supplierList = database.getReference("Supplier/List");
 
-        newFoodRecycler = (RecyclerView)root.findViewById(R.id.popular_recycler);
+        newFoodRecycler = (RecyclerView)root.findViewById(R.id.great_food_recycler);
         stallRecycler = root.findViewById(R.id.stall_recycler);
 
         newFoodRecycler.setHasFixedSize(true);
         newFoodRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
         stallRecycler.setLayoutManager(new LinearLayoutManager(getContext(),RecyclerView.HORIZONTAL,true));
-        loadNewFoodList();
+        loadGreatFoodList();
         loadStallList();
         return root;
     }
@@ -94,34 +95,29 @@ public class HomeFragment extends Fragment {
                 return new StallViewHolder(itemView);
             }
         };
-
         adapterStall.notifyDataSetChanged();
         adapterStall.startListening();
         stallRecycler.setAdapter(adapterStall);
     }
 
-    private void loadNewFoodList() {
+    private void loadGreatFoodList() {
 
         FirebaseRecyclerOptions<Food> options = new FirebaseRecyclerOptions.Builder<Food>()
-                .setQuery(foodList.orderByKey().limitToLast(5), Food.class).build();
+                .setQuery(foodList.orderByChild("star").limitToLast(5), Food.class).build();
 
         adapterNewFood = new FirebaseRecyclerAdapter<Food, FoodViewHolder>(options) {
             @Override
-            protected void onBindViewHolder(@NonNull FoodViewHolder foodViewHolder, int i, @NonNull Food food) {
-                Locale locale = new Locale("vi", "VN");
-                NumberFormat fmt = NumberFormat.getCurrencyInstance(locale);
-                if(Integer.parseInt(food.getDiscount()) > 10) foodViewHolder.discount_image.setImageResource(R.drawable.bigdiscount);
-                else if(Integer.parseInt(food.getDiscount()) > 0) foodViewHolder.discount_image.setImageResource(R.drawable.smalldiscount);
+            protected void onBindViewHolder(@NonNull FoodViewHolder foodViewHolder, int i, @NonNull final Food food) {
+                foodViewHolder.discount_image.setImageResource(Common.convertDiscountToImage(food.getDiscount()));
                 foodViewHolder.food_name.setText(food.getName());
-                foodViewHolder.food_price.setText(fmt.format(Integer.parseInt(food.getPrice())));
+                foodViewHolder.food_price.setText(Common.convertPricetoVND(food.getPrice()));
                 Picasso.with(getContext()).load(food.getImage()).into(foodViewHolder.food_image);
 
-                final Food clickItem = food;
                 foodViewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
                         Intent foodDetail = new Intent(getContext(), FoodDetail.class);
-                        foodDetail.putExtra("foodID", adapterNewFood.getRef(position).getKey());
+                        foodDetail.putExtra("foodRef", adapterNewFood.getRef(position).getKey());
                         startActivity(foodDetail);
                     }
                 });
@@ -139,6 +135,7 @@ public class HomeFragment extends Fragment {
         adapterNewFood.startListening();
         newFoodRecycler.setAdapter(adapterNewFood);
     }
+
 
     @Override
     public void onStop() {
