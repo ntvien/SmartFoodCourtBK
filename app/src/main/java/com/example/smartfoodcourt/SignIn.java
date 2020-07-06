@@ -35,7 +35,6 @@ import org.json.JSONObject;
 
 import io.paperdb.Paper;
 
-//public class SignIn extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener, View.OnClickListener {
 public class SignIn extends AppCompatActivity {
 
     TextView textSignUp, textForgotPassword;
@@ -43,19 +42,11 @@ public class SignIn extends AppCompatActivity {
     EditText editPassword, editUserName;
     CheckBox checkBoxRemember;
 
-    // Facebook
-    private static final String TAG = SignIn.class.getSimpleName();
-    CallbackManager callbackManager;
-    LoginButton fbLoginButton;
-    // Facebook
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
-
-        //LoginFacebook
-        loginFacebook();
 
         //Remember Password
         rememberPassword();
@@ -179,62 +170,6 @@ public class SignIn extends AppCompatActivity {
         }
     }
 
-    // Login Facebook
-    private void loginFacebook() {
-        FacebookSdk.sdkInitialize(this.getApplicationContext());
-        callbackManager = CallbackManager.Factory.create();
 
-        fbLoginButton = (LoginButton) findViewById(R.id.btnLoginFacebook);
-
-        fbLoginButton.setReadPermissions("email");
-
-        fbLoginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                Log.d(TAG, "======Facebook login success======");
-                Log.d(TAG, "Facebook Access Token: " + loginResult.getAccessToken().getToken());
-                Toast.makeText(SignIn.this, "Login Facebook success.", Toast.LENGTH_SHORT).show();
-                getFbInfo();
-            }
-
-            @Override
-            public void onCancel() {
-                Toast.makeText(SignIn.this, "Login Facebook cancelled.", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onError(FacebookException error) {
-                Log.e(TAG, "======Facebook login error======");
-                Log.e(TAG, "Error: " + error.toString());
-                Toast.makeText(SignIn.this, "Login Facebook error.", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        callbackManager.onActivityResult(requestCode, resultCode, data);
-    }
-
-    private void getFbInfo() {
-        if (AccessToken.getCurrentAccessToken() != null) {
-            GraphRequest request = GraphRequest.newMeRequest(AccessToken.getCurrentAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
-                @Override
-                public void onCompleted(final JSONObject me, GraphResponse response) {
-                    if (me != null) {
-                        Log.i("Login: ", me.optString("name"));
-                        Log.i("ID: ", me.optString("id"));
-                        Toast.makeText(SignIn.this, "Name: " + me.optString("name"), Toast.LENGTH_SHORT).show();
-                        Toast.makeText(SignIn.this, "ID: " + me.optString("id"), Toast.LENGTH_SHORT).show();
-                    }
-                }
-            });
-            Bundle parameters = new Bundle();
-            parameters.putString("fields", "id,name,link");
-            request.setParameters(parameters);
-            request.executeAsync();
-        }
-    }
 }
 

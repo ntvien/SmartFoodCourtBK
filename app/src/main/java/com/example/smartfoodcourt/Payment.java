@@ -1,96 +1,60 @@
 package com.example.smartfoodcourt;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
-import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import android.widget.ProgressBar;
 import android.widget.Toast;
-
-import com.example.smartfoodcourt.Common.Config;
-import com.paypal.android.sdk.payments.PayPalConfiguration;
-import com.paypal.android.sdk.payments.PayPalPayment;
-import com.paypal.android.sdk.payments.PayPalService;
-import com.paypal.android.sdk.payments.PaymentActivity;
-import com.paypal.android.sdk.payments.PaymentConfirmation;
-
-import org.json.JSONException;
-
-import java.math.BigDecimal;
 
 public class Payment extends AppCompatActivity {
 
-    public static final int PAYPAL_REQUEST_CODE = 7171;
-
-    private static PayPalConfiguration config = new PayPalConfiguration().environment(PayPalConfiguration.ENVIRONMENT_SANDBOX)
-            .clientId(Config.PAYPAL_CLIENT_ID);
-
-    Button btnPayNow;
-    EditText edtAmount;
-    String amount = "";
+    private WebView mWebView;
+    private ProgressBar progressBarPayment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
 
-        Intent intent = new Intent(this, PayPalService.class);
-        intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, config);
-        startService(intent);
+        mWebView = (WebView)findViewById(R.id.webView);
+        progressBarPayment = (ProgressBar)findViewById(R.id.progressBarPayment);
+        mWebView.getSettings().setJavaScriptEnabled(true);
+        mWebView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
+        mWebView.setWebViewClient(new WebViewClient()
 
-        btnPayNow = (Button)findViewById(R.id.btn_PayNow);
-        edtAmount = (EditText)findViewById(R.id.edtTextAmount);
+                                  {
+                                      @Override
+                                      public void onPageStarted(WebView view, String url, Bitmap favicon) {
+                                          super.onPageStarted(view, url, favicon);
+                                          mWebView.setVisibility(View.GONE);
+                                          progressBarPayment.setVisibility(View.VISIBLE);
 
-        btnPayNow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                processPayment();
-            }
-        });
+                                          if(url.equals("https://www.ashenishanka.com/")){
+                                              Toast.makeText(Payment.this, "Payment is cancelled", Toast.LENGTH_SHORT).show();
+                                              finish();
+                                          }
+                                          else if(url.equals("https://www.ashenishanka.com/done")){
+                                              Toast.makeText(Payment.this, "Payment is successful", Toast.LENGTH_SHORT).show();
+                                              payment();
+                                          }
+                                      }
+
+                                      @Override
+                                      public void onPageFinished(WebView view, String url) {
+                                          super.onPageFinished(view, url);
+                                          mWebView.setVisibility(View.VISIBLE);
+                                          progressBarPayment.setVisibility(View.GONE);
+                                      }
+                                  }
+        );
+
+        mWebView.loadUrl("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=XGYP5KF5RKWUY");
     }
 
-    private void processPayment() {
-        amount = edtAmount.getText().toString();
-        PayPalPayment payPalPayment = new PayPalPayment(new BigDecimal(String.valueOf(amount)), "USD", "Donate for Smart Food Court", PayPalPayment.PAYMENT_INTENT_SALE);
-        Intent intent = new Intent(this, PaymentActivity.class);
-        intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, config);
-        intent.putExtra(PaymentActivity.EXTRA_PAYMENT, payPalPayment);
-        startActivityForResult(intent, PAYPAL_REQUEST_CODE);
-    }
-
-    @Override
-    protected void onDestroy() {
-        stopService(new Intent(this, PayPalService.class));
-        super.onDestroy();
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == PAYPAL_REQUEST_CODE){
-            if(resultCode == RESULT_OK){
-                PaymentConfirmation confirmation = data.getParcelableExtra(PaymentActivity.EXTRA_RESULT_CONFIRMATION);
-                if(confirmation != null){
-                    try{
-                        String paymentDetails = confirmation.toJSONObject().toString(4);
-                        startActivity(new Intent(this, PaymentDetail.class)
-                            .putExtra("PaymentDetails", paymentDetails)
-                                .putExtra("PaymentAmount", amount)
-                        );
-                    }
-                    catch (JSONException e){
-                        e.printStackTrace();
-                    }
-                }
-            }
-            else if(resultCode == Activity.RESULT_CANCELED)
-                Toast.makeText(this, "Cancel", Toast.LENGTH_SHORT).show();
-        }
-        else if(resultCode == PaymentActivity.RESULT_EXTRAS_INVALID)
-            Toast.makeText(this, "Invalid", Toast.LENGTH_SHORT).show();
+    private void payment() {
     }
 }
