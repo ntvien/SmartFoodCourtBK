@@ -64,7 +64,6 @@ public class Cart extends AppCompatActivity {
         });
         loadCart();
     }
-
     private void confirmOrder() {
 
         Intent paymentIntent = new Intent(Cart.this, Payment.class);

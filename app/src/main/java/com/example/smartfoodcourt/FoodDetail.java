@@ -72,6 +72,7 @@ public class FoodDetail extends AppCompatActivity implements RatingDialogListene
             foodRef = getIntent().getStringExtra("foodRef");
             if (!foodRef.isEmpty()) {
                 foodList = FirebaseDatabase.getInstance().getReference("Food/List");
+                ratingFood = FirebaseDatabase.getInstance().getReference("Rating/" + foodRef + "/List");
                 loadFood();
             }
         }
@@ -162,7 +163,6 @@ public class FoodDetail extends AppCompatActivity implements RatingDialogListene
                        txtDes.setText(food.getDescription());
                        txtDiscount.setText(food.getDiscount() + "%");
                        ratingBar.setRating(Float.parseFloat(food.getStar()));
-                       ratingFood = FirebaseDatabase.getInstance().getReference("Rating/" + food.getFoodID() + "/List");
                     }
                 }
             }
