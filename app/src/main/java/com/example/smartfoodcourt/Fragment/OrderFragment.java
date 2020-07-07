@@ -79,7 +79,8 @@ public class OrderFragment extends Fragment {
     }
 
     private void receiveOrder(final String key, Order order) {
-        orders.child(key).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+        orders.child(key).child("status").setValue("2")
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
                 Toast.makeText(getContext(),new StringBuilder("Order").append(key).append("has been received").toString(),Toast.LENGTH_SHORT).show();
