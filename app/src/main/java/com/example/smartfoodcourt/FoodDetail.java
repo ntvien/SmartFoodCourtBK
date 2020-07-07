@@ -69,7 +69,7 @@ public class FoodDetail extends AppCompatActivity implements RatingDialogListene
         ratingBar = (RatingBar)findViewById(R.id.ratingBar);
 
         if(getIntent() != null) {
-            foodRef = getIntent().getStringExtra("foodRef");
+            foodRef = getIntent().getStringExtra(Common.INTENT_FOOD_REF);
             if (!foodRef.isEmpty()) {
                 foodList = FirebaseDatabase.getInstance().getReference("Food/List");
                 ratingFood = FirebaseDatabase.getInstance().getReference("Rating/" + foodRef + "/List");
@@ -122,7 +122,7 @@ public class FoodDetail extends AppCompatActivity implements RatingDialogListene
             @Override
             public void onClick(View view) {
                 Intent commentIntent = new Intent(FoodDetail.this, ShowComment.class);
-                commentIntent.putExtra(Common.INTENT_FOOD_ID, food.getFoodID());
+                commentIntent.putExtra(Common.INTENT_FOOD_REF, foodRef);
                 startActivity(commentIntent);
             }
         });
@@ -151,7 +151,7 @@ public class FoodDetail extends AppCompatActivity implements RatingDialogListene
     }
 
     private void loadFood() {
-        foodList.child(foodRef).addListenerForSingleValueEvent(new ValueEventListener() {
+        foodList.child(foodRef).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){

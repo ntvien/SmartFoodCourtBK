@@ -83,7 +83,7 @@ public class FoodFragment extends Fragment {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
                         Intent foodDetail = new Intent(getContext(), FoodDetail.class);
-                        foodDetail.putExtra("foodRef", foodAdapter.getRef(position).getKey());
+                        foodDetail.putExtra(Common.INTENT_FOOD_REF, foodAdapter.getRef(position).getKey());
                         startActivity(foodDetail);
                     }
                 });
@@ -140,7 +140,7 @@ public class FoodFragment extends Fragment {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
                         Intent foodDetail = new Intent(getContext(), FoodDetail.class);
-                        foodDetail.putExtra("foodRef", searchFoodAdapter.getRef(position).getKey());
+                        foodDetail.putExtra(Common.INTENT_FOOD_REF, searchFoodAdapter.getRef(position).getKey());
                         startActivity(foodDetail);
                     }
                 });

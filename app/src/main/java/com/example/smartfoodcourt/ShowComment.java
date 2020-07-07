@@ -8,14 +8,12 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
+
 import com.example.smartfoodcourt.Common.Common;
 import com.example.smartfoodcourt.Model.Rating;
 import com.example.smartfoodcourt.ViewHolder.ShowCommentViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -26,7 +24,7 @@ public class ShowComment extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference ratingFood;
     FirebaseRecyclerAdapter<Rating, ShowCommentViewHolder> adapter;
-    String foodID = "";
+    String foodRef = "";
 
     @Override
     protected void onStop() {
@@ -46,10 +44,10 @@ public class ShowComment extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
 
         if(getIntent() != null)
-            foodID = getIntent().getStringExtra(Common.INTENT_FOOD_ID);
-        if(foodID != null && !foodID.isEmpty())
+            foodRef = getIntent().getStringExtra(Common.INTENT_FOOD_REF);
+        if(foodRef != null && !foodRef.isEmpty())
         {
-            ratingFood = database.getReference("Rating/" + foodID);
+            ratingFood = database.getReference("Rating/" + foodRef);
             FirebaseRecyclerOptions<Rating> options = new FirebaseRecyclerOptions.Builder<Rating>().setQuery(ratingFood.child("List"), Rating.class).build();
             adapter = new FirebaseRecyclerAdapter<Rating, ShowCommentViewHolder>(options) {
                 @Override
@@ -67,7 +65,7 @@ public class ShowComment extends AppCompatActivity {
                     return new ShowCommentViewHolder(view);
                 }
             };
-            loadComment(foodID);
+            loadComment(foodRef);
         }
     }
 
