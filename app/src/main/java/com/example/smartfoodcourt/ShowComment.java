@@ -34,6 +34,12 @@ public class ShowComment extends AppCompatActivity {
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        adapter.startListening();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_comment);
@@ -68,8 +74,6 @@ public class ShowComment extends AppCompatActivity {
             loadComment(foodRef);
         }
     }
-
-
 
     private void loadComment(String foodID) {
         adapter.startListening();

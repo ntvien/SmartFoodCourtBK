@@ -57,6 +57,17 @@ public class FoodFragment extends Fragment {
         return root;
     }
 
+
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if(searchFoodAdapter != null){
+            searchFoodAdapter.stopListening();
+        }
+        foodAdapter.stopListening();
+    }
+
     private void loadFoodList() {
         String param = null;
         FirebaseRecyclerOptions<Food> options;

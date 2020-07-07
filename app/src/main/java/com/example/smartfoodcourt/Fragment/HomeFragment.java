@@ -26,6 +26,7 @@ import com.example.smartfoodcourt.Model.Food;
 import com.example.smartfoodcourt.Model.Stall;
 import com.example.smartfoodcourt.R;
 import com.example.smartfoodcourt.ViewHolder.FoodViewHolder;
+import com.example.smartfoodcourt.ViewHolder.GreatFoodViewHolder;
 import com.example.smartfoodcourt.ViewHolder.StallViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -43,7 +44,7 @@ public class HomeFragment extends Fragment {
     FirebaseDatabase database;
     DatabaseReference foodList, supplierList;
 
-    FirebaseRecyclerAdapter<Food, FoodViewHolder> adapterNewFood;
+    FirebaseRecyclerAdapter<Food, GreatFoodViewHolder> adapterNewFood;
     FirebaseRecyclerAdapter<Stall, StallViewHolder> adapterStall;
 
     public View onCreateView(@NonNull final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -97,7 +98,6 @@ public class HomeFragment extends Fragment {
             }
         };
         adapterStall.notifyDataSetChanged();
-        adapterStall.startListening();
         stallRecycler.setAdapter(adapterStall);
     }
 
@@ -106,17 +106,17 @@ public class HomeFragment extends Fragment {
         FirebaseRecyclerOptions<Food> options = new FirebaseRecyclerOptions.Builder<Food>()
                 .setQuery(foodList.orderByChild("star").limitToLast(5), Food.class).build();
 
-        adapterNewFood = new FirebaseRecyclerAdapter<Food, FoodViewHolder>(options) {
+        adapterNewFood = new FirebaseRecyclerAdapter<Food, GreatFoodViewHolder>(options) {
             @Override
-            protected void onBindViewHolder(@NonNull FoodViewHolder foodViewHolder, int i, @NonNull final Food food) {
+            protected void onBindViewHolder(@NonNull GreatFoodViewHolder greatFoodViewHolder, int i, @NonNull Food food) {
 
+                greatFoodViewHolder.ratingBar.setRating(Float.parseFloat(food.getStar()));
+                greatFoodViewHolder.discount_image.setImageResource(Common.convertDiscountToImage(food.getDiscount()));
+                greatFoodViewHolder.food_name.setText(food.getName());
+                greatFoodViewHolder.food_price.setText(Common.convertPricetoVND(food.getPrice()));
+                Picasso.with(getContext()).load(food.getImage()).into(greatFoodViewHolder.food_image);
 
-                foodViewHolder.discount_image.setImageResource(Common.convertDiscountToImage(food.getDiscount()));
-                foodViewHolder.food_name.setText(food.getName());
-                foodViewHolder.food_price.setText(Common.convertPricetoVND(food.getPrice()));
-                Picasso.with(getContext()).load(food.getImage()).into(foodViewHolder.food_image);
-
-                foodViewHolder.setItemClickListener(new ItemClickListener() {
+                greatFoodViewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
                         Intent foodDetail = new Intent(getContext(), FoodDetail.class);
@@ -128,24 +128,30 @@ public class HomeFragment extends Fragment {
 
             @NonNull
             @Override
-            public FoodViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
+            public GreatFoodViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                 newFoodRecycler.setLayoutAnimation(AnimationUtils.loadLayoutAnimation(getContext(),R.anim.layout_item_from_left));
 
                 View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.great_food_item, parent, false);
-                return new FoodViewHolder(itemView);
+                return new GreatFoodViewHolder(itemView);
             }
         };
 
         adapterNewFood.notifyDataSetChanged();
-        adapterNewFood.startListening();
         newFoodRecycler.setAdapter(adapterNewFood);
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        adapterNewFood.startListening();
+        adapterStall.startListening();
+    }
 
     @Override
     public void onStop() {
         super.onStop();
+        adapterNewFood.stopListening();
+        adapterStall.stopListening();
     }
 
 }

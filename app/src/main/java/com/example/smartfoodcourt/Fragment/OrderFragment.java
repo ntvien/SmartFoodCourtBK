@@ -94,8 +94,15 @@ public class OrderFragment extends Fragment {
     }
 
     @Override
+    public void onStart() {
+        super.onStart();
+        adapterOrder.startListening();
+    }
+
+    @Override
     public void onStop() {
         super.onStop();
+        adapterOrder.stopListening();
     }
 
 
