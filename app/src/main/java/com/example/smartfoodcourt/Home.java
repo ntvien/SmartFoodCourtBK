@@ -77,6 +77,7 @@ public class Home extends AppCompatActivity  {
                     signIn.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(signIn);
                     Paper.book().destroy();
+                    finish();
                 }
                 if(id == R.id.nav_home){
                     btnCart.show();

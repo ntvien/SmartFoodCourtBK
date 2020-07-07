@@ -57,8 +57,8 @@ public class HomeFragment extends Fragment {
         stallRecycler = root.findViewById(R.id.stall_recycler);
 
         newFoodRecycler.setHasFixedSize(true);
-        newFoodRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
-        stallRecycler.setLayoutManager(new LinearLayoutManager(getContext(),RecyclerView.HORIZONTAL,true));
+        newFoodRecycler.setLayoutManager(new LinearLayoutManager(getContext(),RecyclerView.HORIZONTAL,false));
+        stallRecycler.setLayoutManager(new LinearLayoutManager(getContext(),RecyclerView.HORIZONTAL,false));
         loadGreatFoodList();
         loadStallList();
         return root;

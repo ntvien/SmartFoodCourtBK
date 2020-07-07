@@ -16,9 +16,6 @@ import com.example.smartfoodcourt.R;
 
 public class SignOut extends Fragment {
 
-    public static SignOut newInstance() {
-        return new SignOut();
-    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -31,4 +28,5 @@ public class SignOut extends Fragment {
         super.onActivityCreated(savedInstanceState);
       
     }
+
 }
