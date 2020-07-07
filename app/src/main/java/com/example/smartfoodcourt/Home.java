@@ -1,5 +1,6 @@
 package com.example.smartfoodcourt;
 
+import android.app.Service;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -17,22 +18,19 @@ import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.andremion.counterfab.CounterFab;
-import com.example.smartfoodcourt.Common.Common;
 import com.example.smartfoodcourt.Database.Database;
 import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
+import com.example.smartfoodcourt.Service.CompletedOrder;
 import io.paperdb.Paper;
 
 public class Home extends AppCompatActivity  {
 
     private AppBarConfiguration mAppBarConfiguration;
     CounterFab btnCart;
-
+    Intent service;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,6 +92,8 @@ public class Home extends AppCompatActivity  {
                 }
             }
         });
+        service = new Intent(Home.this, CompletedOrder.class);
+        startService(service);
     }
 
     @Override
@@ -118,5 +118,6 @@ public class Home extends AppCompatActivity  {
     @Override
     protected void onStop() {
         super.onStop();
+        stopService(service);
     }
 }
