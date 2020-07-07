@@ -18,13 +18,14 @@
             android:id="@+id/food_image"
             android:layout_width="100dp"
             android:layout_height="100dp"
+            android:scaleType="centerCrop"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/banhbaotrungmuoi" />
+            app:srcCompat="@drawable/background" />
 
         <TextView
             android:id="@+id/name"
@@ -47,7 +48,7 @@
             android:id="@+id/price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="30dp"
+            android:layout_marginEnd="35dp"
             android:fontFamily="@font/semibold"
             android:text="$6.05"
             android:textColor="#FF6813"
@@ -58,12 +59,13 @@
 
         <ImageView
             android:id="@+id/imgDiscount"
-            android:layout_width="100dp"
-            android:layout_height="37dp"
+            android:layout_width="68dp"
+            android:layout_height="31dp"
+            android:layout_marginStart="35dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/price"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/name"
+            app:layout_constraintStart_toEndOf="@+id/food_image"
             app:layout_constraintTop_toBottomOf="@+id/name" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

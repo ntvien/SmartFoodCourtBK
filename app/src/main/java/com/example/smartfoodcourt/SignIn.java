@@ -3,6 +3,7 @@ package com.example.smartfoodcourt;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -29,7 +30,6 @@ public class SignIn extends AppCompatActivity {
     Button btnSignIn;
     EditText editPassword, editUserName;
     CheckBox checkBoxRemember;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +78,18 @@ public class SignIn extends AppCompatActivity {
     private void login() {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference table_user = database.getReference("User/List");
+
+        final String username = editUserName.getText().toString();
+        final String password = editPassword.getText().toString();
+
+        if(TextUtils.isEmpty(username)){
+            Toast.makeText(SignIn.this, "Please Enter Username", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        else if(TextUtils.isEmpty(password)){
+            Toast.makeText(SignIn.this, "Please Enter Password", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         final ProgressDialog mDialog = new ProgressDialog(SignIn.this);
         mDialog.setMessage("Please waiting...");

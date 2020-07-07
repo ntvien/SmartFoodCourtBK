@@ -120,7 +120,7 @@ public class SignUp extends AppCompatActivity {
                 else {
                     mDialog.dismiss();
                     Toast.makeText(SignUp.this, "Email existed or invalid. Sign up Failed", Toast.LENGTH_SHORT).show();
-                    finish();
+
                 }
             }
         });
