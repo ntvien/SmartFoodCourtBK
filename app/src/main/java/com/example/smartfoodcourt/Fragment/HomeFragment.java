@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 
 import androidx.annotation.NonNull;
@@ -108,6 +109,8 @@ public class HomeFragment extends Fragment {
         adapterNewFood = new FirebaseRecyclerAdapter<Food, FoodViewHolder>(options) {
             @Override
             protected void onBindViewHolder(@NonNull FoodViewHolder foodViewHolder, int i, @NonNull final Food food) {
+
+
                 foodViewHolder.discount_image.setImageResource(Common.convertDiscountToImage(food.getDiscount()));
                 foodViewHolder.food_name.setText(food.getName());
                 foodViewHolder.food_price.setText(Common.convertPricetoVND(food.getPrice()));
@@ -126,7 +129,10 @@ public class HomeFragment extends Fragment {
             @NonNull
             @Override
             public FoodViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.food_item, parent, false);
+
+                newFoodRecycler.setLayoutAnimation(AnimationUtils.loadLayoutAnimation(getContext(),R.anim.layout_item_from_left));
+
+                View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.great_food_item, parent, false);
                 return new FoodViewHolder(itemView);
             }
         };
