@@ -9,7 +9,7 @@ import java.util.Locale;
 public class Common {
     public static User user;
     public static String userName;
-    public static final String INTENT_FOOD_ID = "FoodID";
+    public static final String INTENT_FOOD_REF = "FoodRef";
     public static final String USER_KEY = "User";
     public static final String PASSWORD_KEY = "Password";
     public static String convertCodeToStatus(String status) {

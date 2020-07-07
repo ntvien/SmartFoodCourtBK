@@ -117,7 +117,7 @@ public class HomeFragment extends Fragment {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
                         Intent foodDetail = new Intent(getContext(), FoodDetail.class);
-                        foodDetail.putExtra("foodRef", adapterNewFood.getRef(position).getKey());
+                        foodDetail.putExtra(Common.INTENT_FOOD_REF, adapterNewFood.getRef(position).getKey());
                         startActivity(foodDetail);
                     }
                 });
