@@ -103,7 +103,9 @@ public class CompletedOrder extends Service implements ChildEventListener {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        managerCompat.cancelAll();
+        if(managerCompat != null){
+            managerCompat.cancelAll();
+        }
     }
 
     @Override
