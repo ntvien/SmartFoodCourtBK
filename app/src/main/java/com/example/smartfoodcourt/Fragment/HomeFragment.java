@@ -116,6 +116,10 @@ public class HomeFragment extends Fragment {
                 greatFoodViewHolder.food_price.setText(Common.convertPricetoVND(food.getPrice()));
                 Picasso.with(getContext()).load(food.getImage()).into(greatFoodViewHolder.food_image);
 
+                if(food.getStatus().equals("1")){
+                    greatFoodViewHolder.outOfOrder_image.setImageResource(Common.convertOutOfOrderToImage(food.getStatus()));
+                }
+
                 greatFoodViewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {

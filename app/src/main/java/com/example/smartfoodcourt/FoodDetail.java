@@ -1,5 +1,6 @@
 package com.example.smartfoodcourt;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartfoodcourt.Common.Common;
@@ -30,14 +32,16 @@ import com.stepstone.apprating.listener.RatingDialogListener;
 import org.jetbrains.annotations.NotNull;
 
 import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Locale;
 
 public class FoodDetail extends AppCompatActivity implements RatingDialogListener {
 
     TextView txtName, txtPrice, txtDes, txtDiscount, txtQuantity;
-    ImageView imgFood, imgAddCart, btnUp, btnDown, imgDiscount, imgCart;
-    Button btnBackDetail;
+    ImageView imgFood, imgAddCart, btnUp, btnDown, imgDiscount, imgCart, imgOutOfOrder;
+    Button btnBackDetail, btnOrderBy;
+    AlertDialog orderDialog;
 
     String foodRef = "";
     Food food;
@@ -59,6 +63,7 @@ public class FoodDetail extends AppCompatActivity implements RatingDialogListene
         txtQuantity = (TextView)findViewById(R.id.txtQuantity);
         imgFood = (ImageView)findViewById(R.id.imgFood);
         imgDiscount = (ImageView)findViewById(R.id.imgDiscount);
+        imgOutOfOrder = (ImageView)findViewById(R.id.outOfOrder_image);
         btnBackDetail = (Button)findViewById(R.id.btnBack);
         imgAddCart = (ImageView) findViewById(R.id.imgAddCart);
         imgCart = (ImageView)findViewById(R.id.imgCart);
@@ -67,6 +72,7 @@ public class FoodDetail extends AppCompatActivity implements RatingDialogListene
         btnStar = (FloatingActionButton)findViewById(R.id.btnStar);
         btnComment = (FloatingActionButton)findViewById(R.id.btnComment);
         ratingBar = (RatingBar)findViewById(R.id.ratingBar);
+        btnOrderBy = (Button)findViewById(R.id.btnOrderBy);
 
         if(getIntent() != null) {
             foodRef = getIntent().getStringExtra(Common.INTENT_FOOD_REF);
@@ -111,6 +117,13 @@ public class FoodDetail extends AppCompatActivity implements RatingDialogListene
             }
         });
 
+        btnOrderBy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showAlert();
+            }
+        });
+
         btnStar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -130,10 +143,15 @@ public class FoodDetail extends AppCompatActivity implements RatingDialogListene
         imgAddCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new Database(getBaseContext()).addToCart(new CartItem(food.getName(),
-                        food.getPrice(), txtQuantity.getText().toString(),
-                        food.getDiscount(), food.getFoodID()), food.getSupplierID());
-                Toast.makeText(FoodDetail.this, "Food is added to your cart", Toast.LENGTH_SHORT).show();
+                if(food.getStatus().equals("0")){
+                    new Database(getBaseContext()).addToCart(new CartItem(food.getName(),
+                            food.getPrice(), txtQuantity.getText().toString(),
+                            food.getDiscount(), food.getFoodID()), food.getSupplierID());
+                    Toast.makeText(FoodDetail.this, "Food is added to your cart", Toast.LENGTH_SHORT).show();
+                }
+                else if(food.getStatus().equals("1")){
+                    Toast.makeText(FoodDetail.this, "Food is out of order", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
@@ -163,6 +181,11 @@ public class FoodDetail extends AppCompatActivity implements RatingDialogListene
                        txtDes.setText(food.getDescription());
                        txtDiscount.setText(food.getDiscount() + "%");
                        ratingBar.setRating(Float.parseFloat(food.getStar()));
+
+                        if(food.getStatus().equals("1")){
+                            imgOutOfOrder.setImageResource(Common.convertOutOfOrderToImage(food.getStatus()));
+                        }
+
                     }
                 }
             }
@@ -183,5 +206,35 @@ public class FoodDetail extends AppCompatActivity implements RatingDialogListene
 
         final Rating rating = new Rating(String.valueOf(valueRating), comments);
         ratingFood.child(Common.userName).setValue(rating);
+    }
+
+    private void showAlert(){
+        AlertDialog.Builder myBuilder = new AlertDialog.Builder(this);
+        final CharSequence[] orderBy = {"Eat it", "Take away"};
+        final ArrayList selectedItems = new ArrayList();
+        myBuilder.setTitle("Order By ???").setMultiChoiceItems(orderBy, null, new DialogInterface.OnMultiChoiceClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int position, boolean isChecked) {
+                if(isChecked){
+                    selectedItems.add(orderBy[position]);
+                }
+                else if(selectedItems.contains(position)){
+                    selectedItems.remove(Integer.valueOf(position));
+                }
+            }
+        });
+
+        myBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+//                StringBuilder stringBuilder = new StringBuilder();
+//                for(Object orderBy:selectedItems){
+//                    stringBuilder.append(orderBy.toString());
+//                }
+//                Toast.makeText(FoodDetail.this, stringBuilder.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+        orderDialog = myBuilder.create();
+        orderDialog.show();
     }
 }

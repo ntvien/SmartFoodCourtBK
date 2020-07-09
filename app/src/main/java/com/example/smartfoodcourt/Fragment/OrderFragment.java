@@ -52,7 +52,7 @@ public class OrderFragment extends Fragment {
         adapterOrder = new FirebaseRecyclerAdapter<Order, OrderViewHolder>(options) {
             @Override
             protected void onBindViewHolder(@NonNull OrderViewHolder orderViewHolder, final int position, @NonNull final Order order) {
-                orderViewHolder.txtOrderId.setText(adapterOrder.getRef(position).getKey());
+                orderViewHolder.txtOrderId.setText("Stall: " + order.getSupplierID().toString());
                 orderViewHolder.txtOrderStatus.setText(Common.convertCodeToStatus(order.getStatus()));
                 orderViewHolder.txtOrderPhone.setText(order.getPhone());
                 orderViewHolder.btnReceive.setOnClickListener(new View.OnClickListener() {

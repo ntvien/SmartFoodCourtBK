@@ -8,6 +8,7 @@ public class Order {
     private String total;
     private String status;
     private String supplierID;
+    private String type;
     private List<CartItem> foods;
 
     public Order() {
@@ -21,8 +22,9 @@ public class Order {
         this.supplierID = supplierID;
     }
 
-    public Order(String phone, CartStallItem t) {
+    public Order(String phone, String type, CartStallItem t) {
         this.phone = phone;
+        this.type = type;
         this.total = t.getTotal().toString();
         this.supplierID = t.getSupplierID();
         this.foods = t.getCartItemList();
@@ -35,6 +37,14 @@ public class Order {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getPhone() {

@@ -70,7 +70,7 @@ public class Cart extends AppCompatActivity {
         startActivity(paymentIntent);
 
         for(CartStallItem t: cartStallItemList){
-            Order order =  new Order(Common.user.getPhone(), t);
+            Order order =  new Order(Common.user.getPhone(),Common.user.getPhone(), t);
             requestList.child(String.valueOf(System.currentTimeMillis())).setValue(order);
         }
         new Database(getBaseContext()).cleanCart();
@@ -82,6 +82,9 @@ public class Cart extends AppCompatActivity {
         adapter = new CartStallAdapter(cartStallItemList, this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutAnimation(AnimationUtils.loadLayoutAnimation(getBaseContext(),R.anim.layout_item_from_left));
+
+        
+
         //Calculate Total
         float total = 0;
         for (CartStallItem cartStallItem :cartStallItemList) {
