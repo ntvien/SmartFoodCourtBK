@@ -156,7 +156,6 @@ public class FoodDetail extends AppCompatActivity implements RatingDialogListene
         });
     }
 
-
     private void showDialogRating() {
         new AppRatingDialog.Builder().setPositiveButtonText("Comment").setNegativeButtonText("Cancel")
                 .setNoteDescriptions((Arrays.asList("Very Bad", "Not Good", "Quite OK", "Very Good", "Excellent")))
@@ -209,55 +208,25 @@ public class FoodDetail extends AppCompatActivity implements RatingDialogListene
     }
 
     private void showAlert(){
-
-
-//        String[] list;
-//        list = new String[]{"Eat in", "Take away"};
-//        AlertDialog.Builder mBuilder = new AlertDialog.Builder(FoodDetail.this);
-//        mBuilder.setTitle("Order By ???");
-//        //mBuilder.setIcon();
-//        mBuilder.setSingleChoiceItems(list, -1, new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialogInterface, int i) {
-//
-//            }
-//        });
-//        mBuilder.setNeutralButton("OK", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialogInterface, int i) {
-//
-//            }
-//        });
-//        AlertDialog mDialog = mBuilder.create();
-//        mDialog.show();
-
-
-        AlertDialog.Builder myBuilder = new AlertDialog.Builder(this);
-        final CharSequence[] orderBy = {"Eat it", "Take away"};
-        final ArrayList selectedItems = new ArrayList();
-        myBuilder.setTitle("Order By ???").setMultiChoiceItems(orderBy, null, new DialogInterface.OnMultiChoiceClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int position, boolean isChecked) {
-                if(isChecked){
-                    selectedItems.add(orderBy[position]);
-                }
-                else if(selectedItems.contains(position)){
-                    selectedItems.remove(Integer.valueOf(position));
-                }
-            }
-        });
-
-        myBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+        final String[] list;
+        list = new String[]{"Eat in", "Take away"};
+        AlertDialog.Builder mBuilder = new AlertDialog.Builder(FoodDetail.this);
+        mBuilder.setTitle("Order By ???");
+        mBuilder.setIcon(R.drawable.ic_baseline_table_chart_24);
+        mBuilder.setSingleChoiceItems(list, -1, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-//                StringBuilder stringBuilder = new StringBuilder();
-//                for(Object orderBy:selectedItems){
-//                    stringBuilder.append(orderBy.toString());
-//                }
-//                Toast.makeText(FoodDetail.this, stringBuilder.toString(), Toast.LENGTH_SHORT).show();
+
             }
         });
-        orderDialog = myBuilder.create();
+        mBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
+        orderDialog = mBuilder.create();
         orderDialog.show();
     }
+
 }
