@@ -66,6 +66,20 @@ public class HomeFragment extends Fragment {
         return root;
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        adapterNewFood.startListening();
+        adapterStall.startListening();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        adapterNewFood.stopListening();
+        adapterStall.stopListening();
+    }
+
     private void loadStallList() {
 
         FirebaseRecyclerOptions<Stall> options = new FirebaseRecyclerOptions.Builder<Stall>().setQuery(supplierList, Stall.class).build();
@@ -97,6 +111,7 @@ public class HomeFragment extends Fragment {
                 return new StallViewHolder(itemView);
             }
         };
+        adapterStall.startListening();
         adapterStall.notifyDataSetChanged();
         stallRecycler.setAdapter(adapterStall);
     }
@@ -110,15 +125,12 @@ public class HomeFragment extends Fragment {
             @Override
             protected void onBindViewHolder(@NonNull GreatFoodViewHolder greatFoodViewHolder, int i, @NonNull Food food) {
 
+                greatFoodViewHolder.outOfOrder_image.setImageResource(Common.convertOutOfOrderToImage(food.getStatus()));
                 greatFoodViewHolder.ratingBar.setRating(Float.parseFloat(food.getStar()));
                 greatFoodViewHolder.discount_image.setImageResource(Common.convertDiscountToImage(food.getDiscount()));
                 greatFoodViewHolder.food_name.setText(food.getName());
                 greatFoodViewHolder.food_price.setText(Common.convertPricetoVND(food.getPrice()));
                 Picasso.with(getContext()).load(food.getImage()).into(greatFoodViewHolder.food_image);
-
-                if(food.getStatus().equals("1")){
-                    greatFoodViewHolder.outOfOrder_image.setImageResource(Common.convertOutOfOrderToImage(food.getStatus()));
-                }
 
                 greatFoodViewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
@@ -133,29 +145,14 @@ public class HomeFragment extends Fragment {
             @NonNull
             @Override
             public GreatFoodViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                newFoodRecycler.setLayoutAnimation(AnimationUtils.loadLayoutAnimation(getContext(),R.anim.layout_item_from_left));
-
                 View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.great_food_item, parent, false);
+                newFoodRecycler.setLayoutAnimation(AnimationUtils.loadLayoutAnimation(getContext(),R.anim.layout_item_from_left));
                 return new GreatFoodViewHolder(itemView);
             }
         };
-
+        adapterNewFood.startListening();
         adapterNewFood.notifyDataSetChanged();
         newFoodRecycler.setAdapter(adapterNewFood);
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        adapterNewFood.startListening();
-        adapterStall.startListening();
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        adapterNewFood.stopListening();
-        adapterStall.stopListening();
     }
 
 }

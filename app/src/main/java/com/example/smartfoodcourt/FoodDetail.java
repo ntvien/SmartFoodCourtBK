@@ -209,6 +209,29 @@ public class FoodDetail extends AppCompatActivity implements RatingDialogListene
     }
 
     private void showAlert(){
+
+
+//        String[] list;
+//        list = new String[]{"Eat in", "Take away"};
+//        AlertDialog.Builder mBuilder = new AlertDialog.Builder(FoodDetail.this);
+//        mBuilder.setTitle("Order By ???");
+//        //mBuilder.setIcon();
+//        mBuilder.setSingleChoiceItems(list, -1, new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialogInterface, int i) {
+//
+//            }
+//        });
+//        mBuilder.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialogInterface, int i) {
+//
+//            }
+//        });
+//        AlertDialog mDialog = mBuilder.create();
+//        mDialog.show();
+
+
         AlertDialog.Builder myBuilder = new AlertDialog.Builder(this);
         final CharSequence[] orderBy = {"Eat it", "Take away"};
         final ArrayList selectedItems = new ArrayList();
