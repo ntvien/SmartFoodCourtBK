@@ -13,15 +13,17 @@ public class Common {
     public static final String USER_KEY = "User";
     public static final String PASSWORD_KEY = "Password";
     public static String convertCodeToStatus(String status) {
-        //0: preparing, 1: ready, 2: received
+        // 0: preparing, 1: ready, 2: received
         if (status.equals("0")) return "Preparing";
         else return "Completed";
     }
+
     public static String convertPricetoVND(String price) {
         Locale locale = new Locale("vi", "VN");
         NumberFormat fmt = NumberFormat.getCurrencyInstance(locale);
         return fmt.format(Integer.parseInt(price));
     }
+
     public static String convertPricetoVND(Float price) {
         Locale locale = new Locale("vi", "VN");
         NumberFormat fmt = NumberFormat.getCurrencyInstance(locale);
@@ -32,5 +34,16 @@ public class Common {
         if(Integer.parseInt(discount) > 10) return R.drawable.bigdiscount;
         else if(Integer.parseInt(discount) > 0) return R.drawable.smalldiscount;
         return 0;
+    }
+
+    public static int convertOutOfOrderToImage(String statusOutOfOrder){
+        if(statusOutOfOrder.equals("0")) return 0;
+        else return R.drawable.outoforder;
+    }
+
+    public static String convertCodeToType(String type) {
+        // 0: Eat it, 1: Take away
+        if (type.equals("0")) return "Eat it";
+        else return "Take away";
     }
 }

@@ -9,7 +9,7 @@
     android:layout_marginTop="16dp"
     android:layout_marginStart="8dp"
     android:layout_marginEnd="8dp"
-    android:layout_height="250dp">
+    android:layout_height="245dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -17,7 +17,7 @@
 
         <ImageView
             android:id="@+id/food_image"
-            android:layout_width="155dp"
+            android:layout_width="175dp"
             android:layout_height="175dp"
             android:layout_marginBottom="8dp"
             android:scaleType="centerCrop"
@@ -31,29 +31,31 @@
 
         <TextView
             android:id="@+id/name"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="40dp"
+            android:layout_width="139dp"
+            android:layout_height="76dp"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="35dp"
             android:fontFamily="@font/semibold"
             android:text="Burger"
             android:textColor="#091020"
-            android:textSize="22sp"
+            android:textSize="26sp"
             app:layout_constraintStart_toStartOf="@+id/linearLayout"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="MissingConstraints" />
 
         <LinearLayout
             android:id="@+id/linearLayout"
-            android:layout_width="230dp"
-            android:layout_height="45dp"
-            android:layout_marginStart="161dp"
+            android:layout_width="235dp"
+            android:layout_height="42dp"
+            android:layout_marginStart="160dp"
             android:layout_marginEnd="10dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.74"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.58000004">
 
 
             <RatingBar
@@ -62,14 +64,16 @@
                 android:layout_height="match_parent"
                 android:isIndicator="true"
                 android:max="5"
-                android:rating="0" />
+                android:rating="0"
+                android:scaleX="0.7"
+                android:scaleY="0.7" />
         </LinearLayout>
 
         <TextView
             android:id="@+id/price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="24dp"
+            android:layout_marginEnd="20dp"
             android:fontFamily="@font/semibold"
             android:text="10.000đ"
             android:textColor="#FF6813"
@@ -77,16 +81,31 @@
             app:layout_constraintBottom_toBottomOf="@+id/imgDiscount"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/imgDiscount"
+            app:layout_constraintVertical_bias="1.0"
             tools:ignore="MissingConstraints" />
 
         <ImageView
             android:id="@+id/imgDiscount"
-            android:layout_width="76dp"
-            android:layout_height="36dp"
-            android:layout_marginTop="24dp"
-            app:layout_constraintStart_toStartOf="@+id/name"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+            android:layout_width="83dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="185dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="30dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/linearLayout"
             tools:ignore="MissingConstraints" />
+
+        <ImageView
+            android:id="@+id/outOfOrder_image"
+            android:layout_width="179dp"
+            android:layout_height="59dp"
+            android:layout_marginStart="270dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

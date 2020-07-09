@@ -8,6 +8,7 @@ public class Food {
     private String name;
     private String price;
     private String star;
+    private String status;
     private String supplierID;
     public Food() {
     }
@@ -28,7 +29,7 @@ public class Food {
         this.star = star;
     }
 
-    public Food(String description, String discount, String foodID, String image, String name, String price, String star, String supplierID) {
+    public Food(String description, String discount, String foodID, String image, String name, String price, String star, String status, String supplierID) {
         this.description = description;
         this.discount = discount;
         this.foodID = foodID;
@@ -36,6 +37,7 @@ public class Food {
         this.name = name;
         this.price = price;
         this.star = star;
+        this.status = status ;
         this.supplierID = supplierID;
     }
 
@@ -78,6 +80,10 @@ public class Food {
     public void setDiscount(String discount) {
         this.discount = discount;
     }
+
+    public String getStatus(){ return status; }
+
+    public void setStatus(String status) { this.status = status; }
 
     public String getSupplierID() {
         return supplierID;

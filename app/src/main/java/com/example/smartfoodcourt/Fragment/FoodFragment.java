@@ -89,6 +89,10 @@ public class FoodFragment extends Fragment {
                 foodViewHolder.food_price.setText(Common.convertPricetoVND(food.getPrice()));
                 Picasso.with(getContext()).load(food.getImage()).into(foodViewHolder.food_image);
 
+                if(food.getStatus().equals("1")){
+                    foodViewHolder.outOfOrder_image.setImageResource(Common.convertOutOfOrderToImage(food.getStatus()));
+                }
+
                 final Food clickItem = food;
                 foodViewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
@@ -146,6 +150,10 @@ public class FoodFragment extends Fragment {
                 foodViewHolder.food_name.setText(food.getName());
                 foodViewHolder.food_price.setText(Common.convertPricetoVND(food.getPrice()));
                 Picasso.with(getContext()).load(food.getImage()).into(foodViewHolder.food_image);
+
+                if(food.getStatus().equals("1")){
+                    foodViewHolder.outOfOrder_image.setImageResource(Common.convertOutOfOrderToImage(food.getStatus()));
+                }
 
                 foodViewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
