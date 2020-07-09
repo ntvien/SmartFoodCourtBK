@@ -148,7 +148,7 @@ public class SignIn extends AppCompatActivity {
                     } else
                         Toast.makeText(SignIn.this, "Wrong Password !!!", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(SignIn.this, "User not exist in DataBase", Toast.LENGTH_LONG).show();
+                    Toast.makeText(SignIn.this, "User not exist in Database", Toast.LENGTH_LONG).show();
                 }
             }
 

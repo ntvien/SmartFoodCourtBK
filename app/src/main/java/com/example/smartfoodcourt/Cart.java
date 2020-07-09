@@ -77,7 +77,6 @@ public class Cart extends AppCompatActivity {
         //Toast.makeText(Cart.this, "Order confirmed", Toast.LENGTH_SHORT).show();
         finish();
     }
-
     private void loadCart() {
         cartStallItemList = new Database(this).getCart();
         adapter = new CartStallAdapter(cartStallItemList, this);
