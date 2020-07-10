@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.smartfoodcourt.Authentication.SignInPage;
+
 public class MainActivity extends AppCompatActivity {
 
     Button btnContinue;
@@ -28,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         btnContinue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent btnContinue = new Intent(MainActivity.this, SignIn.class);
+                Intent btnContinue = new Intent(MainActivity.this, SignInPage.class);
                 startActivity(btnContinue);
             }
         });

@@ -16,8 +16,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.smartfoodcourt.Common.Common;
-import com.example.smartfoodcourt.FoodDetail;
+import com.example.smartfoodcourt.Common;
+import com.example.smartfoodcourt.FoodPage;
 import com.example.smartfoodcourt.Interface.ItemClickListener;
 import com.example.smartfoodcourt.Model.Food;
 import com.example.smartfoodcourt.R;
@@ -27,9 +27,6 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
-
-import java.text.NumberFormat;
-import java.util.Locale;
 
 public class FoodFragment extends Fragment {
 
@@ -58,8 +55,8 @@ public class FoodFragment extends Fragment {
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
+    public void onStart() {
+        super.onStart();
         foodAdapter.startListening();
     }
 
@@ -76,7 +73,7 @@ public class FoodFragment extends Fragment {
         FirebaseRecyclerOptions<Food> options;
         Bundle bundle = this.getArguments();
         if(bundle != null) {
-             param = bundle.getString("supplierID",null);
+             param = bundle.getString(Common.CHOICE_STALL,null);
         }
         if(param == null){
             options = new FirebaseRecyclerOptions.Builder<Food>().setQuery(foodList, Food.class).build();
@@ -87,18 +84,17 @@ public class FoodFragment extends Fragment {
         foodAdapter = new FirebaseRecyclerAdapter<Food, FoodViewHolder>(options) {
             @Override
             protected void onBindViewHolder(@NonNull FoodViewHolder foodViewHolder, int i, @NonNull final Food food) {
-
-                foodViewHolder.outOfOrder_image.setImageResource(Common.convertOutOfOrderToImage(food.getStatus()));
+                if(food.getStatus().equals("1"))
+                    foodViewHolder.outOfOrder_image.setImageResource(Common.convertOutOfOrderToImage());
                 foodViewHolder.discount_image.setImageResource(Common.convertDiscountToImage(food.getDiscount()));
                 foodViewHolder.food_name.setText(food.getName());
                 foodViewHolder.food_price.setText(Common.convertPricetoVND(food.getPrice()));
                 Picasso.with(getContext()).load(food.getImage()).into(foodViewHolder.food_image);
 
-                final Food clickItem = food;
                 foodViewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
-                    public void onClick(View view, int position, boolean isLongClick) {
-                        Intent foodDetail = new Intent(getContext(), FoodDetail.class);
+                    public void onClick(View view, int position) {
+                        Intent foodDetail = new Intent(getContext(), FoodPage.class);
                         foodDetail.putExtra(Common.INTENT_FOOD_REF, foodAdapter.getRef(position).getKey());
                         startActivity(foodDetail);
                     }
@@ -112,8 +108,8 @@ public class FoodFragment extends Fragment {
                 return new FoodViewHolder(itemView);
             }
         };
+
         foodAdapter.notifyDataSetChanged();
-        foodAdapter.startListening();
         recyclerFood.setAdapter(foodAdapter);
     }
 
@@ -151,15 +147,13 @@ public class FoodFragment extends Fragment {
                 foodViewHolder.food_name.setText(food.getName());
                 foodViewHolder.food_price.setText(Common.convertPricetoVND(food.getPrice()));
                 Picasso.with(getContext()).load(food.getImage()).into(foodViewHolder.food_image);
-
-                if(food.getStatus().equals("1")){
-                    foodViewHolder.outOfOrder_image.setImageResource(Common.convertOutOfOrderToImage(food.getStatus()));
-                }
+                if(food.getStatus().equals("1"))
+                    foodViewHolder.outOfOrder_image.setImageResource(Common.convertOutOfOrderToImage());
 
                 foodViewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
-                    public void onClick(View view, int position, boolean isLongClick) {
-                        Intent foodDetail = new Intent(getContext(), FoodDetail.class);
+                    public void onClick(View view, int position) {
+                        Intent foodDetail = new Intent(getContext(), FoodPage.class);
                         foodDetail.putExtra(Common.INTENT_FOOD_REF, searchFoodAdapter.getRef(position).getKey());
                         startActivity(foodDetail);
                     }

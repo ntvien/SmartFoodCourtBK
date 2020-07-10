@@ -1,4 +1,4 @@
-package com.example.smartfoodcourt;
+package com.example.smartfoodcourt.Authentication;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -13,19 +13,21 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.smartfoodcourt.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class ForgotPassword extends AppCompatActivity {
+import static android.view.View.VISIBLE;
+
+public class ForgotPasswordPage extends AppCompatActivity {
 
     Toolbar toolbar;
     ProgressBar progressBar;
     EditText editTextEmail;
     Button btnSendEmail;
-
     FirebaseDatabase database;
     DatabaseReference table_user;
     FirebaseAuth firebaseAuth;
@@ -49,19 +51,23 @@ public class ForgotPassword extends AppCompatActivity {
         btnSendEmail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                progressBar.setVisibility(v.VISIBLE);
-                firebaseAuth.sendPasswordResetEmail(editTextEmail.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        progressBar.setVisibility(v.GONE);
-                        if(task.isSuccessful()){
-                            Toast.makeText(ForgotPassword.this, "Password send to your email", Toast.LENGTH_LONG).show();
-                        }
-                        else{
-                            Toast.makeText(ForgotPassword.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
-                        }
-                    }
-                });
+                sendEmail();
+            }
+        });
+    }
+
+    private void sendEmail() {
+        progressBar.setVisibility(VISIBLE);
+        firebaseAuth.sendPasswordResetEmail(editTextEmail.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                progressBar.setVisibility(View.GONE);
+                if(task.isSuccessful()){
+                    Toast.makeText(ForgotPasswordPage.this, "Password send to your email", Toast.LENGTH_LONG).show();
+                }
+                else{
+                    Toast.makeText(ForgotPasswordPage.this, "Something wrong", Toast.LENGTH_LONG).show();
+                }
             }
         });
     }

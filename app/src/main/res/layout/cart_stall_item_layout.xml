@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    app:cardCornerRadius="25dp"
     android:layout_margin="8dp"
     app:cardElevation="4dp"
     >
@@ -48,26 +49,27 @@
                     android:layout_weight="9"
                     android:weightSum="5">
 
-                    <TextView
-                        android:id="@+id/txtStatusOrderBy"
+
+                    <Button
+                        android:id="@+id/btnChangeType"
                         android:layout_width="0dp"
                         android:layout_height="20dp"
                         android:layout_marginLeft="50dp"
-                        android:layout_weight="3"
-                        android:gravity="center_vertical|start"
-                        android:text="Take away"
+                        android:layout_weight="2"
+                        android:background="@color/design_default_color_secondary"
+                        android:gravity="center"
+                        android:text="Eat in"
                         android:textAllCaps="true"
                         android:textColor="@color/overlayActionBar"
                         android:textStyle="bold" />
-
 
                     <TextView
                         android:id="@+id/txtTotal"
                         android:layout_width="68dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
-                        android:layout_weight="1"
-                        android:gravity="center_vertical|start"
+                        android:layout_weight="3"
+                        android:gravity="center"
                         android:text="100,000đ"
                         android:textAllCaps="true"
                         android:textColor="@color/overlayActionBar"

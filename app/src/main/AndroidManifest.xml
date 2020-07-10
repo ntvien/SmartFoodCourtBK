@@ -11,12 +11,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Payment"></activity>
-        <activity android:name=".ShowComment" />
+        <activity android:name=".PaymentPage"></activity>
+        <activity android:name=".CommentPage" />
         <activity android:name=".Cart" />
-        <activity android:name=".FoodDetail" />
+        <activity android:name=".FoodPage" />
         <activity
-            android:name=".Home"
+            android:name=".HomePage"
             android:label="@string/title_activity_home"
             android:theme="@style/AppTheme.NoActionBar" />
 
@@ -29,9 +29,9 @@
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".ForgotPassword" />
-        <activity android:name=".SignUp" />
-        <activity android:name=".SignIn" />
+        <activity android:name=".Authentication.ForgotPasswordPage" />
+        <activity android:name=".Authentication.SignUpPage" />
+        <activity android:name=".Authentication.SignInPage" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

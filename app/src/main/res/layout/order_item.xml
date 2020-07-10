@@ -31,6 +31,7 @@
                 android:gravity="center_vertical|start"
                 android:text="Stall :1"
                 android:textAllCaps="true"
+                android:textColor="@color/overlayActionBar"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -43,6 +44,7 @@
                 android:gravity="center_vertical|start"
                 android:text="Status"
                 android:textAllCaps="true"
+                android:textColor="@color/overlayActionBar"
                 android:textStyle="italic" />
 
             <TextView
@@ -53,17 +55,9 @@
                 android:gravity="center_vertical|start"
                 android:text="Total: 100.000đ"
                 android:textAllCaps="true"
+                android:textColor="@color/overlayActionBar"
                 android:textStyle="italic" />
 
-            <TextView
-                android:id="@+id/order_phone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:gravity="center_vertical|start"
-                android:text="0912345622"
-                android:textAllCaps="true"
-                android:textStyle="italic" />
 
 
         </LinearLayout>
@@ -73,7 +67,7 @@
             android:layout_height="50dp"
             android:layout_weight="2"
             android:layout_gravity="center_vertical"
-            android:src="@drawable/ic_baseline_check_24" />
+            android:src="@drawable/ic_baseline_check_circle_24" />
 
     </LinearLayout>
 

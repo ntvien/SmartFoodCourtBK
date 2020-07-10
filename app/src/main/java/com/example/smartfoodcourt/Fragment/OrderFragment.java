@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.smartfoodcourt.Common.Common;
+import com.example.smartfoodcourt.Common;
 import com.example.smartfoodcourt.Model.Order;
 import com.example.smartfoodcourt.R;
 import com.example.smartfoodcourt.ViewHolder.OrderViewHolder;
@@ -28,19 +28,16 @@ public class OrderFragment extends Fragment {
     public RecyclerView.LayoutManager layoutManager;
 
     FirebaseRecyclerAdapter<Order, OrderViewHolder> adapterOrder;
-    FirebaseDatabase database;
-    DatabaseReference orders;
+    DatabaseReference orderReference;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_order, container, false);
 
-        database = FirebaseDatabase.getInstance();
-        orders = database.getReference("Order/CurrentOrder/List");
-        recyclerView = (RecyclerView)root.findViewById(R.id.listOrders);
+        orderReference = FirebaseDatabase.getInstance().getReference("Order/CurrentOrder/List");
+        recyclerView = root.findViewById(R.id.listOrders);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
-
         loadOrder(Common.user.getPhone());
 
         return root;
@@ -48,19 +45,18 @@ public class OrderFragment extends Fragment {
 
     private void loadOrder(String phone) {
 
-        FirebaseRecyclerOptions<Order> options = new FirebaseRecyclerOptions.Builder<Order>().setQuery(orders.orderByChild("phone").equalTo(phone), Order.class).build();
+        FirebaseRecyclerOptions<Order> options = new FirebaseRecyclerOptions.Builder<Order>().setQuery(orderReference.orderByChild("phone").equalTo(phone), Order.class).build();
         adapterOrder = new FirebaseRecyclerAdapter<Order, OrderViewHolder>(options) {
             @Override
             protected void onBindViewHolder(@NonNull OrderViewHolder orderViewHolder, final int position, @NonNull final Order order) {
-                orderViewHolder.txtOrderId.setText("Stall: " + order.getSupplierID().toString());
+                orderViewHolder.txtOrderId.setText(String.format("Stall: %s", order.getSupplierID()));
                 orderViewHolder.txtOrderStatus.setText(Common.convertCodeToStatus(order.getStatus()));
-                orderViewHolder.txtOrderPhone.setText(order.getPhone());
-                orderViewHolder.txtTotal.setText("Total: " + Common.convertPricetoVND(order.getTotal()).toString());
+                orderViewHolder.txtTotal.setText(String.format("Total: %s", Common.convertPricetoVND(order.getTotal())));
                 orderViewHolder.btnReceive.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         if (adapterOrder.getItem(position).getStatus().equals("1"))
-                            receiveOrder(adapterOrder.getRef(position).getKey(), order);
+                            adapterOrder.getRef(position).child("status").setValue("2");
                     }
                 });
             }
@@ -68,29 +64,13 @@ public class OrderFragment extends Fragment {
             @NonNull
             @Override
             public OrderViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.order_layout, parent, false);
+                View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.order_item, parent, false);
                 return new OrderViewHolder(itemView);
             }
         };
 
         adapterOrder.notifyDataSetChanged();
-        adapterOrder.startListening();
         recyclerView.setAdapter(adapterOrder);
-    }
-
-    private void receiveOrder(final String key, Order order) {
-        orders.child(key).child("status").setValue("2")
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void aVoid) {
-                Toast.makeText(getContext(),new StringBuilder("Order").append(key).append("has been received").toString(),Toast.LENGTH_SHORT).show();
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
     @Override
