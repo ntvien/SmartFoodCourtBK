@@ -55,6 +55,7 @@ public class OrderFragment extends Fragment {
                 orderViewHolder.txtOrderId.setText("Stall: " + order.getSupplierID().toString());
                 orderViewHolder.txtOrderStatus.setText(Common.convertCodeToStatus(order.getStatus()));
                 orderViewHolder.txtOrderPhone.setText(order.getPhone());
+                orderViewHolder.txtTotal.setText("Total: " + Common.convertPricetoVND(order.getTotal()).toString());
                 orderViewHolder.btnReceive.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -62,7 +63,6 @@ public class OrderFragment extends Fragment {
                             receiveOrder(adapterOrder.getRef(position).getKey(), order);
                     }
                 });
-
             }
 
             @NonNull
@@ -104,6 +104,5 @@ public class OrderFragment extends Fragment {
         super.onStop();
         adapterOrder.stopListening();
     }
-
 
 }

@@ -57,7 +57,11 @@ public class FoodFragment extends Fragment {
         return root;
     }
 
-
+    @Override
+    public void onResume() {
+        super.onResume();
+        foodAdapter.startListening();
+    }
 
     @Override
     public void onStop() {
@@ -65,7 +69,6 @@ public class FoodFragment extends Fragment {
         if(searchFoodAdapter != null){
             searchFoodAdapter.stopListening();
         }
-        foodAdapter.stopListening();
     }
 
     private void loadFoodList() {
@@ -84,14 +87,12 @@ public class FoodFragment extends Fragment {
         foodAdapter = new FirebaseRecyclerAdapter<Food, FoodViewHolder>(options) {
             @Override
             protected void onBindViewHolder(@NonNull FoodViewHolder foodViewHolder, int i, @NonNull final Food food) {
+
+                foodViewHolder.outOfOrder_image.setImageResource(Common.convertOutOfOrderToImage(food.getStatus()));
                 foodViewHolder.discount_image.setImageResource(Common.convertDiscountToImage(food.getDiscount()));
                 foodViewHolder.food_name.setText(food.getName());
                 foodViewHolder.food_price.setText(Common.convertPricetoVND(food.getPrice()));
                 Picasso.with(getContext()).load(food.getImage()).into(foodViewHolder.food_image);
-
-                if(food.getStatus().equals("1")){
-                    foodViewHolder.outOfOrder_image.setImageResource(Common.convertOutOfOrderToImage(food.getStatus()));
-                }
 
                 final Food clickItem = food;
                 foodViewHolder.setItemClickListener(new ItemClickListener() {
@@ -176,4 +177,5 @@ public class FoodFragment extends Fragment {
         searchFoodAdapter.notifyDataSetChanged();
         recyclerFood.setAdapter(searchFoodAdapter);
     }
+
 }

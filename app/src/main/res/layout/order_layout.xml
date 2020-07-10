@@ -29,7 +29,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:gravity="center_vertical|start"
-                android:text="#111111"
+                android:text="Stall :1"
                 android:textAllCaps="true"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -42,6 +42,16 @@
                 android:fontFamily="@font/helveticanowtextextmedium"
                 android:gravity="center_vertical|start"
                 android:text="Status"
+                android:textAllCaps="true"
+                android:textStyle="italic" />
+
+            <TextView
+                android:id="@+id/txtTotal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:gravity="center_vertical|start"
+                android:text="Total: 100.000đ"
                 android:textAllCaps="true"
                 android:textStyle="italic" />
 
