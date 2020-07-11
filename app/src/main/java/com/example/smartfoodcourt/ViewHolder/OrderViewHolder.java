@@ -13,7 +13,7 @@ import com.example.smartfoodcourt.R;
 
 public class OrderViewHolder extends RecyclerView.ViewHolder{
 
-    public TextView txtOrderId, txtOrderStatus, txtOrderPhone, txtTotal;
+    public TextView txtOrderId, txtOrderStatus, txtTotal;
     public ImageView btnReceive;
 
 
@@ -21,10 +21,7 @@ public class OrderViewHolder extends RecyclerView.ViewHolder{
         super(itemView);
         txtOrderId = (TextView)itemView.findViewById(R.id.order_id);
         txtOrderStatus = (TextView)itemView.findViewById(R.id.order_status);
-        txtOrderPhone = (TextView)itemView.findViewById(R.id.order_phone);
         txtTotal = (TextView) itemView.findViewById(R.id.txtTotal);
         btnReceive = (ImageView)itemView.findViewById(R.id.btn_receive);
     }
-
-
 }

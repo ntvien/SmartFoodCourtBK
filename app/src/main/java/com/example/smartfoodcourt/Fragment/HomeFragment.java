@@ -1,31 +1,24 @@
 package com.example.smartfoodcourt.Fragment;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
-import android.widget.Button;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.app.SharedElementCallback;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.smartfoodcourt.Common.Common;
-import com.example.smartfoodcourt.FoodDetail;
+import com.example.smartfoodcourt.Common;
+import com.example.smartfoodcourt.FoodPage;
 import com.example.smartfoodcourt.Interface.ItemClickListener;
 import com.example.smartfoodcourt.Model.Food;
 import com.example.smartfoodcourt.Model.Stall;
 import com.example.smartfoodcourt.R;
-import com.example.smartfoodcourt.ViewHolder.FoodViewHolder;
 import com.example.smartfoodcourt.ViewHolder.GreatFoodViewHolder;
 import com.example.smartfoodcourt.ViewHolder.StallViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -34,13 +27,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
-import java.text.NumberFormat;
-import java.util.Locale;
-
 public class HomeFragment extends Fragment {
 
-    RecyclerView newFoodRecycler, stallRecycler;
-
+    RecyclerView greatFoodRecycler, stallRecycler;
     FirebaseDatabase database;
     DatabaseReference foodList, supplierList;
 
@@ -54,12 +43,12 @@ public class HomeFragment extends Fragment {
         database = FirebaseDatabase.getInstance();
         foodList = database.getReference("Food/List");
         supplierList = database.getReference("Supplier/List");
-
-        newFoodRecycler = (RecyclerView)root.findViewById(R.id.great_food_recycler);
+        greatFoodRecycler = (RecyclerView)root.findViewById(R.id.great_food_recycler);
         stallRecycler = root.findViewById(R.id.stall_recycler);
 
-        newFoodRecycler.setHasFixedSize(true);
-        newFoodRecycler.setLayoutManager(new LinearLayoutManager(getContext(),RecyclerView.HORIZONTAL,false));
+        greatFoodRecycler.setHasFixedSize(true);
+        greatFoodRecycler.setLayoutManager(new LinearLayoutManager(getContext(),RecyclerView.HORIZONTAL,false));
+        stallRecycler.setHasFixedSize(true);
         stallRecycler.setLayoutManager(new LinearLayoutManager(getContext(),RecyclerView.HORIZONTAL,false));
         loadGreatFoodList();
         loadStallList();
@@ -81,20 +70,19 @@ public class HomeFragment extends Fragment {
     }
 
     private void loadStallList() {
-
         FirebaseRecyclerOptions<Stall> options = new FirebaseRecyclerOptions.Builder<Stall>().setQuery(supplierList, Stall.class).build();
         adapterStall = new FirebaseRecyclerAdapter<Stall, StallViewHolder>(options) {
             @Override
             protected void onBindViewHolder(@NonNull StallViewHolder stallViewHolder, int i, final Stall stall) {
                 stallViewHolder.txtStall.setText(stall.getName());
-                if(!stall.getImage().isEmpty())Picasso.with(getContext()).load(stall.getImage()).into(stallViewHolder.imgStall);
+                if(!stall.getImage().isEmpty()) Picasso.with(getContext()).load(stall.getImage()).into(stallViewHolder.imgStall);
 
                 stallViewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
-                    public void onClick(View view, int position, boolean isLongClick) {
+                    public void onClick(View view, int position) {
                         FoodFragment foodFragment = new FoodFragment();
                         Bundle bundle = new Bundle();
-                        bundle.putString("supplierID", stall.getSupplierID());
+                        bundle.putString(Common.CHOICE_STALL, stall.getSupplierID());
                         foodFragment.setArguments(bundle);
                         FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
                         fragmentTransaction.replace(R.id.nav_host_fragment, foodFragment);
@@ -111,7 +99,7 @@ public class HomeFragment extends Fragment {
                 return new StallViewHolder(itemView);
             }
         };
-        adapterStall.startListening();
+
         adapterStall.notifyDataSetChanged();
         stallRecycler.setAdapter(adapterStall);
     }
@@ -124,8 +112,8 @@ public class HomeFragment extends Fragment {
         adapterNewFood = new FirebaseRecyclerAdapter<Food, GreatFoodViewHolder>(options) {
             @Override
             protected void onBindViewHolder(@NonNull GreatFoodViewHolder greatFoodViewHolder, int i, @NonNull Food food) {
-
-                greatFoodViewHolder.outOfOrder_image.setImageResource(Common.convertOutOfOrderToImage(food.getStatus()));
+                if(food.getStatus().equals("1"))
+                    greatFoodViewHolder.outOfOrder_image.setImageResource(Common.convertOutOfOrderToImage());
                 greatFoodViewHolder.ratingBar.setRating(Float.parseFloat(food.getStar()));
                 greatFoodViewHolder.discount_image.setImageResource(Common.convertDiscountToImage(food.getDiscount()));
                 greatFoodViewHolder.food_name.setText(food.getName());
@@ -134,8 +122,8 @@ public class HomeFragment extends Fragment {
 
                 greatFoodViewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
-                    public void onClick(View view, int position, boolean isLongClick) {
-                        Intent foodDetail = new Intent(getContext(), FoodDetail.class);
+                    public void onClick(View view, int position) {
+                        Intent foodDetail = new Intent(getContext(), FoodPage.class);
                         foodDetail.putExtra(Common.INTENT_FOOD_REF, adapterNewFood.getRef(position).getKey());
                         startActivity(foodDetail);
                     }
@@ -145,14 +133,13 @@ public class HomeFragment extends Fragment {
             @NonNull
             @Override
             public GreatFoodViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                greatFoodRecycler.setLayoutAnimation(AnimationUtils.loadLayoutAnimation(getContext(), R.anim.layout_item_from_left));
                 View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.great_food_item, parent, false);
-                newFoodRecycler.setLayoutAnimation(AnimationUtils.loadLayoutAnimation(getContext(),R.anim.layout_item_from_left));
                 return new GreatFoodViewHolder(itemView);
             }
         };
-        adapterNewFood.startListening();
         adapterNewFood.notifyDataSetChanged();
-        newFoodRecycler.setAdapter(adapterNewFood);
+        greatFoodRecycler.setAdapter(adapterNewFood);
     }
 
 }

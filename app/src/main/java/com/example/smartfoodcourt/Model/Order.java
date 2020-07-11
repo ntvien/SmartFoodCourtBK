@@ -22,12 +22,12 @@ public class Order {
         this.supplierID = supplierID;
     }
 
-    public Order(String phone, String type, CartStallItem t) {
+    public Order(String phone, CartStallItem t) {
         this.phone = phone;
-        this.type = type;
         this.total = t.getTotal().toString();
         this.supplierID = t.getSupplierID();
         this.foods = t.getCartItemList();
+        this.type = t.getType();
         this.status = "0"; // 0: preparing, 1: completed, 2: received
     }
 

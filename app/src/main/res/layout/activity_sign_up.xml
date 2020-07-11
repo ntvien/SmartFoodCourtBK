@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/background"
     app:passwordToggleEnabled="true"
-    tools:context=".SignUp">
+    tools:context=".Authentication.SignUpPage">
 
 
     <TextView

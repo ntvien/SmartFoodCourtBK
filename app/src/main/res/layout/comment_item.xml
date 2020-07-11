@@ -23,12 +23,13 @@
 
             <TextView
                 android:id="@+id/txtUserName"
-                android:layout_marginLeft="10dp"
-                android:textSize="20sp"
-                android:textStyle="italic"
-                android:text="User Name"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="User Name"
+                android:textColor="@color/overlayActionBar"
+                android:textSize="20sp"
+                android:textStyle="italic" />
 
             <RatingBar
                 android:id="@+id/ratingBarDetail"
@@ -41,13 +42,14 @@
 
             <TextView
                 android:id="@+id/txtComment"
-                android:layout_marginLeft="10dp"
-                android:textSize="14sp"
-                android:gravity="center_vertical|start"
-                android:textStyle="italic"
-                android:text="Comment"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:gravity="center_vertical|start"
+                android:text="Comment"
+                android:textColor="@color/overlayActionBar"
+                android:textSize="14sp"
+                android:textStyle="italic" />
 
         </LinearLayout>
 

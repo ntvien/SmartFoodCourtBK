@@ -10,7 +10,7 @@ import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-public class Payment extends AppCompatActivity {
+public class PaymentPage extends AppCompatActivity {
 
     private WebView mWebView;
     private ProgressBar progressBarPayment;
@@ -20,12 +20,11 @@ public class Payment extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
 
-        mWebView = (WebView)findViewById(R.id.webView);
-        progressBarPayment = (ProgressBar)findViewById(R.id.progressBarPayment);
+        mWebView = findViewById(R.id.webView);
+        progressBarPayment = findViewById(R.id.progressBarPayment);
         mWebView.getSettings().setJavaScriptEnabled(true);
         mWebView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
         mWebView.setWebViewClient(new WebViewClient()
-
                                   {
                                       @Override
                                       public void onPageStarted(WebView view, String url, Bitmap favicon) {
@@ -34,12 +33,11 @@ public class Payment extends AppCompatActivity {
                                           progressBarPayment.setVisibility(View.VISIBLE);
 
                                           if(url.equals("https://www.ashenishanka.com/")){
-                                              Toast.makeText(Payment.this, "Payment is cancelled", Toast.LENGTH_SHORT).show();
+                                              Toast.makeText(PaymentPage.this, "Payment is cancelled", Toast.LENGTH_SHORT).show();
                                               finish();
                                           }
                                           else if(url.equals("https://www.ashenishanka.com/done")){
-                                              Toast.makeText(Payment.this, "Payment is successful", Toast.LENGTH_SHORT).show();
-                                              payment();
+                                              Toast.makeText(PaymentPage.this, "Payment is successful", Toast.LENGTH_SHORT).show();
                                           }
                                       }
 
@@ -53,8 +51,5 @@ public class Payment extends AppCompatActivity {
         );
 
         mWebView.loadUrl("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=XGYP5KF5RKWUY");
-    }
-
-    private void payment() {
     }
 }

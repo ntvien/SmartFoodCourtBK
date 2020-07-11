@@ -6,6 +6,15 @@ public class CartStallItem {
     private String supplierID;
     private List<CartItem> cartItemList;
     private Integer total = 0;
+    String type;
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 
     public void setTotal(Integer total) {
         this.total = total;
@@ -40,6 +49,7 @@ public class CartStallItem {
     public CartStallItem(String supplierID, List<CartItem> cartItemList) {
         this.supplierID = supplierID;
         this.cartItemList = cartItemList;
+        this.type = "0";
         for(CartItem t: cartItemList){
             total += (int) (Float.parseFloat(t.getPrice())*(1 - Float.parseFloat(t.getDiscount())/100)*Float.parseFloat(t.getQuantity()));
         }

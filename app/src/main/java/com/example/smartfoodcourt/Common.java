@@ -1,4 +1,4 @@
-package com.example.smartfoodcourt.Common;
+package com.example.smartfoodcourt;
 
 import com.example.smartfoodcourt.Model.User;
 import com.example.smartfoodcourt.R;
@@ -8,10 +8,10 @@ import java.util.Locale;
 
 public class Common {
     public static User user;
-    public static String userName;
     public static final String INTENT_FOOD_REF = "FoodRef";
-    public static final String USER_KEY = "User";
+    public static final String EMAIL_KEY = "Email";
     public static final String PASSWORD_KEY = "Password";
+    public static final String CHOICE_STALL = "supplierID";
     public static String convertCodeToStatus(String status) {
         // 0: preparing, 1: ready, 2: received
         if (status.equals("0")) return "Preparing";
@@ -36,14 +36,13 @@ public class Common {
         return 0;
     }
 
-    public static int convertOutOfOrderToImage(String statusOutOfOrder){
-        if(statusOutOfOrder.equals("0")) return 0;
-        else return R.drawable.outoforder;
+    public static int convertOutOfOrderToImage(){
+        return R.drawable.outoforder;
     }
 
     public static String convertCodeToType(String type) {
         // 0: Eat it, 1: Take away
-        if (type.equals("0")) return "Eat it";
+        if (type.equals("0")) return "Eat in";
         else return "Take away";
     }
 }
