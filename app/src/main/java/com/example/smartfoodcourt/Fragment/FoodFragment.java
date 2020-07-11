@@ -37,7 +37,7 @@ public class FoodFragment extends Fragment {
     DatabaseReference foodList;
     FirebaseRecyclerAdapter<Food, FoodViewHolder> foodAdapter;
     FirebaseRecyclerAdapter<Food, FoodViewHolder> searchFoodAdapter;
-
+    String supplierID;
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         setHasOptionsMenu(true);
         View root = inflater.inflate(R.layout.fragment_food, container, false);
@@ -69,26 +69,25 @@ public class FoodFragment extends Fragment {
     }
 
     private void loadFoodList() {
-        String param = null;
         FirebaseRecyclerOptions<Food> options;
         Bundle bundle = this.getArguments();
         if(bundle != null) {
-             param = bundle.getString(Common.CHOICE_STALL,null);
+             supplierID = bundle.getString(Common.CHOICE_STALL,null);
         }
-        if(param == null){
+        if(supplierID == null){
             options = new FirebaseRecyclerOptions.Builder<Food>().setQuery(foodList, Food.class).build();
         }
         else{
-             options = new FirebaseRecyclerOptions.Builder<Food>().setQuery(foodList.orderByChild("supplierID").equalTo(param), Food.class).build();
+             options = new FirebaseRecyclerOptions.Builder<Food>().setQuery(foodList.orderByChild("supplierID").equalTo(supplierID), Food.class).build();
         }
         foodAdapter = new FirebaseRecyclerAdapter<Food, FoodViewHolder>(options) {
             @Override
             protected void onBindViewHolder(@NonNull FoodViewHolder foodViewHolder, int i, @NonNull final Food food) {
                 if(food.getStatus().equals("1"))
                     foodViewHolder.outOfOrder_image.setImageResource(Common.convertOutOfOrderToImage());
-                foodViewHolder.discount_image.setImageResource(Common.convertDiscountToImage(food.getDiscount()));
                 foodViewHolder.food_name.setText(food.getName());
                 foodViewHolder.food_price.setText(Common.convertPricetoVND(food.getPrice()));
+                foodViewHolder.food_supplier.setText(String.format("Stall %s", food.getSupplierID()));
                 Picasso.with(getContext()).load(food.getImage()).into(foodViewHolder.food_image);
 
                 foodViewHolder.setItemClickListener(new ItemClickListener() {
@@ -115,25 +114,27 @@ public class FoodFragment extends Fragment {
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        getActivity().getMenuInflater().inflate(R.menu.food_search, menu);
-        MenuItem searchItem = menu.findItem(R.id.action_search);
-        SearchView searchView = (SearchView)searchItem.getActionView();
-        searchView.setImeOptions(EditorInfo.IME_ACTION_DONE);
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String s) {
-                return false;
-            }
+       if(supplierID == null){
+           getActivity().getMenuInflater().inflate(R.menu.food_search, menu);
+           MenuItem searchItem = menu.findItem(R.id.action_search);
+           SearchView searchView = (SearchView)searchItem.getActionView();
+           searchView.setImeOptions(EditorInfo.IME_ACTION_DONE);
+           searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+               @Override
+               public boolean onQueryTextSubmit(String s) {
+                   return false;
+               }
 
-            @Override
-            public boolean onQueryTextChange(String s) {
-                if(s.isEmpty()) recyclerFood.setAdapter(foodAdapter);
-                else {
-                    showSearchFoodList(s);
-                }
-                return false;
-            }
-        });
+               @Override
+               public boolean onQueryTextChange(String s) {
+                   if(s.isEmpty()) recyclerFood.setAdapter(foodAdapter);
+                   else {
+                       showSearchFoodList(s);
+                   }
+                   return false;
+               }
+           });
+       }
         super.onCreateOptionsMenu(menu, inflater);
     }
 
@@ -143,9 +144,9 @@ public class FoodFragment extends Fragment {
         searchFoodAdapter = new FirebaseRecyclerAdapter<Food, FoodViewHolder>(options) {
             @Override
             protected void onBindViewHolder(@NonNull FoodViewHolder foodViewHolder, int i, @NonNull final Food food) {
-                foodViewHolder.discount_image.setImageResource(Common.convertDiscountToImage(food.getDiscount()));
                 foodViewHolder.food_name.setText(food.getName());
                 foodViewHolder.food_price.setText(Common.convertPricetoVND(food.getPrice()));
+                foodViewHolder.food_supplier.setText(String.format("Stall %s", food.getSupplierID()));
                 Picasso.with(getContext()).load(food.getImage()).into(foodViewHolder.food_image);
                 if(food.getStatus().equals("1"))
                     foodViewHolder.outOfOrder_image.setImageResource(Common.convertOutOfOrderToImage());

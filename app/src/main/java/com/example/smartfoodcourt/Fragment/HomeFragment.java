@@ -76,7 +76,7 @@ public class HomeFragment extends Fragment {
             protected void onBindViewHolder(@NonNull StallViewHolder stallViewHolder, int i, final Stall stall) {
                 stallViewHolder.txtStall.setText(stall.getName());
                 if(!stall.getImage().isEmpty()) Picasso.with(getContext()).load(stall.getImage()).into(stallViewHolder.imgStall);
-
+                stallViewHolder.txtNumber.setText(stall.getSupplierID());
                 stallViewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position) {

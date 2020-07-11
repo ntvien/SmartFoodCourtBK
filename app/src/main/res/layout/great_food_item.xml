@@ -78,14 +78,14 @@
             android:text="10.000đ"
             android:textColor="#FF6813"
             android:textSize="22sp"
-            app:layout_constraintBottom_toBottomOf="@+id/imgDiscount"
+            app:layout_constraintBottom_toBottomOf="@+id/txtName"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/imgDiscount"
+            app:layout_constraintTop_toTopOf="@+id/txtName"
             app:layout_constraintVertical_bias="1.0"
             tools:ignore="MissingConstraints" />
 
         <ImageView
-            android:id="@+id/imgDiscount"
+            android:id="@+id/txtName"
             android:layout_width="83dp"
             android:layout_height="35dp"
             android:layout_marginStart="185dp"

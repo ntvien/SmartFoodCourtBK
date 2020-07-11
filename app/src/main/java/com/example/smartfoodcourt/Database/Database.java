@@ -85,7 +85,6 @@ public class Database extends SQLiteAssetHelper {
         db.execSQL(query);
     }
 
-
     public int getCountCart() {
         int count = 0;
         SQLiteDatabase db = getReadableDatabase();

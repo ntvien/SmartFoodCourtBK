@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/layout_bg"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/layout_bg"
     android:orientation="vertical"
     tools:context=".Fragment.HomeFragment">
+
         <TextView
             android:id="@+id/textView2"
             android:layout_width="match_parent"
@@ -14,17 +14,15 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="18dp"
             android:fontFamily="@font/semibold"
-            android:text="Restaurant"
+            android:text="Stall"
             android:textColor="#FFFFFF"
-            android:textSize="24sp"
-             />
+            android:textSize="24sp" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/stall_recycler"
             android:layout_width="match_parent"
             android:layout_height="220dp"
-            android:layout_marginTop="10dp"
-            />
+            android:layout_marginTop="10dp" />
 
         <TextView
             android:id="@+id/textView4"
@@ -35,17 +33,13 @@
             android:fontFamily="@font/semibold"
             android:text="Great Food"
             android:textColor="#FFFFFF"
-            android:textSize="24sp"
-           />
+            android:textSize="24sp" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/great_food_recycler"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="3dp"
-           />
-
-
+            android:layout_marginTop="3dp" />
 
 
 </LinearLayout>

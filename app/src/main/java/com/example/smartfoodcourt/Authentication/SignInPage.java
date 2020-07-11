@@ -129,7 +129,6 @@ public class SignInPage extends AppCompatActivity {
                 });
     }
 
-
     private void checkSavedUser() {
         String email = Paper.book().read(Common.EMAIL_KEY);
         String password = Paper.book().read(Common.PASSWORD_KEY);

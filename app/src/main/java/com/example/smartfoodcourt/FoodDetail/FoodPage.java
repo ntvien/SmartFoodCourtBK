@@ -29,15 +29,12 @@ import java.util.ArrayList;
 public class FoodPage extends AppCompatActivity implements RatingDialogListener, FoodContract.View{
 
     TextView txtName, txtPrice, txtDes, txtDiscount, txtQuantity;
-    ImageView imgFood, imgAddCart, btnUp, btnDown, imgDiscount, imgCart, imgOutOfOrder;
+    ImageView imgFood, imgAddCart, btnUp, btnDown, imgCart, imgOutOfOrder;
     Button btnBackDetail;
     FloatingActionButton btnStar, btnComment;
     RatingBar ratingBar;
 
     FoodContract.Presenter presenter;
-    Food food;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +47,6 @@ public class FoodPage extends AppCompatActivity implements RatingDialogListener,
         txtDiscount = findViewById(R.id.txtDiscount);
         txtQuantity = findViewById(R.id.txtQuantity);
         imgFood = findViewById(R.id.imgFood);
-        imgDiscount = findViewById(R.id.imgDiscount);
         imgOutOfOrder = findViewById(R.id.outOfOrder_image);
         btnBackDetail = findViewById(R.id.btnBack);
         imgAddCart = findViewById(R.id.imgAddCart);

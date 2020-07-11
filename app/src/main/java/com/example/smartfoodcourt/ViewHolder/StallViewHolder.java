@@ -14,7 +14,7 @@ public class StallViewHolder extends RecyclerView.ViewHolder implements View.OnC
 
     public TextView txtStall;
     public ImageView imgStall;
-
+    public TextView txtNumber;
     private ItemClickListener itemClickListener;
 
     public void setItemClickListener(ItemClickListener itemClickListener) {
@@ -23,8 +23,9 @@ public class StallViewHolder extends RecyclerView.ViewHolder implements View.OnC
 
     public StallViewHolder(@NonNull View itemView) {
         super(itemView);
-        txtStall = (TextView)itemView.findViewById(R.id.txtStall);
+        txtStall = (TextView)itemView.findViewById(R.id.txtName);
         imgStall = (ImageView)itemView.findViewById(R.id.imgStall);
+        txtNumber = itemView.findViewById(R.id.txtNumber);
         itemView.setOnClickListener(this);
     }
 

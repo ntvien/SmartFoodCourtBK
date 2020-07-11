@@ -2,7 +2,6 @@ package com.example.smartfoodcourt.ViewHolder;
 
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -33,7 +32,7 @@ public class GreatFoodViewHolder extends RecyclerView.ViewHolder implements View
         outOfOrder_image = (ImageView) itemView.findViewById(R.id.outOfOrder_image);
         food_price = (TextView) itemView.findViewById(R.id.price);
         ratingBar = (RatingBar) itemView.findViewById(R.id.ratingBar);
-        discount_image = itemView.findViewById(R.id.imgDiscount);
+        discount_image = itemView.findViewById(R.id.txtName);
         itemView.setOnClickListener(this);
     }
 
