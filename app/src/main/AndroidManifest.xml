@@ -12,9 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".PaymentPage"></activity>
-        <activity android:name=".CommentPage" />
+        <activity android:name=".FoodDetail.CommentPage" />
         <activity android:name=".Cart" />
-        <activity android:name=".FoodPage" />
+        <activity android:name=".FoodDetail.FoodPage" />
         <activity
             android:name=".HomePage"
             android:label="@string/title_activity_home"
@@ -32,7 +32,7 @@
         <activity android:name=".Authentication.ForgotPasswordPage" />
         <activity android:name=".Authentication.SignUpPage" />
         <activity android:name=".Authentication.SignInPage" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".WelcomePage">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

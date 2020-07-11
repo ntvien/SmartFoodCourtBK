@@ -17,7 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.smartfoodcourt.Common;
-import com.example.smartfoodcourt.FoodPage;
+import com.example.smartfoodcourt.FoodDetail.FoodPage;
 import com.example.smartfoodcourt.Interface.ItemClickListener;
 import com.example.smartfoodcourt.Model.Food;
 import com.example.smartfoodcourt.R;

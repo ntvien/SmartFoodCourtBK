@@ -1,4 +1,4 @@
-package com.example.smartfoodcourt;
+package com.example.smartfoodcourt.FoodDetail;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,7 +9,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.smartfoodcourt.Common;
 import com.example.smartfoodcourt.Model.Rating;
+import com.example.smartfoodcourt.R;
 import com.example.smartfoodcourt.ViewHolder.CommentViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;

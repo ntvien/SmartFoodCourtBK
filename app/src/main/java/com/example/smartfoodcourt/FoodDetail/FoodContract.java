@@ -1,4 +1,4 @@
-package com.example.smartfoodcourt.Interface;
+package com.example.smartfoodcourt.FoodDetail;
 
 import android.content.Context;
 

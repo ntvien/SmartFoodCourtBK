@@ -1,4 +1,4 @@
-package com.example.smartfoodcourt;
+package com.example.smartfoodcourt.FoodDetail;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,18 +10,14 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.smartfoodcourt.Database.Database;
-import com.example.smartfoodcourt.Interface.FoodContract;
-import com.example.smartfoodcourt.Model.CartItem;
+import com.example.smartfoodcourt.Cart;
+import com.example.smartfoodcourt.Common;
 import com.example.smartfoodcourt.Model.Food;
 import com.example.smartfoodcourt.Model.Rating;
+import com.example.smartfoodcourt.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 import com.stepstone.apprating.AppRatingDialog;
 import com.stepstone.apprating.listener.RatingDialogListener;

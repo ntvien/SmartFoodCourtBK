@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="414dp"
     android:layout_height="730dp"
-    tools:context=".FoodPage">
+    tools:context=".FoodDetail.FoodPage">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="414dp"

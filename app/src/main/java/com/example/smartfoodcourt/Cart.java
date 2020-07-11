@@ -1,6 +1,6 @@
 package com.example.smartfoodcourt;
 
-import android.content.Intent;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.AnimationUtils;
@@ -12,23 +12,22 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.smartfoodcourt.Adapter.CartStallAdapter;
+import com.example.smartfoodcourt.Adapter.CartAdapter;
 import com.example.smartfoodcourt.Database.Database;
-import com.example.smartfoodcourt.Model.CartStallItem;
+import com.example.smartfoodcourt.Model.CartGroupItem;
 import com.example.smartfoodcourt.Model.Order;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class Cart extends AppCompatActivity {
+public class Cart extends AppCompatActivity implements CartAdapter.CartGroupItemListener{
 
     RecyclerView recyclerView;
     DatabaseReference requestReference;
     TextView txtTotalPrice;
     Button btnPay;
-    List<CartStallItem> cartStallItemList;
+    List<CartGroupItem> cartGroupItemList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +44,8 @@ public class Cart extends AppCompatActivity {
         txtTotalPrice = findViewById(R.id.total);
         btnPay = findViewById(R.id.btnPayment);
 
+        cartGroupItemList = new Database(this).getCart();
+
         btnPay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -56,7 +57,7 @@ public class Cart extends AppCompatActivity {
         loadCart();
     }
     private void confirmOrder() {
-        for(CartStallItem t: cartStallItemList){
+        for(CartGroupItem t: cartGroupItemList){
             Order order =  new Order(Common.user.getPhone(), t);
             requestReference.child(String.valueOf(System.currentTimeMillis())).setValue(order);
         }
@@ -67,16 +68,26 @@ public class Cart extends AppCompatActivity {
         finish();
     }
     private void loadCart() {
-        cartStallItemList = new Database(this).getCart();
-        CartStallAdapter adapter = new CartStallAdapter(cartStallItemList, this);
+        CartAdapter adapter = new CartAdapter(cartGroupItemList, this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutAnimation(AnimationUtils.loadLayoutAnimation(getBaseContext(),R.anim.layout_item_from_left));
 
         float total = 0;
-        for (CartStallItem cartStallItem :cartStallItemList) {
-            total += cartStallItem.getTotal();
+        for (CartGroupItem cartGroupItem : cartGroupItemList) {
+            total += cartGroupItem.getTotal();
         }
 
         txtTotalPrice.setText(Common.convertPricetoVND(total));
+    }
+
+    @Override
+    public void onTypeChangeClick(int position, String newType) {
+        cartGroupItemList.get(position).setType(newType);
+        loadCart();
+    }
+
+    @Override
+    public Context getContext() {
+        return this;
     }
 }
