@@ -28,7 +28,7 @@ public class Cart extends AppCompatActivity implements CartAdapter.CartGroupItem
     TextView txtTotalPrice;
     Button btnPay;
     List<CartGroupItem> cartGroupItemList;
-
+    CartAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,14 +61,15 @@ public class Cart extends AppCompatActivity implements CartAdapter.CartGroupItem
             Order order =  new Order(Common.user.getPhone(), t);
             requestReference.child(String.valueOf(System.currentTimeMillis())).setValue(order);
         }
+        if(!cartGroupItemList.isEmpty())Toast.makeText(Cart.this, "Order confirmed", Toast.LENGTH_SHORT).show();
+
         new Database(getBaseContext()).cleanCart();
-        Toast.makeText(Cart.this, "Order confirmed", Toast.LENGTH_SHORT).show();
         /*Intent paymentIntent = new Intent(Cart.this, Payment.class);
         startActivity(paymentIntent);*/
         finish();
     }
     private void loadCart() {
-        CartAdapter adapter = new CartAdapter(cartGroupItemList, this);
+        adapter = new CartAdapter(cartGroupItemList, this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutAnimation(AnimationUtils.loadLayoutAnimation(getBaseContext(),R.anim.layout_item_from_left));
 
@@ -77,13 +78,13 @@ public class Cart extends AppCompatActivity implements CartAdapter.CartGroupItem
             total += cartGroupItem.getTotal();
         }
 
-        txtTotalPrice.setText(Common.convertPricetoVND(total));
+        txtTotalPrice.setText(Common.convertPriceToVND(total));
     }
 
     @Override
     public void onTypeChangeClick(int position, String newType) {
         cartGroupItemList.get(position).setType(newType);
-        loadCart();
+        adapter.notifyDataSetChanged();
     }
 
     @Override

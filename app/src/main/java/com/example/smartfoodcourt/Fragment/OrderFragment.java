@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -17,8 +16,6 @@ import com.example.smartfoodcourt.R;
 import com.example.smartfoodcourt.ViewHolder.OrderViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -51,7 +48,7 @@ public class OrderFragment extends Fragment {
             protected void onBindViewHolder(@NonNull OrderViewHolder orderViewHolder, final int position, @NonNull final Order order) {
                 orderViewHolder.txtOrderId.setText(String.format("Stall: %s", order.getSupplierID()));
                 orderViewHolder.txtOrderStatus.setText(Common.convertCodeToStatus(order.getStatus()));
-                orderViewHolder.txtTotal.setText(String.format("Total: %s", Common.convertPricetoVND(order.getTotal())));
+                orderViewHolder.txtTotal.setText(String.format("Total: %s", Common.convertPriceToVND(order.getTotal())));
                 orderViewHolder.btnReceive.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

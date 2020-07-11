@@ -117,7 +117,7 @@ public class HomeFragment extends Fragment {
                 greatFoodViewHolder.ratingBar.setRating(Float.parseFloat(food.getStar()));
                 greatFoodViewHolder.discount_image.setImageResource(Common.convertDiscountToImage(food.getDiscount()));
                 greatFoodViewHolder.food_name.setText(food.getName());
-                greatFoodViewHolder.food_price.setText(Common.convertPricetoVND(food.getPrice()));
+                greatFoodViewHolder.food_price.setText(Common.convertPriceToVND(food.getPrice()));
                 Picasso.with(getContext()).load(food.getImage()).into(greatFoodViewHolder.food_image);
 
                 greatFoodViewHolder.setItemClickListener(new ItemClickListener() {

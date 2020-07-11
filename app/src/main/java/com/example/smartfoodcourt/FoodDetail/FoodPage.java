@@ -135,7 +135,7 @@ public class FoodPage extends AppCompatActivity implements RatingDialogListener,
     @Override
     public void showFoodDetail(Food food) {
         Picasso.with(getBaseContext()).load(food.getImage()).into(imgFood);
-        txtPrice.setText(Common.convertPricetoVND(food.getPrice()));
+        txtPrice.setText(Common.convertPriceToVND(food.getPrice()));
         txtName.setText(food.getName());
         txtDes.setText(food.getDescription());
         txtDiscount.setText(String.format("%s%%", food.getDiscount()));

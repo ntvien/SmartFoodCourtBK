@@ -86,7 +86,7 @@ public class FoodFragment extends Fragment {
                 if(food.getStatus().equals("1"))
                     foodViewHolder.outOfOrder_image.setImageResource(Common.convertOutOfOrderToImage());
                 foodViewHolder.food_name.setText(food.getName());
-                foodViewHolder.food_price.setText(Common.convertPricetoVND(food.getPrice()));
+                foodViewHolder.food_price.setText(Common.convertPriceToVND(food.getPrice()));
                 foodViewHolder.food_supplier.setText(String.format("Stall %s", food.getSupplierID()));
                 Picasso.with(getContext()).load(food.getImage()).into(foodViewHolder.food_image);
 
@@ -145,7 +145,7 @@ public class FoodFragment extends Fragment {
             @Override
             protected void onBindViewHolder(@NonNull FoodViewHolder foodViewHolder, int i, @NonNull final Food food) {
                 foodViewHolder.food_name.setText(food.getName());
-                foodViewHolder.food_price.setText(Common.convertPricetoVND(food.getPrice()));
+                foodViewHolder.food_price.setText(Common.convertPriceToVND(food.getPrice()));
                 foodViewHolder.food_supplier.setText(String.format("Stall %s", food.getSupplierID()));
                 Picasso.with(getContext()).load(food.getImage()).into(foodViewHolder.food_image);
                 if(food.getStatus().equals("1"))
