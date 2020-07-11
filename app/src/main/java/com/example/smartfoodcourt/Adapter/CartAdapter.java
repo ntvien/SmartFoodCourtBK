@@ -26,7 +26,6 @@ import java.util.Locale;
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> implements View.OnClickListener {
 
     private List<CartGroupItem> cartGroupItemList;
-    private Context context;
     private CartGroupItemListener listener;
     public CartAdapter(List<CartGroupItem> cartGroupItemList, CartGroupItemListener listener) {
         this.cartGroupItemList = cartGroupItemList;
@@ -36,7 +35,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> im
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater inflater = LayoutInflater.from(context);
+        LayoutInflater inflater = LayoutInflater.from(listener.getContext());
         View itemView = inflater.inflate(R.layout.cart_group_item_layout, parent, false);
         return new ViewHolder(itemView, listener);
     }
@@ -50,8 +49,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> im
         holder.txtTotal.setText(String.format("Total: %s", fmt.format(total)));
         holder.txtName.setText(String.format("Stall: %s", cartGroupItemList.get(position).getSupplierID()));
         final List<CartItem> cartItemList = cartGroupItemList.get(position).getCartItemList();
-        holder.foodList.setLayoutManager(new LinearLayoutManager(context));
-        holder.foodList.setAdapter(new CartGroupItemAdapter(cartItemList, this.context));
+        holder.foodList.setLayoutManager(new LinearLayoutManager(listener.getContext()));
+        holder.foodList.setAdapter(new CartGroupItemAdapter(cartItemList, listener.getContext()));
         holder.btnChangeType.setText(Common.convertCodeToType(cartGroupItemList.get(position).getType()));
     }
 
@@ -86,7 +85,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> im
                 AlertDialog orderDialog;
                 final String[] list;
                 list = new String[]{"Eat in", "Take away"};
-                AlertDialog.Builder mBuilder = new AlertDialog.Builder(context);
+                AlertDialog.Builder mBuilder = new AlertDialog.Builder(listener.getContext());
                 mBuilder.setTitle("Order By ???");
                 mBuilder.setIcon(R.drawable.ic_baseline_table_chart_24);
                 mBuilder.setSingleChoiceItems(list, -1, new DialogInterface.OnClickListener() {
