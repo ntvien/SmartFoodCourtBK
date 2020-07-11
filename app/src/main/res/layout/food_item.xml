@@ -14,17 +14,18 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="115dp">
+
         <ImageView
             android:id="@+id/food_image"
             android:layout_width="100dp"
             android:layout_height="100dp"
+            android:layout_margin="8dp"
+            android:layout_marginStart="16dp"
             android:scaleType="centerCrop"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.933"
             app:srcCompat="@drawable/cake" />
 
         <TextView
@@ -53,20 +54,22 @@
             android:text="$6.05"
             android:textColor="#FF6813"
             android:textSize="22sp"
-            app:layout_constraintBottom_toBottomOf="@+id/imgDiscount"
+            app:layout_constraintBottom_toBottomOf="@+id/txtSupplier"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/imgDiscount" />
+            app:layout_constraintTop_toTopOf="@+id/txtSupplier" />
 
-        <ImageView
-            android:id="@+id/imgDiscount"
-            android:layout_width="68dp"
-            android:layout_height="31dp"
-            android:layout_marginStart="35dp"
+        <TextView
+            android:id="@+id/txtSupplier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:gravity="center"
+            android:text="Stall 1"
+            android:textSize="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/price"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/food_image"
-            app:layout_constraintTop_toBottomOf="@+id/name" />
+            app:layout_constraintTop_toBottomOf="@+id/name"
+            app:layout_constraintVertical_bias="0.452" />
 
         <ImageView
             android:id="@+id/outOfOrder_image"

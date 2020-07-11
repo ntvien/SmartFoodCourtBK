@@ -14,8 +14,8 @@ public class FoodViewHolder extends RecyclerView.ViewHolder implements View.OnCl
 
 
     public TextView food_name;
-    public ImageView food_image, discount_image, outOfOrder_image;
-    public TextView food_price;
+    public ImageView food_image, outOfOrder_image;
+    public TextView food_price, food_supplier;
 
 
     private ItemClickListener itemClickListener;
@@ -29,7 +29,7 @@ public class FoodViewHolder extends RecyclerView.ViewHolder implements View.OnCl
         food_name = (TextView)itemView.findViewById(R.id.name);
         food_image = (ImageView)itemView.findViewById(R.id.food_image);
         food_price = (TextView)itemView.findViewById(R.id.price);
-        discount_image = (ImageView) itemView.findViewById(R.id.imgDiscount);
+        food_supplier = itemView.findViewById(R.id.txtSupplier);
         outOfOrder_image = (ImageView) itemView.findViewById(R.id.outOfOrder_image);
         itemView.setOnClickListener(this);
     }

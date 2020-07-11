@@ -23,10 +23,11 @@ import java.util.List;
 import java.util.Locale;
 
 
-public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> implements View.OnClickListener {
+public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
 
     private List<CartGroupItem> cartGroupItemList;
     private CartGroupItemListener listener;
+
     public CartAdapter(List<CartGroupItem> cartGroupItemList, CartGroupItemListener listener) {
         this.cartGroupItemList = cartGroupItemList;
         this.listener = listener;
@@ -59,13 +60,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> im
         return cartGroupItemList.size();
     }
 
-    @Override
-    public void onClick(View view) {
-
-    }
-
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-
         TextView txtName, txtTotal;
         RecyclerView foodList;
         Button btnChangeType;

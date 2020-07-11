@@ -57,8 +57,10 @@ public class ForgotPasswordPage extends AppCompatActivity {
     }
 
     private void sendEmail() {
+        String email = editTextEmail.getText().toString();
+        if(email.isEmpty()) return;
         progressBar.setVisibility(VISIBLE);
-        firebaseAuth.sendPasswordResetEmail(editTextEmail.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
+        firebaseAuth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 progressBar.setVisibility(View.GONE);

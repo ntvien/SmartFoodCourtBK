@@ -17,8 +17,9 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="30dp"
+        android:textSize="20dp"
         android:id="@+id/txtWelcome"
+        android:gravity="center"
         android:text="Welcome Tu to Food Court"/>
 
 </LinearLayout>

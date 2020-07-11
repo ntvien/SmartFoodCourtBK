@@ -46,11 +46,11 @@ public class CommentPage extends AppCompatActivity {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        ratingReference = FirebaseDatabase.getInstance().getReference("Rating/" + foodRef + "/List");
         if(getIntent() != null)
             foodRef = getIntent().getStringExtra(Common.INTENT_FOOD_REF);
         if(foodRef != null && !foodRef.isEmpty())
         {
+            ratingReference = FirebaseDatabase.getInstance().getReference("Rating/" + foodRef + "/List");
             FirebaseRecyclerOptions<Rating> options = new FirebaseRecyclerOptions.Builder<Rating>().setQuery(ratingReference, Rating.class).build();
             adapter = new FirebaseRecyclerAdapter<Rating, CommentViewHolder>(options) {
                 @Override
