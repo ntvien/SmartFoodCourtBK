@@ -22,7 +22,7 @@ public class Order {
         this.supplierID = supplierID;
     }
 
-    public Order(String phone, CartStallItem t) {
+    public Order(String phone, CartGroupItem t) {
         this.phone = phone;
         this.total = t.getTotal().toString();
         this.supplierID = t.getSupplierID();

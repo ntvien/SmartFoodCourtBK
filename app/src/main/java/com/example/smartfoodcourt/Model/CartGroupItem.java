@@ -2,7 +2,7 @@ package com.example.smartfoodcourt.Model;
 
 import java.util.List;
 
-public class CartStallItem {
+public class CartGroupItem {
     private String supplierID;
     private List<CartItem> cartItemList;
     private Integer total = 0;
@@ -39,14 +39,14 @@ public class CartStallItem {
         this.cartItemList = cartItemList;
     }
 
-    public CartStallItem() {
+    public CartGroupItem() {
     }
 
     public Integer getTotal() {
         return total;
     }
 
-    public CartStallItem(String supplierID, List<CartItem> cartItemList) {
+    public CartGroupItem(String supplierID, List<CartItem> cartItemList) {
         this.supplierID = supplierID;
         this.cartItemList = cartItemList;
         this.type = "0";

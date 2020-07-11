@@ -5,13 +5,11 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteQueryBuilder;
 
-import com.example.smartfoodcourt.Cart;
 import com.example.smartfoodcourt.Model.CartItem;
-import com.example.smartfoodcourt.Model.CartStallItem;
+import com.example.smartfoodcourt.Model.CartGroupItem;
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
@@ -22,7 +20,7 @@ public class Database extends SQLiteAssetHelper {
         super(context, DB_NAME,null, DB_VER);
     }
 
-    public List<CartStallItem> getCart() {
+    public List<CartGroupItem> getCart() {
         SQLiteDatabase db = getReadableDatabase();
         SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
 
@@ -32,15 +30,15 @@ public class Database extends SQLiteAssetHelper {
         qb.setTables(sqlTable);
         Cursor c = qb.query(db, sqlSelect, null, null, null, null, null);
 
-        List<CartStallItem> result = new ArrayList<>();
+        List<CartGroupItem> result = new ArrayList<>();
 
         if (c.moveToFirst()) {
             do {
-                ListIterator<CartStallItem> it = result.listIterator();
+                ListIterator<CartGroupItem> it = result.listIterator();
                 int flag = 0;
 
                 while(it.hasNext()){
-                    CartStallItem temp = it.next();
+                    CartGroupItem temp = it.next();
                     if(temp.getSupplierID().equals(c.getString(c.getColumnIndex("SupplierID")))){
                         temp.addItem(new CartItem(c.getString(c.getColumnIndex("Name")),
                                 c.getString(c.getColumnIndex("Price")),
@@ -61,7 +59,7 @@ public class Database extends SQLiteAssetHelper {
                                     c.getString(c.getColumnIndex("Discount")),
                                     c.getString(c.getColumnIndex("FoodID"))));
 
-                    result.add(new CartStallItem(c.getString(c.getColumnIndex("SupplierID")), t));
+                    result.add(new CartGroupItem(c.getString(c.getColumnIndex("SupplierID")), t));
                 }
 
             } while (c.moveToNext());
