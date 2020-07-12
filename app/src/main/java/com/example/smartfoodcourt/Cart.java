@@ -28,7 +28,7 @@ public class Cart extends AppCompatActivity implements CartAdapter.CartGroupItem
     TextView txtTotalPrice;
     Button btnPay;
     List<CartGroupItem> cartGroupItemList;
-    CartAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,17 +59,14 @@ public class Cart extends AppCompatActivity implements CartAdapter.CartGroupItem
     private void confirmOrder() {
         for(CartGroupItem t: cartGroupItemList){
             Order order =  new Order(Common.user.getPhone(), t);
-            requestReference.child(String.valueOf(System.currentTimeMillis())).setValue(order);
+            requestReference.push().setValue(order);
         }
-        if(!cartGroupItemList.isEmpty())Toast.makeText(Cart.this, "Order confirmed", Toast.LENGTH_SHORT).show();
-
         new Database(getBaseContext()).cleanCart();
-        /*Intent paymentIntent = new Intent(Cart.this, Payment.class);
-        startActivity(paymentIntent);*/
+        Toast.makeText(Cart.this, "Order confirmed", Toast.LENGTH_SHORT).show();
         finish();
     }
     private void loadCart() {
-        adapter = new CartAdapter(cartGroupItemList, this);
+        CartAdapter adapter = new CartAdapter(cartGroupItemList, this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutAnimation(AnimationUtils.loadLayoutAnimation(getBaseContext(),R.anim.layout_item_from_left));
 
@@ -84,7 +81,7 @@ public class Cart extends AppCompatActivity implements CartAdapter.CartGroupItem
     @Override
     public void onTypeChangeClick(int position, String newType) {
         cartGroupItemList.get(position).setType(newType);
-        adapter.notifyDataSetChanged();
+        loadCart();
     }
 
     @Override

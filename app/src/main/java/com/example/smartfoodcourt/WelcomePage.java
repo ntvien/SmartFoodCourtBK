@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartfoodcourt.Authentication.SignInPage;
+import com.example.smartfoodcourt.Database.Database;
 
 public class WelcomePage extends AppCompatActivity {
 
@@ -20,7 +21,7 @@ public class WelcomePage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        new Database(getBaseContext()).cleanCart();
         txtSlogan = (TextView)findViewById(R.id.txtSlogan);
 
         Typeface face = Typeface.createFromAsset(getAssets(),"fonts/NABILA.TTF");

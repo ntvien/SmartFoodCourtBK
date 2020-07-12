@@ -10,14 +10,6 @@ public class CartItem {
     public CartItem() {
     }
 
-    public String getFoodID() {
-        return foodID;
-    }
-
-    public void setFoodID(String foodID) {
-        this.foodID = foodID;
-    }
-
     public CartItem(String name, String price, String quantity, String discount, String foodID) {
         this.name = name;
         this.price = price;
@@ -56,6 +48,14 @@ public class CartItem {
 
     public void setDiscount(String discount) {
         this.discount = discount;
+    }
+
+    public String getFoodID() {
+        return foodID;
+    }
+
+    public void setFoodID(String foodID) {
+        this.foodID = foodID;
     }
 
 }

@@ -1,7 +1,6 @@
 package com.example.smartfoodcourt.Model;
 
 public class Rating {
-
     private String rateValue;
     private String comment;
 
