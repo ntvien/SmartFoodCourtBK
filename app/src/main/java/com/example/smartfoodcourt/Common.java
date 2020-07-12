@@ -18,13 +18,13 @@ public class Common {
         else return "Completed";
     }
 
-    public static String convertPricetoVND(String price) {
+    public static String convertPriceToVND(String price) {
         Locale locale = new Locale("vi", "VN");
         NumberFormat fmt = NumberFormat.getCurrencyInstance(locale);
         return fmt.format(Integer.parseInt(price));
     }
 
-    public static String convertPricetoVND(Float price) {
+    public static String convertPriceToVND(Float price) {
         Locale locale = new Locale("vi", "VN");
         NumberFormat fmt = NumberFormat.getCurrencyInstance(locale);
         return fmt.format(price);
