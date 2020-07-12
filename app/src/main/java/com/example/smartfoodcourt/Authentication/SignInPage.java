@@ -133,10 +133,8 @@ public class SignInPage extends AppCompatActivity {
         String email = Paper.book().read(Common.EMAIL_KEY);
         String password = Paper.book().read(Common.PASSWORD_KEY);
         if(email != null && password != null){
-            signIn(email, password);
+           signIn(email, password);
         }
     }
-
-
 }
 

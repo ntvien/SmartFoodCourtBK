@@ -53,7 +53,7 @@ public class FoodPresenter implements FoodContract.Presenter {
 
     @Override
     public void loadFood() {
-        foodReference.child(foodRef).addValueEventListener(new ValueEventListener() {
+        foodReference.child(foodRef).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 food = snapshot.getValue(Food.class);

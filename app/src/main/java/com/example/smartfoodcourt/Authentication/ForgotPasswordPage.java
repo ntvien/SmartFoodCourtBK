@@ -65,7 +65,7 @@ public class ForgotPasswordPage extends AppCompatActivity {
             public void onComplete(@NonNull Task<Void> task) {
                 progressBar.setVisibility(View.GONE);
                 if(task.isSuccessful()){
-                    Toast.makeText(ForgotPasswordPage.this, "Password send to your email", Toast.LENGTH_LONG).show();
+                    Toast.makeText(ForgotPasswordPage.this, "Please check email to reset password", Toast.LENGTH_LONG).show();
                 }
                 else{
                     Toast.makeText(ForgotPasswordPage.this, "Something wrong", Toast.LENGTH_LONG).show();

@@ -1,6 +1,5 @@
 package com.example.smartfoodcourt.Model;
 
-
 import java.util.List;
 
 public class Order {
@@ -14,14 +13,6 @@ public class Order {
     public Order() {
     }
 
-    public String getSupplierID() {
-        return supplierID;
-    }
-
-    public void setSupplierID(String supplierID) {
-        this.supplierID = supplierID;
-    }
-
     public Order(String phone, CartGroupItem t) {
         this.phone = phone;
         this.total = t.getTotal().toString();
@@ -29,22 +20,6 @@ public class Order {
         this.foods = t.getCartItemList();
         this.type = t.getType();
         this.status = "0"; // 0: preparing, 1: completed, 2: received
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
     public String getPhone() {
@@ -61,6 +36,30 @@ public class Order {
 
     public void setTotal(String total) {
         this.total = total;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getSupplierID() {
+        return supplierID;
+    }
+
+    public void setSupplierID(String supplierID) {
+        this.supplierID = supplierID;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public List<CartItem> getFoods() {

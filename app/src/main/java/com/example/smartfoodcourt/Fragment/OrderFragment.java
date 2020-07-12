@@ -21,8 +21,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class OrderFragment extends Fragment {
 
-    public RecyclerView recyclerView;
-    public RecyclerView.LayoutManager layoutManager;
+    RecyclerView recyclerView;
+    RecyclerView.LayoutManager layoutManager;
 
     FirebaseRecyclerAdapter<Order, OrderViewHolder> adapterOrder;
     DatabaseReference orderReference;

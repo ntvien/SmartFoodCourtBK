@@ -1,32 +1,17 @@
 package com.example.smartfoodcourt.Model;
 
 public class Food {
-    private String description;
-    private  String discount;
-    private  String foodID;
-    private String image;
     private String name;
+    private String foodID;
+    private String description;
+    private String discount;
+    private String image;
     private String price;
     private String star;
     private String status;
     private String supplierID;
+
     public Food() {
-    }
-
-    public String getFoodID() {
-        return foodID;
-    }
-
-    public void setFoodID(String foodID) {
-        this.foodID = foodID;
-    }
-
-    public String getStar() {
-        return star;
-    }
-
-    public void setStar(String star) {
-        this.star = star;
     }
 
     public Food(String description, String discount, String foodID, String image, String name, String price, String star, String status, String supplierID) {
@@ -49,12 +34,12 @@ public class Food {
         this.name = name;
     }
 
-    public String getImage() {
-        return image;
+    public String getFoodID() {
+        return foodID;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setFoodID(String foodID) {
+        this.foodID = foodID;
     }
 
     public String getDescription() {
@@ -65,6 +50,22 @@ public class Food {
         this.description = description;
     }
 
+    public String getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(String discount) {
+        this.discount = discount;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
     public String getPrice() {
         return price;
     }
@@ -73,12 +74,12 @@ public class Food {
         this.price = price;
     }
 
-    public String getDiscount() {
-        return discount;
+    public String getStar() {
+        return star;
     }
 
-    public void setDiscount(String discount) {
-        this.discount = discount;
+    public void setStar(String star) {
+        this.star = star;
     }
 
     public String getStatus(){ return status; }

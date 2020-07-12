@@ -83,7 +83,7 @@ public class FoodFragment extends Fragment {
         foodAdapter = new FirebaseRecyclerAdapter<Food, FoodViewHolder>(options) {
             @Override
             protected void onBindViewHolder(@NonNull FoodViewHolder foodViewHolder, int i, @NonNull final Food food) {
-                if(food.getStatus().equals("1"))
+                if(food.getStatus() != null && food.getStatus().equals("1"))
                     foodViewHolder.outOfOrder_image.setImageResource(Common.convertOutOfOrderToImage());
                 foodViewHolder.food_name.setText(food.getName());
                 foodViewHolder.food_price.setText(Common.convertPriceToVND(food.getPrice()));
