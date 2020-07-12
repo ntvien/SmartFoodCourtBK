@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 
 import com.example.smartfoodcourt.Common;
 import com.example.smartfoodcourt.Database.Database;
-import com.example.smartfoodcourt.FoodDetail.FoodContract;
 import com.example.smartfoodcourt.Model.CartItem;
 import com.example.smartfoodcourt.Model.Food;
 import com.example.smartfoodcourt.Model.Rating;
@@ -16,12 +15,12 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class FoodPresenter implements FoodContract.Presenter {
+public class FoodDetailPresenter implements FoodDetailContract.Presenter {
     DatabaseReference foodReference, ratingReference;
-    FoodContract.View foodView;
+    FoodDetailContract.View foodView;
     String foodRef;
     Food food;
-    public FoodPresenter(FoodContract.View foodView, String foodRef){
+    public FoodDetailPresenter(FoodDetailContract.View foodView, String foodRef){
         this.foodView = foodView;
         this.foodRef = foodRef;
         foodReference = FirebaseDatabase.getInstance().getReference("Food/List");

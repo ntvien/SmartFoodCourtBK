@@ -14,7 +14,7 @@
         <activity android:name=".PaymentPage"></activity>
         <activity android:name=".FoodDetail.CommentPage" />
         <activity android:name=".Cart" />
-        <activity android:name=".FoodDetail.FoodPage" />
+        <activity android:name=".FoodDetail.FoodDetailPage" />
         <activity
             android:name=".HomePage"
             android:label="@string/title_activity_home"
