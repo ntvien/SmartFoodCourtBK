@@ -3,12 +3,12 @@ package com.example.smartfoodcourt.Model;
 public class Stall {
     private String name;
     private String image;
-    private String supplierID;
+    private Integer supplierID;
 
     public Stall() {
     }
 
-    public Stall(String image, String name, String supplierID) {
+    public Stall(String image, String name, Integer supplierID) {
         this.image = image;
         this.name = name;
         this.supplierID = supplierID;
@@ -30,11 +30,11 @@ public class Stall {
         this.image = image;
     }
 
-    public String getSupplierID() {
+    public Integer getSupplierID() {
         return supplierID;
     }
 
-    public void setSupplierID(String supplierID) {
+    public void setSupplierID(Integer supplierID) {
         this.supplierID = supplierID;
     }
 

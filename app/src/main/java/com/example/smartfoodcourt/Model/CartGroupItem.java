@@ -3,7 +3,7 @@ package com.example.smartfoodcourt.Model;
 import java.util.List;
 
 public class CartGroupItem {
-    private String supplierID;
+    private Integer supplierID;
     private Integer total = 0;
     private String type;
     private List<CartItem> cartItemList;
@@ -11,7 +11,7 @@ public class CartGroupItem {
     public CartGroupItem() {
     }
 
-    public CartGroupItem(String supplierID, List<CartItem> cartItemList) {
+    public CartGroupItem(Integer supplierID, List<CartItem> cartItemList) {
         this.supplierID = supplierID;
         this.cartItemList = cartItemList;
         this.type = "0";
@@ -20,11 +20,11 @@ public class CartGroupItem {
         }
     }
 
-    public String getSupplierID() {
+    public Integer getSupplierID() {
         return supplierID;
     }
 
-    public void setSupplierID(String supplierID) {
+    public void setSupplierID(Integer supplierID) {
         this.supplierID = supplierID;
     }
 

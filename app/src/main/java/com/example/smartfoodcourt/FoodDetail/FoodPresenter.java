@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 
 import com.example.smartfoodcourt.Common;
 import com.example.smartfoodcourt.Database.Database;
-import com.example.smartfoodcourt.FoodDetail.FoodContract;
 import com.example.smartfoodcourt.Model.CartItem;
 import com.example.smartfoodcourt.Model.Food;
 import com.example.smartfoodcourt.Model.Rating;

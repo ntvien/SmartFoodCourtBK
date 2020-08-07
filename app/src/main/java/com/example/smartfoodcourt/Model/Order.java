@@ -6,7 +6,7 @@ public class Order {
     private String phone;
     private String total;
     private String status;
-    private String supplierID;
+    private Integer supplierID;
     private String type;
     private List<CartItem> foods;
 
@@ -46,11 +46,11 @@ public class Order {
         this.status = status;
     }
 
-    public String getSupplierID() {
+    public Integer getSupplierID() {
         return supplierID;
     }
 
-    public void setSupplierID(String supplierID) {
+    public void setSupplierID(Integer supplierID) {
         this.supplierID = supplierID;
     }
 
