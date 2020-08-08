@@ -114,7 +114,7 @@ public class FoodFragment extends Fragment {
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-       if(supplierID == null){
+       if(supplierID == 0){
            getActivity().getMenuInflater().inflate(R.menu.food_search, menu);
            MenuItem searchItem = menu.findItem(R.id.action_search);
            SearchView searchView = (SearchView)searchItem.getActionView();
