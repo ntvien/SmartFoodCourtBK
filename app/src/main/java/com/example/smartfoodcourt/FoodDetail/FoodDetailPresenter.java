@@ -39,15 +39,15 @@ public class FoodDetailPresenter implements FoodDetailContract.Presenter {
             new Database(foodView.getContext()).addToCart(new CartItem(food.getName(),
                     food.getPrice(), quantity,
                     food.getDiscount()), food.getSupplierID());
-            foodView.showToast("Food is added to your cart");
+            foodView.showToast("Món ăn đã được thêm vào giỏ hàng");
         }
-        else foodView.showToast("Food is out of order");
+        else foodView.showToast("Món ăn đã hết hàng");
     }
 
     @Override
     public void saveRating(Rating rating) {
         ratingReference.child(Common.user.getName()).setValue(rating);
-        foodView.showToast("Your rating saved. Thank you very much");
+        foodView.showToast("Đánh giá của bạn đã được lưu lại. Cảm ơn bạn rất nhiều.");
     }
 
     @Override
@@ -70,11 +70,11 @@ public class FoodDetailPresenter implements FoodDetailContract.Presenter {
     @Override
     public void requestRatingFood() {
         ArrayList<String> levelList = new ArrayList<>();
-        levelList.add("Very Bad");
-        levelList.add("Not Good");
-        levelList.add("Quite OK");
-        levelList.add("Very Good");
-        levelList.add("Excellent");
+        levelList.add("Rất tệ");
+        levelList.add("Không ngon");
+        levelList.add("Khá OK");
+        levelList.add("Rất ngon");
+        levelList.add("Xuất sắc");
         foodView.showRatingDialog(levelList);
     }
 }

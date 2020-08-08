@@ -20,11 +20,11 @@
     <fragment
         android:id="@+id/nav_order"
         android:name="com.example.smartfoodcourt.Fragment.OrderFragment"
-        android:label="Order"
+        android:label="@string/orders"
         tools:layout="@layout/fragment_order" />
     <fragment
         android:id="@+id/nav_sign_out"
         android:name="com.example.smartfoodcourt.Fragment.HomeFragment"
-        android:label="Sign out"
+        android:label="@string/sign_out"
         tools:layout="@layout/fragment_order" />
 </navigation>

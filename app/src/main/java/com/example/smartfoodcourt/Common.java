@@ -14,8 +14,8 @@ public class Common {
     public static final String CHOICE_STALL = "supplierID";
     public static String convertCodeToStatus(String status) {
         // 0: preparing, 1: ready, 2: received
-        if (status.equals("0")) return "Preparing";
-        else return "Completed";
+        if (status.equals("0")) return "Đang chuẩn bị";
+        else return "Đã hoàn thành";
     }
 
     public static String convertPriceToVND(String price) {
@@ -42,7 +42,7 @@ public class Common {
 
     public static String convertCodeToType(String type) {
         // 0: Eat it, 1: Take away
-        if (type.equals("0")) return "Eat in";
-        else return "Take away";
+        if (type.equals("0")) return "Ăn tại chỗ";
+        else return "Mang đi";
     }
 }

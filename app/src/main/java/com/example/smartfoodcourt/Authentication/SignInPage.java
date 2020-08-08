@@ -83,9 +83,9 @@ public class SignInPage extends AppCompatActivity {
         String email = editEmail.getText().toString();
         String password = editPassword.getText().toString();
         if (TextUtils.isEmpty(email)) {
-            Toast.makeText(SignInPage.this, "Please Enter Email", Toast.LENGTH_SHORT).show();
+            Toast.makeText(SignInPage.this, "Vui lòng nhập email", Toast.LENGTH_SHORT).show();
         } else if (TextUtils.isEmpty(password)) {
-            Toast.makeText(SignInPage.this, "Please Enter Password", Toast.LENGTH_SHORT).show();
+            Toast.makeText(SignInPage.this, "Vui lòng nhập mật khẩu", Toast.LENGTH_SHORT).show();
         } else {
             signIn(email, password);
         }
@@ -93,7 +93,7 @@ public class SignInPage extends AppCompatActivity {
 
     private void signIn(final String email, final String password) {
         final ProgressDialog mDialog = new ProgressDialog(SignInPage.this);
-        mDialog.setMessage("Please waiting...");
+        mDialog.setMessage("Xin vui lòng đợi...");
         mDialog.show();
 
         mAuth.signInWithEmailAndPassword(email, password)
@@ -123,7 +123,7 @@ public class SignInPage extends AppCompatActivity {
                         }
                         else{
                             mDialog.dismiss();
-                            Toast.makeText(SignInPage.this, "Authentication failed. Something wrong", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SignInPage.this, "Authentication bị lỗi. Có gì đó không đúng!!!", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

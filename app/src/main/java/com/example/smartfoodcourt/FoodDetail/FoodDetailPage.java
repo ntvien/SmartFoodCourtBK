@@ -147,11 +147,11 @@ public class FoodDetailPage extends AppCompatActivity implements RatingDialogLis
 
     @Override
     public void showRatingDialog(ArrayList<String> levelList) {
-        new AppRatingDialog.Builder().setPositiveButtonText("Comment").setNegativeButtonText("Cancel")
+        new AppRatingDialog.Builder().setPositiveButtonText("Bình luận").setNegativeButtonText("Hủy")
                 .setNoteDescriptions(levelList)
-                .setDefaultRating(1).setTitle("Rate this Food").setDescription("Please rating food and comment your feedback")
+                .setDefaultRating(1).setTitle("Đánh giá món ăn").setDescription("Vui lòng đánh giá món ăn và bình luận những phản hồi của bạn")
                 .setTitleTextColor(R.color.colorPrimary).setDescriptionTextColor(R.color.colorPrimary)
-                .setHint("Please write your comment here...").setHintTextColor(R.color.colorAccent)
+                .setHint("Vui lòng viết bình luận của bạn ở đây...").setHintTextColor(R.color.colorAccent)
                 .setCommentTextColor(android.R.color.white)
                 .setCommentBackgroundColor(R.color.colorPrimaryDark).setWindowAnimation(R.style.RatingDialogFadeAnim)
                 .create(FoodDetailPage.this).show();
