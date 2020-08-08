@@ -61,27 +61,27 @@ public class SignUpPage extends AppCompatActivity {
     private boolean checkInput(String email, String username, String password, String phone) {
 
         if(TextUtils.isEmpty(username)){
-            Toast.makeText(SignUpPage.this, "Please Enter Username", Toast.LENGTH_SHORT).show();
+            Toast.makeText(SignUpPage.this, "Vui lòng nhập Username", Toast.LENGTH_SHORT).show();
             return false;
         }
         else if(TextUtils.isEmpty(phone)){
-            Toast.makeText(SignUpPage.this, "Please Enter Phone", Toast.LENGTH_SHORT).show();
+            Toast.makeText(SignUpPage.this, "Vui lòng nhập số điện thoại", Toast.LENGTH_SHORT).show();
             return false;
         }
         else if(TextUtils.isEmpty(email)){
-            Toast.makeText(SignUpPage.this, "Please Enter Email", Toast.LENGTH_SHORT).show();
+            Toast.makeText(SignUpPage.this, "Vui lòng nhập email", Toast.LENGTH_SHORT).show();
             return false;
         }
         else if(TextUtils.isEmpty(password)){
-            Toast.makeText(SignUpPage.this, "Please Enter Password", Toast.LENGTH_SHORT).show();
+            Toast.makeText(SignUpPage.this, "Vui lòng nhập mật khẩu", Toast.LENGTH_SHORT).show();
             return false;
         }
         else if(password.length() <= 6){
-            Toast.makeText(SignUpPage.this, "Password too short", Toast.LENGTH_SHORT).show();
+            Toast.makeText(SignUpPage.this, "Mật khẩu quá ngắn", Toast.LENGTH_SHORT).show();
             return false;
         }
         else if(phone.length() < 10){
-            Toast.makeText(SignUpPage.this,"Phone is invalid", Toast.LENGTH_SHORT).show();
+            Toast.makeText(SignUpPage.this,"Số điện thoại không hợp lệ", Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;
@@ -94,7 +94,7 @@ public class SignUpPage extends AppCompatActivity {
         final String phone = editPhone.getText().toString();
         if(checkInput(email, username, password, phone)){
             final ProgressDialog mDialog = new ProgressDialog(SignUpPage.this);
-            mDialog.setMessage("Please waiting...");
+            mDialog.setMessage("Xin vui lòng đợi...");
             mDialog.show();
             mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
@@ -107,7 +107,7 @@ public class SignUpPage extends AppCompatActivity {
                                     public void onComplete(@NonNull Task<Void> task) {
                                         if(task.isSuccessful()){
                                             mDialog.dismiss();
-                                            Toast.makeText(SignUpPage.this, "Sign up Successful", Toast.LENGTH_LONG).show();
+                                            Toast.makeText(SignUpPage.this, "Đăng nhập thành công", Toast.LENGTH_LONG).show();
                                             finish();
                                         }
                                     }
@@ -115,7 +115,7 @@ public class SignUpPage extends AppCompatActivity {
                     }
                     else {
                         mDialog.dismiss();
-                        Toast.makeText(SignUpPage.this, "Email existed or invalid. Sign up Failed", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SignUpPage.this, "Email đã tồn tại hoặc không hợp lệ. Đăng ký không thành công.", Toast.LENGTH_SHORT).show();
                     }
                 }
             });

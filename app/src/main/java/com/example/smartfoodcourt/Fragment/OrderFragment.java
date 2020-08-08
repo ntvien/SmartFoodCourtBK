@@ -48,7 +48,7 @@ public class OrderFragment extends Fragment {
             protected void onBindViewHolder(@NonNull OrderViewHolder orderViewHolder, final int position, @NonNull final Order order) {
                 orderViewHolder.txtOrderId.setText(String.format("Stall: %s", order.getSupplierID()));
                 orderViewHolder.txtOrderStatus.setText(Common.convertCodeToStatus(order.getStatus()));
-                orderViewHolder.txtTotal.setText(String.format("Total: %s", Common.convertPriceToVND(order.getTotal())));
+                orderViewHolder.txtTotal.setText(String.format("Tổng tiền: %s", Common.convertPriceToVND(order.getTotal())));
                 orderViewHolder.btnReceive.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

@@ -62,7 +62,7 @@ public class Cart extends AppCompatActivity implements CartAdapter.CartGroupItem
             requestReference.push().setValue(order);
         }
         new Database(getBaseContext()).cleanCart();
-        Toast.makeText(Cart.this, "Order confirmed", Toast.LENGTH_SHORT).show();
+        Toast.makeText(Cart.this, "Đơn hàng đã được xác nhận", Toast.LENGTH_SHORT).show();
         finish();
     }
     private void loadCart() {
