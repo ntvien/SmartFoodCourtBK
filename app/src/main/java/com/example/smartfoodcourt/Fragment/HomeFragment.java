@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.smartfoodcourt.Common;
-import com.example.smartfoodcourt.FoodDetail.FoodPage;
+import com.example.smartfoodcourt.FoodDetail.FoodDetailPage;
 import com.example.smartfoodcourt.Interface.ItemClickListener;
 import com.example.smartfoodcourt.Model.Food;
 import com.example.smartfoodcourt.Model.Stall;
@@ -123,7 +123,7 @@ public class HomeFragment extends Fragment {
                 greatFoodViewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position) {
-                        Intent foodDetail = new Intent(getContext(), FoodPage.class);
+                        Intent foodDetail = new Intent(getContext(), FoodDetailPage.class);
                         foodDetail.putExtra(Common.INTENT_FOOD_REF, adapterNewFood.getRef(position).getKey());
                         startActivity(foodDetail);
                     }

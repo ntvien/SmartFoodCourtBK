@@ -26,7 +26,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
-public class FoodPage extends AppCompatActivity implements RatingDialogListener, FoodContract.View{
+public class FoodDetailPage extends AppCompatActivity implements RatingDialogListener, FoodDetailContract.View{
 
     TextView txtName, txtPrice, txtDes, txtDiscount, txtQuantity;
     ImageView imgFood, imgAddCart, btnUp, btnDown, imgCart, imgOutOfOrder;
@@ -34,7 +34,7 @@ public class FoodPage extends AppCompatActivity implements RatingDialogListener,
     FloatingActionButton btnStar, btnComment;
     RatingBar ratingBar;
 
-    FoodContract.Presenter presenter;
+    FoodDetailContract.Presenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +76,7 @@ public class FoodPage extends AppCompatActivity implements RatingDialogListener,
         imgCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent cartIntent = new Intent(FoodPage.this, Cart.class);
+                Intent cartIntent = new Intent(FoodDetailPage.this, Cart.class);
                 startActivity(cartIntent);
             }
         });
@@ -154,12 +154,12 @@ public class FoodPage extends AppCompatActivity implements RatingDialogListener,
                 .setHint("Please write your comment here...").setHintTextColor(R.color.colorAccent)
                 .setCommentTextColor(android.R.color.white)
                 .setCommentBackgroundColor(R.color.colorPrimaryDark).setWindowAnimation(R.style.RatingDialogFadeAnim)
-                .create(FoodPage.this).show();
+                .create(FoodDetailPage.this).show();
     }
 
     @Override
     public void showCommentPage(String foodRef) {
-        Intent commentIntent = new Intent(FoodPage.this, CommentPage.class);
+        Intent commentIntent = new Intent(FoodDetailPage.this, CommentPage.class);
         commentIntent.putExtra(Common.INTENT_FOOD_REF, foodRef);
         startActivity(commentIntent);
     }

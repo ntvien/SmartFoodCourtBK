@@ -7,7 +7,7 @@ import com.example.smartfoodcourt.Model.Rating;
 
 import java.util.ArrayList;
 
-public interface FoodContract {
+public interface FoodDetailContract {
     interface View{
         void showFoodDetail(Food food);
         void showRatingDialog(ArrayList<String> levelList);
