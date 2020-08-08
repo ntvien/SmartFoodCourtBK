@@ -31,7 +31,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="15dp"
             android:fontFamily="@font/semibold"
-            android:text="Great Food"
+            android:text="Món yêu thích"
             android:textColor="#FFFFFF"
             android:textSize="24sp" />
 
