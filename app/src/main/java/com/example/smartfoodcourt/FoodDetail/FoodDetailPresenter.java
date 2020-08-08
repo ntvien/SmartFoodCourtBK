@@ -15,12 +15,12 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class FoodPresenter implements FoodDetailContract.Presenter {
+public class FoodDetailPresenter implements FoodDetailContract.Presenter {
     DatabaseReference foodReference, ratingReference;
     FoodDetailContract.View foodView;
     String foodRef;
     Food food;
-    public FoodPresenter(FoodDetailContract.View foodView, String foodRef){
+ public FoodDetailPresenter(FoodDetailContract.View foodView, String foodRef){
         this.foodView = foodView;
         this.foodRef = foodRef;
         foodReference = FirebaseDatabase.getInstance().getReference("Food/List");

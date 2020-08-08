@@ -61,7 +61,7 @@ public class FoodDetailPage extends AppCompatActivity implements RatingDialogLis
             String foodRef = getIntent().getStringExtra(Common.INTENT_FOOD_REF);
             assert foodRef != null;
             if (!foodRef.isEmpty()) {
-                presenter = new FoodPresenter(this, foodRef);
+                presenter = new FoodDetailPresenter(this, foodRef);
                 presenter.loadFood();
             }
         }
