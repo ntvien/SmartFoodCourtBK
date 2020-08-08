@@ -20,7 +20,7 @@ public class FoodDetailPresenter implements FoodDetailContract.Presenter {
     FoodDetailContract.View foodView;
     String foodRef;
     Food food;
-    public FoodDetailPresenter(FoodDetailContract.View foodView, String foodRef){
+ public FoodDetailPresenter(FoodDetailContract.View foodView, String foodRef){
         this.foodView = foodView;
         this.foodRef = foodRef;
         foodReference = FirebaseDatabase.getInstance().getReference("Food/List");
@@ -38,7 +38,7 @@ public class FoodDetailPresenter implements FoodDetailContract.Presenter {
         if(food.getStatus().equals("0")) {
             new Database(foodView.getContext()).addToCart(new CartItem(food.getName(),
                     food.getPrice(), quantity,
-                    food.getDiscount(), food.getFoodID()), food.getSupplierID());
+                    food.getDiscount()), food.getSupplierID());
             foodView.showToast("Food is added to your cart");
         }
         else foodView.showToast("Food is out of order");

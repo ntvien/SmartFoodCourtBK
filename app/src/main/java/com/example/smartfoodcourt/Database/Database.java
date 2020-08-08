@@ -1,5 +1,6 @@
 package com.example.smartfoodcourt.Database;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -14,7 +15,7 @@ import java.util.List;
 import java.util.ListIterator;
 
 public class Database extends SQLiteAssetHelper {
-    static final String DB_NAME = "User.db";
+    static final String DB_NAME = "Order.db";
     static final int DB_VER = 1;
     public Database(Context context) {
         super(context, DB_NAME,null, DB_VER);
@@ -24,7 +25,7 @@ public class Database extends SQLiteAssetHelper {
         SQLiteDatabase db = getReadableDatabase();
         SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
 
-        String[] sqlSelect = {"SupplierID", "Name", "Price", "Quantity", "Discount","FoodID"};
+        String[] sqlSelect = {"SupplierID", "Name", "Price", "Quantity", "Discount"};
         String sqlTable = "CartItem";
 
         qb.setTables(sqlTable);
@@ -39,12 +40,12 @@ public class Database extends SQLiteAssetHelper {
 
                 while(it.hasNext()){
                     CartGroupItem temp = it.next();
-                    if(temp.getSupplierID().equals(c.getString(c.getColumnIndex("SupplierID")))){
+                    if(temp.getSupplierID().equals(c.getInt(c.getColumnIndex("SupplierID")))){
                         temp.addItem(new CartItem(c.getString(c.getColumnIndex("Name")),
                                 c.getString(c.getColumnIndex("Price")),
                                 c.getString(c.getColumnIndex("Quantity")),
-                                c.getString(c.getColumnIndex("Discount")),
-                                c.getString(c.getColumnIndex("FoodID"))));
+                                c.getString(c.getColumnIndex("Discount"))
+                              ));
 
                         it.set(temp);
                         flag = 1;
@@ -56,10 +57,10 @@ public class Database extends SQLiteAssetHelper {
                     t.add(new CartItem(c.getString(c.getColumnIndex("Name")),
                                     c.getString(c.getColumnIndex("Price")),
                                     c.getString(c.getColumnIndex("Quantity")),
-                                    c.getString(c.getColumnIndex("Discount")),
-                                    c.getString(c.getColumnIndex("FoodID"))));
+                                    c.getString(c.getColumnIndex("Discount"))
+                                    ));
 
-                    result.add(new CartGroupItem(c.getString(c.getColumnIndex("SupplierID")), t));
+                    result.add(new CartGroupItem(c.getInt(c.getColumnIndex("SupplierID")), t));
                 }
 
             } while (c.moveToNext());
@@ -67,29 +68,28 @@ public class Database extends SQLiteAssetHelper {
         return result;
     }
 
-    public void addToCart (CartItem cartItem, String supplierID) {
+    public void addToCart (CartItem cartItem, Integer supplierID) {
         SQLiteDatabase db = getReadableDatabase();
-        String query = String.format("INSERT INTO CartItem(SupplierID, Name, Price, Quantity, Discount, FoodID) VALUES('%s', '%s', '%s', '%s', '%s', '%s');",
+        @SuppressLint("DefaultLocale") String query = String.format("INSERT INTO CartItem(SupplierID, Name, Price, Quantity, Discount) VALUES('%d', '%s', '%s', '%s', '%s');",
                 supplierID,
                 cartItem.getName(),
                 cartItem.getPrice(),
                 cartItem.getQuantity(),
-                cartItem.getDiscount(),
-                cartItem.getFoodID());
+                cartItem.getDiscount());
         db.execSQL(query);
     }
 
     public void cleanCart () {
         SQLiteDatabase db = getReadableDatabase();
-        String query = String.format("DELETE FROM CartItem");
+        String query = "DELETE FROM CartItem";
         db.execSQL(query);
     }
 
     public int getCountCart() {
         int count = 0;
         SQLiteDatabase db = getReadableDatabase();
-        String query = String.format("SELECT COUNT(*) FROM CartItem");
-        Cursor cursor = db.rawQuery(query, null);
+        String query = "SELECT COUNT(*) FROM CartItem";
+        @SuppressLint("Recycle") Cursor cursor = db.rawQuery(query, null);
         if(cursor.moveToFirst()){
             do{
                 count = cursor.getInt(0);

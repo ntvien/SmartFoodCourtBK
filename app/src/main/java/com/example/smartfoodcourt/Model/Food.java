@@ -2,22 +2,20 @@ package com.example.smartfoodcourt.Model;
 
 public class Food {
     private String name;
-    private String foodID;
     private String description;
     private String discount;
     private String image;
     private String price;
     private String star;
     private String status;
-    private String supplierID;
+    private Integer supplierID;
 
     public Food() {
     }
 
-    public Food(String description, String discount, String foodID, String image, String name, String price, String star, String status, String supplierID) {
+    public Food(String description, String discount, String image, String name, String price, String star, String status, Integer supplierID) {
         this.description = description;
         this.discount = discount;
-        this.foodID = foodID;
         this.image = image;
         this.name = name;
         this.price = price;
@@ -34,13 +32,7 @@ public class Food {
         this.name = name;
     }
 
-    public String getFoodID() {
-        return foodID;
-    }
 
-    public void setFoodID(String foodID) {
-        this.foodID = foodID;
-    }
 
     public String getDescription() {
         return description;
@@ -86,11 +78,11 @@ public class Food {
 
     public void setStatus(String status) { this.status = status; }
 
-    public String getSupplierID() {
+    public Integer getSupplierID() {
         return supplierID;
     }
 
-    public void setSupplierID(String supplierID) {
+    public void setSupplierID(Integer supplierID) {
         this.supplierID = supplierID;
     }
 }

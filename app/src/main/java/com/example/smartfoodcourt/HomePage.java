@@ -80,24 +80,16 @@ public class HomePage extends AppCompatActivity  {
                     Paper.book().destroy();
                     finish();
                 }
-                if(id == R.id.nav_home){
-                    btnCart.show();
-                    Toast.makeText(getApplicationContext(), "Home", Toast.LENGTH_SHORT).show();
-                }
-                else if (id == R.id.nav_food){
-                    btnCart.show();
-                    Toast.makeText(getApplicationContext(), "Food", Toast.LENGTH_SHORT).show();
-
-                }else if (id == R.id.nav_order){
+                if (id == R.id.nav_order){
                     btnCart.hide();
-                    Toast.makeText(getApplicationContext(), "Order", Toast.LENGTH_SHORT).show();
                 }
+                else btnCart.show();
             }
         });
         service = new Intent(HomePage.this, CompletedOrder.class);
         startService(service);
         TextView txtWelcome = headerView.findViewById(R.id.txtWelcome);
-        txtWelcome.setText(String.format("Welcome %s to Food Court", Common.user.getName()));
+        txtWelcome.setText(Common.user.getName());
     }
 
     @Override

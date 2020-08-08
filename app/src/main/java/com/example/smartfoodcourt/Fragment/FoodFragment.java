@@ -37,7 +37,7 @@ public class FoodFragment extends Fragment {
     DatabaseReference foodList;
     FirebaseRecyclerAdapter<Food, FoodViewHolder> foodAdapter;
     FirebaseRecyclerAdapter<Food, FoodViewHolder> searchFoodAdapter;
-    String supplierID;
+    Integer supplierID = 0;
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         setHasOptionsMenu(true);
         View root = inflater.inflate(R.layout.fragment_food, container, false);
@@ -72,9 +72,9 @@ public class FoodFragment extends Fragment {
         FirebaseRecyclerOptions<Food> options;
         Bundle bundle = this.getArguments();
         if(bundle != null) {
-             supplierID = bundle.getString(Common.CHOICE_STALL,null);
+             supplierID = bundle.getInt(Common.CHOICE_STALL, 0);
         }
-        if(supplierID == null){
+        if(supplierID == 0){
             options = new FirebaseRecyclerOptions.Builder<Food>().setQuery(foodList, Food.class).build();
         }
         else{
