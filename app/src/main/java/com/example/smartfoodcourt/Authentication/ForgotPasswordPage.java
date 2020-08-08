@@ -43,7 +43,7 @@ public class ForgotPasswordPage extends AppCompatActivity {
         editTextEmail = (EditText)findViewById(R.id.editTextEmail);
         btnSendEmail = (Button)findViewById(R.id.btnSendEmail);
 
-        toolbar.setTitle("Forgot password");
+        toolbar.setTitle("Quên mật khẩu???");
         database = FirebaseDatabase.getInstance();
         table_user = database.getReference("User/List");
         firebaseAuth = FirebaseAuth.getInstance();
@@ -65,10 +65,10 @@ public class ForgotPasswordPage extends AppCompatActivity {
             public void onComplete(@NonNull Task<Void> task) {
                 progressBar.setVisibility(View.GONE);
                 if(task.isSuccessful()){
-                    Toast.makeText(ForgotPasswordPage.this, "Please check email to reset password", Toast.LENGTH_LONG).show();
+                    Toast.makeText(ForgotPasswordPage.this, "Vui lòng kiểm tra email để đặt lại mật khẩu", Toast.LENGTH_LONG).show();
                 }
                 else{
-                    Toast.makeText(ForgotPasswordPage.this, "Something wrong", Toast.LENGTH_LONG).show();
+                    Toast.makeText(ForgotPasswordPage.this, "Có gì đó không đúng!!!", Toast.LENGTH_LONG).show();
                 }
             }
         });

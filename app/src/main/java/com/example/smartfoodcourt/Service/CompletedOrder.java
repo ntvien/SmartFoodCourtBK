@@ -59,7 +59,7 @@ public class CompletedOrder extends Service implements ChildEventListener {
         if(snapshot.child("phone").getValue().equals(Common.user.getPhone())
                 && snapshot.child("status").getValue().equals("1")){
             Order order = snapshot.getValue(Order.class);
-            String orderDetail = "Stall " + order.getSupplierID() + ": Your order completed";
+            String orderDetail = "Stall " + order.getSupplierID() + ": Đơn hàng của bạn đã hoàn thành";
             NotificationCompat.Builder builder = new NotificationCompat.Builder(getBaseContext(), "n");
             builder.setAutoCancel((true))
                     .setDefaults(Notification.DEFAULT_ALL)

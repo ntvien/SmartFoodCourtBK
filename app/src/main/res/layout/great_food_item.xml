@@ -33,7 +33,7 @@
             android:id="@+id/name"
             android:layout_width="139dp"
             android:layout_height="76dp"
-            android:layout_marginStart="50dp"
+            android:layout_marginStart="40dp"
             android:layout_marginTop="35dp"
             android:fontFamily="@font/semibold"
             android:text="Cake"

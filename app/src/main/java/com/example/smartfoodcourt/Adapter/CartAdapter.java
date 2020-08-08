@@ -47,7 +47,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         Locale locale = new Locale("vi", "VN");
         NumberFormat fmt = NumberFormat.getCurrencyInstance(locale);
         Integer total = cartGroupItemList.get(position).getTotal();
-        holder.txtTotal.setText(String.format("Total: %s", fmt.format(total)));
+        holder.txtTotal.setText(String.format("Tổng tiền: %s", fmt.format(total)));
         holder.txtName.setText(String.format("Stall: %s", cartGroupItemList.get(position).getSupplierID()));
         final List<CartItem> cartItemList = cartGroupItemList.get(position).getCartItemList();
         holder.foodList.setLayoutManager(new LinearLayoutManager(listener.getContext()));
@@ -79,9 +79,9 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
             if(view.getId() == R.id.btnChangeType){
                 AlertDialog orderDialog;
                 final String[] list;
-                list = new String[]{"Eat in", "Take away"};
+                list = new String[]{"Ăn tại chỗ", "Mang đi"};
                 AlertDialog.Builder mBuilder = new AlertDialog.Builder(listener.getContext());
-                mBuilder.setTitle("Order By ???");
+                mBuilder.setTitle("Đặt hàng bằng ???");
                 mBuilder.setIcon(R.drawable.ic_baseline_table_chart_24);
                 mBuilder.setSingleChoiceItems(list, -1, new DialogInterface.OnClickListener() {
                     @Override

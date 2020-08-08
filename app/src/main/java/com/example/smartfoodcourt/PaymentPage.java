@@ -33,11 +33,11 @@ public class PaymentPage extends AppCompatActivity {
                                           progressBarPayment.setVisibility(View.VISIBLE);
 
                                           if(url.equals("https://www.ashenishanka.com/")){
-                                              Toast.makeText(PaymentPage.this, "Payment is cancelled", Toast.LENGTH_SHORT).show();
+                                              Toast.makeText(PaymentPage.this, "Thanh toán đã bị hủy", Toast.LENGTH_SHORT).show();
                                               finish();
                                           }
                                           else if(url.equals("https://www.ashenishanka.com/done")){
-                                              Toast.makeText(PaymentPage.this, "Payment is successful", Toast.LENGTH_SHORT).show();
+                                              Toast.makeText(PaymentPage.this, "Thanh toán thành công", Toast.LENGTH_SHORT).show();
                                           }
                                       }
 
