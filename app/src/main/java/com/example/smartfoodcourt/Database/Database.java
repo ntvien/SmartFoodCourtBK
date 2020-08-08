@@ -25,7 +25,7 @@ public class Database extends SQLiteAssetHelper {
         SQLiteDatabase db = getReadableDatabase();
         SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
 
-        String[] sqlSelect = {"SupplierID", "Name", "Price", "Quantity", "Discount","FoodID"};
+        String[] sqlSelect = {"SupplierID", "Name", "Price", "Quantity", "Discount"};
         String sqlTable = "CartItem";
 
         qb.setTables(sqlTable);
@@ -57,8 +57,8 @@ public class Database extends SQLiteAssetHelper {
                     t.add(new CartItem(c.getString(c.getColumnIndex("Name")),
                                     c.getString(c.getColumnIndex("Price")),
                                     c.getString(c.getColumnIndex("Quantity")),
-                                    c.getString(c.getColumnIndex("Discount")),
-                                    c.getString(c.getColumnIndex("FoodID"))));
+                                    c.getString(c.getColumnIndex("Discount"))
+                                    )));
 
                     result.add(new CartGroupItem(c.getInt(c.getColumnIndex("SupplierID")), t));
                 }
@@ -70,7 +70,7 @@ public class Database extends SQLiteAssetHelper {
 
     public void addToCart (CartItem cartItem, Integer supplierID) {
         SQLiteDatabase db = getReadableDatabase();
-        @SuppressLint("DefaultLocale") String query = String.format("INSERT INTO CartItem(SupplierID, Name, Price, Quantity, Discount, FoodID) VALUES('%d', '%s', '%s', '%s', '%s', '%s');",
+        @SuppressLint("DefaultLocale") String query = String.format("INSERT INTO CartItem(SupplierID, Name, Price, Quantity, Discount) VALUES('%d', '%s', '%s', '%s', '%s');",
                 supplierID,
                 cartItem.getName(),
                 cartItem.getPrice(),
