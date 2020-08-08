@@ -44,8 +44,8 @@ public class Database extends SQLiteAssetHelper {
                         temp.addItem(new CartItem(c.getString(c.getColumnIndex("Name")),
                                 c.getString(c.getColumnIndex("Price")),
                                 c.getString(c.getColumnIndex("Quantity")),
-                                c.getString(c.getColumnIndex("Discount")),
-                                c.getString(c.getColumnIndex("FoodID"))));
+                                c.getString(c.getColumnIndex("Discount"))
+                              ));
 
                         it.set(temp);
                         flag = 1;
@@ -58,7 +58,7 @@ public class Database extends SQLiteAssetHelper {
                                     c.getString(c.getColumnIndex("Price")),
                                     c.getString(c.getColumnIndex("Quantity")),
                                     c.getString(c.getColumnIndex("Discount"))
-                                    )));
+                                    ));
 
                     result.add(new CartGroupItem(c.getInt(c.getColumnIndex("SupplierID")), t));
                 }
@@ -75,8 +75,7 @@ public class Database extends SQLiteAssetHelper {
                 cartItem.getName(),
                 cartItem.getPrice(),
                 cartItem.getQuantity(),
-                cartItem.getDiscount(),
-                cartItem.getFoodID());
+                cartItem.getDiscount());
         db.execSQL(query);
     }
 
