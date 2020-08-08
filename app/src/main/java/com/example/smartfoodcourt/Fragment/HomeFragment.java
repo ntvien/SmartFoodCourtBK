@@ -70,7 +70,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void loadStallList() {
-        FirebaseRecyclerOptions<Stall> options = new FirebaseRecyclerOptions.Builder<Stall>().setQuery(supplierList, Stall.class).build();
+        FirebaseRecyclerOptions<Stall> options = new FirebaseRecyclerOptions.Builder<Stall>().setQuery(supplierList.orderByChild("supplierID"), Stall.class).build();
         adapterStall = new FirebaseRecyclerAdapter<Stall, StallViewHolder>(options) {
             @Override
             protected void onBindViewHolder(@NonNull StallViewHolder stallViewHolder, int i, final Stall stall) {
