@@ -44,9 +44,9 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/great_food_recycler"
                     android:layout_width="match_parent"
-                    android:layout_height="270dp"
+                    android:layout_height="300dp"
                     android:layout_marginTop="3dp" />
-               
+
         </LinearLayout>
 
 
