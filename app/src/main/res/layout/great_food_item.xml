@@ -17,35 +17,28 @@
 
         <ImageView
             android:id="@+id/food_image"
-            android:layout_width="175dp"
-            android:layout_height="175dp"
-            android:layout_marginBottom="8dp"
+            android:layout_width="144dp"
+            android:layout_height="154dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="29dp"
+            android:contentDescription="TODO"
             android:scaleType="centerCrop"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.012"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.477"
             android:src="@drawable/cake"
-            android:contentDescription="TODO" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/name"
-            android:layout_width="131dp"
-            android:layout_height="71dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="34dp"
-            android:layout_marginEnd="12dp"
-            android:layout_marginBottom="12dp"
+            android:layout_width="122dp"
+            android:layout_height="67dp"
+            android:layout_marginStart="17dp"
+            android:layout_marginTop="23dp"
             android:fontFamily="@font/semibold"
             android:text="Cake"
+
             android:textColor="#091020"
             android:textSize="18sp"
-            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-            app:layout_constraintEnd_toStartOf="@+id/outOfOrder_image"
             app:layout_constraintStart_toEndOf="@+id/food_image"
-
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="MissingConstraints" />
 
@@ -70,6 +63,7 @@
                 android:layout_height="match_parent"
                 android:isIndicator="true"
                 android:max="5"
+                android:layout_gravity="right"
                 android:rating="0"
                 android:scaleX="0.6"
                 android:scaleY="0.7" />
@@ -79,27 +73,23 @@
             android:id="@+id/price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="61dp"
-            android:layout_marginEnd="20dp"
+            android:layout_marginTop="19dp"
+            android:layout_marginEnd="19dp"
             android:fontFamily="@font/semibold"
             android:text="10.000đ"
             android:textColor="#FF6813"
             android:textSize="22sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/linearLayout"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
             tools:ignore="MissingConstraints" />
 
         <ImageView
             android:id="@+id/outOfOrder_image"
             android:layout_width="50dp"
             android:layout_height="56dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="15dp"
-            android:layout_marginBottom="45dp"
-            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="28dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/name"
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
