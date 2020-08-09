@@ -1,46 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/layout_bg"
-    android:orientation="vertical"
+    android:layout_width="414dp"
+    android:layout_height="730dp"
     tools:context=".Fragment.HomeFragment">
-
-        <TextView
-            android:id="@+id/textView2"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="18dp"
-            android:fontFamily="@font/semibold"
-            android:text="Các nhà cung cấp"
-            android:textColor="#FFFFFF"
-            android:textSize="24sp" />
+            android:layout_height="match_parent"
+            android:background="@drawable/layout_bg"
+            android:orientation="vertical">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/stall_recycler"
-            android:layout_width="match_parent"
-            android:layout_height="220dp"
-            android:layout_marginTop="10dp" />
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="18dp"
+                    android:fontFamily="@font/semibold"
+                    android:text="Các nhà cung cấp"
+                    android:textColor="#FFFFFF"
+                    android:textSize="24sp" />
 
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="40dp"
-            android:fontFamily="@font/semibold"
-            android:text="Món ăn được yêu thích"
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/stall_recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="220dp"
+                    android:layout_marginTop="10dp" />
 
-            android:textColor="#FFFFFF"
-            android:textSize="24sp" />
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="40dp"
+                    android:fontFamily="@font/semibold"
+                    android:text="Món ăn được yêu thích"
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/great_food_recycler"
-            android:layout_width="match_parent"
-            android:layout_height="270dp"
-            android:layout_marginTop="3dp" />
+                    android:textColor="#FFFFFF"
+                    android:textSize="24sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/great_food_recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="270dp"
+                    android:layout_marginTop="3dp" />
+        </LinearLayout>
 
 
-</LinearLayout>
+
+</androidx.core.widget.NestedScrollView>
