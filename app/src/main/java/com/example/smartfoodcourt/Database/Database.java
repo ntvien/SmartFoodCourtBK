@@ -84,7 +84,11 @@ public class Database extends SQLiteAssetHelper {
         String query = "DELETE FROM CartItem";
         db.execSQL(query);
     }
-
+    public void deleteItem(Integer supplierID){
+        SQLiteDatabase db = getReadableDatabase();
+        @SuppressLint("DefaultLocale") String query = String.format("DELETE FROM CartItem WHERE SupplierID = %d", supplierID);
+        db.execSQL(query);
+    }
     public int getCountCart() {
         int count = 0;
         SQLiteDatabase db = getReadableDatabase();

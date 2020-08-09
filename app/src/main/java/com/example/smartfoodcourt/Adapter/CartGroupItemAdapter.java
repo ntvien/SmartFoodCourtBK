@@ -4,11 +4,13 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.smartfoodcourt.Database.Database;
 import com.example.smartfoodcourt.Model.CartItem;
 import com.example.smartfoodcourt.R;
 
@@ -52,15 +54,16 @@ public class CartGroupItemAdapter extends RecyclerView.Adapter<CartGroupItemAdap
     }
 
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder{
 
         TextView txtName, txtPrice, txtQuantity;
-
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             txtName= (TextView)itemView.findViewById(R.id.cart_item_name);
             txtPrice = (TextView)itemView.findViewById(R.id.cart_item_price);
             txtQuantity = (TextView)itemView.findViewById(R.id.cart_item_quantity);
+
         }
+
     }
 }

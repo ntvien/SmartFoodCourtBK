@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.smartfoodcourt.Common;
+import com.example.smartfoodcourt.Database.Database;
 import com.example.smartfoodcourt.Model.CartItem;
 import com.example.smartfoodcourt.Model.CartGroupItem;
 import com.example.smartfoodcourt.R;
@@ -64,6 +66,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         TextView txtName, txtTotal;
         RecyclerView foodList;
         Button btnChangeType;
+        ImageButton btnCancel;
         CartGroupItemListener listener;
         public ViewHolder(@NonNull View itemView, CartGroupItemListener listener) {
             super(itemView);
@@ -73,6 +76,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
             btnChangeType = itemView.findViewById(R.id.btnChangeType);
             foodList = (RecyclerView)itemView.findViewById(R.id.foodList);
             btnChangeType.setOnClickListener(this);
+            btnCancel = itemView.findViewById(R.id.btnCancel);
+            btnCancel.setOnClickListener(this);
         }
         @Override
         public void onClick(View view) {
@@ -99,10 +104,12 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
                 orderDialog = mBuilder.create();
                 orderDialog.show();
             }
+            if(view.getId() == R.id.btnCancel) listener.onDeleteOrder(getAdapterPosition());
         }
     }
     public interface CartGroupItemListener{
         void onTypeChangeClick(int position, String newType);
+        void onDeleteOrder(int position);
         Context getContext();
     }
 }

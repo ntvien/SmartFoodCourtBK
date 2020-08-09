@@ -14,7 +14,7 @@ import com.example.smartfoodcourt.R;
 public class GreatFoodViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
     public TextView food_name;
-    public ImageView food_image, discount_image, outOfOrder_image;
+    public ImageView food_image, outOfOrder_image;
     public TextView food_price;
     public RatingBar ratingBar;
 
@@ -32,7 +32,6 @@ public class GreatFoodViewHolder extends RecyclerView.ViewHolder implements View
         outOfOrder_image = (ImageView) itemView.findViewById(R.id.outOfOrder_image);
         food_price = (TextView) itemView.findViewById(R.id.price);
         ratingBar = (RatingBar) itemView.findViewById(R.id.ratingBar);
-        discount_image = itemView.findViewById(R.id.txtName);
         itemView.setOnClickListener(this);
     }
 

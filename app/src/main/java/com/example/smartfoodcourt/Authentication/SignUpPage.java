@@ -61,7 +61,7 @@ public class SignUpPage extends AppCompatActivity {
     private boolean checkInput(String email, String username, String password, String phone) {
 
         if(TextUtils.isEmpty(username)){
-            Toast.makeText(SignUpPage.this, "Vui lòng nhập Username", Toast.LENGTH_SHORT).show();
+            Toast.makeText(SignUpPage.this, "Vui lòng nhập tên người dùng", Toast.LENGTH_SHORT).show();
             return false;
         }
         else if(TextUtils.isEmpty(phone)){
@@ -76,7 +76,7 @@ public class SignUpPage extends AppCompatActivity {
             Toast.makeText(SignUpPage.this, "Vui lòng nhập mật khẩu", Toast.LENGTH_SHORT).show();
             return false;
         }
-        else if(password.length() <= 6){
+        else if(password.length() < 6){
             Toast.makeText(SignUpPage.this, "Mật khẩu quá ngắn", Toast.LENGTH_SHORT).show();
             return false;
         }
