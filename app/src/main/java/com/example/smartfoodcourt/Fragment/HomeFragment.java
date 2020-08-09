@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
+import android.widget.TimePicker;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -33,7 +35,7 @@ public class HomeFragment extends Fragment {
     FirebaseDatabase database;
     DatabaseReference foodList, supplierList;
 
-    FirebaseRecyclerAdapter<Food, GreatFoodViewHolder> adapterNewFood;
+    FirebaseRecyclerAdapter<Food, GreatFoodViewHolder> adapterGreatFood;
     FirebaseRecyclerAdapter<Stall, StallViewHolder> adapterStall;
 
     public View onCreateView(@NonNull final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -43,7 +45,7 @@ public class HomeFragment extends Fragment {
         database = FirebaseDatabase.getInstance();
         foodList = database.getReference("Food/List");
         supplierList = database.getReference("Supplier/List");
-        greatFoodRecycler = (RecyclerView)root.findViewById(R.id.great_food_recycler);
+        greatFoodRecycler = root.findViewById(R.id.great_food_recycler);
         stallRecycler = root.findViewById(R.id.stall_recycler);
 
         greatFoodRecycler.setHasFixedSize(true);
@@ -58,14 +60,14 @@ public class HomeFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        adapterNewFood.startListening();
+        adapterGreatFood.startListening();
         adapterStall.startListening();
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        adapterNewFood.stopListening();
+        adapterGreatFood.stopListening();
         adapterStall.stopListening();
     }
 
@@ -105,11 +107,10 @@ public class HomeFragment extends Fragment {
     }
 
     private void loadGreatFoodList() {
-
         FirebaseRecyclerOptions<Food> options = new FirebaseRecyclerOptions.Builder<Food>()
                 .setQuery(foodList.orderByChild("star").limitToLast(5), Food.class).build();
 
-        adapterNewFood = new FirebaseRecyclerAdapter<Food, GreatFoodViewHolder>(options) {
+        adapterGreatFood = new FirebaseRecyclerAdapter<Food, GreatFoodViewHolder>(options) {
             @Override
             protected void onBindViewHolder(@NonNull GreatFoodViewHolder greatFoodViewHolder, int i, @NonNull Food food) {
                 if(food.getStatus().equals("1"))
@@ -124,10 +125,11 @@ public class HomeFragment extends Fragment {
                     @Override
                     public void onClick(View view, int position) {
                         Intent foodDetail = new Intent(getContext(), FoodDetailPage.class);
-                        foodDetail.putExtra(Common.INTENT_FOOD_REF, adapterNewFood.getRef(position).getKey());
+                        foodDetail.putExtra(Common.INTENT_FOOD_REF, adapterGreatFood.getRef(position).getKey());
                         startActivity(foodDetail);
                     }
                 });
+                Toast.makeText(getContext(),food.getName(), Toast.LENGTH_SHORT).show();
             }
 
             @NonNull
@@ -138,8 +140,8 @@ public class HomeFragment extends Fragment {
                 return new GreatFoodViewHolder(itemView);
             }
         };
-        adapterNewFood.notifyDataSetChanged();
-        greatFoodRecycler.setAdapter(adapterNewFood);
+        adapterGreatFood.notifyDataSetChanged();
+        greatFoodRecycler.setAdapter(adapterGreatFood);
     }
 
 }
