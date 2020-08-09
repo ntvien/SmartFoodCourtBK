@@ -88,10 +88,7 @@ public class Cart extends AppCompatActivity implements CartAdapter.CartGroupItem
     public void onDeleteOrder(int position) {
         new Database(this).deleteItem(cartGroupItemList.get(position).getSupplierID());
         cartGroupItemList.remove(position);
-        CartAdapter adapter = new CartAdapter(cartGroupItemList, this);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutAnimation(AnimationUtils.loadLayoutAnimation(getBaseContext(),R.anim.layout_item_from_left));
-
+        loadCart();
     }
 
     @Override
