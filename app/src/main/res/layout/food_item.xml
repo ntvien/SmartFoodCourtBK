@@ -33,7 +33,7 @@
             android:layout_width="154dp"
             android:layout_height="61dp"
             android:layout_marginStart="18dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="18dp"
             android:fontFamily="@font/semibold"
             android:text="Float Cake Vietnam"
@@ -69,13 +69,13 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/food_image"
             app:layout_constraintTop_toBottomOf="@+id/name"
-            app:layout_constraintVertical_bias="0.452" />
+            app:layout_constraintVertical_bias="0.44" />
 
         <ImageView
             android:id="@+id/outOfOrder_image"
             android:layout_width="71dp"
             android:layout_height="47dp"
-            android:layout_marginStart="272dp"
+            android:layout_marginStart="280dp"
             android:layout_marginTop="16dp"
             app:layout_constraintBottom_toTopOf="@+id/linearLayout"
             app:layout_constraintStart_toStartOf="parent"
