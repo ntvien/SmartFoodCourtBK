@@ -3,13 +3,13 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="414dp"
-    android:layout_height="730dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     tools:context=".FoodDetail.FoodDetailPage">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="414dp"
-        android:layout_height="730dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:background="#E5E5E5">
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -76,7 +76,7 @@
             android:fontFamily="@font/semibold"
             android:text="Float Cake Vietnam"
             android:textColor="#091020"
-            android:textSize="24sp"
+            android:textSize="20sp"
             app:layout_constraintStart_toStartOf="@+id/txtDes"
             app:layout_constraintTop_toBottomOf="@+id/imgFood"
             tools:ignore="MissingConstraints" />
