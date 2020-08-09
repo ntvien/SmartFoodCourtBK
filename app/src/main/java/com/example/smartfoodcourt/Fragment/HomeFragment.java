@@ -101,7 +101,6 @@ public class HomeFragment extends Fragment {
                 return new StallViewHolder(itemView);
             }
         };
-
         adapterStall.notifyDataSetChanged();
         stallRecycler.setAdapter(adapterStall);
     }
