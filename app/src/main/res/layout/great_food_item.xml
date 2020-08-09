@@ -29,15 +29,15 @@
 
         <TextView
             android:id="@+id/name"
-            android:layout_width="122dp"
-            android:layout_height="67dp"
+            android:layout_width="151dp"
+            android:layout_height="75dp"
             android:layout_marginStart="17dp"
             android:layout_marginTop="23dp"
             android:fontFamily="@font/semibold"
             android:text="Cake"
 
             android:textColor="#091020"
-            android:textSize="18sp"
+            android:textSize="24sp"
             app:layout_constraintStart_toEndOf="@+id/food_image"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="MissingConstraints" />
@@ -61,9 +61,9 @@
                 android:id="@+id/ratingBar"
                 android:layout_width="235dp"
                 android:layout_height="match_parent"
+                android:layout_gravity="right"
                 android:isIndicator="true"
                 android:max="5"
-                android:layout_gravity="right"
                 android:rating="0"
                 android:scaleX="0.6"
                 android:scaleY="0.7" />
@@ -87,7 +87,7 @@
             android:id="@+id/outOfOrder_image"
             android:layout_width="50dp"
             android:layout_height="56dp"
-            android:layout_marginTop="2dp"
+            android:layout_marginTop="28dp"
             android:layout_marginEnd="28dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
