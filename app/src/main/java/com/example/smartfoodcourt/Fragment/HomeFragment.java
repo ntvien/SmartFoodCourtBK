@@ -129,7 +129,6 @@ public class HomeFragment extends Fragment {
                         startActivity(foodDetail);
                     }
                 });
-                Toast.makeText(getContext(),food.getName(), Toast.LENGTH_SHORT).show();
             }
 
             @NonNull
