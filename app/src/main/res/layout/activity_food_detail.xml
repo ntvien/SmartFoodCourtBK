@@ -22,7 +22,7 @@
             app:elevation="6dp"
             app:layout_anchorGravity="bottom|right|start"
             app:layout_constraintEnd_toEndOf="@+id/txtName"
-            app:layout_constraintHorizontal_bias="0.172"
+            app:layout_constraintHorizontal_bias="0.237"
             app:layout_constraintStart_toStartOf="@+id/txtName"
             app:layout_constraintTop_toTopOf="@+id/imgFood"
             app:pressedTranslationZ="12dp"
@@ -224,9 +224,9 @@
 
         <ImageView
             android:id="@+id/outOfOrder_image"
-            android:layout_width="69dp"
-            android:layout_height="46dp"
-            android:layout_marginStart="160dp"
+            android:layout_width="70dp"
+            android:layout_height="59dp"
+            android:layout_marginStart="170dp"
             android:layout_marginTop="300dp"
             app:layout_constraintBottom_toTopOf="@+id/linearLayout"
             app:layout_constraintStart_toStartOf="parent"
