@@ -47,7 +47,7 @@ public class HomeFragment extends Fragment {
         stallRecycler = root.findViewById(R.id.stall_recycler);
 
         greatFoodRecycler.setHasFixedSize(true);
-        greatFoodRecycler.setLayoutManager(new LinearLayoutManager(getContext(),RecyclerView.HORIZONTAL,false));
+        greatFoodRecycler.setLayoutManager(new LinearLayoutManager(getContext(),RecyclerView.HORIZONTAL,true));
         stallRecycler.setHasFixedSize(true);
         stallRecycler.setLayoutManager(new LinearLayoutManager(getContext(),RecyclerView.HORIZONTAL,false));
         loadGreatFoodList();
@@ -70,7 +70,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void loadStallList() {
-        FirebaseRecyclerOptions<Stall> options = new FirebaseRecyclerOptions.Builder<Stall>().setQuery(supplierList, Stall.class).build();
+        FirebaseRecyclerOptions<Stall> options = new FirebaseRecyclerOptions.Builder<Stall>().setQuery(supplierList.orderByChild("supplierID"), Stall.class).build();
         adapterStall = new FirebaseRecyclerAdapter<Stall, StallViewHolder>(options) {
             @Override
             protected void onBindViewHolder(@NonNull StallViewHolder stallViewHolder, int i, final Stall stall) {
@@ -114,8 +114,8 @@ public class HomeFragment extends Fragment {
             protected void onBindViewHolder(@NonNull GreatFoodViewHolder greatFoodViewHolder, int i, @NonNull Food food) {
                 if(food.getStatus().equals("1"))
                     greatFoodViewHolder.outOfOrder_image.setImageResource(Common.convertOutOfOrderToImage());
+                else greatFoodViewHolder.outOfOrder_image.setImageResource(0);
                 greatFoodViewHolder.ratingBar.setRating(Float.parseFloat(food.getStar()));
-                greatFoodViewHolder.discount_image.setImageResource(Common.convertDiscountToImage(food.getDiscount()));
                 greatFoodViewHolder.food_name.setText(food.getName());
                 greatFoodViewHolder.food_price.setText(Common.convertPriceToVND(food.getPrice()));
                 Picasso.with(getContext()).load(food.getImage()).into(greatFoodViewHolder.food_image);

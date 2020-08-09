@@ -68,7 +68,7 @@ public class ForgotPasswordPage extends AppCompatActivity {
                     Toast.makeText(ForgotPasswordPage.this, "Vui lòng kiểm tra email để đặt lại mật khẩu", Toast.LENGTH_LONG).show();
                 }
                 else{
-                    Toast.makeText(ForgotPasswordPage.this, "Có gì đó không đúng!!!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(ForgotPasswordPage.this, "Email không đúng", Toast.LENGTH_LONG).show();
                 }
             }
         });

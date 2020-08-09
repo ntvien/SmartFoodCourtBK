@@ -31,14 +31,14 @@
 
         <TextView
             android:id="@+id/name"
-            android:layout_width="139dp"
-            android:layout_height="76dp"
+            android:layout_width="131dp"
+            android:layout_height="71dp"
             android:layout_marginStart="40dp"
             android:layout_marginTop="35dp"
             android:fontFamily="@font/semibold"
             android:text="Cake"
             android:textColor="#091020"
-            android:textSize="26sp"
+            android:textSize="18sp"
             app:layout_constraintStart_toStartOf="@+id/linearLayout"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="MissingConstraints" />
@@ -47,7 +47,7 @@
             android:id="@+id/linearLayout"
             android:layout_width="235dp"
             android:layout_height="42dp"
-            android:layout_marginStart="160dp"
+            android:layout_marginStart="180dp"
             android:layout_marginEnd="10dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -60,12 +60,12 @@
 
             <RatingBar
                 android:id="@+id/ratingBar"
-                android:layout_width="wrap_content"
+                android:layout_width="235dp"
                 android:layout_height="match_parent"
                 android:isIndicator="true"
                 android:max="5"
                 android:rating="0"
-                android:scaleX="0.7"
+                android:scaleX="0.6"
                 android:scaleY="0.7" />
         </LinearLayout>
 
@@ -73,39 +73,25 @@
             android:id="@+id/price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="61dp"
             android:layout_marginEnd="20dp"
             android:fontFamily="@font/semibold"
             android:text="10.000đ"
             android:textColor="#FF6813"
             android:textSize="22sp"
-            app:layout_constraintBottom_toBottomOf="@+id/txtName"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/txtName"
-            app:layout_constraintVertical_bias="1.0"
-            tools:ignore="MissingConstraints" />
-
-        <ImageView
-            android:id="@+id/txtName"
-            android:layout_width="83dp"
-            android:layout_height="35dp"
-            android:layout_marginStart="185dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginBottom="30dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/linearLayout"
             tools:ignore="MissingConstraints" />
 
         <ImageView
             android:id="@+id/outOfOrder_image"
-            android:layout_width="179dp"
-            android:layout_height="59dp"
-            android:layout_marginStart="270dp"
-            android:layout_marginTop="20dp"
+            android:layout_width="50dp"
+            android:layout_height="56dp"
+            android:layout_marginStart="11dp"
             app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/name"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"/>
+            app:layout_constraintVertical_bias="0.262" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

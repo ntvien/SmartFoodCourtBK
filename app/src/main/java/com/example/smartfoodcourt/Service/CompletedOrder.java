@@ -75,7 +75,7 @@ public class CompletedOrder extends Service implements ChildEventListener {
                 notificationManager.createNotificationChannel(channel);
             }
             managerCompat = NotificationManagerCompat.from(getBaseContext());
-            managerCompat.notify(Integer.parseInt(snapshot.getKey().substring(5)),builder.build());
+            managerCompat.notify(Integer.parseInt(order.getTotal() + order.getSupplierID()),builder.build());
         }
     }
 
