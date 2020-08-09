@@ -32,6 +32,7 @@
             android:layout_marginTop="40dp"
             android:fontFamily="@font/semibold"
             android:text="Món ăn được yêu thích"
+
             android:textColor="#FFFFFF"
             android:textSize="24sp" />
 
