@@ -12,4 +12,8 @@ https://developer.paypal.com/developer/applications/edit/SB:QVJabkc4YS1jczc0LXg2
 - Payment: Email ID: sb-34uhq2487619@business.example.com
   Password: 12345678
 
-# Video demo: https://www.youtube.com/watch?v=ttZ2zT4myZc&t=18s
+# Video demo: 
+  Link: https://www.youtube.com/watch?v=ttZ2zT4myZc&t=18s
+
+# Poster demo:
+  Link: https://drive.google.com/file/d/1F2PlQITlO60QV3DXdMJLv5CALXGHyu9m/view?usp=sharing
