@@ -14,7 +14,7 @@
 - Email ID: sb-34uhq2487619@business.example.com
 - Password: 12345678
 
-## Video demo
+## Video Demo
 
 [Smart Food Court BK](https://www.youtube.com/watch?v=ttZ2zT4myZc&t=18s)
 
@@ -22,7 +22,7 @@
 
 [Poster Demo](https://drive.google.com/file/d/1F2PlQITlO60QV3DXdMJLv5CALXGHyu9m/view?usp=sharing)
 
-## UI aPP
+## UI App
 
 <img src="screenshots/Screenshot_1626692855.png" width="400" height="700">
 
