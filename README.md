@@ -24,7 +24,17 @@
 
 ## UI aPP
 
-<img src="screenshots/Screenshot_1626692855.png" width="500" height="500">
+<img src="screenshots/Screenshot_1626692855.png" width="400" height="700">
+
+<img src="screenshots/Screenshot_1626692868.png" width="400" height="700">
+
+<img src="screenshots/Screenshot_1626692885.png" width="400" height="700">
+
+<img src="screenshots/Screenshot_1626692888.png" width="400" height="700">
+
+<img src="screenshots/Screenshot_1626692912.png" width="400" height="700">
+
+<img src="screenshots/Screenshot_1626692876.png" width="400" height="700">
 
 ![Mobile Screenshot 1](screenshots/Screenshot_1626692855.png)
 
