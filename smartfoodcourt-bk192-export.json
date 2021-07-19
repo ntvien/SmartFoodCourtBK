@@ -1,0 +1,1195 @@
+{
+  "Food" : {
+    "List" : {
+      "-MC01bvEYlmtv2uxMqXp" : {
+        "description" : "Pizza kèm lạp xưởng",
+        "discount" : "20",
+        "image" : "https://firebasestorage.googleapis.com/v0/b/smartfoodcourt-bk192.appspot.com/o/food-0207d4d2-6c5a-4362-a18e-1e57766d1dea?alt=media&token=f7ebd4ba-bb38-44e0-bb3e-738b48857994",
+        "name" : "Pizza lạp xưởng",
+        "price" : "20000",
+        "star" : "4",
+        "status" : "1",
+        "supplierID" : 1
+      },
+      "-MC02DKAos-PDbd2u61v" : {
+        "description" : "Xúc xích xuất xứ từ Đức",
+        "discount" : "20",
+        "image" : "https://firebasestorage.googleapis.com/v0/b/smartfoodcourt-bk192.appspot.com/o/food-78af1aa7-cb72-4a74-95fc-08fde8be107e?alt=media&token=d0876f71-26fb-4e38-b359-c092f19d11a3",
+        "name" : "Xúc xích Đức",
+        "price" : "25000",
+        "star" : "5",
+        "status" : "0",
+        "supplierID" : 2
+      },
+      "-MEGv2CeNa2IQcNpjQqZ" : {
+        "description" : "",
+        "discount" : "10",
+        "image" : "https://firebasestorage.googleapis.com/v0/b/smartfoodcourt-bk192.appspot.com/o/food-2d542e48-78ec-4b32-8514-12b964bf8153?alt=media&token=8ce162ac-e148-436d-94e9-485a645cc445",
+        "name" : "Cơm chiên hải sản",
+        "price" : "55000",
+        "star" : "0",
+        "status" : "0",
+        "supplierID" : 4
+      },
+      "ajkland12" : {
+        "description" : "Bò bít tết được làm từ công thức của người Việt",
+        "discount" : "0",
+        "image" : "https://firebasestorage.googleapis.com/v0/b/smartfoodcourt-bk192.appspot.com/o/bo-bit-tet-sot-ruou-vang-1.jpg?alt=media&token=ed64103a-75cd-4c51-aa66-c33e57cd491c",
+        "name" : "Bò bít tết",
+        "price" : "35000",
+        "star" : "0",
+        "status" : "1",
+        "supplierID" : 1
+      },
+      "akjshfar" : {
+        "description" : "Shushi - Một món ăn đặc trưng của người Nhật",
+        "discount" : "0",
+        "image" : "https://firebasestorage.googleapis.com/v0/b/smartfoodcourt-bk192.appspot.com/o/sushi-cuon-nam.jpg?alt=media&token=5f731251-4b72-4b59-9e39-9caa9a47e1c5",
+        "name" : "Shushi",
+        "price" : "25000",
+        "star" : "0",
+        "status" : "1",
+        "supplierID" : 2
+      },
+      "atjafnamdsnad" : {
+        "description" : "Chicago pizza lấy tên từ thành phố mà nó được phát minh ra.",
+        "discount" : "0",
+        "image" : "https://firebasestorage.googleapis.com/v0/b/smartfoodcourt-bk192.appspot.com/o/pizzatypes-deepdish.jpg?alt=media&token=b9b80669-45d4-4b53-8dc5-765881f4406e",
+        "name" : "Chicago Pizza",
+        "price" : "45000",
+        "star" : "0",
+        "status" : "0",
+        "supplierID" : 6
+      },
+      "axy" : {
+        "description" : "Một chiếc bánh burger nai sừng tấm không chỉ có nhiều protein hơn thịt bò xay truyền thống mà còn ít chất béo hơn đáng kể.",
+        "discount" : "0",
+        "image" : "https://firebasestorage.googleapis.com/v0/b/smartfoodcourt-bk192.appspot.com/o/elk-burger.jpg?alt=media&token=88d97a74-4558-41a8-81e8-b49b50ad9b51",
+        "name" : "Elk Burger",
+        "price" : "30000",
+        "star" : "0",
+        "status" : "0",
+        "supplierID" : 1
+      },
+      "hafhks" : {
+        "description" : "Bạn có thể ngạc nhiên thú vị bởi kết cấu nhiều thịt của một chiếc bánh burger nấm portobello. Thêm vào đó, chúng có hương vị umami mạnh mẽ.",
+        "discount" : "0",
+        "image" : "https://firebasestorage.googleapis.com/v0/b/smartfoodcourt-bk192.appspot.com/o/raw-portobello-burger.jpg?alt=media&token=d24b0f61-ed77-4768-88b3-1de6d796f2d9",
+        "name" : "Portobello Burger",
+        "price" : "25000",
+        "star" : "0",
+        "status" : "0",
+        "supplierID" : 2
+      },
+      "itownakfn2" : {
+        "description" : "Đồ ăn của người Italy",
+        "discount" : "0",
+        "image" : "https://firebasestorage.googleapis.com/v0/b/smartfoodcourt-bk192.appspot.com/o/mi-y-chay.jpg?alt=media&token=a343f0d1-bdaa-4f6e-b331-348287b3c728",
+        "name" : "Spaghetti",
+        "price" : "30000",
+        "star" : "0",
+        "status" : "1",
+        "supplierID" : 2
+      },
+      "jahfmam" : {
+        "description" : "Ngon tuyệt",
+        "discount" : "0",
+        "image" : "https://firebasestorage.googleapis.com/v0/b/smartfoodcourt-bk192.appspot.com/o/banh-mi-1585017544410.jpg?alt=media&token=0eac6291-af65-42a7-89e1-320db24169cd",
+        "name" : "Bánh Mì",
+        "price" : "20000",
+        "star" : "4.5",
+        "status" : "0",
+        "supplierID" : 2
+      },
+      "kjsghkwjehtk" : {
+        "description" : "Neapolitan là chiếc bánh pizza nguyên bản. Chiếc bánh thơm ngon này có từ thế kỷ 18 ở Naples, Ý.",
+        "discount" : "0",
+        "image" : "https://firebasestorage.googleapis.com/v0/b/smartfoodcourt-bk192.appspot.com/o/Neopolitan-Pizza-Dough-2low.jpg?alt=media&token=0fc26e53-c894-449f-aba1-214936c2e7c6",
+        "name" : "Neapolitan Pizza",
+        "price" : "40000",
+        "star" : "3.5",
+        "status" : "0",
+        "supplierID" : 1
+      },
+      "oiuanacajsfn" : {
+        "description" : "Đồ ăn Việt",
+        "discount" : "2",
+        "image" : "https://firebasestorage.googleapis.com/v0/b/smartfoodcourt-bk192.appspot.com/o/soup_s0x768_q60.jpg?alt=media&token=88cb9f34-1faa-45f3-b4a0-f2381763e5b7",
+        "name" : "Súp cua",
+        "price" : "35000",
+        "star" : "4",
+        "status" : "0",
+        "supplierID" : 2
+      },
+      "tabaksjflsjf" : {
+        "description" : "Bánh kẹp gà tây cùng với bò thơm ngon",
+        "discount" : "0",
+        "image" : "https://firebasestorage.googleapis.com/v0/b/smartfoodcourt-bk192.appspot.com/o/salmonburger-articleLarge.jpg?alt=media&token=2bd9de52-4fbb-4799-bc81-78c8f038903a",
+        "name" : "Salmon Burger",
+        "price" : "33000",
+        "star" : "0",
+        "status" : "1",
+        "supplierID" : 1
+      }
+    },
+    "number" : 12
+  },
+  "Manager" : {
+    "phone" : "0123456789"
+  },
+  "Order" : {
+    "CanceledOrder" : {
+      "List" : {
+        "-MEDxzTAhVUZ6sEqUKQG" : {
+          "foods" : [ {
+            "discount" : "0",
+            "name" : "Salmon Burger",
+            "price" : "33000",
+            "quantity" : "1"
+          } ],
+          "phone" : "0978897607",
+          "status" : "1",
+          "supplierID" : 1,
+          "total" : "33000",
+          "type" : "0"
+        },
+        "-MEDztuhnJy1Cle1BUgz" : {
+          "foods" : [ {
+            "discount" : "0",
+            "name" : "Salmon Burger",
+            "price" : "33000",
+            "quantity" : "1"
+          } ],
+          "phone" : "0978897607",
+          "status" : "0",
+          "supplierID" : 1,
+          "total" : "33000",
+          "type" : "0"
+        },
+        "-MEE-chj5vFxXmxtA9Jy" : {
+          "foods" : [ {
+            "discount" : "0",
+            "name" : "Salmon Burger",
+            "price" : "33000",
+            "quantity" : "1"
+          } ],
+          "phone" : "0978897607",
+          "status" : "0",
+          "supplierID" : 1,
+          "total" : "33000",
+          "type" : "0"
+        },
+        "-MEE-oGhuqIrYyrmv0KU" : {
+          "foods" : [ {
+            "discount" : "0",
+            "name" : "Salmon Burger",
+            "price" : "33000",
+            "quantity" : "1"
+          } ],
+          "phone" : "0978897607",
+          "status" : "0",
+          "supplierID" : 1,
+          "total" : "33000",
+          "type" : "0"
+        },
+        "-MEE14mdWWRuFx5JrnbN" : {
+          "foods" : [ {
+            "discount" : "0",
+            "name" : "Sữa Gạo",
+            "price" : "12000",
+            "quantity" : "2"
+          } ],
+          "phone" : "0978897607",
+          "status" : "0",
+          "supplierID" : 1,
+          "total" : "24000",
+          "type" : "0"
+        },
+        "-MEE2YmBkdya8RG19tLB" : {
+          "foods" : [ {
+            "discount" : "0",
+            "name" : "Sữa Gạo",
+            "price" : "12000",
+            "quantity" : "1"
+          } ],
+          "phone" : "0978897607",
+          "status" : "0",
+          "supplierID" : 1,
+          "total" : "12000",
+          "type" : "0"
+        },
+        "-MEE3hddeLdADeIUkYDL" : {
+          "foods" : [ {
+            "discount" : "12",
+            "name" : "Lạp xưởng",
+            "price" : "15000",
+            "quantity" : "2"
+          } ],
+          "phone" : "0978897607",
+          "status" : "0",
+          "supplierID" : 1,
+          "total" : "26400",
+          "type" : "0"
+        },
+        "-MEE3qvI1LrjYd7_64Ia" : {
+          "foods" : [ {
+            "discount" : "20",
+            "name" : "Pizza lạp xưởng",
+            "price" : "20000",
+            "quantity" : "1"
+          } ],
+          "phone" : "0978897607",
+          "status" : "0",
+          "supplierID" : 1,
+          "total" : "16000",
+          "type" : "0"
+        },
+        "-MEE3yCyisZQ6r-jNcFj" : {
+          "foods" : [ {
+            "discount" : "20",
+            "name" : "Pizza lạp xưởng",
+            "price" : "20000",
+            "quantity" : "1"
+          } ],
+          "phone" : "0978897607",
+          "status" : "0",
+          "supplierID" : 1,
+          "total" : "16000",
+          "type" : "0"
+        },
+        "-MEE49Rnu2LCRbhQIaDI" : {
+          "foods" : [ {
+            "discount" : "12",
+            "name" : "Lạp xưởng",
+            "price" : "15000",
+            "quantity" : "1"
+          }, {
+            "discount" : "12",
+            "name" : "Lạp xưởng",
+            "price" : "15000",
+            "quantity" : "1"
+          } ],
+          "phone" : "0978897607",
+          "status" : "0",
+          "supplierID" : 1,
+          "total" : "26400",
+          "type" : "0"
+        },
+        "-MEE5igCz72-HkiUTyQT" : {
+          "foods" : [ {
+            "discount" : "20",
+            "name" : "Pizza lạp xưởng",
+            "price" : "20000",
+            "quantity" : "1"
+          } ],
+          "phone" : "0978897607",
+          "status" : "0",
+          "supplierID" : 1,
+          "total" : "16000",
+          "type" : "0"
+        },
+        "-MEE7al6gI4y3oT54LCH" : {
+          "foods" : [ {
+            "discount" : "0",
+            "name" : "Salmon Burger",
+            "price" : "33000",
+            "quantity" : "6"
+          } ],
+          "phone" : "0978897607",
+          "status" : "0",
+          "supplierID" : 1,
+          "total" : "198000",
+          "type" : "1"
+        },
+        "-MEIEgcja3d6SjP2GfRO" : {
+          "foods" : [ {
+            "discount" : "0",
+            "name" : "Chicago Pizza",
+            "price" : "45000",
+            "quantity" : "1"
+          } ],
+          "phone" : "0978897607",
+          "status" : "0",
+          "supplierID" : 6,
+          "total" : "45000",
+          "type" : "0"
+        },
+        "-MEIEwB5ZZFWutm_fFxh" : {
+          "foods" : [ {
+            "discount" : "0",
+            "name" : "Chicago Pizza",
+            "price" : "45000",
+            "quantity" : "1"
+          } ],
+          "phone" : "0978897607",
+          "status" : "0",
+          "supplierID" : 6,
+          "total" : "45000",
+          "type" : "0"
+        },
+        "-MEIFr2DsISw4kZhpR-c" : {
+          "foods" : [ {
+            "discount" : "0",
+            "name" : "Chicago Pizza",
+            "price" : "45000",
+            "quantity" : "2"
+          } ],
+          "phone" : "0978897607",
+          "status" : "0",
+          "supplierID" : 6,
+          "total" : "90000",
+          "type" : "0"
+        },
+        "-MEIGd_ASejVIsADJtzW" : {
+          "foods" : [ {
+            "discount" : "0",
+            "name" : "Chicago Pizza",
+            "price" : "45000",
+            "quantity" : "1"
+          } ],
+          "phone" : "0978897607",
+          "status" : "1",
+          "supplierID" : 6,
+          "total" : "45000",
+          "type" : "0"
+        },
+        "-MEIHOBtqNoeAymn3Yyl" : {
+          "foods" : [ {
+            "discount" : "0",
+            "name" : "Chicago Pizza",
+            "price" : "45000",
+            "quantity" : "1"
+          } ],
+          "phone" : "0978897607",
+          "status" : "0",
+          "supplierID" : 6,
+          "total" : "45000",
+          "type" : "0"
+        },
+        "-MEIHr3RB3u9kV13OWss" : {
+          "foods" : [ {
+            "discount" : "0",
+            "name" : "Chicago Pizza",
+            "price" : "45000",
+            "quantity" : "1"
+          } ],
+          "phone" : "0978897607",
+          "status" : "0",
+          "supplierID" : 6,
+          "total" : "45000",
+          "type" : "0"
+        },
+        "-MEII71Z5u2aEnsEec8O" : {
+          "foods" : [ {
+            "discount" : "0",
+            "name" : "Chicago Pizza",
+            "price" : "45000",
+            "quantity" : "1"
+          } ],
+          "phone" : "0978897607",
+          "status" : "0",
+          "supplierID" : 6,
+          "total" : "45000",
+          "type" : "0"
+        },
+        "-MEIIXf1yPt-8aZaHJ64" : {
+          "foods" : [ {
+            "discount" : "0",
+            "name" : "Chicago Pizza",
+            "price" : "45000",
+            "quantity" : "1"
+          } ],
+          "phone" : "0978897607",
+          "status" : "1",
+          "supplierID" : 6,
+          "total" : "45000",
+          "type" : "0"
+        },
+        "-MEIJ1qboDxuT7wDhfUX" : {
+          "foods" : [ {
+            "discount" : "0",
+            "name" : "Chicago Pizza",
+            "price" : "45000",
+            "quantity" : "1"
+          }, {
+            "discount" : "0",
+            "name" : "Chicago Pizza",
+            "price" : "45000",
+            "quantity" : "1"
+          } ],
+          "phone" : "0978897607",
+          "status" : "1",
+          "supplierID" : 6,
+          "total" : "90000",
+          "type" : "0"
+        },
+        "-MEIJVenVaVrL2H2sxgF" : {
+          "foods" : [ {
+            "discount" : "0",
+            "name" : "Chicago Pizza",
+            "price" : "45000",
+            "quantity" : "1"
+          } ],
+          "phone" : "0978897607",
+          "status" : "1",
+          "supplierID" : 6,
+          "total" : "45000",
+          "type" : "0"
+        },
+        "-MEIK7dd-RJzxNfTqClB" : {
+          "foods" : [ {
+            "discount" : "0",
+            "name" : "Chicago Pizza",
+            "price" : "45000",
+            "quantity" : "1"
+          } ],
+          "phone" : "0978897607",
+          "status" : "1",
+          "supplierID" : 6,
+          "total" : "45000",
+          "type" : "0"
+        },
+        "-MEIKpg5CwoOa7uiWpw5" : {
+          "foods" : [ {
+            "discount" : "0",
+            "name" : "Chicago Pizza",
+            "price" : "45000",
+            "quantity" : "1"
+          } ],
+          "phone" : "0978897607",
+          "status" : "0",
+          "supplierID" : 6,
+          "total" : "45000",
+          "type" : "0"
+        },
+        "-MEILFQYlQFXsd-kPRrj" : {
+          "foods" : [ {
+            "discount" : "0",
+            "name" : "Chicago Pizza",
+            "price" : "45000",
+            "quantity" : "1"
+          } ],
+          "phone" : "0978897607",
+          "status" : "1",
+          "supplierID" : 6,
+          "total" : "45000",
+          "type" : "0"
+        },
+        "-MEILoNUyF8mTmSFwlTp" : {
+          "foods" : [ {
+            "discount" : "0",
+            "name" : "Chicago Pizza",
+            "price" : "45000",
+            "quantity" : "1"
+          } ],
+          "phone" : "0978897607",
+          "status" : "0",
+          "supplierID" : 6,
+          "total" : "45000",
+          "type" : "0"
+        },
+        "-MEIMYZHH7JyX6uKMaZ1" : {
+          "foods" : [ {
+            "discount" : "0",
+            "name" : "Chicago Pizza",
+            "price" : "45000",
+            "quantity" : "1"
+          } ],
+          "phone" : "0978897607",
+          "status" : "1",
+          "supplierID" : 6,
+          "total" : "45000",
+          "type" : "0"
+        },
+        "-MEINjJK5fZOar-10BUU" : {
+          "foods" : [ {
+            "discount" : "0",
+            "name" : "Chicago Pizza",
+            "price" : "45000",
+            "quantity" : "1"
+          } ],
+          "phone" : "0978897607",
+          "status" : "1",
+          "supplierID" : 6,
+          "total" : "45000",
+          "type" : "0"
+        },
+        "-MEI_urJiGkcrldYOzY3" : {
+          "foods" : [ {
+            "discount" : "0",
+            "name" : "Neapolitan Pizza",
+            "price" : "40000",
+            "quantity" : "1"
+          } ],
+          "phone" : "0978897607",
+          "status" : "0",
+          "supplierID" : 1,
+          "total" : "40000",
+          "type" : "0"
+        },
+        "-MEIb91qLBX3Fl-alvJn" : {
+          "foods" : [ {
+            "discount" : "0",
+            "name" : "Neapolitan Pizza",
+            "price" : "40000",
+            "quantity" : "1"
+          } ],
+          "phone" : "0978897607",
+          "status" : "0",
+          "supplierID" : 1,
+          "total" : "40000",
+          "type" : "0"
+        },
+        "-MEIdDYckOxTTwzWYp0L" : {
+          "foods" : [ {
+            "discount" : "0",
+            "name" : "Neapolitan Pizza",
+            "price" : "40000",
+            "quantity" : "1"
+          } ],
+          "phone" : "0978897607",
+          "status" : "0",
+          "supplierID" : 1,
+          "total" : "40000",
+          "type" : "0"
+        },
+        "-MEIeglexzjHUXUnKQSZ" : {
+          "foods" : [ {
+            "discount" : "0",
+            "name" : "Neapolitan Pizza",
+            "price" : "40000",
+            "quantity" : "2"
+          } ],
+          "phone" : "0978897607",
+          "status" : "0",
+          "supplierID" : 1,
+          "total" : "80000",
+          "type" : "0"
+        },
+        "-MEIg1k3SFB9KL6vzYxd" : {
+          "foods" : [ {
+            "discount" : "0",
+            "name" : "Neapolitan Pizza",
+            "price" : "40000",
+            "quantity" : "2"
+          } ],
+          "phone" : "0978897607",
+          "status" : "0",
+          "supplierID" : 1,
+          "total" : "80000",
+          "type" : "0"
+        },
+        "-MWZadebLATiyHe4XygQ" : {
+          "foods" : [ {
+            "discount" : "0",
+            "name" : "Neapolitan Pizza",
+            "price" : "40000",
+            "quantity" : "1"
+          } ],
+          "phone" : "0978897607",
+          "status" : "1",
+          "supplierID" : 1,
+          "total" : "40000",
+          "type" : "0"
+        },
+        "-MZvHfQf3icfiVUDtqRK" : {
+          "foods" : [ {
+            "discount" : "20",
+            "name" : "Pizza lạp xưởng",
+            "price" : "20000",
+            "quantity" : "1"
+          } ],
+          "phone" : "0978897607",
+          "status" : "0",
+          "supplierID" : 1,
+          "total" : "16000",
+          "type" : "0"
+        },
+        "-M_Dvlw-KDb9VFHKA48V" : {
+          "foods" : [ {
+            "discount" : "0",
+            "name" : "Neapolitan Pizza",
+            "price" : "40000",
+            "quantity" : "1"
+          } ],
+          "phone" : "0978897607",
+          "status" : "0",
+          "supplierID" : 1,
+          "total" : "40000",
+          "type" : "0"
+        },
+        "-M_VkGWMk6HfUi7cSORb" : {
+          "foods" : [ {
+            "discount" : "20",
+            "name" : "Pizza lạp xưởng",
+            "price" : "20000",
+            "quantity" : "3"
+          }, {
+            "discount" : "0",
+            "name" : "Neapolitan Pizza",
+            "price" : "40000",
+            "quantity" : "3"
+          } ],
+          "phone" : "0978897607",
+          "status" : "0",
+          "supplierID" : 1,
+          "total" : "168000",
+          "type" : "1"
+        },
+        "-M_Vm8sEuwzy_D4wpP6W" : {
+          "foods" : [ {
+            "discount" : "20",
+            "name" : "Pizza lạp xưởng",
+            "price" : "20000",
+            "quantity" : "2"
+          }, {
+            "discount" : "0",
+            "name" : "Neapolitan Pizza",
+            "price" : "40000",
+            "quantity" : "2"
+          } ],
+          "phone" : "0978897607",
+          "status" : "0",
+          "supplierID" : 1,
+          "total" : "112000",
+          "type" : "0"
+        }
+      },
+      "number" : 38
+    },
+    "CurrentOrder" : {
+      "List" : {
+        "-MEDO1kOkFY_MOjihhqg" : {
+          "foods" : [ {
+            "discount" : "0",
+            "name" : "Bò bít tết",
+            "price" : "35000",
+            "quantity" : "3"
+          }, {
+            "discount" : "0",
+            "name" : "Shushi",
+            "price" : "25000",
+            "quantity" : "3"
+          } ],
+          "phone" : "0978897607",
+          "status" : "0",
+          "supplierID" : 2,
+          "total" : "180000",
+          "type" : "1"
+        },
+        "-MEIwcSgLF65cke1EiaW" : {
+          "foods" : [ {
+            "discount" : "20",
+            "name" : "Xúc xích Đức",
+            "price" : "25000",
+            "quantity" : "2"
+          }, {
+            "discount" : "0",
+            "name" : "Portobello Burger",
+            "price" : "25000",
+            "quantity" : "2"
+          } ],
+          "phone" : "0978897607",
+          "status" : "0",
+          "supplierID" : 2,
+          "total" : "90000",
+          "type" : "0"
+        },
+        "-MSbHBxp991hMHps_A6L" : {
+          "foods" : [ {
+            "discount" : "0",
+            "name" : "Portobello Burger",
+            "price" : "25000",
+            "quantity" : "1"
+          } ],
+          "phone" : "0978897607",
+          "status" : "0",
+          "supplierID" : 2,
+          "total" : "25000",
+          "type" : "0"
+        },
+        "-MYivJL2-xbsewNzhVUP" : {
+          "foods" : [ {
+            "discount" : "2",
+            "name" : "Súp cua",
+            "price" : "35000",
+            "quantity" : "1"
+          } ],
+          "phone" : "0978897607",
+          "status" : "0",
+          "supplierID" : 2,
+          "total" : "34300",
+          "type" : "0"
+        },
+        "-M_VkGWOvXFGjCh4bJNi" : {
+          "foods" : [ {
+            "discount" : "0",
+            "name" : "Portobello Burger",
+            "price" : "25000",
+            "quantity" : "3"
+          } ],
+          "phone" : "0978897607",
+          "status" : "0",
+          "supplierID" : 2,
+          "total" : "75000",
+          "type" : "0"
+        },
+        "-M_Vm8sF_M2sJHK-sHD_" : {
+          "foods" : [ {
+            "discount" : "20",
+            "name" : "Xúc xích Đức",
+            "price" : "25000",
+            "quantity" : "2"
+          } ],
+          "phone" : "0978897607",
+          "status" : "0",
+          "supplierID" : 2,
+          "total" : "40000",
+          "type" : "1"
+        },
+        "-M_VotdcZZRVqVfm6qT8" : {
+          "foods" : [ {
+            "discount" : "20",
+            "name" : "Pizza lạp xưởng",
+            "price" : "20000",
+            "quantity" : "3"
+          }, {
+            "discount" : "0",
+            "name" : "Neapolitan Pizza",
+            "price" : "40000",
+            "quantity" : "2"
+          } ],
+          "phone" : "0978897607",
+          "status" : "1",
+          "supplierID" : 1,
+          "total" : "128000",
+          "type" : "0"
+        },
+        "-M_Votddcu9p-cz016kJ" : {
+          "foods" : [ {
+            "discount" : "10",
+            "name" : "Cơm chiên hải sản",
+            "price" : "55000",
+            "quantity" : "1"
+          } ],
+          "phone" : "0978897607",
+          "status" : "0",
+          "supplierID" : 4,
+          "total" : "49500",
+          "type" : "1"
+        },
+        "-M_VqHw4KsKbUUQxlLTS" : {
+          "foods" : [ {
+            "discount" : "20",
+            "name" : "Pizza lạp xưởng",
+            "price" : "20000",
+            "quantity" : "2"
+          }, {
+            "discount" : "0",
+            "name" : "Neapolitan Pizza",
+            "price" : "40000",
+            "quantity" : "2"
+          } ],
+          "phone" : "0978897607",
+          "status" : "1",
+          "supplierID" : 1,
+          "total" : "112000",
+          "type" : "1"
+        },
+        "-M_VtzKm69bTMrNSbXhL" : {
+          "foods" : [ {
+            "discount" : "20",
+            "name" : "Pizza lạp xưởng",
+            "price" : "20000",
+            "quantity" : "3"
+          }, {
+            "discount" : "0",
+            "name" : "Neapolitan Pizza",
+            "price" : "40000",
+            "quantity" : "2"
+          } ],
+          "phone" : "0978897607",
+          "status" : "1",
+          "supplierID" : 1,
+          "total" : "128000",
+          "type" : "1"
+        },
+        "-Ma7mwCWxPi7ATQNfy78" : {
+          "foods" : [ {
+            "discount" : "20",
+            "name" : "Pizza lạp xưởng",
+            "price" : "20000",
+            "quantity" : "1"
+          } ],
+          "phone" : "0978897607",
+          "status" : "1",
+          "supplierID" : 1,
+          "total" : "16000",
+          "type" : "0"
+        },
+        "-Ma7n2IbzOwgSmY1RA_h" : {
+          "foods" : [ {
+            "discount" : "20",
+            "name" : "Pizza lạp xưởng",
+            "price" : "20000",
+            "quantity" : "1"
+          } ],
+          "phone" : "0978897607",
+          "status" : "0",
+          "supplierID" : 1,
+          "total" : "16000",
+          "type" : "0"
+        },
+        "-Ma7n5aCzvHC9frIqWqM" : {
+          "foods" : [ {
+            "discount" : "20",
+            "name" : "Pizza lạp xưởng",
+            "price" : "20000",
+            "quantity" : "2"
+          } ],
+          "phone" : "0978897607",
+          "status" : "0",
+          "supplierID" : 1,
+          "total" : "32000",
+          "type" : "0"
+        }
+      },
+      "number" : 13
+    },
+    "DeliveredOrder" : {
+      "List" : {
+        "-MEDO1kJcHfjRDxcu2Fu" : {
+          "foods" : [ {
+            "discount" : "20",
+            "name" : "Pizza lạp xưởng",
+            "price" : "20000",
+            "quantity" : "3"
+          } ],
+          "phone" : "0978897607",
+          "status" : "2",
+          "supplierID" : 1,
+          "total" : "48000",
+          "type" : "0"
+        },
+        "-MEDxCQwvopY_d4lqAtw" : {
+          "foods" : [ {
+            "discount" : "0",
+            "name" : "Elk Burger",
+            "price" : "30000",
+            "quantity" : "3"
+          }, {
+            "discount" : "20",
+            "name" : "Pizza lạp xưởng",
+            "price" : "20000",
+            "quantity" : "2"
+          } ],
+          "phone" : "0978897607",
+          "status" : "2",
+          "supplierID" : 1,
+          "total" : "122000",
+          "type" : "0"
+        },
+        "-MEDxF523t_ffPXxVyG1" : {
+          "foods" : [ {
+            "discount" : "0",
+            "name" : "Salmon Burger",
+            "price" : "33000",
+            "quantity" : "3"
+          }, {
+            "discount" : "0",
+            "name" : "Elk Burger",
+            "price" : "30000",
+            "quantity" : "3"
+          } ],
+          "phone" : "0978897607",
+          "status" : "2",
+          "supplierID" : 1,
+          "total" : "189000",
+          "type" : "0"
+        },
+        "-MEDxHVMSyPV5ky9nBVH" : {
+          "foods" : [ {
+            "discount" : "0",
+            "name" : "Elk Burger",
+            "price" : "30000",
+            "quantity" : "2"
+          }, {
+            "discount" : "0",
+            "name" : "Salmon Burger",
+            "price" : "33000",
+            "quantity" : "1"
+          } ],
+          "phone" : "0978897607",
+          "status" : "2",
+          "supplierID" : 1,
+          "total" : "93000",
+          "type" : "0"
+        },
+        "-MEDxP3q0giIT3dsonmi" : {
+          "foods" : [ {
+            "discount" : "0",
+            "name" : "Salmon Burger",
+            "price" : "33000",
+            "quantity" : "2"
+          } ],
+          "phone" : "0978897607",
+          "status" : "2",
+          "supplierID" : 1,
+          "total" : "66000",
+          "type" : "0"
+        },
+        "-MEDytZfdJ75cYe9y28m" : {
+          "foods" : [ {
+            "discount" : "0",
+            "name" : "Elk Burger",
+            "price" : "30000",
+            "quantity" : "2"
+          }, {
+            "discount" : "12",
+            "name" : "Lạp xưởng",
+            "price" : "15000",
+            "quantity" : "2"
+          } ],
+          "phone" : "0978897607",
+          "status" : "2",
+          "supplierID" : 1,
+          "total" : "86400",
+          "type" : "0"
+        },
+        "-MEDyxIfacP652EPvJ3j" : {
+          "foods" : [ {
+            "discount" : "12",
+            "name" : "Lạp xưởng",
+            "price" : "15000",
+            "quantity" : "2"
+          } ],
+          "phone" : "0978897607",
+          "status" : "2",
+          "supplierID" : 1,
+          "total" : "26400",
+          "type" : "0"
+        },
+        "-MEE-J8OZkVOL96sDF1s" : {
+          "foods" : [ {
+            "discount" : "0",
+            "name" : "Elk Burger",
+            "price" : "30000",
+            "quantity" : "2"
+          } ],
+          "phone" : "0978897607",
+          "status" : "2",
+          "supplierID" : 1,
+          "total" : "60000",
+          "type" : "0"
+        },
+        "-MEE-RQ9M-67jAy0u-vT" : {
+          "foods" : [ {
+            "discount" : "0",
+            "name" : "Salmon Burger",
+            "price" : "33000",
+            "quantity" : "2"
+          } ],
+          "phone" : "0978897607",
+          "status" : "2",
+          "supplierID" : 1,
+          "total" : "66000",
+          "type" : "0"
+        },
+        "-MEIwcShAWlIiAmrvjcP" : {
+          "foods" : [ {
+            "discount" : "0",
+            "name" : "Neapolitan Pizza",
+            "price" : "40000",
+            "quantity" : "1"
+          } ],
+          "phone" : "0978897607",
+          "status" : "2",
+          "supplierID" : 1,
+          "total" : "40000",
+          "type" : "1"
+        },
+        "-MMtAdrGEyT60Tn7Jjxg" : {
+          "foods" : [ {
+            "discount" : "0",
+            "name" : "Neapolitan Pizza",
+            "price" : "40000",
+            "quantity" : "1"
+          } ],
+          "phone" : "0978897607",
+          "status" : "2",
+          "supplierID" : 1,
+          "total" : "40000",
+          "type" : "0"
+        },
+        "-MWZagQoUpphDXtbHC4w" : {
+          "foods" : [ {
+            "discount" : "0",
+            "name" : "Neapolitan Pizza",
+            "price" : "40000",
+            "quantity" : "1"
+          } ],
+          "phone" : "0978897607",
+          "status" : "2",
+          "supplierID" : 1,
+          "total" : "40000",
+          "type" : "1"
+        },
+        "-MYivJL4oYw2wofwsjv9" : {
+          "foods" : [ {
+            "discount" : "20",
+            "name" : "Pizza lạp xưởng",
+            "price" : "20000",
+            "quantity" : "1"
+          } ],
+          "phone" : "0978897607",
+          "status" : "2",
+          "supplierID" : 1,
+          "total" : "16000",
+          "type" : "0"
+        }
+      },
+      "number" : 13
+    }
+  },
+  "Rating" : {
+    "-MC001lOtbxSFpIhqHBy" : {
+      "List" : {
+        "Tu" : {
+          "comment" : "OK",
+          "rateValue" : "5"
+        }
+      },
+      "number" : 1
+    },
+    "-MC01bvEYlmtv2uxMqXp" : {
+      "List" : {
+        "Tu" : {
+          "comment" : "ngon",
+          "rateValue" : "4"
+        },
+        "ntvien" : {
+          "comment" : "OK",
+          "rateValue" : "4"
+        }
+      },
+      "number" : 2
+    },
+    "-MC02DKAos-PDbd2u61v" : {
+      "List" : {
+        "Tu" : {
+          "comment" : "ngon",
+          "rateValue" : "5"
+        }
+      },
+      "number" : 1
+    },
+    "jahfmam" : {
+      "List" : {
+        "Tu" : {
+          "comment" : "OK",
+          "rateValue" : "5"
+        },
+        "ntvien" : {
+          "comment" : "OK",
+          "rateValue" : "4"
+        }
+      },
+      "number" : 2
+    },
+    "kjsghkwjehtk" : {
+      "List" : {
+        "Tu" : {
+          "comment" : "cfgc",
+          "rateValue" : "3"
+        },
+        "ntvien" : {
+          "comment" : "ngon",
+          "rateValue" : "4"
+        }
+      },
+      "number" : 2
+    },
+    "oiuanacajsfn" : {
+      "List" : {
+        "Tu" : {
+          "comment" : "",
+          "rateValue" : "4"
+        },
+        "ntvien" : {
+          "comment" : "OK",
+          "rateValue" : "4"
+        }
+      },
+      "number" : 2
+    },
+    "zzasnafna" : {
+      "List" : {
+        "Tu" : {
+          "comment" : "OK ngon",
+          "rateValue" : "5"
+        }
+      },
+      "number" : 1
+    }
+  },
+  "Supplier" : {
+    "List" : {
+      "0129501139" : {
+        "image" : "https://firebasestorage.googleapis.com/v0/b/smartfoodcourt-bk192.appspot.com/o/logo80e22da6-1ede-42f3-a369-a9511b33364d?alt=media&token=27f688e9-e7f6-495e-b5b8-f49ca1e0f6f6",
+        "name" : "Nguyễn Lê",
+        "password" : "123456",
+        "supplierID" : 3
+      },
+      "0367190549" : {
+        "image" : "https://www.jootoor.com/wp-content/uploads/2019/03/Logo-Design.jpg",
+        "name" : "Viễn Nguyễn",
+        "password" : "123456789",
+        "supplierID" : 2
+      },
+      "0825011139" : {
+        "image" : "https://nganhangphapluat.thukyluat.vn/images/CauHoi_Hinh/9eb6abaa-8cda-456c-ad66-26ba4da23ffe.jpg",
+        "name" : "Thong Nguyen",
+        "password" : "1814205",
+        "supplierID" : 4
+      },
+      "0967040272" : {
+        "image" : "https://cdn.dribbble.com/users/5976/screenshots/6179137/geometric_bat_origami_batman_logo_2009_design_symbol_by_alex_tass.png",
+        "name" : "Van Thuan",
+        "password" : "1111111",
+        "supplierID" : 6
+      },
+      "0978897607" : {
+        "image" : "https://firebasestorage.googleapis.com/v0/b/smartfoodcourt-bk192.appspot.com/o/logoe0a1c266-10d8-4c02-a86e-51c6f1d7b87b?alt=media&token=5245d268-c587-4daf-b438-5c81a7df9070",
+        "name" : "Ánh Nguyễn",
+        "password" : "12082000",
+        "supplierID" : 1
+      }
+    },
+    "number" : 5
+  },
+  "User" : {
+    "List" : {
+      "A6fyDBLRYTQ8d09WQrmkMNfKXly1" : {
+        "email" : "tu@gmail.com",
+        "name" : "abce",
+        "phone" : "0971233451"
+      },
+      "LTfI0XWGIzNPeNAsrQiSa9SNSot1" : {
+        "email" : "pipiradbk@gmail.com",
+        "name" : "choma",
+        "phone" : "0123456789"
+      },
+      "VmbUwkrmmuQE2gLV8t9368I5oaH3" : {
+        "email" : "tu.daobku@hcmut.edu.vn",
+        "name" : "Tu",
+        "phone" : "0978897607"
+      },
+      "wPysQkrFnCUjcpEjvOpFbdzeaQv2" : {
+        "email" : "thevien898@gmail.com",
+        "name" : "ntvien",
+        "phone" : "0367190549"
+      }
+    },
+    "number" : 4
+  }
+}
