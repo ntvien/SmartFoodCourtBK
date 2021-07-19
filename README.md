@@ -36,16 +36,3 @@
 
 <img src="screenshots/Screenshot_1626692876.png" width="400" height="700">
 
-![Mobile Screenshot 1](screenshots/Screenshot_1626692855.png)
-
-![Mobile Screenshot 2](screenshots/Screenshot_1626692868.png)
-
-![Mobile Screenshot 3](screenshots/Screenshot_1626692885.png)
-
-![Mobile Screenshot 4](screenshots/Screenshot_1626692888.png)
-
-![Mobile Screenshot 5](screenshots/Screenshot_1626692912.png)
-
-![Mobile Screenshot 6](screenshots/Screenshot_1626692876.png)
-
-
